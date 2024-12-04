@@ -1,0 +1,67 @@
+name: uikit
+description: "UIKIT package for MoreHands app"
+version: 0.0.1
+#homepage:
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_svg: ^2.0.16
+  flutter_screenutil: ^5.9.3
+  awesome_extensions: ^2.0.19
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.13
+  flutter_gen_runner: ^5.8.0
+
+flutter:
+  uses-material-design: true
+  generate: false
+  assets:
+    - assets/fonts/
+    - assets/icons/
+    - assets/images/
+
+  fonts:
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-Black.ttf
+          weight: 900
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-Regular.ttf
+          style: normal
+          weight: 400
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-Light.ttf
+          weight: 300
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-Ultralight.ttf
+          weight: 200
+        - asset: assets/fonts/SFProDisplay/SFProDisplay-Thin.ttf
+          weight: 100
+
+flutter_gen:
+  output: lib/src/assets/
+  line_length: 100
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: true
+      class_name: MoreHandsAssets
+
+  integrations:
+    flutter_svg: true
+    flare_flutter: false
+    rive: false
+    lottie: false
