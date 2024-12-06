@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
-
+import 'package:uikit/uikit.dart';
 @RoutePage()
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -16,11 +16,9 @@ class _OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return   Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(child: Center(
-        child: Text("MoreHands"),
-      )),
+      body: SafeArea(child: MoreHandsAssets.images.svg.hand1.svg()),
     );
   }
 }

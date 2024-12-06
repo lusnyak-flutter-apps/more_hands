@@ -1,7 +1,6 @@
 export  'di/injection.dart';
 export  'router/app_router.dart';
 
-
 /// internal packages
 export 'package:auto_route/auto_route.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';

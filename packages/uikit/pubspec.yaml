@@ -28,7 +28,9 @@ flutter:
   assets:
     - assets/fonts/
     - assets/icons/
-    - assets/images/
+    - assets/images/png/
+    - assets/images/svg/
+    - assets/images/jpg/
 
   fonts:
     - family: SFProDisplay

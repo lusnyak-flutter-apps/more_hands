@@ -12,6 +12,8 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:more_hands/core/network/dio_client/dio_client.dart' as _i98;
+import 'package:more_hands/presentation/pages/app_loading/cubit/app_loading_cubit.dart'
+    as _i1030;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -25,6 +27,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final dioClient = _$DioClient();
+    gh.factory<_i1030.AppLoadingCubit>(() => _i1030.AppLoadingCubit());
     gh.factory<String>(
       () => dioClient.baseUrl,
       instanceName: 'baseUrl',
