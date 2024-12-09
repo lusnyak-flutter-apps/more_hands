@@ -5,7 +5,10 @@ class MHColors {
 
   static const whiteColor = Color(0xFFFFFFFF);
   static const blackColor = Color(0xFF000000);
+
   static const yellowColor = Color(0xFFF8DB3A);
   static const amberColor = Color(0xFFF8B932);
+  static const redColor = Color(0xFFFF0000);
 
+  static const blackBGColor = Color(0xFF171411);
 }

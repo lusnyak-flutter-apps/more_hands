@@ -5,7 +5,7 @@ flutter_launcher_icons:
   android: true
   # image_path_android: "assets/icon/icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
-  adaptive_icon_background: "#000000"
+  adaptive_icon_background: "#171411"
   adaptive_icon_foreground: packages/uikit/assets/images/png/more_hands_2.png
   # adaptive_icon_monochrome: "assets/icon/monochrome.png"
 
@@ -20,8 +20,8 @@ flutter_launcher_icons:
   web:
     generate: true
     image_path: packages/uikit/assets/images/png/more_hands_2.png
-    background_color: "#000000"
-    theme_color: "#000000"
+    background_color: "#171411"
+    theme_color: "#171411"
 
 #  windows:
 #    generate: true

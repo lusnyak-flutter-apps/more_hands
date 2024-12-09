@@ -17,8 +17,8 @@ Widget get moreHandsApp => ScreenUtilInit(
             child: child!);
       },
       debugShowCheckedModeBanner: false,
-      // theme: lightTheme,
-      // darkTheme: darkTheme,
+      theme: darkTheme,
+      darkTheme: darkTheme,
       routerConfig: appRouter.config(),
       locale: AppLocalizations.supportedLocales.first,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

@@ -1,12 +1,12 @@
 # flutter pub run flutter_native_splash
 flutter_native_splash:
-  color: "#000000"
+  color: "#171411"
   image: packages/uikit/assets/images/png/more_hands.png
 
-  color_dark: "#000000"
+  color_dark: "#171411"
   image_dark: packages/uikit/assets/images/png/more_hands.png
 
   android_12:
-    color: "#000000"
+    color: "#171411"
     image: packages/uikit/assets/images/png/more_hands.png
 

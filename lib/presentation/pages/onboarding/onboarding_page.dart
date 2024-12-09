@@ -62,7 +62,6 @@ class _OnboardingView extends StatelessWidget {
     final cubit = context.read<OnboardingCubit>();
 
     return Scaffold(
-      backgroundColor: Colors.black,
       body: SafeArea(
         child: BlocBuilder<OnboardingCubit, OnboardingState>(
           builder: (context, state) {
@@ -97,8 +96,12 @@ class _OnboardingView extends StatelessWidget {
                       controller: cubit.pageController,
                       onPageChanged: cubit.onChangedPage,
                       children: data
-                          .map((info) => OnboardingInfo(
-                              title: info.title, description: info.description))
+                          .map(
+                            (info) => OnboardingInfo(
+                              title: info.title,
+                              description: info.description,
+                            ),
+                          )
                           .toList(),
                     ),
                   ],

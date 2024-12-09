@@ -28,7 +28,6 @@ class _AppLoadingView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
             child: MoreHandsAssets.images.svg.moreHands.svg(width: 280.w) ,
