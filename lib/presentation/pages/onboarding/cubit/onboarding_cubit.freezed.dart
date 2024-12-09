@@ -20,18 +20,21 @@ mixin _$OnboardingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int page, List<OnboardingViewModel> data) loaded,
+    required TResult Function() complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult? Function()? complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult Function()? complete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$OnboardingState {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnboardingState value) initial,
     required TResult Function(_OnboardingLoadedState value) loaded,
+    required TResult Function(_OnboardingCompleteState value) complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnboardingState value)? initial,
     TResult? Function(_OnboardingLoadedState value)? loaded,
+    TResult? Function(_OnboardingCompleteState value)? complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnboardingState value)? initial,
     TResult Function(_OnboardingLoadedState value)? loaded,
+    TResult Function(_OnboardingCompleteState value)? complete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$OnboardingStateImpl implements _OnboardingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int page, List<OnboardingViewModel> data) loaded,
+    required TResult Function() complete,
   }) {
     return initial();
   }
@@ -129,6 +136,7 @@ class _$OnboardingStateImpl implements _OnboardingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult? Function()? complete,
   }) {
     return initial?.call();
   }
@@ -138,6 +146,7 @@ class _$OnboardingStateImpl implements _OnboardingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult Function()? complete,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -151,6 +160,7 @@ class _$OnboardingStateImpl implements _OnboardingState {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnboardingState value) initial,
     required TResult Function(_OnboardingLoadedState value) loaded,
+    required TResult Function(_OnboardingCompleteState value) complete,
   }) {
     return initial(this);
   }
@@ -160,6 +170,7 @@ class _$OnboardingStateImpl implements _OnboardingState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnboardingState value)? initial,
     TResult? Function(_OnboardingLoadedState value)? loaded,
+    TResult? Function(_OnboardingCompleteState value)? complete,
   }) {
     return initial?.call(this);
   }
@@ -169,6 +180,7 @@ class _$OnboardingStateImpl implements _OnboardingState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnboardingState value)? initial,
     TResult Function(_OnboardingLoadedState value)? loaded,
+    TResult Function(_OnboardingCompleteState value)? complete,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -271,6 +283,7 @@ class _$OnboardingLoadedStateImpl implements _OnboardingLoadedState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int page, List<OnboardingViewModel> data) loaded,
+    required TResult Function() complete,
   }) {
     return loaded(page, data);
   }
@@ -280,6 +293,7 @@ class _$OnboardingLoadedStateImpl implements _OnboardingLoadedState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult? Function()? complete,
   }) {
     return loaded?.call(page, data);
   }
@@ -289,6 +303,7 @@ class _$OnboardingLoadedStateImpl implements _OnboardingLoadedState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult Function()? complete,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -302,6 +317,7 @@ class _$OnboardingLoadedStateImpl implements _OnboardingLoadedState {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnboardingState value) initial,
     required TResult Function(_OnboardingLoadedState value) loaded,
+    required TResult Function(_OnboardingCompleteState value) complete,
   }) {
     return loaded(this);
   }
@@ -311,6 +327,7 @@ class _$OnboardingLoadedStateImpl implements _OnboardingLoadedState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnboardingState value)? initial,
     TResult? Function(_OnboardingLoadedState value)? loaded,
+    TResult? Function(_OnboardingCompleteState value)? complete,
   }) {
     return loaded?.call(this);
   }
@@ -320,6 +337,7 @@ class _$OnboardingLoadedStateImpl implements _OnboardingLoadedState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnboardingState value)? initial,
     TResult Function(_OnboardingLoadedState value)? loaded,
+    TResult Function(_OnboardingCompleteState value)? complete,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -342,4 +360,118 @@ abstract class _OnboardingLoadedState implements OnboardingState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OnboardingLoadedStateImplCopyWith<_$OnboardingLoadedStateImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnboardingCompleteStateImplCopyWith<$Res> {
+  factory _$$OnboardingCompleteStateImplCopyWith(
+          _$OnboardingCompleteStateImpl value,
+          $Res Function(_$OnboardingCompleteStateImpl) then) =
+      __$$OnboardingCompleteStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnboardingCompleteStateImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingCompleteStateImpl>
+    implements _$$OnboardingCompleteStateImplCopyWith<$Res> {
+  __$$OnboardingCompleteStateImplCopyWithImpl(
+      _$OnboardingCompleteStateImpl _value,
+      $Res Function(_$OnboardingCompleteStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OnboardingState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OnboardingCompleteStateImpl implements _OnboardingCompleteState {
+  const _$OnboardingCompleteStateImpl();
+
+  @override
+  String toString() {
+    return 'OnboardingState.complete()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnboardingCompleteStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(int page, List<OnboardingViewModel> data) loaded,
+    required TResult Function() complete,
+  }) {
+    return complete();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult? Function()? complete,
+  }) {
+    return complete?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int page, List<OnboardingViewModel> data)? loaded,
+    TResult Function()? complete,
+    required TResult orElse(),
+  }) {
+    if (complete != null) {
+      return complete();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnboardingState value) initial,
+    required TResult Function(_OnboardingLoadedState value) loaded,
+    required TResult Function(_OnboardingCompleteState value) complete,
+  }) {
+    return complete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnboardingState value)? initial,
+    TResult? Function(_OnboardingLoadedState value)? loaded,
+    TResult? Function(_OnboardingCompleteState value)? complete,
+  }) {
+    return complete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnboardingState value)? initial,
+    TResult Function(_OnboardingLoadedState value)? loaded,
+    TResult Function(_OnboardingCompleteState value)? complete,
+    required TResult orElse(),
+  }) {
+    if (complete != null) {
+      return complete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnboardingCompleteState implements OnboardingState {
+  const factory _OnboardingCompleteState() = _$OnboardingCompleteStateImpl;
 }

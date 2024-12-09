@@ -27,8 +27,8 @@ TextStyle get body28SemiBoldStyle => TextStyle(
  );
 
 TextStyle get buttonTextStyles => TextStyle(
-  fontSize: 15.sp,
-  height: 22 / 15,
+  fontSize: 16.sp,
+  height: 22 / 16,
   fontFamily: FontFamily.sFProDisplay,
   fontWeight: FontWeight.w500,
   fontStyle: FontStyle.normal,

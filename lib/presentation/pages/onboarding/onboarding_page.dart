@@ -63,11 +63,20 @@ class _OnboardingView extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<OnboardingCubit, OnboardingState>(
-          builder: (context, state) {
-            final (page, data) = state.when(
+        child: BlocConsumer<OnboardingCubit, OnboardingState>(
+          listener: (_, state) {
+            state.maybeWhen(
+              orElse: () {},
+              complete: () {
+                context.router.pushAndPopUntil(const AuthorizationRoute(),
+                    predicate: (route) => false);
+              },
+            );
+          },
+          builder: (_, state) {
+            final (page, data) = state.maybeWhen(
               loaded: (page, data) => (page, data),
-              initial: () => (0, <OnboardingViewModel>[]),
+              orElse: () => (0, <OnboardingViewModel>[]),
             );
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

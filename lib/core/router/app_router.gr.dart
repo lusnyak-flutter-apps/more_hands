@@ -29,6 +29,25 @@ class AppLoadingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [AuthorizationPage]
+class AuthorizationRoute extends PageRouteInfo<void> {
+  const AuthorizationRoute({List<PageRouteInfo>? children})
+      : super(
+          AuthorizationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthorizationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AuthorizationPage();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})

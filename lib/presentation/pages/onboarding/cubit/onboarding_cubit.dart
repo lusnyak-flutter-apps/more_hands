@@ -29,6 +29,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
         emit(
           (state as _OnboardingLoadedState).copyWith(page: currentPage + 1),
         );
+      } else {
+        emit(const OnboardingState.complete());
       }
     });
   }

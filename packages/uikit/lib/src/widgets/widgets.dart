@@ -1,2 +1,2 @@
-export 'buttons/mh_gradient_button.dart';
-export 'controls/mh_page_indicator.dart';
+export 'buttons/buttons.dart';
+export 'controls/controls.dart';

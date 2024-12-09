@@ -14,6 +14,8 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:more_hands/core/network/dio_client/dio_client.dart' as _i98;
 import 'package:more_hands/presentation/pages/app_loading/cubit/app_loading_cubit.dart'
     as _i1030;
+import 'package:more_hands/presentation/pages/auth/cubit/authorization_cubit.dart'
+    as _i24;
 import 'package:more_hands/presentation/pages/onboarding/cubit/onboarding_cubit.dart'
     as _i701;
 
@@ -31,6 +33,7 @@ extension GetItInjectableX on _i174.GetIt {
     final dioClient = _$DioClient();
     gh.factory<_i1030.AppLoadingCubit>(() => _i1030.AppLoadingCubit());
     gh.factory<_i701.OnboardingCubit>(() => _i701.OnboardingCubit());
+    gh.factory<_i24.AuthorizationCubit>(() => _i24.AuthorizationCubit());
     gh.factory<String>(
       () => dioClient.baseUrl,
       instanceName: 'baseUrl',

@@ -24,7 +24,7 @@ class _AppLoadingView extends StatelessWidget {
     return   BlocListener<AppLoadingCubit, AppLoadingState>(
       listener: (_, state){
         if (state.loaded) {
-          context.router.popAndPush(const OnboardingRoute());
+          context.router.replace(const OnboardingRoute());
         }
       },
       child: Scaffold(
