@@ -14,7 +14,8 @@ dependencies:
   flutter_svg: ^2.0.16
   flutter_screenutil: ^5.9.3
   awesome_extensions: ^2.0.19
-
+  smooth_page_indicator: ^1.2.0+3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

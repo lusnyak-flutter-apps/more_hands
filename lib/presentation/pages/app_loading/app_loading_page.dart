@@ -31,7 +31,7 @@ class _AppLoadingView extends StatelessWidget {
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
-            child: MoreHandsAssets.images.svg.hands.svg(width: 280.w) ,
+            child: MoreHandsAssets.images.svg.moreHands.svg(width: 280.w) ,
           ),
         ),
       ),

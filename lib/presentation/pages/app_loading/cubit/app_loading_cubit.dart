@@ -16,4 +16,9 @@ class AppLoadingCubit extends Cubit<AppLoadingState> {
     });
     FlutterNativeSplash.remove();
   }
+
+  void changePage(){
+
+  }
+
 }

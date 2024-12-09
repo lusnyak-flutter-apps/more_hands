@@ -99,6 +99,108 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'MoreHands'**
   String get appName;
+
+  /// No description provided for @next.
+  ///
+  /// In ru, this message translates to:
+  /// **'Далее'**
+  String get next;
+
+  /// No description provided for @onboardingTitle1.
+  ///
+  /// In ru, this message translates to:
+  /// **'Только реальные люди, только реальные дела'**
+  String get onboardingTitle1;
+
+  /// No description provided for @onboardingDescription1.
+  ///
+  /// In ru, this message translates to:
+  /// **'В *MoreHands* мы объединяем людей, готовых на реальные поступки.  Здесь вы находите подлинные связи, которые помогают делать мир вокруг нас лучше.'**
+  String get onboardingDescription1;
+
+  /// No description provided for @onboardingTitle2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цифровое взаимодействие с человеческим лицом'**
+  String get onboardingTitle2;
+
+  /// No description provided for @onboardingDescription2.
+  ///
+  /// In ru, this message translates to:
+  /// **'*MoreHands* возвращает человеческое лицо цифровым взаимодействиям, создавая безопасную среду, где каждый может быть уверен, что взаимодействует с реальными людьми.'**
+  String get onboardingDescription2;
+
+  /// No description provided for @onboardingTitle3.
+  ///
+  /// In ru, this message translates to:
+  /// **'Где вы не платите, там вы — товар'**
+  String get onboardingTitle3;
+
+  /// No description provided for @onboardingDescription31.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выходя за рамки типичных коммерческих подходов, More Hands даёт понять, что здесь ценны именно реальные связи и помощь, а не заработок на рекламе или продаже данных.'**
+  String get onboardingDescription31;
+
+  /// No description provided for @onboardingDescription32.
+  ///
+  /// In ru, this message translates to:
+  /// **'В *MoreHands* ваши данные не превращаются в товар.'**
+  String get onboardingDescription32;
+
+  /// No description provided for @onboardingTitle4.
+  ///
+  /// In ru, this message translates to:
+  /// **'Возможности, которые вы создаёте'**
+  String get onboardingTitle4;
+
+  /// No description provided for @onboardingDescription4.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мы уважаем ваше время. В *MoreHands* нет анонимов, нет рекламы, нет спама, нет ботов.— только возможности для новых связей и реальных действий.'**
+  String get onboardingDescription4;
+
+  /// No description provided for @onboardingTitle5.
+  ///
+  /// In ru, this message translates to:
+  /// **'Безопасность и доверие'**
+  String get onboardingTitle5;
+
+  /// No description provided for @onboardingDescription5.
+  ///
+  /// In ru, this message translates to:
+  /// **'Все пользователи проходят верификацию по паспорту, чтобы гарантировать безопасность и доверие. Вы знаете, что взаимодействуете с настоящими людьми.'**
+  String get onboardingDescription5;
+
+  /// No description provided for @autorization.
+  ///
+  /// In ru, this message translates to:
+  /// **'Авторизация'**
+  String get autorization;
+
+  /// No description provided for @google.
+  ///
+  /// In ru, this message translates to:
+  /// **'Google'**
+  String get google;
+
+  /// No description provided for @appleId.
+  ///
+  /// In ru, this message translates to:
+  /// **'Apple ID'**
+  String get appleId;
+
+  /// No description provided for @facebook.
+  ///
+  /// In ru, this message translates to:
+  /// **'Facebook'**
+  String get facebook;
+
+  /// No description provided for @enterInvitation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ввести пригласительный'**
+  String get enterInvitation;
 }
 
 class _AppLocalizationsDelegate

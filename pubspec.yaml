@@ -48,6 +48,7 @@ dependencies:
   collection:
   flutter_native_splash: ^2.4.3
   flutter_launcher_icons: ^0.14.1
+#  json_annotation: ^4.9.0
 
   uikit:
     path: ./packages/uikit
