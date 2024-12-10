@@ -60,7 +60,9 @@ class _AuthorizationView extends StatelessWidget {
                 icon: MoreHandsAssets.icons.facebook.svg(),
               ),
               24.h.heightBox,
-              const TextField(),
+                MHTextField(
+                hintText: context.localized.enterInvitation,
+              ),
             ],
           ).paddingSymmetric(horizontal: 24.w, vertical: 40.h)
         ],

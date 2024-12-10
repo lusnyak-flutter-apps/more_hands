@@ -4,6 +4,17 @@ const kPackageName = 'uikit';
 
 
 /// 18
+
+TextStyle get body18Style => TextStyle(
+  fontSize: 18.sp,
+  height: 24 / 18,
+  fontFamily: FontFamily.sFProDisplay,
+  fontWeight: FontWeight.w400,
+  fontStyle: FontStyle.normal,
+  package: kPackageName,
+  color: MHColors.whiteColor,
+);
+
 TextStyle get body18MediumStyle => TextStyle(
   fontSize: 17.sp,
   height: 20 / 17,

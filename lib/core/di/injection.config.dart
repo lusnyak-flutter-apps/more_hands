@@ -31,9 +31,9 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final dioClient = _$DioClient();
+    gh.factory<_i24.AuthorizationCubit>(() => _i24.AuthorizationCubit());
     gh.factory<_i1030.AppLoadingCubit>(() => _i1030.AppLoadingCubit());
     gh.factory<_i701.OnboardingCubit>(() => _i701.OnboardingCubit());
-    gh.factory<_i24.AuthorizationCubit>(() => _i24.AuthorizationCubit());
     gh.factory<String>(
       () => dioClient.baseUrl,
       instanceName: 'baseUrl',

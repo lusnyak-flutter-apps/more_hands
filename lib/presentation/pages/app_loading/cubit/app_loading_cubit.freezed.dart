@@ -19,6 +19,7 @@ mixin _$AppLoadingState {
   bool get loading => throw _privateConstructorUsedError;
   bool get loaded => throw _privateConstructorUsedError;
   bool? get connected => throw _privateConstructorUsedError;
+  bool get onboardingLaunched => throw _privateConstructorUsedError;
 
   /// Create a copy of AppLoadingState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,8 @@ abstract class $AppLoadingStateCopyWith<$Res> {
           AppLoadingState value, $Res Function(AppLoadingState) then) =
       _$AppLoadingStateCopyWithImpl<$Res, AppLoadingState>;
   @useResult
-  $Res call({bool loading, bool loaded, bool? connected});
+  $Res call(
+      {bool loading, bool loaded, bool? connected, bool onboardingLaunched});
 }
 
 /// @nodoc
@@ -54,6 +56,7 @@ class _$AppLoadingStateCopyWithImpl<$Res, $Val extends AppLoadingState>
     Object? loading = null,
     Object? loaded = null,
     Object? connected = freezed,
+    Object? onboardingLaunched = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -68,6 +71,10 @@ class _$AppLoadingStateCopyWithImpl<$Res, $Val extends AppLoadingState>
           ? _value.connected
           : connected // ignore: cast_nullable_to_non_nullable
               as bool?,
+      onboardingLaunched: null == onboardingLaunched
+          ? _value.onboardingLaunched
+          : onboardingLaunched // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -80,7 +87,8 @@ abstract class _$$AppLoadingStateImplCopyWith<$Res>
       __$$AppLoadingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool loaded, bool? connected});
+  $Res call(
+      {bool loading, bool loaded, bool? connected, bool onboardingLaunched});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$AppLoadingStateImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? loaded = null,
     Object? connected = freezed,
+    Object? onboardingLaunched = null,
   }) {
     return _then(_$AppLoadingStateImpl(
       loading: null == loading
@@ -113,6 +122,10 @@ class __$$AppLoadingStateImplCopyWithImpl<$Res>
           ? _value.connected
           : connected // ignore: cast_nullable_to_non_nullable
               as bool?,
+      onboardingLaunched: null == onboardingLaunched
+          ? _value.onboardingLaunched
+          : onboardingLaunched // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -121,7 +134,10 @@ class __$$AppLoadingStateImplCopyWithImpl<$Res>
 
 class _$AppLoadingStateImpl implements _AppLoadingState {
   const _$AppLoadingStateImpl(
-      {this.loading = false, this.loaded = false, this.connected = false});
+      {this.loading = false,
+      this.loaded = false,
+      this.connected = false,
+      this.onboardingLaunched = false});
 
   @override
   @JsonKey()
@@ -132,10 +148,13 @@ class _$AppLoadingStateImpl implements _AppLoadingState {
   @override
   @JsonKey()
   final bool? connected;
+  @override
+  @JsonKey()
+  final bool onboardingLaunched;
 
   @override
   String toString() {
-    return 'AppLoadingState(loading: $loading, loaded: $loaded, connected: $connected)';
+    return 'AppLoadingState(loading: $loading, loaded: $loaded, connected: $connected, onboardingLaunched: $onboardingLaunched)';
   }
 
   @override
@@ -146,11 +165,14 @@ class _$AppLoadingStateImpl implements _AppLoadingState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.loaded, loaded) || other.loaded == loaded) &&
             (identical(other.connected, connected) ||
-                other.connected == connected));
+                other.connected == connected) &&
+            (identical(other.onboardingLaunched, onboardingLaunched) ||
+                other.onboardingLaunched == onboardingLaunched));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, loaded, connected);
+  int get hashCode =>
+      Object.hash(runtimeType, loading, loaded, connected, onboardingLaunched);
 
   /// Create a copy of AppLoadingState
   /// with the given fields replaced by the non-null parameter values.
@@ -166,7 +188,8 @@ abstract class _AppLoadingState implements AppLoadingState {
   const factory _AppLoadingState(
       {final bool loading,
       final bool loaded,
-      final bool? connected}) = _$AppLoadingStateImpl;
+      final bool? connected,
+      final bool onboardingLaunched}) = _$AppLoadingStateImpl;
 
   @override
   bool get loading;
@@ -174,6 +197,8 @@ abstract class _AppLoadingState implements AppLoadingState {
   bool get loaded;
   @override
   bool? get connected;
+  @override
+  bool get onboardingLaunched;
 
   /// Create a copy of AppLoadingState
   /// with the given fields replaced by the non-null parameter values.

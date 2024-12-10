@@ -72,11 +72,31 @@ class $AssetsImagesPngGen {
   /// File path: assets/images/png/more_hands.png
   AssetGenImage get moreHands => const AssetGenImage('assets/images/png/more_hands.png');
 
+  /// File path: assets/images/png/more_hands_1.png
+  AssetGenImage get moreHands1 => const AssetGenImage('assets/images/png/more_hands_1.png');
+
   /// File path: assets/images/png/more_hands_2.png
   AssetGenImage get moreHands2 => const AssetGenImage('assets/images/png/more_hands_2.png');
 
+  /// File path: assets/images/png/more_hands_3.png
+  AssetGenImage get moreHands3 => const AssetGenImage('assets/images/png/more_hands_3.png');
+
+  /// File path: assets/images/png/more_hands_logo.png
+  AssetGenImage get moreHandsLogo => const AssetGenImage('assets/images/png/more_hands_logo.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [hands1, hands2, hands3, hands4, hands5, moreHands, moreHands2];
+  List<AssetGenImage> get values => [
+        hands1,
+        hands2,
+        hands3,
+        hands4,
+        hands5,
+        moreHands,
+        moreHands1,
+        moreHands2,
+        moreHands3,
+        moreHandsLogo
+      ];
 }
 
 class $AssetsImagesSvgGen {

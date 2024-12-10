@@ -78,55 +78,60 @@ class _OnboardingView extends StatelessWidget {
               loaded: (page, data) => (page, data),
               orElse: () => (0, <OnboardingViewModel>[]),
             );
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Stack(
-                  fit: StackFit.loose,
-                  children: [
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      child: Transform.rotate(
-                        angle: -90,
-                        child: IndexedStack(
-                          index: page,
-                          children: data
-                              .map((info) => Image.asset(
-                                    info.backgroundImage,
-                                    height: 252.h,
-                                  ))
-                              .toList(),
+            if(data.isNotEmpty) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Stack(
+                    fit: StackFit.loose,
+                    children: [
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: Transform.rotate(
+                          angle: -90,
+                          child: IndexedStack(
+                            index: page,
+                            children: data
+                                .map((info) =>
+                                Image.asset(
+                                  info.backgroundImage,
+                                  height: 252.h,
+                                ))
+                                .toList(),
+                          ),
                         ),
                       ),
-                    ),
-                    PageView(
-                      controller: cubit.pageController,
-                      onPageChanged: cubit.onChangedPage,
-                      children: data
-                          .map(
-                            (info) => OnboardingInfo(
-                              title: info.title,
-                              description: info.description,
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ],
-                ).expanded(),
-                16.h.heightBox,
-                MHPageIndicator(
-                  controller: cubit.pageController,
-                  count: data.length,
-                ).toCenter(),
-                16.h.heightBox,
-                MHGradientButton(
-                  title: context.localized.next,
-                  onPressed: cubit.onNext,
-                ),
-              ],
-            ).paddingSymmetric(horizontal: 24.w, vertical: 16.h);
+                      PageView(
+                        controller: cubit.pageController,
+                        onPageChanged: cubit.onChangedPage,
+                        children: data
+                            .map(
+                              (info) =>
+                              OnboardingInfo(
+                                title: info.title,
+                                description: info.description,
+                              ),
+                        )
+                            .toList(),
+                      ),
+                    ],
+                  ).expanded(),
+                  16.h.heightBox,
+                  MHPageIndicator(
+                    controller: cubit.pageController,
+                    count: data.length,
+                  ).toCenter(),
+                  16.h.heightBox,
+                  MHGradientButton(
+                    title: context.localized.next,
+                    onPressed: cubit.onNext,
+                  ),
+                ],
+              ).paddingSymmetric(horizontal: 24.w, vertical: 16.h);
+            }
+            return const SizedBox.shrink();
           },
         ),
       ),

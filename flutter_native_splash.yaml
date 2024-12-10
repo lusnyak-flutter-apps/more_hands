@@ -1,12 +1,16 @@
 # flutter pub run flutter_native_splash
 flutter_native_splash:
   color: "#171411"
-  image: packages/uikit/assets/images/png/more_hands.png
+  image: packages/uikit/assets/images/png/more_hands_logo.png
 
   color_dark: "#171411"
-  image_dark: packages/uikit/assets/images/png/more_hands.png
+  image_dark: packages/uikit/assets/images/png/more_hands_logo.png
+
+  android_gravity: fill_horizontal
+  fullscreen: true
 
   android_12:
     color: "#171411"
-    image: packages/uikit/assets/images/png/more_hands.png
+    image: packages/uikit/assets/images/png/more_hands_logo.png
+    android_gravity: fill_horizontal
 

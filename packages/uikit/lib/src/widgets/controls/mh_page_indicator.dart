@@ -4,8 +4,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:uikit/src/themes/mh_colors.dart';
 
 class MHPageIndicator extends StatelessWidget {
-  const MHPageIndicator(
-      {super.key, required this.controller, required this.count});
+  const MHPageIndicator({
+    super.key,
+    required this.controller,
+    required this.count,
+  });
 
   final PageController controller;
   final int count;

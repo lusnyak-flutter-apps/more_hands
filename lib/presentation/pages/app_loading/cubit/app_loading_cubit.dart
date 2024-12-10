@@ -1,5 +1,6 @@
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/data.dart';
 
 part 'app_loading_state.dart';
 
@@ -11,8 +12,9 @@ class AppLoadingCubit extends Cubit<AppLoadingState> {
 
   Future<void> loadAppData() async {
     emit(state.copyWith(loading: true));
+    bool onBoardingLaunch = Preferences.instance.onBoardingLaunch();
     await Future.delayed(const Duration(seconds: 3), () {
-      emit(state.copyWith(loaded: true, loading: false));
+      emit(state.copyWith(loaded: true, loading: false, onboardingLaunched: onBoardingLaunch));
     });
     FlutterNativeSplash.remove();
   }

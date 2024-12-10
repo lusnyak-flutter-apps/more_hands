@@ -6,5 +6,6 @@ class AppLoadingState with _$AppLoadingState {
     @Default(false) bool loading,
     @Default(false) bool loaded,
     @Default(false) bool? connected,
+    @Default(false) bool onboardingLaunched,
   }) = _AppLoadingState;
 }
