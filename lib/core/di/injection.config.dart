@@ -12,6 +12,10 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:more_hands/core/network/dio_client/dio_client.dart' as _i98;
+import 'package:more_hands/data/firebase/firebase_provider/firebase_provider.dart'
+    as _i759;
+import 'package:more_hands/data/firebase/firebase_provider/firebase_provider_impl.dart'
+    as _i369;
 import 'package:more_hands/presentation/pages/app_loading/cubit/app_loading_cubit.dart'
     as _i1030;
 import 'package:more_hands/presentation/pages/auth/cubit/authorization_cubit.dart'
@@ -38,6 +42,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => dioClient.baseUrl,
       instanceName: 'baseUrl',
     );
+    gh.factory<_i759.FirebaseProvider>(() => _i369.FirebaseProviderImpl());
     gh.lazySingleton<_i361.Dio>(
         () => dioClient.dio(gh<String>(instanceName: 'baseUrl')));
     return this;

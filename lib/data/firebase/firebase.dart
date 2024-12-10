@@ -1,0 +1,1 @@
+export 'firebase_provider/firebase_provider.dart';

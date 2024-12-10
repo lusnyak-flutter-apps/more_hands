@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "292524733746",
+    "project_id": "morehandsapp",
+    "storage_bucket": "morehandsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292524733746:android:048ed519ebac505d4b932b",
+        "android_client_info": {
+          "package_name": "com.more_hands.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292524733746-54agkmvudmihhiqpbqmo2a5f2qkqmbco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEHxdJMpH6Lr_asmv8MOYgNW17qkfuraA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292524733746-54agkmvudmihhiqpbqmo2a5f2qkqmbco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

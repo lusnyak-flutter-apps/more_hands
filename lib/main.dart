@@ -1,9 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'core/core.dart';
-import 'data/local/preferences/preferences.dart';
+import 'data/data.dart';
 import 'more_hands_app.dart';
 
 Future<void> main() async {
@@ -11,13 +12,7 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Preferences.instance.getSharedInstance();
   configureDependencies();
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarColor: Colors.transparent,
-  //   systemNavigationBarColor: Colors.transparent,
-  //   systemNavigationBarDividerColor: Colors.transparent,
-  //   // systemNavigationBarIconBrightness:Brightness.light,
-  //     systemNavigationBarContrastEnforced: true,
-  // ));
+  await getIt<FirebaseProvider>().initializeApp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
