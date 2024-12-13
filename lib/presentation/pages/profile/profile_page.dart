@@ -22,7 +22,8 @@ class _ProfileView extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 24.h, bottom: 2*kBottomNavigationBarHeight),
+          padding: EdgeInsets.only(
+              top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -34,9 +35,16 @@ class _ProfileView extends StatelessWidget {
               24.h.heightBox,
               Row(
                 children: [
-                  MHOutlinedButton(title: context.localized.deleteProfile, onPressed: (){},).expanded(),
+                  MHOutlinedButton(
+                    title: context.localized.deleteProfile,
+                    onPressed: () {},
+                  ).expanded(),
                   8.w.widthBox,
-                  MHOutlinedButton(title: context.localized.logout, onPressed: (){}, icon: MoreHandsAssets.icons.logout.svg(),).expanded(),
+                  MHOutlinedButton(
+                    title: context.localized.logout,
+                    onPressed: () {},
+                    icon: MoreHandsAssets.icons.logout.svg(),
+                  ).expanded(),
                 ],
               )
             ],
@@ -59,7 +67,6 @@ class _ProfileView extends StatelessWidget {
             right: 8.w,
             child: IconButton(
                 onPressed: () {
-
                   context.router.push(const ProfileNameAndImageRoute());
                 },
                 icon: MoreHandsAssets.icons.edit.svg(height: 20.r)),
@@ -88,7 +95,7 @@ class _ProfileView extends StatelessWidget {
       );
 
   Widget aboutUserPart(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
           Column(
@@ -102,9 +109,18 @@ class _ProfileView extends StatelessWidget {
               8.h.heightBox,
               Row(
                 children: [
-                  MHTag(title: "0", icon: MoreHandsAssets.icons.starFill.svg(height: 12.r),),
-                  MHTag(title: "0",icon: MoreHandsAssets.icons.hand.svg(height: 12.r),).paddingSymmetric(horizontal: 6.w),
-                  MHTag(title: context.localized.referralsCount(0),icon: MoreHandsAssets.icons.link.svg(height: 12.r),),
+                  MHTag(
+                    title: "0",
+                    icon: MoreHandsAssets.icons.starFill.svg(height: 12.r),
+                  ),
+                  MHTag(
+                    title: "0",
+                    icon: MoreHandsAssets.icons.hand.svg(height: 12.r),
+                  ).paddingSymmetric(horizontal: 6.w),
+                  MHTag(
+                    title: context.localized.referralsCount(0),
+                    icon: MoreHandsAssets.icons.link.svg(height: 12.r),
+                  ),
                 ],
               ),
             ],
@@ -116,15 +132,24 @@ class _ProfileView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(context.localized.aboutMe,
+                  Text(
+                    context.localized.aboutMe,
                     style: body16MediumStyle,
-                    textAlign: TextAlign.left,),
-                  MHInkWell(child: MoreHandsAssets.icons.edit.svg(), onTap: (){},),
+                    textAlign: TextAlign.left,
+                  ),
+                  MHInkWell(
+                    child: MoreHandsAssets.icons.edit.svg(),
+                    onTap: () {
+                      context.router.push(const ProfileContactsRoute());
+                    },
+                  ),
                 ],
               ).paddingOnly(bottom: 2.h),
-              Text(context.localized.notFilled,
+              Text(
+                context.localized.notFilled,
                 style: body16Style.copyWith(color: MHColors.grayColor98),
-                textAlign: TextAlign.left,),
+                textAlign: TextAlign.left,
+              ),
             ],
           ).paddingOnly(bottom: 24.h),
           Column(
@@ -134,15 +159,22 @@ class _ProfileView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(context.localized.whatCanIDo,
+                  Text(
+                    context.localized.whatCanIDo,
                     style: body24SemiBoldStyle,
-                    textAlign: TextAlign.left,),
-                  MHInkWell(child: MoreHandsAssets.icons.edit.svg(), onTap: (){},),
+                    textAlign: TextAlign.left,
+                  ),
+                  MHInkWell(
+                    child: MoreHandsAssets.icons.edit.svg(),
+                    onTap: () {},
+                  ),
                 ],
               ).paddingOnly(bottom: 2.h),
-              Text(context.localized.notFilled,
+              Text(
+                context.localized.notFilled,
                 style: body16Style.copyWith(color: MHColors.grayColor98),
-                textAlign: TextAlign.left,),
+                textAlign: TextAlign.left,
+              ),
             ],
           ).paddingOnly(bottom: 24.h),
           Column(
@@ -152,15 +184,22 @@ class _ProfileView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(context.localized.portfolio,
+                  Text(
+                    context.localized.portfolio,
                     style: body24SemiBoldStyle,
-                    textAlign: TextAlign.left,),
-                  MHInkWell(child: MoreHandsAssets.icons.edit.svg(), onTap: (){},),
+                    textAlign: TextAlign.left,
+                  ),
+                  MHInkWell(
+                    child: MoreHandsAssets.icons.edit.svg(),
+                    onTap: () {},
+                  ),
                 ],
               ).paddingOnly(bottom: 2.h),
-              Text(context.localized.notFilled,
+              Text(
+                context.localized.notFilled,
                 style: body16Style.copyWith(color: MHColors.grayColor98),
-                textAlign: TextAlign.left,),
+                textAlign: TextAlign.left,
+              ),
             ],
           ),
         ],

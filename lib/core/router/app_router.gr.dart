@@ -105,6 +105,25 @@ class OnboardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfileContactsPage]
+class ProfileContactsRoute extends PageRouteInfo<void> {
+  const ProfileContactsRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileContactsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileContactsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileContactsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ProfileNameAndImagePage]
 class ProfileNameAndImageRoute extends PageRouteInfo<void> {
   const ProfileNameAndImageRoute({List<PageRouteInfo>? children})

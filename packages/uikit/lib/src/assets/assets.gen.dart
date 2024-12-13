@@ -90,6 +90,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home_yellow.svg
   SvgGenImage get homeYellow => const SvgGenImage('assets/icons/home_yellow.svg');
 
+  /// File path: assets/icons/instagram.svg
+  SvgGenImage get instagram => const SvgGenImage('assets/icons/instagram.svg');
+
   /// File path: assets/icons/left.svg
   SvgGenImage get left => const SvgGenImage('assets/icons/left.svg');
 
@@ -104,6 +107,12 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/map_pin.svg
   SvgGenImage get mapPin => const SvgGenImage('assets/icons/map_pin.svg');
+
+  /// File path: assets/icons/off.svg
+  SvgGenImage get off => const SvgGenImage('assets/icons/off.svg');
+
+  /// File path: assets/icons/on.svg
+  SvgGenImage get on => const SvgGenImage('assets/icons/on.svg');
 
   /// File path: assets/icons/phone.svg
   SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
@@ -141,6 +150,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/star_fill.svg
   SvgGenImage get starFill => const SvgGenImage('assets/icons/star_fill.svg');
 
+  /// File path: assets/icons/telegram.svg
+  SvgGenImage get telegram => const SvgGenImage('assets/icons/telegram.svg');
+
   /// File path: assets/icons/trash_empty.svg
   SvgGenImage get trashEmpty => const SvgGenImage('assets/icons/trash_empty.svg');
 
@@ -161,6 +173,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/wavy_help.svg
   SvgGenImage get wavyHelp => const SvgGenImage('assets/icons/wavy_help.svg');
+
+  /// File path: assets/icons/whatsapp.svg
+  SvgGenImage get whatsapp => const SvgGenImage('assets/icons/whatsapp.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
@@ -189,11 +204,14 @@ class $AssetsIconsGen {
         heart,
         home,
         homeYellow,
+        instagram,
         left,
         link,
         logout,
         mail,
         mapPin,
+        off,
+        on,
         phone,
         photoPlus,
         planet,
@@ -206,13 +224,15 @@ class $AssetsIconsGen {
         sortDescending,
         star,
         starFill,
+        telegram,
         trashEmpty,
         up,
         user,
         userYellow,
         users,
         wavyCheck,
-        wavyHelp
+        wavyHelp,
+        whatsapp
       ];
 }
 

@@ -16,6 +16,7 @@ class MHTextField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.hintColor,
+    this.prefixIcon,
   });
 
   final String? hintText;
@@ -29,6 +30,7 @@ class MHTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final Color? hintColor;
+  final Widget? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class MHTextField extends StatelessWidget {
       keyboardAppearance: Brightness.dark,
       textInputAction: textInputAction,
       keyboardType: keyboardType,
-      style: body18Style,
+      style: body16Style,
       onTapOutside: (_) {
         FocusScope.of(context).unfocus();
       },
@@ -51,7 +53,10 @@ class MHTextField extends StatelessWidget {
         filled: true,
         fillColor: MHColors.grayColorOpacity38,
         hintText: hintText,
-        hintStyle: hintColor != null ? body18Style.copyWith(color: hintColor) : null,
+        hintStyle:
+            hintColor != null ? body16Style.copyWith(color: hintColor) : null,
+        prefixIcon: prefixIcon?.paddingOnly(left: 10.w, right: 8.w),
+        prefixIconConstraints: BoxConstraints(minWidth: 28.w),
       ),
     );
   }

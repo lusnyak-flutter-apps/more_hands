@@ -15,6 +15,18 @@ TextStyle get body10MediumStyle => TextStyle(
   color: MHColors.whiteColor,
 );
 
+/// 12
+
+TextStyle get body12Style => TextStyle(
+  fontSize: 12.sp,
+  height: 14 / 12,
+  fontFamily: FontFamily.sFProDisplay,
+  fontWeight: FontWeight.w400,
+  fontStyle: FontStyle.normal,
+  package: kPackageName,
+  color: MHColors.whiteColor,
+);
+
 
 /// 13
 
@@ -27,8 +39,6 @@ TextStyle get body13MediumStyle => TextStyle(
   package: kPackageName,
   color: MHColors.whiteColor,
 );
-
-
 
 /// 16
 TextStyle get body16Style => TextStyle(
