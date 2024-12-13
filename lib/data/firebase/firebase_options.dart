@@ -27,17 +27,17 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError(
@@ -66,11 +66,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDiqVrG-04xDSOwF8CfnP8NqE_IDBpIAbI',
-    appId: '1:292524733746:ios:ec317164938457394b932b',
+    appId: '1:292524733746:ios:1d36b7a44832fd6f4b932b',
     messagingSenderId: '292524733746',
     projectId: 'morehandsapp',
     storageBucket: 'morehandsapp.firebasestorage.app',
-    iosClientId: '292524733746-773r47ijihg1bbbod26je03j2fll1f0e.apps.googleusercontent.com',
-    iosBundleId: 'com.morehands.app',
+    iosClientId: '292524733746-rp7n8n29bdag3j9ktavhnuge27iilhnt.apps.googleusercontent.com',
+    iosBundleId: 'pro.morehands.morehands',
   );
 }

@@ -16,3 +16,6 @@ fvm flutter pub get && fvm flutter pub run flutter_launcher_icons:generate -o
 fvm flutter pub get && fvm flutter pub run flutter_launcher_icons -f flutter_launcher_icons.yaml
 fvm flutter pub get && fvm flutter pub run flutter_native_splash:create
 fvm flutter pub get && fvm flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
+
+## Configure firebase
+flutterfire configure --project=morehandsapp

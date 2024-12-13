@@ -21,7 +21,7 @@ OutlinedButtonThemeData outlinedButtonThemeData() => OutlinedButtonThemeData(
           return MHColors.whiteColor;
         }),
         padding: WidgetStateProperty.all(
-            EdgeInsets.symmetric(vertical: 12.h, horizontal: 24.w)),
+            EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w)),
         shape: WidgetStateProperty.all(const StadiumBorder()),
         side: WidgetStateProperty.resolveWith<BorderSide>((states) {
           if (states.contains(WidgetState.pressed) ||

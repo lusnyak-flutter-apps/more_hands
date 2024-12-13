@@ -19,7 +19,7 @@ class MHOutlinedButton extends StatelessWidget {
             onPressed: onPressed,
             label: Text(title),
             icon: icon,
-          )
+           )
         : OutlinedButton(
             onPressed: onPressed,
             child: Text(title),

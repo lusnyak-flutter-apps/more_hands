@@ -55,12 +55,15 @@ class _AuthorizationView extends StatelessWidget {
               ),
               8.h.heightBox,
               MHOutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                      predicate: (route) => false);
+                },
                 title: context.localized.facebook,
                 icon: MoreHandsAssets.icons.facebook.svg(),
               ),
               24.h.heightBox,
-                MHTextField(
+              MHTextField(
                 hintText: context.localized.enterInvitation,
               ),
             ],

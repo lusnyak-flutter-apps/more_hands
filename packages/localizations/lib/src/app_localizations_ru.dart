@@ -65,4 +65,113 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get enterInvitation => 'Ввести пригласительный';
+
+  @override
+  String get home => 'Главная';
+
+  @override
+  String get profile => 'Профиль';
+
+  @override
+  String get requests => 'Запросы';
+
+  @override
+  String get passKYC => 'пройдите kyc';
+
+  @override
+  String get subscription => 'подписка';
+
+  @override
+  String referralsCount(Object count) {
+    return '$count рефералов';
+  }
+
+  @override
+  String get aboutMe => 'О себе';
+
+  @override
+  String get whatCanIDo => 'Что могу сделать';
+
+  @override
+  String get notFilled => 'Не заполнено';
+
+  @override
+  String get portfolio => 'Портфолио';
+
+  @override
+  String get deleteProfile => 'Удалить профиль';
+
+  @override
+  String get logout => 'Выйти';
+
+  @override
+  String get nameAndPhotoProfile => 'Имя и фото профиля';
+
+  @override
+  String get addContacts => 'Добавьте контакты';
+
+  @override
+  String get theyWillBeVisibleToOthersOnlyWithYourConsent =>
+      'Они будут видны другим только с вашего согласия';
+
+  @override
+  String get primaryContact => 'Основной контакт';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get telegram => '@telegram';
+
+  @override
+  String get whatsAppLink => 'Ссылка WhatsApp';
+
+  @override
+  String get tellAboutYourSelf => 'Расскажите о себе';
+
+  @override
+  String get brieflyDescribeWhatYouWantToDo =>
+      'Кратко опишите, что вы хотите делать и какие услуги можете предоставить';
+
+  @override
+  String get save => 'Сохранить';
+
+  @override
+  String get whatYouCanGiveToTheWorld => 'Что ты можешь дать миру';
+
+  @override
+  String get search => 'Поиск';
+
+  @override
+  String get tellUsMore => 'Расскажите подробнее';
+
+  @override
+  String get entterPrice => 'Введите стоимость';
+
+  @override
+  String get hour => 'Час';
+
+  @override
+  String get description => 'Описание';
+
+  @override
+  String get addPhoto => 'Добавьте фото';
+
+  @override
+  String get serviveAdded => 'Услуга добавлена';
+
+  @override
+  String get addAnotherService => 'Добавить еще услугу';
+
+  @override
+  String get finish => 'Завершить';
+
+  @override
+  String get selectLocation => 'Выбор локации';
+
+  @override
+  String get findMe => 'Найти меня';
+
+  @override
+  String get select => 'Выбрать';
 }

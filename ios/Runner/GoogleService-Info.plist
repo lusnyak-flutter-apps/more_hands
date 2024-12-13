@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>292524733746-773r47ijihg1bbbod26je03j2fll1f0e.apps.googleusercontent.com</string>
+	<string>292524733746-rp7n8n29bdag3j9ktavhnuge27iilhnt.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.292524733746-773r47ijihg1bbbod26je03j2fll1f0e</string>
+	<string>com.googleusercontent.apps.292524733746-rp7n8n29bdag3j9ktavhnuge27iilhnt</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDiqVrG-04xDSOwF8CfnP8NqE_IDBpIAbI</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.morehands.app</string>
+	<string>pro.morehands.morehands</string>
 	<key>PROJECT_ID</key>
 	<string>morehandsapp</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:292524733746:ios:ec317164938457394b932b</string>
+	<string>1:292524733746:ios:1d36b7a44832fd6f4b932b</string>
 </dict>
 </plist>

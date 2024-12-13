@@ -18,14 +18,202 @@ class $AssetsIconsGen {
   /// File path: assets/icons/apple.svg
   SvgGenImage get apple => const SvgGenImage('assets/icons/apple.svg');
 
+  /// File path: assets/icons/bell.svg
+  SvgGenImage get bell => const SvgGenImage('assets/icons/bell.svg');
+
+  /// File path: assets/icons/calendar_check.svg
+  SvgGenImage get calendarCheck => const SvgGenImage('assets/icons/calendar_check.svg');
+
+  /// File path: assets/icons/calendar_event.svg
+  SvgGenImage get calendarEvent => const SvgGenImage('assets/icons/calendar_event.svg');
+
+  /// File path: assets/icons/chat.svg
+  SvgGenImage get chat => const SvgGenImage('assets/icons/chat.svg');
+
+  /// File path: assets/icons/chat_arrow_down.svg
+  SvgGenImage get chatArrowDown => const SvgGenImage('assets/icons/chat_arrow_down.svg');
+
+  /// File path: assets/icons/chat_arrow_up.svg
+  SvgGenImage get chatArrowUp => const SvgGenImage('assets/icons/chat_arrow_up.svg');
+
+  /// File path: assets/icons/chat_circle_add.svg
+  SvgGenImage get chatCircleAdd => const SvgGenImage('assets/icons/chat_circle_add.svg');
+
+  /// File path: assets/icons/chat_circle_check.svg
+  SvgGenImage get chatCircleCheck => const SvgGenImage('assets/icons/chat_circle_check.svg');
+
+  /// File path: assets/icons/chat_yellow.svg
+  SvgGenImage get chatYellow => const SvgGenImage('assets/icons/chat_yellow.svg');
+
+  /// File path: assets/icons/check.svg
+  SvgGenImage get check => const SvgGenImage('assets/icons/check.svg');
+
+  /// File path: assets/icons/check_circle.svg
+  SvgGenImage get checkCircle => const SvgGenImage('assets/icons/check_circle.svg');
+
+  /// File path: assets/icons/checklist.svg
+  SvgGenImage get checklist => const SvgGenImage('assets/icons/checklist.svg');
+
+  /// File path: assets/icons/clock.svg
+  SvgGenImage get clock => const SvgGenImage('assets/icons/clock.svg');
+
+  /// File path: assets/icons/close.svg
+  SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
+
+  /// File path: assets/icons/compass.svg
+  SvgGenImage get compass => const SvgGenImage('assets/icons/compass.svg');
+
+  /// File path: assets/icons/down.svg
+  SvgGenImage get down => const SvgGenImage('assets/icons/down.svg');
+
+  /// File path: assets/icons/edit.svg
+  SvgGenImage get edit => const SvgGenImage('assets/icons/edit.svg');
+
   /// File path: assets/icons/facebook.svg
   SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
+
+  /// File path: assets/icons/filter.svg
+  SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
 
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
 
+  /// File path: assets/icons/hand.svg
+  SvgGenImage get hand => const SvgGenImage('assets/icons/hand.svg');
+
+  /// File path: assets/icons/heart.svg
+  SvgGenImage get heart => const SvgGenImage('assets/icons/heart.svg');
+
+  /// File path: assets/icons/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
+
+  /// File path: assets/icons/home_yellow.svg
+  SvgGenImage get homeYellow => const SvgGenImage('assets/icons/home_yellow.svg');
+
+  /// File path: assets/icons/left.svg
+  SvgGenImage get left => const SvgGenImage('assets/icons/left.svg');
+
+  /// File path: assets/icons/link.svg
+  SvgGenImage get link => const SvgGenImage('assets/icons/link.svg');
+
+  /// File path: assets/icons/logout.svg
+  SvgGenImage get logout => const SvgGenImage('assets/icons/logout.svg');
+
+  /// File path: assets/icons/mail.svg
+  SvgGenImage get mail => const SvgGenImage('assets/icons/mail.svg');
+
+  /// File path: assets/icons/map_pin.svg
+  SvgGenImage get mapPin => const SvgGenImage('assets/icons/map_pin.svg');
+
+  /// File path: assets/icons/phone.svg
+  SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
+
+  /// File path: assets/icons/photo_plus.svg
+  SvgGenImage get photoPlus => const SvgGenImage('assets/icons/photo_plus.svg');
+
+  /// File path: assets/icons/planet.svg
+  SvgGenImage get planet => const SvgGenImage('assets/icons/planet.svg');
+
+  /// File path: assets/icons/plus.svg
+  SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
+
+  /// File path: assets/icons/plus_yellow.svg
+  SvgGenImage get plusYellow => const SvgGenImage('assets/icons/plus_yellow.svg');
+
+  /// File path: assets/icons/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
+
+  /// File path: assets/icons/settings.svg
+  SvgGenImage get settings => const SvgGenImage('assets/icons/settings.svg');
+
+  /// File path: assets/icons/shield.svg
+  SvgGenImage get shield => const SvgGenImage('assets/icons/shield.svg');
+
+  /// File path: assets/icons/sort_ascending.svg
+  SvgGenImage get sortAscending => const SvgGenImage('assets/icons/sort_ascending.svg');
+
+  /// File path: assets/icons/sort_descending.svg
+  SvgGenImage get sortDescending => const SvgGenImage('assets/icons/sort_descending.svg');
+
+  /// File path: assets/icons/star.svg
+  SvgGenImage get star => const SvgGenImage('assets/icons/star.svg');
+
+  /// File path: assets/icons/star_fill.svg
+  SvgGenImage get starFill => const SvgGenImage('assets/icons/star_fill.svg');
+
+  /// File path: assets/icons/trash_empty.svg
+  SvgGenImage get trashEmpty => const SvgGenImage('assets/icons/trash_empty.svg');
+
+  /// File path: assets/icons/up.svg
+  SvgGenImage get up => const SvgGenImage('assets/icons/up.svg');
+
+  /// File path: assets/icons/user.svg
+  SvgGenImage get user => const SvgGenImage('assets/icons/user.svg');
+
+  /// File path: assets/icons/user_yellow.svg
+  SvgGenImage get userYellow => const SvgGenImage('assets/icons/user_yellow.svg');
+
+  /// File path: assets/icons/users.svg
+  SvgGenImage get users => const SvgGenImage('assets/icons/users.svg');
+
+  /// File path: assets/icons/wavy_check.svg
+  SvgGenImage get wavyCheck => const SvgGenImage('assets/icons/wavy_check.svg');
+
+  /// File path: assets/icons/wavy_help.svg
+  SvgGenImage get wavyHelp => const SvgGenImage('assets/icons/wavy_help.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [apple, facebook, google];
+  List<SvgGenImage> get values => [
+        apple,
+        bell,
+        calendarCheck,
+        calendarEvent,
+        chat,
+        chatArrowDown,
+        chatArrowUp,
+        chatCircleAdd,
+        chatCircleCheck,
+        chatYellow,
+        check,
+        checkCircle,
+        checklist,
+        clock,
+        close,
+        compass,
+        down,
+        edit,
+        facebook,
+        filter,
+        google,
+        hand,
+        heart,
+        home,
+        homeYellow,
+        left,
+        link,
+        logout,
+        mail,
+        mapPin,
+        phone,
+        photoPlus,
+        planet,
+        plus,
+        plusYellow,
+        search,
+        settings,
+        shield,
+        sortAscending,
+        sortDescending,
+        star,
+        starFill,
+        trashEmpty,
+        up,
+        user,
+        userYellow,
+        users,
+        wavyCheck,
+        wavyHelp
+      ];
 }
 
 class $AssetsImagesGen {
@@ -78,25 +266,12 @@ class $AssetsImagesPngGen {
   /// File path: assets/images/png/more_hands_2.png
   AssetGenImage get moreHands2 => const AssetGenImage('assets/images/png/more_hands_2.png');
 
-  /// File path: assets/images/png/more_hands_3.png
-  AssetGenImage get moreHands3 => const AssetGenImage('assets/images/png/more_hands_3.png');
-
   /// File path: assets/images/png/more_hands_logo.png
   AssetGenImage get moreHandsLogo => const AssetGenImage('assets/images/png/more_hands_logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-        hands1,
-        hands2,
-        hands3,
-        hands4,
-        hands5,
-        moreHands,
-        moreHands1,
-        moreHands2,
-        moreHands3,
-        moreHandsLogo
-      ];
+  List<AssetGenImage> get values =>
+      [hands1, hands2, hands3, hands4, hands5, moreHands, moreHands1, moreHands2, moreHandsLogo];
 }
 
 class $AssetsImagesSvgGen {

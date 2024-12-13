@@ -11,10 +11,12 @@ class MHColors {
   static const redColor = Color(0xFFFF0000);
 
   static const blackBGColor = Color(0xFF171411);
+  static const darkerGrayColor = Color(0xFF1D1B1A);
   static const darkGrayColor = Color(0xFF211E1B);
   static const grayColor = Color(0xFF444241);
   static const grayColor27 = Color(0xFF272727);
   static const grayColorOpacity38 = Color(0x61272727);
 
   static const grayColor98 = Color(0xFF898989);
+  static const grayColor7C = Color(0xFF7C7A79);
 }

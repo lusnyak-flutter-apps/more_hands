@@ -48,6 +48,44 @@ class AuthorizationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BottomNavigationPage]
+class BottomNavigationRoute extends PageRouteInfo<void> {
+  const BottomNavigationRoute({List<PageRouteInfo>? children})
+      : super(
+          BottomNavigationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BottomNavigationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BottomNavigationPage();
+    },
+  );
+}
+
+/// generated route for
+/// [HomePage]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomePage();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
@@ -62,6 +100,63 @@ class OnboardingRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const OnboardingPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ProfileNameAndImagePage]
+class ProfileNameAndImageRoute extends PageRouteInfo<void> {
+  const ProfileNameAndImageRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileNameAndImageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileNameAndImageRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileNameAndImagePage();
+    },
+  );
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfilePage();
+    },
+  );
+}
+
+/// generated route for
+/// [RequestsPage]
+class RequestsRoute extends PageRouteInfo<void> {
+  const RequestsRoute({List<PageRouteInfo>? children})
+      : super(
+          RequestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RequestsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RequestsPage();
     },
   );
 }

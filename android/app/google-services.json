@@ -29,6 +29,13 @@
             {
               "client_id": "292524733746-54agkmvudmihhiqpbqmo2a5f2qkqmbco.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "292524733746-773r47ijihg1bbbod26je03j2fll1f0e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.morehands.app"
+              }
             }
           ]
         }

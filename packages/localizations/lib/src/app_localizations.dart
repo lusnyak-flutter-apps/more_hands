@@ -201,6 +201,216 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ввести пригласительный'**
   String get enterInvitation;
+
+  /// No description provided for @home.
+  ///
+  /// In ru, this message translates to:
+  /// **'Главная'**
+  String get home;
+
+  /// No description provided for @profile.
+  ///
+  /// In ru, this message translates to:
+  /// **'Профиль'**
+  String get profile;
+
+  /// No description provided for @requests.
+  ///
+  /// In ru, this message translates to:
+  /// **'Запросы'**
+  String get requests;
+
+  /// No description provided for @passKYC.
+  ///
+  /// In ru, this message translates to:
+  /// **'пройдите kyc'**
+  String get passKYC;
+
+  /// No description provided for @subscription.
+  ///
+  /// In ru, this message translates to:
+  /// **'подписка'**
+  String get subscription;
+
+  /// No description provided for @referralsCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'{count} рефералов'**
+  String referralsCount(Object count);
+
+  /// No description provided for @aboutMe.
+  ///
+  /// In ru, this message translates to:
+  /// **'О себе'**
+  String get aboutMe;
+
+  /// No description provided for @whatCanIDo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что могу сделать'**
+  String get whatCanIDo;
+
+  /// No description provided for @notFilled.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не заполнено'**
+  String get notFilled;
+
+  /// No description provided for @portfolio.
+  ///
+  /// In ru, this message translates to:
+  /// **'Портфолио'**
+  String get portfolio;
+
+  /// No description provided for @deleteProfile.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить профиль'**
+  String get deleteProfile;
+
+  /// No description provided for @logout.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти'**
+  String get logout;
+
+  /// No description provided for @nameAndPhotoProfile.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя и фото профиля'**
+  String get nameAndPhotoProfile;
+
+  /// No description provided for @addContacts.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавьте контакты'**
+  String get addContacts;
+
+  /// No description provided for @theyWillBeVisibleToOthersOnlyWithYourConsent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Они будут видны другим только с вашего согласия'**
+  String get theyWillBeVisibleToOthersOnlyWithYourConsent;
+
+  /// No description provided for @primaryContact.
+  ///
+  /// In ru, this message translates to:
+  /// **'Основной контакт'**
+  String get primaryContact;
+
+  /// No description provided for @email.
+  ///
+  /// In ru, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @telegram.
+  ///
+  /// In ru, this message translates to:
+  /// **'@telegram'**
+  String get telegram;
+
+  /// No description provided for @whatsAppLink.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ссылка WhatsApp'**
+  String get whatsAppLink;
+
+  /// No description provided for @tellAboutYourSelf.
+  ///
+  /// In ru, this message translates to:
+  /// **'Расскажите о себе'**
+  String get tellAboutYourSelf;
+
+  /// No description provided for @brieflyDescribeWhatYouWantToDo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кратко опишите, что вы хотите делать и какие услуги можете предоставить'**
+  String get brieflyDescribeWhatYouWantToDo;
+
+  /// No description provided for @save.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранить'**
+  String get save;
+
+  /// No description provided for @whatYouCanGiveToTheWorld.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что ты можешь дать миру'**
+  String get whatYouCanGiveToTheWorld;
+
+  /// No description provided for @search.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поиск'**
+  String get search;
+
+  /// No description provided for @tellUsMore.
+  ///
+  /// In ru, this message translates to:
+  /// **'Расскажите подробнее'**
+  String get tellUsMore;
+
+  /// No description provided for @entterPrice.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите стоимость'**
+  String get entterPrice;
+
+  /// No description provided for @hour.
+  ///
+  /// In ru, this message translates to:
+  /// **'Час'**
+  String get hour;
+
+  /// No description provided for @description.
+  ///
+  /// In ru, this message translates to:
+  /// **'Описание'**
+  String get description;
+
+  /// No description provided for @addPhoto.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавьте фото'**
+  String get addPhoto;
+
+  /// No description provided for @serviveAdded.
+  ///
+  /// In ru, this message translates to:
+  /// **'Услуга добавлена'**
+  String get serviveAdded;
+
+  /// No description provided for @addAnotherService.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить еще услугу'**
+  String get addAnotherService;
+
+  /// No description provided for @finish.
+  ///
+  /// In ru, this message translates to:
+  /// **'Завершить'**
+  String get finish;
+
+  /// No description provided for @selectLocation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбор локации'**
+  String get selectLocation;
+
+  /// No description provided for @findMe.
+  ///
+  /// In ru, this message translates to:
+  /// **'Найти меня'**
+  String get findMe;
+
+  /// No description provided for @select.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать'**
+  String get select;
 }
 
 class _AppLocalizationsDelegate
