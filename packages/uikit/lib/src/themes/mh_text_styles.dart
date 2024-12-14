@@ -85,6 +85,18 @@ TextStyle get body18MediumStyle => TextStyle(
   letterSpacing: -0.43,
 );
 
+TextStyle get body18SemiBoldStyle => TextStyle(
+  fontSize: 18.sp,
+  height: 25 / 18,
+  fontFamily: FontFamily.sFProDisplay,
+  fontWeight: FontWeight.w600,
+  fontStyle: FontStyle.normal,
+  package: kPackageName,
+  color: MHColors.whiteColor,
+  letterSpacing: -0.45,
+);
+
+
 /// 20
 
 TextStyle get body20SemiBoldStyle => TextStyle(

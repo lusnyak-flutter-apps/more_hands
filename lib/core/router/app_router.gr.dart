@@ -200,6 +200,25 @@ class RequestsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SelectLocationPage]
+class SelectLocationRoute extends PageRouteInfo<void> {
+  const SelectLocationRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectLocationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectLocationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SelectLocationPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ServiceDetailsPage]
 class ServiceDetailsRoute extends PageRouteInfo<void> {
   const ServiceDetailsRoute({List<PageRouteInfo>? children})

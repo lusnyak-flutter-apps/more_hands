@@ -183,19 +183,10 @@ class _ProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    context.localized.portfolio,
-                    style: body24SemiBoldStyle,
-                    textAlign: TextAlign.left,
-                  ),
-                  MHInkWell(
-                    child: MoreHandsAssets.icons.edit.svg(),
-                    onTap: () {},
-                  ),
-                ],
+              Text(
+                context.localized.portfolio,
+                style: body24SemiBoldStyle,
+                textAlign: TextAlign.left,
               ).paddingOnly(bottom: 2.h),
               Text(
                 context.localized.notFilled,

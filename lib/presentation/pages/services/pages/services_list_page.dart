@@ -45,6 +45,7 @@ class _ServicesListViewState extends State<_ServicesListView> {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const MHSearchField(),
             ListView.builder(

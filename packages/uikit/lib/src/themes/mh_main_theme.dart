@@ -82,6 +82,7 @@ ThemeData get darkTheme => ThemeData(
         titleAlignment: ListTileTitleAlignment.titleHeight,
         minVerticalPadding: 1.0,
         iconColor: MHColors.whiteColor,
+
         // shape:  const UnderlineInputBorder(
         //     borderSide: BorderSide(color: MHColors.grayColor, width: 1.0)),
       ),

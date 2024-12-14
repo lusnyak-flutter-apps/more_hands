@@ -8,16 +8,20 @@ class MHRoundedContainer extends StatelessWidget {
       required this.child,
       this.alignment,
       this.borderGradientColors,
-      this.borderColor});
+      this.borderColor, this.height, this.width});
 
   final Widget child;
   final AlignmentGeometry? alignment;
   final List<Color>? borderGradientColors;
   final Color? borderColor;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height,
+      width: width,
       alignment: alignment ?? Alignment.center,
       decoration: BoxDecoration(
         color: MHColors.darkerGrayColor,

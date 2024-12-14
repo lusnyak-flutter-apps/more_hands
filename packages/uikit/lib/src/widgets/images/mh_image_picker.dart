@@ -55,7 +55,6 @@ class MHImagePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
       tooltip: '',
-      // padding: EdgeInsets.zero,
       position: PopupMenuPosition.under,
       onSelected: (menu) {
         if (menu == 0) {
