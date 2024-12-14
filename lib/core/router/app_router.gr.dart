@@ -105,6 +105,25 @@ class OnboardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfileAboutPage]
+class ProfileAboutRoute extends PageRouteInfo<void> {
+  const ProfileAboutRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileAboutRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileAboutRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileAboutPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ProfileContactsPage]
 class ProfileContactsRoute extends PageRouteInfo<void> {
   const ProfileContactsRoute({List<PageRouteInfo>? children})
@@ -176,6 +195,44 @@ class RequestsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const RequestsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ServiceDetailsPage]
+class ServiceDetailsRoute extends PageRouteInfo<void> {
+  const ServiceDetailsRoute({List<PageRouteInfo>? children})
+      : super(
+          ServiceDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ServiceDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ServiceDetailsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ServicesListPage]
+class ServicesListRoute extends PageRouteInfo<void> {
+  const ServicesListRoute({List<PageRouteInfo>? children})
+      : super(
+          ServicesListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ServicesListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ServicesListPage();
     },
   );
 }

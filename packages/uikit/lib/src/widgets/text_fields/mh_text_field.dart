@@ -17,6 +17,7 @@ class MHTextField extends StatelessWidget {
     this.textInputAction,
     this.hintColor,
     this.prefixIcon,
+    this.minLines,
   });
 
   final String? hintText;
@@ -31,11 +32,14 @@ class MHTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final Color? hintColor;
   final Widget? prefixIcon;
+  final int? minLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       key: key,
+      maxLines: minLines != null && minLines! > 1 ? null : 1,
+      minLines: minLines,
       controller: controller,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,

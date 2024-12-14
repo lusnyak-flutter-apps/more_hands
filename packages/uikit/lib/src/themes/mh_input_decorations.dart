@@ -9,6 +9,14 @@ OutlineInputBorder outlineInputBorder({Color? color, double radius = 16.0}) =>
           : BorderSide.none,
     );
 
+// OutlineInputBorder outlineInputBorder({Color? color, double radius = 16.0}) =>
+//     OutlineInputBorder(
+//       borderRadius: BorderRadius.circular(radius.r),
+//       borderSide: color != null
+//           ? BorderSide(color: color, width: 1.0)
+//           : BorderSide.none,
+//     );
+
 InputDecorationTheme roundInputDecoration({double radius = 16.0}) =>
     InputDecorationTheme(
       hintStyle:

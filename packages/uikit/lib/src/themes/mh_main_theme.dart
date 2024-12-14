@@ -81,6 +81,17 @@ ThemeData get darkTheme => ThemeData(
         contentPadding: EdgeInsets.zero,
         titleAlignment: ListTileTitleAlignment.titleHeight,
         minVerticalPadding: 1.0,
-
+        iconColor: MHColors.whiteColor,
+        // shape:  const UnderlineInputBorder(
+        //     borderSide: BorderSide(color: MHColors.grayColor, width: 1.0)),
+      ),
+      expansionTileTheme: const ExpansionTileThemeData(
+        backgroundColor: Colors.transparent,
+        collapsedBackgroundColor: Colors.transparent,
+        textColor: MHColors.whiteColor,
+        iconColor: MHColors.whiteColor,
+        collapsedIconColor: MHColors.whiteColor,
+        collapsedShape: UnderlineInputBorder(
+            borderSide: BorderSide(color: MHColors.grayColor, width: 1.0)),
       ),
     );

@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:more_hands/presentation/pages/app_loading/app_loading_page.dart';
 import 'package:more_hands/presentation/pages/auth/authorization_page.dart';
 import 'package:more_hands/presentation/pages/bottom_navigation/bottom_navigation_page.dart';
+import 'package:more_hands/presentation/pages/edit_profile/pages/profile_about_page.dart';
 import 'package:more_hands/presentation/pages/edit_profile/pages/profile_contacts_page.dart';
 import 'package:more_hands/presentation/pages/edit_profile/pages/profile_name_and_image_page.dart';
+import 'package:more_hands/presentation/pages/services/pages/services_list_page.dart';
+import 'package:more_hands/presentation/pages/services/pages/service_details_page.dart';
 import 'package:more_hands/presentation/pages/home/home_page.dart';
 import 'package:more_hands/presentation/pages/onboarding/onboarding_page.dart';
 import 'package:more_hands/presentation/pages/profile/profile_page.dart';
@@ -28,5 +31,8 @@ class AppRouter extends RootStackRouter {
         ]),
         AutoRoute(page: ProfileNameAndImageRoute.page),
         AutoRoute(page: ProfileContactsRoute.page),
+        AutoRoute(page: ProfileAboutRoute.page),
+        AutoRoute(page: ServicesListRoute.page),
+        AutoRoute(page: ServiceDetailsRoute.page),
       ];
 }

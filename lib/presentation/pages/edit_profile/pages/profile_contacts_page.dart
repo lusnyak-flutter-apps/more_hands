@@ -22,7 +22,9 @@ class _ProfileContactsView extends StatelessWidget {
     return Scaffold(
       bottomSheet: MHBottomNavigationControl(
         buttonTitle: context.localized.next,
-        action: () {},
+        action: () {
+          context.router.push(const ProfileAboutRoute());
+        },
       ).paddingOnly(bottom: 16.h),
       appBar: AppBar(
         automaticallyImplyLeading: false,

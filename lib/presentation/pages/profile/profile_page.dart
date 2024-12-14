@@ -166,7 +166,9 @@ class _ProfileView extends StatelessWidget {
                   ),
                   MHInkWell(
                     child: MoreHandsAssets.icons.edit.svg(),
-                    onTap: () {},
+                    onTap: () {
+                      context.router.push(const ServicesListRoute());
+                    },
                   ),
                 ],
               ).paddingOnly(bottom: 2.h),
