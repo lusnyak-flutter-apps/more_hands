@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:uikit/uikit.dart';
 
 import 'core/core.dart';
 import 'data/data.dart';
@@ -23,5 +24,6 @@ Future<void> main() async {
     statusBarBrightness: Brightness.dark,
     systemStatusBarContrastEnforced: true,
   ),);
+  supportImagePickerPlatformOptions();
   runApp(moreHandsApp);
 }

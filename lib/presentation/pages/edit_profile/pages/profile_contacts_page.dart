@@ -14,9 +14,15 @@ class ProfileContactsPage extends StatelessWidget {
   }
 }
 
-class _ProfileContactsView extends StatelessWidget {
+class _ProfileContactsView extends StatefulWidget {
   const _ProfileContactsView();
 
+  @override
+  State<_ProfileContactsView> createState() => _ProfileContactsViewState();
+}
+
+class _ProfileContactsViewState extends State<_ProfileContactsView> {
+  int? primaryContact;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,18 +51,22 @@ class _ProfileContactsView extends StatelessWidget {
             ),
             contactItem(context,
                     hintText: "+123 456 789",
+                    value: 0,
                     icon: MoreHandsAssets.icons.phone.svg())
                 .paddingOnly(top: 16.h),
             contactItem(context,
                     hintText: context.localized.email,
+                value: 1,
                     icon: MoreHandsAssets.icons.mail.svg())
                 .paddingOnly(top: 16.h),
             contactItem(context,
                     hintText: context.localized.telegram,
+                value: 2,
                     icon: MoreHandsAssets.icons.telegram.svg())
                 .paddingOnly(top: 16.h),
             contactItem(context,
                     hintText: context.localized.whatsAppLink,
+                value: 3,
                     icon: MoreHandsAssets.icons.whatsapp.svg())
                 .paddingOnly(top: 16.h),
           ],
@@ -70,6 +80,7 @@ class _ProfileContactsView extends StatelessWidget {
     String? hintText,
     TextEditingController? controller,
     Widget? icon,
+        int? value,
   }) =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -82,9 +93,15 @@ class _ProfileContactsView extends StatelessWidget {
             prefixIcon: icon,
           ),
           MHRadioListTile(
-            value: 0,
-            groupValue: 1,
-            onChanged: (onChanged) {},
+            value: value,
+            groupValue: primaryContact,
+            onChanged: (_) {
+              if(mounted){
+                setState(() {
+                  primaryContact = value;
+                });
+              }
+            },
             label: context.localized.primaryContact,
           )
         ],
