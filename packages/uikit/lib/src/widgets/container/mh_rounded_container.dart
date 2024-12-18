@@ -3,19 +3,25 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:uikit/uikit.dart';
 
 class MHRoundedContainer extends StatelessWidget {
-  const MHRoundedContainer(
-      {super.key,
-      required this.child,
-      this.alignment,
-      this.borderGradientColors,
-      this.borderColor, this.height, this.width});
+  const MHRoundedContainer({
+    super.key,
+      this.child,
+    this.alignment,
+    this.borderGradientColors,
+    this.borderColor,
+    this.height,
+    this.width,
+    this.color, this.borderRadius,
+  });
 
-  final Widget child;
+  final Widget? child;
   final AlignmentGeometry? alignment;
   final List<Color>? borderGradientColors;
   final Color? borderColor;
   final double? height;
   final double? width;
+  final Color? color;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +30,13 @@ class MHRoundedContainer extends StatelessWidget {
       width: width,
       alignment: alignment ?? Alignment.center,
       decoration: BoxDecoration(
-        color: MHColors.darkerGrayColor,
-        borderRadius: BorderRadius.circular(16.r),
+        color: color ?? MHColors.darkerGrayColor,
+        borderRadius: BorderRadius.circular((borderRadius ?? 16).r),
         border: borderGradientColors != null && borderGradientColors!.isNotEmpty
-            ?   GradientBoxBorder(
+            ? GradientBoxBorder(
                 gradient: LinearGradient(
-                    colors: borderGradientColors!,),
+                  colors: borderGradientColors!,
+                ),
                 width: 1.0,
               )
             : borderColor != null

@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
+import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
@@ -37,7 +41,9 @@ class _ProfileView extends StatelessWidget {
                 children: [
                   MHOutlinedButton(
                     title: context.localized.deleteProfile,
-                    onPressed: () {},
+                    onPressed: () {
+                      showProfileDeleteSheet(context);
+                    },
                   ).expanded(),
                   8.w.widthBox,
                   MHOutlinedButton(
@@ -78,6 +84,9 @@ class _ProfileView extends StatelessWidget {
               children: [
                 MHGradientTag(
                   title: context.localized.passKYC,
+                  onPressed: (){
+                    showSubscriptionSheet(context);
+                  },
                   icon: MoreHandsAssets.icons.hand.svg(
                       height: 16.r,
                       colorFilter: const ColorFilter.mode(
@@ -197,4 +206,21 @@ class _ProfileView extends StatelessWidget {
           ),
         ],
       );
+
+  Future<void> showProfileDeleteSheet(BuildContext context) async {
+    await showMHModalBottomSheet(
+      context,
+      title: "${context.localized.deleteProfile}?",
+      child: const ProfileDeleteBottomView(),
+    );
+  }
+
+  Future<void> showSubscriptionSheet(BuildContext context) async {
+    await showMHModalBottomSheet(
+      context,
+      isScrollControlled: true,
+      title: "${context.localized.deleteProfile}?",
+      child: const SubscriptionView(),
+    );
+  }
 }

@@ -15,10 +15,14 @@ class MHGradientButton extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(32.r),
-      overlayColor: WidgetStateProperty.all(MHColors.amberColor),
+    return MaterialButton(
+      padding: EdgeInsets.zero,
+      onPressed: onPressed,
+      shape: const StadiumBorder(),
+
+      // borderRadius: BorderRadius.circular(32.r),
+      // overlayColor: WidgetStateProperty.all(MHColors.amberColor),
+      highlightColor: MHColors.amberColor,
       child: Ink(
         height: 48.h,
         decoration: BoxDecoration(

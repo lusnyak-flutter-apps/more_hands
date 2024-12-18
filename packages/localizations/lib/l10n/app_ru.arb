@@ -52,5 +52,12 @@
   "finish":"Завершить",
   "selectLocation":"Выбор локации",
   "findMe":"Найти меня",
-  "select":"Выбрать"
+  "select":"Выбрать",
+   "allInfoWillBeDeleted":"Вся информация удалится",
+  "subscribeUntil":"Подписка до",
+   "cancel":"Отмена",
+   "subscriptionInfoText":"Подписка используется для возможности отправлять и принимать запросы",
+   "inviteFriendsGet1Month":"Пригласи друзей, получите по 1 мес.",
+   "invite":"Пригласить"
+
  }

@@ -411,6 +411,42 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Выбрать'**
   String get select;
+
+  /// No description provided for @allInfoWillBeDeleted.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вся информация удалится'**
+  String get allInfoWillBeDeleted;
+
+  /// No description provided for @subscribeUntil.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подписка до'**
+  String get subscribeUntil;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отмена'**
+  String get cancel;
+
+  /// No description provided for @subscriptionInfoText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подписка используется для возможности отправлять и принимать запросы'**
+  String get subscriptionInfoText;
+
+  /// No description provided for @inviteFriendsGet1Month.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пригласи друзей, получите по 1 мес.'**
+  String get inviteFriendsGet1Month;
+
+  /// No description provided for @invite.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пригласить'**
+  String get invite;
 }
 
 class _AppLocalizationsDelegate

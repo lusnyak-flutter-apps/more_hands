@@ -174,4 +174,23 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get select => 'Выбрать';
+
+  @override
+  String get allInfoWillBeDeleted => 'Вся информация удалится';
+
+  @override
+  String get subscribeUntil => 'Подписка до';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get subscriptionInfoText =>
+      'Подписка используется для возможности отправлять и принимать запросы';
+
+  @override
+  String get inviteFriendsGet1Month => 'Пригласи друзей, получите по 1 мес.';
+
+  @override
+  String get invite => 'Пригласить';
 }

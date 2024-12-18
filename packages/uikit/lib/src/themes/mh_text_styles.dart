@@ -99,6 +99,17 @@ TextStyle get body18SemiBoldStyle => TextStyle(
 
 /// 20
 
+TextStyle get body20MediumStyle => TextStyle(
+  fontSize: 20.sp,
+  height: 1,
+  fontFamily: FontFamily.sFProDisplay,
+  fontWeight: FontWeight.w500,
+  fontStyle: FontStyle.normal,
+  package: kPackageName,
+  color: MHColors.whiteColor,
+);
+
+
 TextStyle get body20SemiBoldStyle => TextStyle(
   fontSize: 20.sp,
   height: 1,

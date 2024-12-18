@@ -11,21 +11,23 @@ class MHGradientTag extends StatelessWidget {
     required this.title,
     this.gradientColors,
     this.icon,
+    this.iconAlignment = IconAlignment.end,
   });
 
   final VoidCallback? onPressed;
   final String title;
   final Widget? icon;
   final List<Color>? gradientColors;
+  final IconAlignment iconAlignment;
 
   @override
   Widget build(BuildContext context) {
     final label = Text(title,
         style: body16MediumStyle.copyWith(color: MHColors.blackBGColor));
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
       decoration: BoxDecoration(
-        border: Border.all(color: MHColors.whiteColor.withOpacity(0.26), width: 1.0),
+        border: Border.all(
+            color: MHColors.whiteColor.withOpacity(0.26), width: 1.0),
         borderRadius: BorderRadius.circular(16.r),
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
@@ -33,11 +35,18 @@ class MHGradientTag extends StatelessWidget {
           colors: gradientColors ?? [MHColors.yellowColor, MHColors.amberColor],
         ),
       ),
-      child: icon != null
-          ? Row(
-              children: [label, 4.w.widthBox, icon!],
-            )
-          : label,
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(16.r),
+        overlayColor: const WidgetStatePropertyAll(MHColors.amberColor),
+        child: icon != null
+            ? Row(
+                children: iconAlignment == IconAlignment.end
+                    ? [label, 4.w.widthBox, icon!]
+                    : [icon!, 4.w.widthBox, label],
+              ).paddingSymmetric(horizontal: 8.w, vertical: 2.h)
+            : label.paddingSymmetric(horizontal: 8.w, vertical: 2.h),
+      ),
     );
   }
 }
