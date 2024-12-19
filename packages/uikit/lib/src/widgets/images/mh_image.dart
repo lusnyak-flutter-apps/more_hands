@@ -9,12 +9,14 @@ class MHImage extends StatelessWidget {
     this.imageUrl,
     this.aspectRatio = 1,
     this.emptyWidget,
+    this.availableForegroundDecoration = true,
   });
 
   final double? size;
   final String? imageUrl;
   final double? aspectRatio;
   final Widget? emptyWidget;
+  final bool availableForegroundDecoration;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class MHImage extends StatelessWidget {
         aspectRatio: aspectRatio ?? 1.0,
         child: Container(
           decoration: boxDecorator(imageProvider),
-          foregroundDecoration: foregroundDecorator(),
+          foregroundDecoration: availableForegroundDecoration ? foregroundDecorator() : null,
           clipBehavior: Clip.hardEdge,
         ),
       );
@@ -52,7 +54,7 @@ class MHImage extends StatelessWidget {
           alignment: Alignment.center,
           decoration: boxDecorator(),
           clipBehavior: Clip.hardEdge,
-          foregroundDecoration: foregroundDecorator(),
+          foregroundDecoration: availableForegroundDecoration ? foregroundDecorator() : null,
           child: emptyWidget,
         ),
       );

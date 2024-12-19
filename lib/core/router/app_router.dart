@@ -6,6 +6,7 @@ import 'package:more_hands/presentation/pages/edit_profile/pages/profile_about_p
 import 'package:more_hands/presentation/pages/edit_profile/pages/profile_contacts_page.dart';
 import 'package:more_hands/presentation/pages/edit_profile/pages/profile_name_and_image_page.dart';
 import 'package:more_hands/presentation/pages/location/select_location_page.dart';
+import 'package:more_hands/presentation/pages/referrals/referrals_page.dart';
 import 'package:more_hands/presentation/pages/services/pages/services_list_page.dart';
 import 'package:more_hands/presentation/pages/services/pages/service_details_page.dart';
 import 'package:more_hands/presentation/pages/home/home_page.dart';
@@ -36,5 +37,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ServicesListRoute.page),
         AutoRoute(page: ServiceDetailsRoute.page),
         AutoRoute(page: SelectLocationRoute.page),
+        AutoRoute(page: ReferralsRoute.page),
       ];
 }

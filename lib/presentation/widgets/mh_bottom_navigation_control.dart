@@ -7,10 +7,11 @@ class MHBottomNavigationControl extends StatelessWidget {
     super.key,
     required this.buttonTitle,
     this.maybePop,
-    this.action,
+    this.action, this.buttonIcon,
   });
 
   final String buttonTitle;
+  final Widget? buttonIcon;
   final VoidCallback? maybePop;
   final VoidCallback? action;
 
@@ -27,6 +28,7 @@ class MHBottomNavigationControl extends StatelessWidget {
           8.w.widthBox,
           MHGradientButton(
             title: buttonTitle,
+            icon: buttonIcon,
             onPressed: action,
           ).expanded()
         ],

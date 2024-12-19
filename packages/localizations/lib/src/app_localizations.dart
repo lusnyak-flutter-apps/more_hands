@@ -447,6 +447,78 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Пригласить'**
   String get invite;
+
+  /// No description provided for @referralCode.
+  ///
+  /// In ru, this message translates to:
+  /// **'Реферальный код'**
+  String get referralCode;
+
+  /// No description provided for @sendCodeToYourFriends.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправьте этот код вашим друзьям'**
+  String get sendCodeToYourFriends;
+
+  /// No description provided for @yourReferrals.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваши рефералы'**
+  String get yourReferrals;
+
+  /// No description provided for @copyAndSend.
+  ///
+  /// In ru, this message translates to:
+  /// **'Скопировать и отправить'**
+  String get copyAndSend;
+
+  /// No description provided for @kycNextVerificationDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'следующая верификация KYC {date}'**
+  String kycNextVerificationDate(Object date);
+
+  /// No description provided for @reviewAnswer.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ответ на отзыв'**
+  String get reviewAnswer;
+
+  /// No description provided for @enterText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите текст'**
+  String get enterText;
+
+  /// No description provided for @reviewsCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'{count} отзыва'**
+  String reviewsCount(Object count);
+
+  /// No description provided for @reviews.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отзывы'**
+  String get reviews;
+
+  /// No description provided for @noReviews.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нет отзывов'**
+  String get noReviews;
+
+  /// No description provided for @deleteService.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить услугу'**
+  String get deleteService;
+
+  /// No description provided for @referralCodeCopied.
+  ///
+  /// In ru, this message translates to:
+  /// **'Реферальный код скопирован'**
+  String get referralCodeCopied;
 }
 
 class _AppLocalizationsDelegate

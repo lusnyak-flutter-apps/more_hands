@@ -181,6 +181,25 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ReferralsPage]
+class ReferralsRoute extends PageRouteInfo<void> {
+  const ReferralsRoute({List<PageRouteInfo>? children})
+      : super(
+          ReferralsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ReferralsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ReferralsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [RequestsPage]
 class RequestsRoute extends PageRouteInfo<void> {
   const RequestsRoute({List<PageRouteInfo>? children})

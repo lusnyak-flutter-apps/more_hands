@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
 import 'package:more_hands/utils/utils.dart';
@@ -13,7 +12,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _ProfileView();
+    return BlocProvider<ProfileCubit>(
+      create: (BuildContext context) => getIt<ProfileCubit>(),
+      child: const _ProfileView(),
+    );
   }
 }
 
@@ -25,37 +27,40 @@ class _ProfileView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         bottom: false,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-              top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              profileImagePart(context),
-              24.h.heightBox,
-              aboutUserPart(context),
-              24.h.heightBox,
-              const Divider(),
-              24.h.heightBox,
-              Row(
-                children: [
-                  MHOutlinedButton(
-                    title: context.localized.deleteProfile,
-                    onPressed: () {
-                      showProfileDeleteSheet(context);
-                    },
-                  ).expanded(),
-                  8.w.widthBox,
-                  MHOutlinedButton(
-                    title: context.localized.logout,
-                    onPressed: () {},
-                    icon: MoreHandsAssets.icons.logout.svg(),
-                  ).expanded(),
-                ],
-              )
-            ],
-          ).paddingSymmetric(horizontal: 24.w),
-        ),
+        child:
+            BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
+          return SingleChildScrollView(
+            padding: EdgeInsets.only(
+                top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                profileImagePart(context),
+                24.h.heightBox,
+                aboutUserPart(context),
+                24.h.heightBox,
+                const Divider(),
+                24.h.heightBox,
+                Row(
+                  children: [
+                    MHOutlinedButton(
+                      title: context.localized.deleteProfile,
+                      onPressed: () {
+                        showProfileDeleteSheet(context);
+                      },
+                    ).expanded(),
+                    8.w.widthBox,
+                    MHOutlinedButton(
+                      title: context.localized.logout,
+                      onPressed: () {},
+                      icon: MoreHandsAssets.icons.logout.svg(),
+                    ).expanded(),
+                  ],
+                )
+              ],
+            ).paddingSymmetric(horizontal: 24.w),
+          );
+        }),
       ),
     );
   }
@@ -84,7 +89,7 @@ class _ProfileView extends StatelessWidget {
               children: [
                 MHGradientTag(
                   title: context.localized.passKYC,
-                  onPressed: (){
+                  onPressed: () {
                     showSubscriptionSheet(context);
                   },
                   icon: MoreHandsAssets.icons.hand.svg(
@@ -129,6 +134,9 @@ class _ProfileView extends StatelessWidget {
                   MHTag(
                     title: context.localized.referralsCount(0),
                     icon: MoreHandsAssets.icons.link.svg(height: 12.r),
+                    onPressed: () {
+                      context.router.push(const ReferralsRoute());
+                    },
                   ),
                 ],
               ),

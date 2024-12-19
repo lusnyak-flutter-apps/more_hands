@@ -53,11 +53,23 @@
   "selectLocation":"Выбор локации",
   "findMe":"Найти меня",
   "select":"Выбрать",
-   "allInfoWillBeDeleted":"Вся информация удалится",
+  "allInfoWillBeDeleted":"Вся информация удалится",
   "subscribeUntil":"Подписка до",
-   "cancel":"Отмена",
-   "subscriptionInfoText":"Подписка используется для возможности отправлять и принимать запросы",
-   "inviteFriendsGet1Month":"Пригласи друзей, получите по 1 мес.",
-   "invite":"Пригласить"
+  "cancel":"Отмена",
+  "subscriptionInfoText":"Подписка используется для возможности отправлять и принимать запросы",
+  "inviteFriendsGet1Month":"Пригласи друзей, получите по 1 мес.",
+  "invite":"Пригласить",
+  "referralCode":"Реферальный код",
+  "sendCodeToYourFriends":"Отправьте этот код вашим друзьям",
+  "yourReferrals":"Ваши рефералы",
+  "copyAndSend":"Скопировать и отправить",
+  "kycNextVerificationDate":"следующая верификация KYC {date}",
+  "reviewAnswer":"Ответ на отзыв",
+  "enterText":"Введите текст",
+  "reviewsCount":"{count} отзыва",
+  "reviews":"Отзывы",
+  "noReviews":"Нет отзывов",
+  "deleteService" : "Удалить услугу",
+  "referralCodeCopied":"Реферальный код скопирован"
 
  }

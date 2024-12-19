@@ -193,4 +193,44 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get invite => 'Пригласить';
+
+  @override
+  String get referralCode => 'Реферальный код';
+
+  @override
+  String get sendCodeToYourFriends => 'Отправьте этот код вашим друзьям';
+
+  @override
+  String get yourReferrals => 'Ваши рефералы';
+
+  @override
+  String get copyAndSend => 'Скопировать и отправить';
+
+  @override
+  String kycNextVerificationDate(Object date) {
+    return 'следующая верификация KYC $date';
+  }
+
+  @override
+  String get reviewAnswer => 'Ответ на отзыв';
+
+  @override
+  String get enterText => 'Введите текст';
+
+  @override
+  String reviewsCount(Object count) {
+    return '$count отзыва';
+  }
+
+  @override
+  String get reviews => 'Отзывы';
+
+  @override
+  String get noReviews => 'Нет отзывов';
+
+  @override
+  String get deleteService => 'Удалить услугу';
+
+  @override
+  String get referralCodeCopied => 'Реферальный код скопирован';
 }

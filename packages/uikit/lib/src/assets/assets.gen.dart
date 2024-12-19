@@ -63,6 +63,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/compass.svg
   SvgGenImage get compass => const SvgGenImage('assets/icons/compass.svg');
 
+  /// File path: assets/icons/copy_yellow.svg
+  SvgGenImage get copyYellow => const SvgGenImage('assets/icons/copy_yellow.svg');
+
   /// File path: assets/icons/down.svg
   SvgGenImage get down => const SvgGenImage('assets/icons/down.svg');
 
@@ -171,6 +174,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/wavy_check.svg
   SvgGenImage get wavyCheck => const SvgGenImage('assets/icons/wavy_check.svg');
 
+  /// File path: assets/icons/wavy_check_yellow.svg
+  SvgGenImage get wavyCheckYellow => const SvgGenImage('assets/icons/wavy_check_yellow.svg');
+
   /// File path: assets/icons/wavy_help.svg
   SvgGenImage get wavyHelp => const SvgGenImage('assets/icons/wavy_help.svg');
 
@@ -195,6 +201,7 @@ class $AssetsIconsGen {
         clock,
         close,
         compass,
+        copyYellow,
         down,
         edit,
         facebook,
@@ -231,6 +238,7 @@ class $AssetsIconsGen {
         userYellow,
         users,
         wavyCheck,
+        wavyCheckYellow,
         wavyHelp,
         whatsapp
       ];
