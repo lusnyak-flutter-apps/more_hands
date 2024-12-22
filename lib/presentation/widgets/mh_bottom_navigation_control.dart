@@ -7,7 +7,8 @@ class MHBottomNavigationControl extends StatelessWidget {
     super.key,
     required this.buttonTitle,
     this.maybePop,
-    this.action, this.buttonIcon,
+    this.action,
+    this.buttonIcon,
   });
 
   final String buttonTitle;
@@ -23,8 +24,9 @@ class MHBottomNavigationControl extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-              onPressed: maybePop ?? context.router.maybePop,
-              icon: MoreHandsAssets.icons.left.svg().paddingAll(6.h)),
+            onPressed: maybePop ?? context.router.maybePop,
+            icon: MoreHandsAssets.icons.left.svg().paddingAll(6.h),
+          ),
           8.w.widthBox,
           MHGradientButton(
             title: buttonTitle,

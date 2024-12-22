@@ -13,6 +13,7 @@ import 'package:more_hands/presentation/pages/home/home_page.dart';
 import 'package:more_hands/presentation/pages/onboarding/onboarding_page.dart';
 import 'package:more_hands/presentation/pages/profile/profile_page.dart';
 import 'package:more_hands/presentation/pages/requests/requests_page.dart';
+import 'package:more_hands/presentation/pages/user/user_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -38,5 +39,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ServiceDetailsRoute.page),
         AutoRoute(page: SelectLocationRoute.page),
         AutoRoute(page: ReferralsRoute.page),
+        AutoRoute(page: UserRoute.page),
       ];
 }

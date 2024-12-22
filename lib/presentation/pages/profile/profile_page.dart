@@ -3,6 +3,10 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
+import 'package:more_hands/presentation/widgets/portfolio_view.dart';
+ import 'package:more_hands/presentation/widgets/user_info_tags_view.dart';
+import 'package:more_hands/presentation/widgets/user_name_id_view.dart';
+import 'package:more_hands/presentation/widgets/what_can_do_view.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
@@ -35,12 +39,19 @@ class _ProfileView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                profileImagePart(context),
-                24.h.heightBox,
+                profileImagePart(context).paddingOnly(bottom: 24.h),
                 aboutUserPart(context),
-                24.h.heightBox,
-                const Divider(),
-                24.h.heightBox,
+                WhatCanDoView(
+                  // items: List.generate(8, (i) => "Service $i"),
+                  onEdit: () {
+                    context.router.push(const ServicesListRoute());
+                  },
+                ).paddingOnly(bottom: 24.h),
+                const PortfolioView(
+                    // items: List.generate(
+                    //     4, (i) => "https://picsum.photos/200/300?random=$i"),
+                    ),
+                const Divider().paddingSymmetric(vertical: 24.h),
                 Row(
                   children: [
                     MHOutlinedButton(
@@ -115,33 +126,21 @@ class _ProfileView extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                "Name L.",
-                style: body32SemiBoldStyle,
-                textAlign: TextAlign.left,
+              const UserNameIdView(
+                name: "Name L.",
+                // id: "12345",
               ),
               8.h.heightBox,
-              Row(
-                children: [
-                  MHTag(
-                    title: "0",
-                    icon: MoreHandsAssets.icons.starFill.svg(height: 12.r),
-                  ),
-                  MHTag(
-                    title: "0",
-                    icon: MoreHandsAssets.icons.hand.svg(height: 12.r),
-                  ).paddingSymmetric(horizontal: 6.w),
-                  MHTag(
-                    title: context.localized.referralsCount(0),
-                    icon: MoreHandsAssets.icons.link.svg(height: 12.r),
-                    onPressed: () {
-                      context.router.push(const ReferralsRoute());
-                    },
-                  ),
-                ],
+              UserInfoTagsView(
+                starsCount: 0,
+                transactionsCount: 0,
+                referralsCount: 0,
+                onReferralsTap: () {
+                  context.router.push(const ReferralsRoute());
+                },
               ),
             ],
-          ).paddingOnly(bottom: 2.h),
+          ).paddingOnly(bottom: 4.h),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
@@ -161,57 +160,22 @@ class _ProfileView extends StatelessWidget {
                     },
                   ),
                 ],
-              ).paddingOnly(bottom: 2.h),
+              ),
               Text(
                 context.localized.notFilled,
                 style: body16Style.copyWith(color: MHColors.grayColor98),
                 textAlign: TextAlign.left,
               ),
+              // const UserContactsView(
+              //   contacts: [
+              //     "@username",
+              //     "user@example.com",
+              //     "+7 999 999 99 99",
+              //     "https://example.com",
+              //   ],
+              // ),
             ],
           ).paddingOnly(bottom: 24.h),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    context.localized.whatCanIDo,
-                    style: body24SemiBoldStyle,
-                    textAlign: TextAlign.left,
-                  ),
-                  MHInkWell(
-                    child: MoreHandsAssets.icons.edit.svg(),
-                    onTap: () {
-                      context.router.push(const ServicesListRoute());
-                    },
-                  ),
-                ],
-              ).paddingOnly(bottom: 2.h),
-              Text(
-                context.localized.notFilled,
-                style: body16Style.copyWith(color: MHColors.grayColor98),
-                textAlign: TextAlign.left,
-              ),
-            ],
-          ).paddingOnly(bottom: 24.h),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                context.localized.portfolio,
-                style: body24SemiBoldStyle,
-                textAlign: TextAlign.left,
-              ).paddingOnly(bottom: 2.h),
-              Text(
-                context.localized.notFilled,
-                style: body16Style.copyWith(color: MHColors.grayColor98),
-                textAlign: TextAlign.left,
-              ),
-            ],
-          ),
         ],
       );
 

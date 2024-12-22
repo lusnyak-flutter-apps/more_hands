@@ -223,6 +223,11 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String transactionsCount(Object count) {
+    return '$count сделок';
+  }
+
+  @override
   String get reviews => 'Отзывы';
 
   @override
@@ -233,4 +238,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get referralCodeCopied => 'Реферальный код скопирован';
+
+  @override
+  String get sendRequest => 'Отправить запрос';
 }

@@ -67,9 +67,11 @@
   "reviewAnswer":"Ответ на отзыв",
   "enterText":"Введите текст",
   "reviewsCount":"{count} отзыва",
+  "transactionsCount":"{count} сделок",
   "reviews":"Отзывы",
   "noReviews":"Нет отзывов",
   "deleteService" : "Удалить услугу",
-  "referralCodeCopied":"Реферальный код скопирован"
+  "referralCodeCopied":"Реферальный код скопирован",
+  "sendRequest": "Отправить запрос"
 
  }

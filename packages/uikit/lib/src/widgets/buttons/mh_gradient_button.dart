@@ -19,19 +19,20 @@ class MHGradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final text = Text(title, style: buttonTextStyles,);
-    return MaterialButton(
-      padding: EdgeInsets.zero,
-      onPressed: onPressed,
-      shape: const StadiumBorder(),
-      highlightColor: MHColors.amberColor,
-      child: Ink(
-        height: 48.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24.r),
-          gradient: LinearGradient(
-            colors: gradientColors ?? [MHColors.yellowColor, MHColors.amberColor],
-          ),
+    return Container(
+      height: 48.h,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24.r),
+        gradient: LinearGradient(
+          colors: gradientColors ?? [MHColors.yellowColor, MHColors.amberColor],
         ),
+      ),
+      child: MaterialButton(
+        padding: EdgeInsets.zero,
+        onPressed: onPressed,
+        shape: const StadiumBorder(),
+        highlightColor: MHColors.amberColor,
         child: icon != null ? Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +42,7 @@ class MHGradientButton extends StatelessWidget {
             4.w.widthBox,
             text,
           ],
-        ).paddingSymmetric(horizontal: 24.w, vertical: 12.h) : text.paddingSymmetric(horizontal: 24.w, vertical: 12.h) ,
+        ).paddingSymmetric(horizontal: 24.w, vertical: 12.h) : text.paddingSymmetric(horizontal: 24.w, vertical: 12.h),
       ),
     );
   }

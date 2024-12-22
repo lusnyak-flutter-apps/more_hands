@@ -63,7 +63,7 @@ class _ReferralsView extends StatelessWidget {
         Text(context.localized.referralCode, style: body28SemiBoldStyle),
         16.h.heightBox,
         Text(context.localized.sendCodeToYourFriends, style: body18MediumStyle),
-        16.h.heightBox,
+        if (code.isNotEmpty)
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -73,7 +73,6 @@ class _ReferralsView extends StatelessWidget {
               onTap: () {
                 debugPrint("Copy the referral code");
                 context.read<ReferralsCubit>().copyReferralCode(code).then((_) {
-                  debugPrint( context.localized.referralCodeCopied);
                   if (context.mounted) {
                     context.showSnackBar(
                       message: context.localized.referralCodeCopied,
@@ -85,7 +84,7 @@ class _ReferralsView extends StatelessWidget {
               },
             )
           ],
-        ),
+        ).paddingOnly(top: 16.h),
         24.h.heightBox,
         const Divider(),
       ],
@@ -101,7 +100,9 @@ class _ReferralsView extends StatelessWidget {
               style: body28SemiBoldStyle),
           16.h.heightBox,
           ...referrals.map((referral) {
-            return const ReferralItem().paddingSymmetric(vertical: 8.h);
+            return   ReferralItem(onTap: (){
+              context.router.push(const UserRoute());
+            },).paddingSymmetric(vertical: 8.h);
           }),
         ],
       ),

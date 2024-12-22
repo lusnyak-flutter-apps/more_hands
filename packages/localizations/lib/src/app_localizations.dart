@@ -496,6 +496,12 @@ abstract class AppLocalizations {
   /// **'{count} отзыва'**
   String reviewsCount(Object count);
 
+  /// No description provided for @transactionsCount.
+  ///
+  /// In ru, this message translates to:
+  /// **'{count} сделок'**
+  String transactionsCount(Object count);
+
   /// No description provided for @reviews.
   ///
   /// In ru, this message translates to:
@@ -519,6 +525,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Реферальный код скопирован'**
   String get referralCodeCopied;
+
+  /// No description provided for @sendRequest.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправить запрос'**
+  String get sendRequest;
 }
 
 class _AppLocalizationsDelegate

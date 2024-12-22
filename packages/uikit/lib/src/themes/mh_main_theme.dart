@@ -100,12 +100,15 @@ ThemeData get darkTheme => ThemeData(
         elevation: 1,
       ),
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: MHColors.grayColor27,
+        backgroundColor: MHColors.grayColor98.withOpacity(0.8),
         contentTextStyle: body13Style,
-        elevation: 5.0,
+        elevation: 8.0,
+        // closeIconColor: MHColors.whiteColor,
+        // showCloseIcon: true,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
-          side: const BorderSide(color: MHColors.grayColor, width: 1.0),
+          side: BorderSide(
+              color: MHColors.whiteColor.withOpacity(0.26), width: 1.0),
         ),
         insetPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         behavior: SnackBarBehavior.floating,

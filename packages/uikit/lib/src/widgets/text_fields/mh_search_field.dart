@@ -14,6 +14,7 @@ class MHSearchField extends StatefulWidget {
     this.textInputAction,
     this.hintColor,
     this.minLines,
+    this.backgroundColor,
   });
 
   final String? hintText;
@@ -24,6 +25,7 @@ class MHSearchField extends StatefulWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final Color? hintColor;
+  final Color? backgroundColor;
   final int? minLines;
 
   @override
@@ -58,7 +60,7 @@ class _MHSearchFieldState extends State<MHSearchField> {
       },
       decoration: InputDecoration(
           filled: true,
-          fillColor: MHColors.grayColorOpacity38,
+          fillColor: widget.backgroundColor ?? MHColors.grayColorOpacity38,
           hintText: widget.hintText,
           hintStyle: widget.hintColor != null
               ? body16Style.copyWith(color: widget.hintColor)

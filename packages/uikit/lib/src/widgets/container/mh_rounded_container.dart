@@ -5,14 +5,15 @@ import 'package:uikit/uikit.dart';
 class MHRoundedContainer extends StatelessWidget {
   const MHRoundedContainer({
     super.key,
-      this.child,
+    this.child,
     this.alignment,
     this.borderGradientColors,
     this.borderColor,
     this.height,
     this.width,
-    this.color, this.borderRadius,
-  });
+    this.color,
+    this.borderRadius,
+   });
 
   final Widget? child;
   final AlignmentGeometry? alignment;
@@ -44,7 +45,7 @@ class MHRoundedContainer extends StatelessWidget {
                 : null,
       ),
       clipBehavior: Clip.hardEdge,
-      child: child,
+      child:  child,
     );
   }
 }
