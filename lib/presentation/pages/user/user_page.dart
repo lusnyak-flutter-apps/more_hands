@@ -31,7 +31,7 @@ class _UserView extends StatelessWidget {
       bottomSheet: MHBottomNavigationControl(
         buttonTitle: context.localized.sendRequest,
         action: () {
-          // context.router.push(const ProfileContactsRoute());
+          context.router.push(const SendRequestRoute());
         },
       ).paddingOnly(bottom: 16.h),
       body: SafeArea(

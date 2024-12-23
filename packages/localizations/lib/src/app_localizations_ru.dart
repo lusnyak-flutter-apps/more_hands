@@ -241,4 +241,56 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get sendRequest => 'Отправить запрос';
+
+  @override
+  String get enterRequestText => 'Введите текст запроса';
+
+  @override
+  String get requestSent => 'Запрос отправлен';
+
+  @override
+  String get contactWillbeVisibleAfterRequestConfirmation =>
+      'Контакты станут доступны, когда исполнитель примет ваш запрос';
+
+  @override
+  String get outgoingRequests => 'Исходящие запросы';
+
+  @override
+  String get incomingRequests => 'Входящие запросы';
+
+  @override
+  String get all => 'Все';
+
+  @override
+  String get accepts => 'Принятые';
+
+  @override
+  String get waiting => 'Ожидание';
+
+  @override
+  String get leaveAReview => 'Оставить отзыв';
+
+  @override
+  String get pending => 'Ожидает';
+
+  @override
+  String get accepted => 'Принят';
+
+  @override
+  String get editReview => 'Редактировать отзыв';
+
+  @override
+  String get outgoing => 'Исходящие';
+
+  @override
+  String get incoming => 'Входящие';
+
+  @override
+  String get reject => 'Отклонить';
+
+  @override
+  String get accept => 'Принять';
+
+  @override
+  String get peopleAreNearby => 'Люди рядом';
 }

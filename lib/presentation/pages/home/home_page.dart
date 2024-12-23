@@ -27,7 +27,7 @@ class _HomeView extends StatelessWidget {
       final cubit = context.read<HomeCubit>();
       final (type, users) = state.maybeWhen(
         loaded: (type, users) => (type, [null, null, null]),
-        orElse: () => ("All", <dynamic>[]),
+        orElse: () => (context.localized.all, <dynamic>[]),
       );
       debugPrint(type);
       return Scaffold(
@@ -46,7 +46,7 @@ class _HomeView extends StatelessWidget {
             ),
           ),
           title: Text(
-            "Люди рядом",
+            context.localized.peopleAreNearby,
             style: body28SemiBoldStyle,
           ),
           centerTitle: false,
@@ -83,11 +83,11 @@ class _HomeView extends StatelessWidget {
                       runSpacing: 8.h,
                       children: [
                         MHTag(
-                          title: "All",
+                          title: context.localized.all,
                           onPressed: () {
-                            cubit.changeType("All");
+                            cubit.changeType(context.localized.all,);
                           },
-                          selected: type == "All",
+                          selected: type == context.localized.all,
                         ),
                         for (var item in List.generate(8, (index) => index))
                           MHTag(
@@ -128,6 +128,9 @@ class _HomeView extends StatelessWidget {
               showPortfolio: true,
               onTap: () {
                 context.router.push(const UserRoute());
+              },
+              onSendRequest: () {
+                context.router.push(const SendRequestRoute());
               },
             ).paddingSymmetric(vertical: 8.h);
           }),

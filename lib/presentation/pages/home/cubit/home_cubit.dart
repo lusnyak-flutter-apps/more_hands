@@ -8,7 +8,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeState.loading());
 
   void getUsers() {
-     emit(const HomeState.loaded(selectedType: "All", users: [null, null, null]));
+     emit(const HomeState.loaded(selectedType: "Все", users: [null, null, null]));
   }
 
   void changeType(String type) {

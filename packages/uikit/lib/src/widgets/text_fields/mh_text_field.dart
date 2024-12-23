@@ -18,6 +18,9 @@ class MHTextField extends StatelessWidget {
     this.hintColor,
     this.prefixIcon,
     this.minLines,
+    this.maxLines = 1,
+    this.autofocus = false,
+    this.filled = true,
   });
 
   final String? hintText;
@@ -33,12 +36,16 @@ class MHTextField extends StatelessWidget {
   final Color? hintColor;
   final Widget? prefixIcon;
   final int? minLines;
+  final int? maxLines;
+  final bool autofocus;
+  final bool filled;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       key: key,
-      maxLines: minLines != null && minLines! > 1 ? null : 1,
+      autofocus: autofocus,
+      maxLines: minLines, // != null && minLines! > 1 ? null : 1,
       minLines: minLines,
       controller: controller,
       onChanged: onChanged,
@@ -54,7 +61,7 @@ class MHTextField extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       decoration: InputDecoration(
-        filled: true,
+        filled: filled,
         fillColor: MHColors.grayColorOpacity38,
         hintText: hintText,
         hintStyle:

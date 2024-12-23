@@ -531,6 +531,108 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Отправить запрос'**
   String get sendRequest;
+
+  /// No description provided for @enterRequestText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите текст запроса'**
+  String get enterRequestText;
+
+  /// No description provided for @requestSent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Запрос отправлен'**
+  String get requestSent;
+
+  /// No description provided for @contactWillbeVisibleAfterRequestConfirmation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Контакты станут доступны, когда исполнитель примет ваш запрос'**
+  String get contactWillbeVisibleAfterRequestConfirmation;
+
+  /// No description provided for @outgoingRequests.
+  ///
+  /// In ru, this message translates to:
+  /// **'Исходящие запросы'**
+  String get outgoingRequests;
+
+  /// No description provided for @incomingRequests.
+  ///
+  /// In ru, this message translates to:
+  /// **'Входящие запросы'**
+  String get incomingRequests;
+
+  /// No description provided for @all.
+  ///
+  /// In ru, this message translates to:
+  /// **'Все'**
+  String get all;
+
+  /// No description provided for @accepts.
+  ///
+  /// In ru, this message translates to:
+  /// **'Принятые'**
+  String get accepts;
+
+  /// No description provided for @waiting.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ожидание'**
+  String get waiting;
+
+  /// No description provided for @leaveAReview.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оставить отзыв'**
+  String get leaveAReview;
+
+  /// No description provided for @pending.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ожидает'**
+  String get pending;
+
+  /// No description provided for @accepted.
+  ///
+  /// In ru, this message translates to:
+  /// **'Принят'**
+  String get accepted;
+
+  /// No description provided for @editReview.
+  ///
+  /// In ru, this message translates to:
+  /// **'Редактировать отзыв'**
+  String get editReview;
+
+  /// No description provided for @outgoing.
+  ///
+  /// In ru, this message translates to:
+  /// **'Исходящие'**
+  String get outgoing;
+
+  /// No description provided for @incoming.
+  ///
+  /// In ru, this message translates to:
+  /// **'Входящие'**
+  String get incoming;
+
+  /// No description provided for @reject.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отклонить'**
+  String get reject;
+
+  /// No description provided for @accept.
+  ///
+  /// In ru, this message translates to:
+  /// **'Принять'**
+  String get accept;
+
+  /// No description provided for @peopleAreNearby.
+  ///
+  /// In ru, this message translates to:
+  /// **'Люди рядом'**
+  String get peopleAreNearby;
 }
 
 class _AppLocalizationsDelegate

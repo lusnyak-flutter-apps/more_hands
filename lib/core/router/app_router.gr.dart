@@ -238,6 +238,25 @@ class SelectLocationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SendRequestPage]
+class SendRequestRoute extends PageRouteInfo<void> {
+  const SendRequestRoute({List<PageRouteInfo>? children})
+      : super(
+          SendRequestRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SendRequestRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SendRequestPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ServiceDetailsPage]
 class ServiceDetailsRoute extends PageRouteInfo<void> {
   const ServiceDetailsRoute({List<PageRouteInfo>? children})

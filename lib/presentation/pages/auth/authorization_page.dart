@@ -43,13 +43,19 @@ class _AuthorizationView extends StatelessWidget {
               ),
               24.h.heightBox,
               MHOutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                      predicate: (route) => false);
+                },
                 title: context.localized.google,
                 icon: MoreHandsAssets.icons.google.svg(),
               ),
               8.h.heightBox,
               MHOutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                      predicate: (route) => false);
+                },
                 title: context.localized.appleId,
                 icon: MoreHandsAssets.icons.apple.svg(),
               ),

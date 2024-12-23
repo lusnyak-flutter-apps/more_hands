@@ -72,6 +72,22 @@
   "noReviews":"Нет отзывов",
   "deleteService" : "Удалить услугу",
   "referralCodeCopied":"Реферальный код скопирован",
-  "sendRequest": "Отправить запрос"
-
+  "sendRequest": "Отправить запрос",
+  "enterRequestText": "Введите текст запроса",
+  "requestSent": "Запрос отправлен",
+  "contactWillbeVisibleAfterRequestConfirmation":"Контакты станут доступны, когда исполнитель примет ваш запрос",
+  "outgoingRequests":"Исходящие запросы",
+  "incomingRequests":"Входящие запросы",
+  "all":"Все",
+  "accepts":"Принятые",
+  "waiting":"Ожидание",
+  "leaveAReview":"Оставить отзыв",
+  "pending":"Ожидает",
+  "accepted":"Принят",
+  "editReview":"Редактировать отзыв",
+  "outgoing":"Исходящие",
+  "incoming":"Входящие",
+  "reject":"Отклонить",
+  "accept":"Принять",
+  "peopleAreNearby":"Люди рядом"
  }

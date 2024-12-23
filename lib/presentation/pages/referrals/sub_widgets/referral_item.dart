@@ -7,10 +7,11 @@ class ReferralItem extends StatelessWidget {
     super.key,
     this.onTap,
     this.showPortfolio = false,
-    this.showInviteButton = false,
+    this.showInviteButton = false, this.onSendRequest,
   });
 
   final VoidCallback? onTap;
+  final VoidCallback? onSendRequest;
   final bool showPortfolio;
   final bool showInviteButton;
 
@@ -108,7 +109,7 @@ class ReferralItem extends StatelessWidget {
           if(showInviteButton)
             MHGradientButton(
               title: context.localized.sendRequest,
-              onPressed: () {},
+              onPressed: onSendRequest,
             ).paddingOnly(top: 16.h)
         ],
       ),
