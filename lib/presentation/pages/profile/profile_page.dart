@@ -3,6 +3,7 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
+import 'package:more_hands/presentation/widgets/mh_language_list_view.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
  import 'package:more_hands/presentation/widgets/user_info_tags_view.dart';
 import 'package:more_hands/presentation/widgets/user_name_id_view.dart';
@@ -67,7 +68,14 @@ class _ProfileView extends StatelessWidget {
                       icon: MoreHandsAssets.icons.logout.svg(),
                     ).expanded(),
                   ],
-                )
+                ),
+                8.h.heightBox,
+                MHOutlinedButton(
+                  title: "Language",
+                  onPressed: () async {
+                    await showLanguages(context);
+                  },
+                ).paddingSymmetric(horizontal: context.width/4),
               ],
             ).paddingSymmetric(horizontal: 24.w),
           );
@@ -193,6 +201,14 @@ class _ProfileView extends StatelessWidget {
       isScrollControlled: true,
       title: "${context.localized.deleteProfile}?",
       child: const SubscriptionView(),
+    );
+  }
+
+  Future<void> showLanguages(BuildContext context) async {
+    await showMHModalBottomSheet(
+      context,
+      title: context.localized.changeLanguage,
+      child: const MhLanguageListView(),
     );
   }
 }

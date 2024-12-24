@@ -34,19 +34,27 @@ class _ServicesListViewState extends State<_ServicesListView> {
           context.router.push(const ServiceDetailsRoute());
         },
       ).paddingOnly(bottom: 16.h),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: false,
-        titleSpacing: 24.w,
-        title: Text(
-          context.localized.whatYouCanGiveToTheWorld,
-          style: body28SemiBoldStyle,
-        ),
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   centerTitle: false,
+      //   titleSpacing: 24.w,
+      //   title: Text(
+      //     context.localized.whatYouCanGiveToTheWorld,
+      //     style: body28SemiBoldStyle,
+      //     // maxLines: 2,
+      //     overflow: TextOverflow.ellipsis,
+      //   ),
+      // ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(
+              context.localized.whatYouCanGiveToTheWorld,
+              style: body28SemiBoldStyle,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ).paddingOnly(bottom: 8.h),
             const MHSearchField(),
             ListView.builder(
               padding: EdgeInsets.only(bottom: 56.h, top: 16.h),

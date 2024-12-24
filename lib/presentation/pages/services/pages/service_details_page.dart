@@ -81,6 +81,7 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
                 children: [
                   MHTextField(
                     hintText: context.localized.entterPrice,
+                    maxLines: 1,
                   ).expanded(),
                   8.w.widthBox,
                   PopupMenuButton<String>(
@@ -167,7 +168,8 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
               16.h.heightBox,
               MHTextField(
                 hintText: context.localized.description,
-                minLines: 10,
+                maxLines: 10,
+                // minLines: 10,
               ),
               16.h.heightBox,
               Text(context.localized.addPhoto, style: body18SemiBoldStyle,),

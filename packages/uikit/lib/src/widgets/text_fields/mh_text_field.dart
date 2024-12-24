@@ -45,7 +45,7 @@ class MHTextField extends StatelessWidget {
     return TextFormField(
       key: key,
       autofocus: autofocus,
-      maxLines: minLines, // != null && minLines! > 1 ? null : 1,
+      maxLines: maxLines, // != null && minLines! > 1 ? null : 1,
       minLines: minLines,
       controller: controller,
       onChanged: onChanged,

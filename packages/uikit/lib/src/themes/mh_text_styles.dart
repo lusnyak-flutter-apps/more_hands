@@ -176,6 +176,7 @@ TextStyle get body28SemiBoldStyle => TextStyle(
   fontStyle: FontStyle.normal,
   color: MHColors.whiteColor,
   package: kPackageName,
+
  );
 
 /// 32

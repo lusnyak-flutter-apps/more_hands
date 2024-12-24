@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_en.dart';
 import 'app_localizations_ru.dart';
 
 // ignore_for_file: type=lint
@@ -92,7 +93,10 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('ru')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('ru')
+  ];
 
   /// No description provided for @appName.
   ///
@@ -115,7 +119,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingDescription1.
   ///
   /// In ru, this message translates to:
-  /// **'В *MoreHands* мы объединяем людей, готовых на реальные поступки.  Здесь вы находите подлинные связи, которые помогают делать мир вокруг нас лучше.'**
+  /// **'В *MoreHands* мы объединяем людей, готовых на реальные поступки. Здесь вы находите подлинные связи, которые помогают делать мир вокруг нас лучше.'**
   String get onboardingDescription1;
 
   /// No description provided for @onboardingTitle2.
@@ -633,6 +637,84 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Люди рядом'**
   String get peopleAreNearby;
+
+  /// No description provided for @kycVerification.
+  ///
+  /// In ru, this message translates to:
+  /// **'KYC верификация'**
+  String get kycVerification;
+
+  /// No description provided for @mostImportantStep.
+  ///
+  /// In ru, this message translates to:
+  /// **'Самый важный шаг'**
+  String get mostImportantStep;
+
+  /// No description provided for @thanks.
+  ///
+  /// In ru, this message translates to:
+  /// **'Спасибо!'**
+  String get thanks;
+
+  /// No description provided for @philosophyOfOurAppText.
+  ///
+  /// In ru, this message translates to:
+  /// **'Философия нашего приложения, что тут только реальные люди, для этого,  пожалуйста, пройдите верификацию личности с Persona.'**
+  String get philosophyOfOurAppText;
+
+  /// No description provided for @mhDoesNotStoreYourIDDocs.
+  ///
+  /// In ru, this message translates to:
+  /// **'Morehands не хранит данные ваших документов удостоверяющих личность.'**
+  String get mhDoesNotStoreYourIDDocs;
+
+  /// No description provided for @youHaveSuccessFullyPassedKYC.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы успешно прошли KYC!'**
+  String get youHaveSuccessFullyPassedKYC;
+
+  /// No description provided for @welcomeToRealPeopleAndBusiness.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добро пожаловать к реальным людям и реальным делам.'**
+  String get welcomeToRealPeopleAndBusiness;
+
+  /// No description provided for @accept30DaysSubscription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Примите 30 дней подписки MoreHands в качестве нашей благодарности'**
+  String get accept30DaysSubscription;
+
+  /// No description provided for @verificationWithPersona.
+  ///
+  /// In ru, this message translates to:
+  /// **'Верификация с Persona'**
+  String get verificationWithPersona;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In ru, this message translates to:
+  /// **'Начать'**
+  String get getStarted;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить язык'**
+  String get changeLanguage;
+
+  /// No description provided for @english.
+  ///
+  /// In ru, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @russian.
+  ///
+  /// In ru, this message translates to:
+  /// **'Русский'**
+  String get russian;
 }
 
 class _AppLocalizationsDelegate
@@ -646,7 +728,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['ru'].contains(locale.languageCode);
+      <String>['en', 'ru'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -655,6 +737,8 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'en':
+      return AppLocalizationsEn();
     case 'ru':
       return AppLocalizationsRu();
   }

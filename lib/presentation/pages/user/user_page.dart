@@ -3,6 +3,7 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
+import 'package:more_hands/presentation/widgets/service_info_view.dart';
 import 'package:more_hands/presentation/widgets/user_info_tags_view.dart';
 import 'package:more_hands/presentation/widgets/user_name_id_view.dart';
 import 'package:more_hands/presentation/widgets/what_can_do_view.dart';
@@ -51,6 +52,10 @@ class _UserView extends StatelessWidget {
                 PortfolioView(
                   items: List.generate(
                       4, (i) => "https://picsum.photos/200/300?random=$i"),
+                  onTapItem: (index) {
+                    debugPrint("Portfolio item $index");
+                    showServiceView(context);
+                  },
                 ).paddingOnly(bottom: 24.h),
               ],
             ).paddingSymmetric(horizontal: 24.w),
@@ -96,33 +101,41 @@ class _UserView extends StatelessWidget {
         ],
       );
 
-  Widget _buildSendCodeToFriends(BuildContext context) =>  InkWell(
-    borderRadius: BorderRadius.circular(16.r),
-    onTap: () {
-      debugPrint("Send code to your friends 1");
-    },
-    child: MHRoundedContainer(
-      color: MHColors.blackBGColor.withOpacity(0.5),
-      borderGradientColors: const [
-        MHColors.yellowColor,
-        MHColors.amberColor,
-      ],
-      child: Row(
-        children: [
-          MHCircleGradientContainer(
-            size: 32.r,
-            child: MoreHandsAssets.icons.wavyHelp.svg(
-              colorFilter: const ColorFilter.mode(
-                  MHColors.blackBGColor, BlendMode.srcIn),
-            ),
-          ),
-          8.w.widthBox,
-          Text(
-            context.localized.sendCodeToYourFriends,
-            style: body16Style,
-          ),
-        ],
-      ).paddingAll(4.r),
-    ),
-  );
+  Widget _buildSendCodeToFriends(BuildContext context) => InkWell(
+        borderRadius: BorderRadius.circular(16.r),
+        onTap: () {
+          debugPrint("Send code to your friends 1");
+        },
+        child: MHRoundedContainer(
+          color: MHColors.blackBGColor.withOpacity(0.5),
+          borderGradientColors: const [
+            MHColors.yellowColor,
+            MHColors.amberColor,
+          ],
+          child: Row(
+            children: [
+              MHCircleGradientContainer(
+                size: 32.r,
+                child: MoreHandsAssets.icons.wavyHelp.svg(
+                  colorFilter: const ColorFilter.mode(
+                      MHColors.blackBGColor, BlendMode.srcIn),
+                ),
+              ),
+              8.w.widthBox,
+              Text(
+                context.localized.sendCodeToYourFriends,
+                style: body16Style,
+              ),
+            ],
+          ).paddingAll(4.r),
+        ),
+      );
+
+  Future<void> showServiceView(BuildContext context) async {
+    await showMHScrollModalBottomSheet(
+      context,
+       title: "Service title",
+      child: const ServiceInfoView(),
+    );
+  }
 }

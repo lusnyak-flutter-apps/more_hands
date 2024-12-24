@@ -17,7 +17,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get onboardingDescription1 =>
-      'В *MoreHands* мы объединяем людей, готовых на реальные поступки.  Здесь вы находите подлинные связи, которые помогают делать мир вокруг нас лучше.';
+      'В *MoreHands* мы объединяем людей, готовых на реальные поступки. Здесь вы находите подлинные связи, которые помогают делать мир вокруг нас лучше.';
 
   @override
   String get onboardingTitle2 => 'Цифровое взаимодействие с человеческим лицом';
@@ -293,4 +293,47 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get peopleAreNearby => 'Люди рядом';
+
+  @override
+  String get kycVerification => 'KYC верификация';
+
+  @override
+  String get mostImportantStep => 'Самый важный шаг';
+
+  @override
+  String get thanks => 'Спасибо!';
+
+  @override
+  String get philosophyOfOurAppText =>
+      'Философия нашего приложения, что тут только реальные люди, для этого,  пожалуйста, пройдите верификацию личности с Persona.';
+
+  @override
+  String get mhDoesNotStoreYourIDDocs =>
+      'Morehands не хранит данные ваших документов удостоверяющих личность.';
+
+  @override
+  String get youHaveSuccessFullyPassedKYC => 'Вы успешно прошли KYC!';
+
+  @override
+  String get welcomeToRealPeopleAndBusiness =>
+      'Добро пожаловать к реальным людям и реальным делам.';
+
+  @override
+  String get accept30DaysSubscription =>
+      'Примите 30 дней подписки MoreHands в качестве нашей благодарности';
+
+  @override
+  String get verificationWithPersona => 'Верификация с Persona';
+
+  @override
+  String get getStarted => 'Начать';
+
+  @override
+  String get changeLanguage => 'Изменить язык';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get russian => 'Русский';
 }

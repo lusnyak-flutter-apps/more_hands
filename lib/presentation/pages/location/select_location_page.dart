@@ -44,7 +44,7 @@ class _SelectLocationViewState extends State<_SelectLocationView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
            children: [
-            const MHSearchField(),
+              MHSearchField(hintText: context.localized.search,),
             16.w.heightBox,
             RichText(
               textAlign: TextAlign.left,
@@ -58,8 +58,12 @@ class _SelectLocationViewState extends State<_SelectLocationView> {
                 ],
               ),
             ),
-            ListView.builder(
-              padding: EdgeInsets.only(bottom: 56.h, top: 8.h),
+            ListView.separated(
+              padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight.h, top: 8.h),
+              separatorBuilder: (context, index) => const Divider(
+                color: MHColors.grayColor,
+                // height: 1,
+              ),
               itemBuilder: (itemContext, index) {
                 final value = "Location $index";
                 return ListTile(
@@ -74,8 +78,8 @@ class _SelectLocationViewState extends State<_SelectLocationView> {
                     }
                   },
                   contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                  shape: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: MHColors.grayColor)),
+                  // shape: const UnderlineInputBorder(
+                  //     borderSide: BorderSide(color: MHColors.grayColor)),
                   title: Text(
                     "Location $index",
                     style: body16MediumStyle,

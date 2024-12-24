@@ -44,9 +44,9 @@ class _ProfileAboutView extends StatelessWidget {
               ).paddingOnly(bottom: 16.h),
               MHTextField(
                 hintText: context.localized.tellAboutYourSelf,
-                minLines: 10,
+                maxLines: 10,
+                autofocus: true,
               ),
-              // Spacer()
             ],
           ).paddingSymmetric(horizontal: 24.w, vertical: 16.h),
         ),
