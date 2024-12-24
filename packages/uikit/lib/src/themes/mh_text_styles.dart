@@ -27,6 +27,15 @@ TextStyle get body12Style => TextStyle(
   color: MHColors.whiteColor,
 );
 
+TextStyle get body12MediumStyle => TextStyle(
+  fontSize: 12.sp,
+  height: 14 / 12,
+  fontFamily: FontFamily.sFProDisplay,
+  fontWeight: FontWeight.w500,
+  fontStyle: FontStyle.normal,
+  package: kPackageName,
+  color: MHColors.whiteColor,
+);
 
 /// 13
 TextStyle get body13Style => TextStyle(
@@ -50,9 +59,21 @@ TextStyle get body13MediumStyle => TextStyle(
 );
 
 /// 14
+
+TextStyle get body14Style => TextStyle(
+  fontSize: 14.sp,
+  height: 18.2 / 14,
+  fontFamily: FontFamily.sFProDisplay,
+  fontWeight: FontWeight.w400,
+  fontStyle: FontStyle.normal,
+  package: kPackageName,
+  color: MHColors.whiteColor,
+);
+
+
 TextStyle get body14SemiBoldStyle => TextStyle(
   fontSize: 14.sp,
-  height: 19 / 14,
+  height: 18.2 / 14,
   fontFamily: FontFamily.sFProDisplay,
   fontWeight: FontWeight.w600,
   fontStyle: FontStyle.normal,

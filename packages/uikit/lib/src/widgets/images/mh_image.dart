@@ -9,10 +9,11 @@ class MHImage extends StatelessWidget {
     this.imageUrl,
     this.aspectRatio = 1,
     this.emptyWidget,
-    this.availableForegroundDecoration = true,
+    this.availableForegroundDecoration = true, this.borderRadius = 16.0,
   });
 
   final double? size;
+  final double? borderRadius;
   final String? imageUrl;
   final double? aspectRatio;
   final Widget? emptyWidget;
@@ -60,7 +61,7 @@ class MHImage extends StatelessWidget {
       );
 
   BoxDecoration foregroundDecorator() => BoxDecoration(
-      borderRadius: BorderRadius.circular(16.r),
+      borderRadius: BorderRadius.circular((borderRadius ?? 16).r),
       gradient:   LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -72,7 +73,7 @@ class MHImage extends StatelessWidget {
 
   BoxDecoration boxDecorator([ImageProvider? image]) => BoxDecoration(
         color: MHColors.darkerGrayColor,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular((borderRadius ?? 16).r),
         image: image != null
             ? DecorationImage(
                 image: image,

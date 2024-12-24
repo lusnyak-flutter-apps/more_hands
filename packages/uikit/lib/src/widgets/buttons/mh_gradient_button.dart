@@ -7,23 +7,25 @@ class MHGradientButton extends StatelessWidget {
     this.onPressed,
     required this.title,
     this.gradientColors,
-    this.icon,
+    this.icon,   this.horizontalPadding = 24,   this.verticalPadding = 12, this.height = 48,
   });
 
   final VoidCallback? onPressed;
   final String title;
   final List<Color>? gradientColors;
   final Widget? icon;
-
+  final double horizontalPadding;
+  final double verticalPadding;
+  final double? height;
   @override
   Widget build(BuildContext context) {
 
     final text = Text(title, style: buttonTextStyles,);
     return Container(
-      height: 48.h,
+      height: (height ?? 48).h,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24.r),
+        borderRadius: BorderRadius.circular((height ?? 48).r),
         gradient: LinearGradient(
           colors: gradientColors ?? [MHColors.yellowColor, MHColors.amberColor],
         ),
@@ -42,7 +44,7 @@ class MHGradientButton extends StatelessWidget {
             4.w.widthBox,
             text,
           ],
-        ).paddingSymmetric(horizontal: 24.w, vertical: 12.h) : text.paddingSymmetric(horizontal: 24.w, vertical: 12.h),
+        ).paddingSymmetric(horizontal: horizontalPadding.w, vertical: verticalPadding.h) : text.paddingSymmetric(horizontal: horizontalPadding.w, vertical: verticalPadding.h),
       ),
     );
   }

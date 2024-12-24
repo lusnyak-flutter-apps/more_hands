@@ -7,6 +7,8 @@ import 'package:more_hands/presentation/pages/edit_profile/pages/profile_contact
 import 'package:more_hands/presentation/pages/edit_profile/pages/profile_name_and_image_page.dart';
 import 'package:more_hands/presentation/pages/location/select_location_page.dart';
 import 'package:more_hands/presentation/pages/referrals/referrals_page.dart';
+import 'package:more_hands/presentation/pages/requests/incoming_requests_page.dart';
+import 'package:more_hands/presentation/pages/requests/outgoing_requests_page.dart';
 import 'package:more_hands/presentation/pages/send_request/send_request_page.dart';
 import 'package:more_hands/presentation/pages/services/pages/services_list_page.dart';
 import 'package:more_hands/presentation/pages/services/pages/service_details_page.dart';
@@ -30,7 +32,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: AuthorizationRoute.page),
         AutoRoute(page: BottomNavigationRoute.page, children: [
           AutoRoute(page: HomeRoute.page),
-          AutoRoute(page: RequestsRoute.page),
+          AutoRoute(page: RequestsTapRoute.page),
           AutoRoute(page: ProfileRoute.page),
         ]),
         AutoRoute(page: ProfileNameAndImageRoute.page),
@@ -42,5 +44,14 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ReferralsRoute.page),
         AutoRoute(page: UserRoute.page),
         AutoRoute(page: SendRequestRoute.page),
+        CustomRoute(
+          page: RequestsRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+        )
       ];
+}
+
+@RoutePage()
+class RequestsTapPage extends AutoRouter {
+  const RequestsTapPage({super.key});
 }

@@ -16,15 +16,15 @@ class BottomNavigationPage extends StatelessWidget {
       homeIndex: 0,
       routes: const [
         HomeRoute(),
-        RequestsRoute(),
+        RequestsTapRoute(),
         ProfileRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
         child: child,
       ),
-      builder: (context, child) {
-        final tabsRouter = AutoTabsRouter.of(context);
+      builder: (tabsContext, child) {
+        final tabsRouter = AutoTabsRouter.of(tabsContext);
         return Scaffold(
           body: Stack(
             alignment: Alignment.bottomCenter,
@@ -32,7 +32,13 @@ class BottomNavigationPage extends StatelessWidget {
               child,
               MHBottomNavigationBar(
                 currentIndex: tabsRouter.activeIndex,
-                onTap: tabsRouter.setActiveIndex,
+                onTap: (int index) {
+                  if(index != 1) {
+                    tabsRouter.setActiveIndex(index);
+                  } else {
+                    context.router.push(const RequestsRoute());
+                  }
+                 },
                 items: [
                   MHBottomNavigationBarItem(
                       label: context.localized.home,

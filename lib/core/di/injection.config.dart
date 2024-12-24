@@ -28,6 +28,8 @@ import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart'
     as _i224;
 import 'package:more_hands/presentation/pages/referrals/cubit/referrals_cubit.dart'
     as _i927;
+import 'package:more_hands/presentation/pages/requests/cubit/requests_cubit.dart'
+    as _i498;
 import 'package:more_hands/presentation/pages/send_request/cubit/send_request_cubit.dart'
     as _i72;
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart'
@@ -53,6 +55,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i106.UserCubit>(() => _i106.UserCubit());
     gh.factory<_i393.HomeCubit>(() => _i393.HomeCubit());
     gh.factory<_i72.SendRequestCubit>(() => _i72.SendRequestCubit());
+    gh.factory<_i498.RequestsCubit>(() => _i498.RequestsCubit());
     gh.factory<String>(
       () => dioClient.baseUrl,
       instanceName: 'baseUrl',

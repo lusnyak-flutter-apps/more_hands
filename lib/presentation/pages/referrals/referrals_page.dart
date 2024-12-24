@@ -29,7 +29,7 @@ class _ReferralsView extends StatelessWidget {
     return Scaffold(
       bottomSheet: MHBottomNavigationControl(
         buttonTitle: context.localized.copyAndSend,
-        buttonIcon: MoreHandsAssets.icons.link.svg(height: 18.r, colorFilter: ColorFilter.mode(MHColors.blackBGColor, BlendMode.srcIn)),
+        buttonIcon: MoreHandsAssets.icons.link.svg(height: 18.r, colorFilter: const ColorFilter.mode(MHColors.blackBGColor, BlendMode.srcIn)),
         action: () {
           // context.router.push(const ProfileContactsRoute());
         },

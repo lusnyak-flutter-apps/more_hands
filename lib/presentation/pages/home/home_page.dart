@@ -47,7 +47,6 @@ class _HomeView extends StatelessWidget {
           ),
           title: Text(
             context.localized.peopleAreNearby,
-            style: body28SemiBoldStyle,
           ),
           centerTitle: false,
           actions: [

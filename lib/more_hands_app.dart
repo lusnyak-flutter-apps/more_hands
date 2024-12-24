@@ -20,7 +20,7 @@ Widget get moreHandsApp => ScreenUtilInit(
           theme: darkTheme,
           darkTheme: darkTheme,
           routerConfig: appRouter.config(),
-          locale: Locale("ru"), // AppLocalizations.supportedLocales.first,
+          locale: const Locale("ru"), // AppLocalizations.supportedLocales.first,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           // localeResolutionCallback: (locale, supportedLocales) {
           //   if (locale != null) {

@@ -8,9 +8,11 @@ ThemeData get darkTheme => ThemeData(
       brightness: Brightness.dark,
       fontFamily: FontFamily.sFProDisplay,
       scaffoldBackgroundColor: MHColors.blackBGColor,
-      appBarTheme: const AppBarTheme(
+      appBarTheme:   AppBarTheme(
         surfaceTintColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle(
+        titleTextStyle: body28SemiBoldStyle,
+        centerTitle: false,
+        systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           systemNavigationBarColor: Colors.transparent,
           systemNavigationBarDividerColor: Colors.transparent,

@@ -86,6 +86,25 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [IncomingRequestsPage]
+class IncomingRequestsRoute extends PageRouteInfo<void> {
+  const IncomingRequestsRoute({List<PageRouteInfo>? children})
+      : super(
+          IncomingRequestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'IncomingRequestsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const IncomingRequestsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
@@ -100,6 +119,25 @@ class OnboardingRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const OnboardingPage();
+    },
+  );
+}
+
+/// generated route for
+/// [OutgoingRequestsPage]
+class OutgoingRequestsRoute extends PageRouteInfo<void> {
+  const OutgoingRequestsRoute({List<PageRouteInfo>? children})
+      : super(
+          OutgoingRequestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OutgoingRequestsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OutgoingRequestsPage();
     },
   );
 }
@@ -214,6 +252,25 @@ class RequestsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const RequestsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [RequestsTapPage]
+class RequestsTapRoute extends PageRouteInfo<void> {
+  const RequestsTapRoute({List<PageRouteInfo>? children})
+      : super(
+          RequestsTapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RequestsTapRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RequestsTapPage();
     },
   );
 }
