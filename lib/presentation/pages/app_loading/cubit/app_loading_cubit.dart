@@ -12,6 +12,7 @@ class AppLoadingCubit extends Cubit<AppLoadingState> {
   AppLoadingCubit() : super(const AppLoadingState());
 
   Future<void> loadAppData() async {
+    debugPrint('loadAppData');
     emit(state.copyWith(loading: true));
     bool onBoardingLaunch = Preferences.instance.onBoardingLaunch();
     debugPrint(onBoardingLaunch.toString());

@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/app_loading/app_loading_page.dart';
 import 'package:more_hands/presentation/pages/auth/authorization_page.dart';
+import 'package:more_hands/presentation/pages/auth/test_auth_page.dart';
 import 'package:more_hands/presentation/pages/bottom_navigation/bottom_navigation_page.dart';
 import 'package:more_hands/presentation/pages/edit_profile/pages/profile_about_page.dart';
 import 'package:more_hands/presentation/pages/edit_profile/pages/profile_contacts_page.dart';
@@ -29,6 +32,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(page: AppLoadingRoute.page, initial: true),
         AutoRoute(page: OnboardingRoute.page),
+        AutoRoute(page: TestAuthRoute.page),
         AutoRoute(page: AuthorizationRoute.page),
         AutoRoute(page: BottomNavigationRoute.page, children: [
           AutoRoute(page: HomeRoute.page),

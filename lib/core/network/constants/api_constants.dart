@@ -1,5 +1,5 @@
 abstract class APIBase {
-   static const url = '';
+   static const url = 'http://814407a9fc09.sn.mynetname.net:9680';
 // static const path = '/api';
 }
 

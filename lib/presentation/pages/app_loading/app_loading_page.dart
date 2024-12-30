@@ -21,12 +21,12 @@ class _AppLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   BlocListener<AppLoadingCubit, AppLoadingState>(
-      listener: (_, state){
+    return  BlocListener<AppLoadingCubit, AppLoadingState>(
+      listener: (context, state){
         if (state.loaded) {
           debugPrint(state.onboardingLaunched.toString());
           if(state.onboardingLaunched) {
-            context.router.replace(const AuthorizationRoute());
+            context.router.replace(const TestAuthRoute());
           } else {
             context.router.replace(const OnboardingRoute());
           }

@@ -12,7 +12,7 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Preferences.instance.getSharedInstance();
   configureDependencies();
-  await getIt<FirebaseProvider>().initializeApp();
+  // await getIt<FirebaseProvider>().initializeApp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
@@ -7,16 +8,21 @@ class ReferralItem extends StatelessWidget {
     super.key,
     this.onTap,
     this.showPortfolio = false,
-    this.showInviteButton = false, this.onSendRequest,
+    this.showInviteButton = false, this.onSendRequest, required this.referral,
   });
 
   final VoidCallback? onTap;
   final VoidCallback? onSendRequest;
   final bool showPortfolio;
   final bool showInviteButton;
+  final UserModel referral;
 
   @override
   Widget build(BuildContext context) {
+
+    String formattedName =
+        "${referral.userInfo?.firstName} ${referral.userInfo?.lastName?.substring(0, 1)}.";
+
     return InkWell(
       onTap: onTap,
       child: Column(
@@ -38,7 +44,7 @@ class ReferralItem extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("John D.", style: body22SemiBoldStyle),
+                        Text(formattedName, style: body22SemiBoldStyle),
                         4.w.widthBox,
                         MoreHandsAssets.icons.wavyCheckYellow.svg()
                       ],
@@ -47,7 +53,7 @@ class ReferralItem extends StatelessWidget {
                     Row(
                       children: [
                         MHTag(
-                          title: "0",
+                          title: referral.userInfo?.userRating.toString() ?? "0",
                           icon:
                               MoreHandsAssets.icons.starFill.svg(height: 12.r),
                         ),
@@ -76,8 +82,9 @@ class ReferralItem extends StatelessWidget {
                   ]).expanded()
             ],
           ),
+          if(referral.userInfo?.bio != null)
           Text(
-            "Организую туры по Бали и по островам Индонезии, помогу с правами, жильем, машиной и прочим бытовыми вопросами",
+            referral.userInfo?.bio ?? "",
             style: body16Style,
           ).paddingSymmetric(vertical: 16.h),
           if(showPortfolio)

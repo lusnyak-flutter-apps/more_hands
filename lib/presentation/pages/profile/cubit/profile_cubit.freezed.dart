@@ -19,32 +19,38 @@ mixin _$ProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
+    required TResult Function(UserModel user) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
+    TResult? Function(UserModel user)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
+    TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileState value) loading,
+    required TResult Function(_ProfileLoadedState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileState value)? loading,
+    TResult? Function(_ProfileLoadedState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileState value)? loading,
+    TResult Function(_ProfileLoadedState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
+    required TResult Function(UserModel user) loaded,
   }) {
     return loading();
   }
@@ -121,6 +128,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
+    TResult? Function(UserModel user)? loaded,
   }) {
     return loading?.call();
   }
@@ -129,6 +137,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
+    TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -141,6 +150,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProfileState value) loading,
+    required TResult Function(_ProfileLoadedState value) loaded,
   }) {
     return loading(this);
   }
@@ -149,6 +159,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProfileState value)? loading,
+    TResult? Function(_ProfileLoadedState value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -157,6 +168,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProfileState value)? loading,
+    TResult Function(_ProfileLoadedState value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -168,4 +180,158 @@ class _$ProfileStateImpl implements _ProfileState {
 
 abstract class _ProfileState implements ProfileState {
   const factory _ProfileState() = _$ProfileStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ProfileLoadedStateImplCopyWith<$Res> {
+  factory _$$ProfileLoadedStateImplCopyWith(_$ProfileLoadedStateImpl value,
+          $Res Function(_$ProfileLoadedStateImpl) then) =
+      __$$ProfileLoadedStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserModel user});
+
+  $UserModelCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$ProfileLoadedStateImplCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res, _$ProfileLoadedStateImpl>
+    implements _$$ProfileLoadedStateImplCopyWith<$Res> {
+  __$$ProfileLoadedStateImplCopyWithImpl(_$ProfileLoadedStateImpl _value,
+      $Res Function(_$ProfileLoadedStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$ProfileLoadedStateImpl(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+    ));
+  }
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ProfileLoadedStateImpl implements _ProfileLoadedState {
+  const _$ProfileLoadedStateImpl({required this.user});
+
+  @override
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'ProfileState.loaded(user: $user)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProfileLoadedStateImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProfileLoadedStateImplCopyWith<_$ProfileLoadedStateImpl> get copyWith =>
+      __$$ProfileLoadedStateImplCopyWithImpl<_$ProfileLoadedStateImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(UserModel user) loaded,
+  }) {
+    return loaded(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(UserModel user)? loaded,
+  }) {
+    return loaded?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(UserModel user)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ProfileState value) loading,
+    required TResult Function(_ProfileLoadedState value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ProfileState value)? loading,
+    TResult? Function(_ProfileLoadedState value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ProfileState value)? loading,
+    TResult Function(_ProfileLoadedState value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProfileLoadedState implements ProfileState {
+  const factory _ProfileLoadedState({required final UserModel user}) =
+      _$ProfileLoadedStateImpl;
+
+  UserModel get user;
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProfileLoadedStateImplCopyWith<_$ProfileLoadedStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

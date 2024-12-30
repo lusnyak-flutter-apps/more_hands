@@ -19,32 +19,45 @@ mixin _$AuthorizationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() authorized,
+    required TResult Function() unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? authorized,
+    TResult? Function()? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? authorized,
+    TResult Function()? unauthorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthorizationState value) initial,
+    required TResult Function(_AuthorizationAuthorizedState value) authorized,
+    required TResult Function(_AuthorizationUnauthorizedState value)
+        unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthorizationState value)? initial,
+    TResult? Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult? Function(_AuthorizationUnauthorizedState value)? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthorizationState value)? initial,
+    TResult Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult Function(_AuthorizationUnauthorizedState value)? unauthorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +126,8 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() authorized,
+    required TResult Function() unauthorized,
   }) {
     return initial();
   }
@@ -121,6 +136,8 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? authorized,
+    TResult? Function()? unauthorized,
   }) {
     return initial?.call();
   }
@@ -129,6 +146,8 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? authorized,
+    TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -141,6 +160,9 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthorizationState value) initial,
+    required TResult Function(_AuthorizationAuthorizedState value) authorized,
+    required TResult Function(_AuthorizationUnauthorizedState value)
+        unauthorized,
   }) {
     return initial(this);
   }
@@ -149,6 +171,8 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthorizationState value)? initial,
+    TResult? Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult? Function(_AuthorizationUnauthorizedState value)? unauthorized,
   }) {
     return initial?.call(this);
   }
@@ -157,6 +181,8 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthorizationState value)? initial,
+    TResult Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult Function(_AuthorizationUnauthorizedState value)? unauthorized,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -168,4 +194,240 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
 
 abstract class _AuthorizationState implements AuthorizationState {
   const factory _AuthorizationState() = _$AuthorizationStateImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthorizationAuthorizedStateImplCopyWith<$Res> {
+  factory _$$AuthorizationAuthorizedStateImplCopyWith(
+          _$AuthorizationAuthorizedStateImpl value,
+          $Res Function(_$AuthorizationAuthorizedStateImpl) then) =
+      __$$AuthorizationAuthorizedStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthorizationAuthorizedStateImplCopyWithImpl<$Res>
+    extends _$AuthorizationStateCopyWithImpl<$Res,
+        _$AuthorizationAuthorizedStateImpl>
+    implements _$$AuthorizationAuthorizedStateImplCopyWith<$Res> {
+  __$$AuthorizationAuthorizedStateImplCopyWithImpl(
+      _$AuthorizationAuthorizedStateImpl _value,
+      $Res Function(_$AuthorizationAuthorizedStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AuthorizationAuthorizedStateImpl
+    implements _AuthorizationAuthorizedState {
+  const _$AuthorizationAuthorizedStateImpl();
+
+  @override
+  String toString() {
+    return 'AuthorizationState.authorized()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthorizationAuthorizedStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() authorized,
+    required TResult Function() unauthorized,
+  }) {
+    return authorized();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? authorized,
+    TResult? Function()? unauthorized,
+  }) {
+    return authorized?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authorized,
+    TResult Function()? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (authorized != null) {
+      return authorized();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthorizationState value) initial,
+    required TResult Function(_AuthorizationAuthorizedState value) authorized,
+    required TResult Function(_AuthorizationUnauthorizedState value)
+        unauthorized,
+  }) {
+    return authorized(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthorizationState value)? initial,
+    TResult? Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult? Function(_AuthorizationUnauthorizedState value)? unauthorized,
+  }) {
+    return authorized?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthorizationState value)? initial,
+    TResult Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult Function(_AuthorizationUnauthorizedState value)? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (authorized != null) {
+      return authorized(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthorizationAuthorizedState implements AuthorizationState {
+  const factory _AuthorizationAuthorizedState() =
+      _$AuthorizationAuthorizedStateImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthorizationUnauthorizedStateImplCopyWith<$Res> {
+  factory _$$AuthorizationUnauthorizedStateImplCopyWith(
+          _$AuthorizationUnauthorizedStateImpl value,
+          $Res Function(_$AuthorizationUnauthorizedStateImpl) then) =
+      __$$AuthorizationUnauthorizedStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthorizationUnauthorizedStateImplCopyWithImpl<$Res>
+    extends _$AuthorizationStateCopyWithImpl<$Res,
+        _$AuthorizationUnauthorizedStateImpl>
+    implements _$$AuthorizationUnauthorizedStateImplCopyWith<$Res> {
+  __$$AuthorizationUnauthorizedStateImplCopyWithImpl(
+      _$AuthorizationUnauthorizedStateImpl _value,
+      $Res Function(_$AuthorizationUnauthorizedStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AuthorizationUnauthorizedStateImpl
+    implements _AuthorizationUnauthorizedState {
+  const _$AuthorizationUnauthorizedStateImpl();
+
+  @override
+  String toString() {
+    return 'AuthorizationState.unauthorized()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthorizationUnauthorizedStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() authorized,
+    required TResult Function() unauthorized,
+  }) {
+    return unauthorized();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? authorized,
+    TResult? Function()? unauthorized,
+  }) {
+    return unauthorized?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authorized,
+    TResult Function()? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthorizationState value) initial,
+    required TResult Function(_AuthorizationAuthorizedState value) authorized,
+    required TResult Function(_AuthorizationUnauthorizedState value)
+        unauthorized,
+  }) {
+    return unauthorized(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthorizationState value)? initial,
+    TResult? Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult? Function(_AuthorizationUnauthorizedState value)? unauthorized,
+  }) {
+    return unauthorized?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthorizationState value)? initial,
+    TResult Function(_AuthorizationAuthorizedState value)? authorized,
+    TResult Function(_AuthorizationUnauthorizedState value)? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthorizationUnauthorizedState implements AuthorizationState {
+  const factory _AuthorizationUnauthorizedState() =
+      _$AuthorizationUnauthorizedStateImpl;
 }

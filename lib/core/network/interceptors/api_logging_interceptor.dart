@@ -1,13 +1,22 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 import 'package:flutter/cupertino.dart';
-import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/data.dart';
 
 class ApiLoggingInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     options.headers[HeaderParameterKeys.accept] = HeaderValues.applicationJson;
+
+    final tokenMdl = await getIt<TokenStorage>().readToken();
+    if (tokenMdl != null && tokenMdl.token.isNotEmpty) {
+      options.headers['Authorization'] = tokenMdl.token;
+    }
+
     debugPrint(
         'REQUEST[${options.method}] => PATH: ${options.uri} => HEADER: ${options.headers}  => BODY: ${options.data} => QUERY: ${options.queryParameters}');
     return super.onRequest(options, handler);
@@ -15,9 +24,25 @@ class ApiLoggingInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    debugPrint(response.data.runtimeType.toString());
     debugPrint(
       'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} => DATA: ${response.data}',
     );
+    if (response.data is String) {
+      return super.onResponse(
+          Response(
+            requestOptions: response.requestOptions,
+            data: jsonDecode(response.data),
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+            isRedirect: response.isRedirect,
+            redirects: response.redirects,
+            headers: response.headers,
+            extra: response.extra,
+          ),
+          handler);
+    }
+
     return super.onResponse(response, handler);
   }
 
@@ -27,6 +52,9 @@ class ApiLoggingInterceptor extends Interceptor {
     debugPrint(
       'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} => MESSAGE: ${err.message} => DATA: ${err.response?.data}',
     );
+    if (err.response?.statusCode == 401) {
+      await getIt<AuthRepository>().localLogout();
+    }
     return super.onError(err, handler);
   }
 }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
 import 'package:more_hands/presentation/widgets/mh_language_list_view.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
- import 'package:more_hands/presentation/widgets/user_info_tags_view.dart';
+import 'package:more_hands/presentation/widgets/user_contacts_view.dart';
+import 'package:more_hands/presentation/widgets/user_info_tags_view.dart';
 import 'package:more_hands/presentation/widgets/user_name_id_view.dart';
 import 'package:more_hands/presentation/widgets/what_can_do_view.dart';
 import 'package:more_hands/utils/utils.dart';
@@ -18,7 +20,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ProfileCubit>(
-      create: (BuildContext context) => getIt<ProfileCubit>(),
+      create: (BuildContext context) => getIt<ProfileCubit>()..loadProfile(),
       child: const _ProfileView(),
     );
   }
@@ -34,14 +36,17 @@ class _ProfileView extends StatelessWidget {
         bottom: false,
         child:
             BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
+          final loading = state.when(loading: () => true, loaded: (_) => false);
+          final user = state.when(loading: () => null, loaded: (user) => user);
+          if (loading) return const Center(child: CircularProgressIndicator());
           return SingleChildScrollView(
             padding: EdgeInsets.only(
                 top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                profileImagePart(context).paddingOnly(bottom: 24.h),
-                aboutUserPart(context),
+                profileImagePart(context, user).paddingOnly(bottom: 24.h),
+                aboutUserPart(context, user),
                 WhatCanDoView(
                   // items: List.generate(8, (i) => "Service $i"),
                   onEdit: () {
@@ -75,7 +80,7 @@ class _ProfileView extends StatelessWidget {
                   onPressed: () async {
                     await showLanguages(context);
                   },
-                ).paddingSymmetric(horizontal: context.width/4),
+                ).paddingSymmetric(horizontal: context.width / 4),
               ],
             ).paddingSymmetric(horizontal: 24.w),
           );
@@ -84,14 +89,16 @@ class _ProfileView extends StatelessWidget {
     );
   }
 
-  Widget profileImagePart(BuildContext context) => Stack(
+  Widget profileImagePart(BuildContext context, UserModel? user) => Stack(
         children: [
           MHImage(
-            size: context.width,
-            emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
-            // imageUrl:
-            // "https://s3-alpha-sig.figma.com/img/5b4c/3cc9/5511bd0e458c8720e5240409b3476954?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Fcq0rWQJEG1pt8K70JOqTRe~2E9VOV7NDo3EhXVFGdCWkbbwToVoeXR5f5EN5j2jLgBEGJxwKa9TkIIJI7mlRb5SwNvNcYQnjVOTgaQpNBUPMbqqbpi20ZXmo33EYiHn-G8P9vinuVwk6KOwbsGQAji0q4azMqIE2VBHmDM4DvocDQedXh8sX-IhI3-WewYu2AbmiI33zsCm0SGpATFp-bBH2rfAyesioFJ~lrYlu4CXv-bgUXJWfm9UKNmAnDyGrxcwWuKMqWDb8uI0XLFtf8BhF3a5B6lPz3EzSo0mFuEgFSNGUc6xH1MryxqydR~u6HQ-jb-JIBQvCifG8Z~rAA__",
-          ),
+              size: context.width,
+              emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
+              imageUrl: user?.userInfo?.profileImageUrl != null
+                  ? "${APIBase.url}/${user!.userInfo!.profileImageUrl!}"
+                  : null
+              // "https://s3-alpha-sig.figma.com/img/5b4c/3cc9/5511bd0e458c8720e5240409b3476954?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Fcq0rWQJEG1pt8K70JOqTRe~2E9VOV7NDo3EhXVFGdCWkbbwToVoeXR5f5EN5j2jLgBEGJxwKa9TkIIJI7mlRb5SwNvNcYQnjVOTgaQpNBUPMbqqbpi20ZXmo33EYiHn-G8P9vinuVwk6KOwbsGQAji0q4azMqIE2VBHmDM4DvocDQedXh8sX-IhI3-WewYu2AbmiI33zsCm0SGpATFp-bBH2rfAyesioFJ~lrYlu4CXv-bgUXJWfm9UKNmAnDyGrxcwWuKMqWDb8uI0XLFtf8BhF3a5B6lPz3EzSo0mFuEgFSNGUc6xH1MryxqydR~u6HQ-jb-JIBQvCifG8Z~rAA__",
+              ),
           Positioned(
             top: 8.h,
             right: 8.w,
@@ -127,65 +134,100 @@ class _ProfileView extends StatelessWidget {
         ],
       );
 
-  Widget aboutUserPart(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const UserNameIdView(
-                name: "Name L.",
-                // id: "12345",
-              ),
-              8.h.heightBox,
-              UserInfoTagsView(
-                starsCount: 0,
-                transactionsCount: 0,
-                referralsCount: 0,
-                onReferralsTap: () {
-                  context.router.push(const ReferralsRoute());
-                },
-              ),
-            ],
-          ).paddingOnly(bottom: 4.h),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    context.localized.aboutMe,
-                    style: body16MediumStyle,
-                    textAlign: TextAlign.left,
-                  ),
-                  MHInkWell(
-                    child: MoreHandsAssets.icons.edit.svg(),
-                    onTap: () {
-                      context.router.push(const ProfileContactsRoute());
-                    },
-                  ),
-                ],
-              ),
+  Widget aboutUserPart(BuildContext context, UserModel? user) {
+    String formattedName =
+        "${user?.userInfo?.firstName} ${user?.userInfo?.lastName?.substring(0, 1)}.";
+    String bio = user?.userInfo?.bio ?? "";
+    // String userName = user?.userInfo?.userLogin ?? "";
+    List<ContactItem> contacts = <ContactItem>[];
+    if (user?.userInfo?.instagramLink != null &&
+        user!.userInfo!.instagramLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.instagramLink!,
+          icon: MoreHandsAssets.icons.instagram.svg()));
+    }
+    if (user?.userInfo?.whatsappLink != null &&
+        user!.userInfo!.whatsappLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.whatsappLink!,
+          icon: MoreHandsAssets.icons.whatsapp.svg()));
+    }
+    if (user?.userInfo?.facebookLink != null &&
+        user!.userInfo!.facebookLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.facebookLink!,
+          icon: MoreHandsAssets.icons.facebook.svg()));
+    }
+    if (user?.userInfo?.telegramLink != null &&
+        user!.userInfo!.telegramLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.telegramLink!,
+          icon: MoreHandsAssets.icons.telegram.svg()));
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            UserNameIdView(
+              name: formattedName,
+              id: user?.userInfo?.id.toString(),
+            ),
+            8.h.heightBox,
+            UserInfoTagsView(
+              starsCount: user?.userInfo?.userRating.toInt() ?? 0,
+              transactionsCount: user?.userInfo?.dealCountSpend.toInt() ?? 0,
+              referralsCount: user?.userInfo?.refCount.toInt() ?? 0,
+              onReferralsTap: () {
+                context.router.push(const ReferralsRoute());
+              },
+            ),
+          ],
+        ).paddingOnly(bottom: 4.h),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  context.localized.aboutMe,
+                  style: body16MediumStyle,
+                  textAlign: TextAlign.left,
+                ),
+                MHInkWell(
+                  child: MoreHandsAssets.icons.edit.svg(),
+                  onTap: () {
+                    context.router.push(const ProfileContactsRoute());
+                  },
+                ),
+              ],
+            ),
+            if (bio.isNotEmpty)
+              Text(
+                bio,
+                style: body16Style,
+                textAlign: TextAlign.left,
+              ).paddingOnly(bottom: 8.h)
+            else
               Text(
                 context.localized.notFilled,
                 style: body16Style.copyWith(color: MHColors.grayColor98),
                 textAlign: TextAlign.left,
               ),
-              // const UserContactsView(
-              //   contacts: [
-              //     "@username",
-              //     "user@example.com",
-              //     "+7 999 999 99 99",
-              //     "https://example.com",
-              //   ],
-              // ),
-            ],
-          ).paddingOnly(bottom: 24.h),
-        ],
-      );
+            if (contacts.isNotEmpty)
+              UserContactsView(
+                contacts: contacts,
+              ),
+          ],
+        ).paddingOnly(bottom: 24.h),
+      ],
+    );
+  }
 
   Future<void> showProfileDeleteSheet(BuildContext context) async {
     await showMHModalBottomSheet(
@@ -199,7 +241,7 @@ class _ProfileView extends StatelessWidget {
     await showMHModalBottomSheet(
       context,
       isScrollControlled: true,
-      title: "${context.localized.deleteProfile}?",
+      title: context.localized.subscription,
       child: const SubscriptionView(),
     );
   }

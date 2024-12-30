@@ -352,11 +352,37 @@ class ServicesListRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [UserPage]
-class UserRoute extends PageRouteInfo<void> {
-  const UserRoute({List<PageRouteInfo>? children})
+/// [TestAuthPage]
+class TestAuthRoute extends PageRouteInfo<void> {
+  const TestAuthRoute({List<PageRouteInfo>? children})
       : super(
+          TestAuthRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestAuthRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TestAuthPage();
+    },
+  );
+}
+
+/// generated route for
+/// [UserPage]
+class UserRoute extends PageRouteInfo<UserRouteArgs> {
+  UserRoute({
+    Key? key,
+    required UserModel user,
+    List<PageRouteInfo>? children,
+  }) : super(
           UserRoute.name,
+          args: UserRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
@@ -365,7 +391,27 @@ class UserRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const UserPage();
+      final args = data.argsAs<UserRouteArgs>();
+      return UserPage(
+        key: args.key,
+        user: args.user,
+      );
     },
   );
+}
+
+class UserRouteArgs {
+  const UserRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'UserRouteArgs{key: $key, user: $user}';
+  }
 }

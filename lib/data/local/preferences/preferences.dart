@@ -18,4 +18,8 @@ class Preferences {
       _sharedPrefs?.getBool(Preferences.onBoardingLaunchKey) ?? false;
 
   setOnBoardingLaunch(bool value) async => await _sharedPrefs?.setBool(Preferences.onBoardingLaunchKey, value);
+
+  Future<void> deleteAll() async {
+    await _sharedPrefs?.remove(Preferences.onBoardingLaunchKey);
+  }
 }

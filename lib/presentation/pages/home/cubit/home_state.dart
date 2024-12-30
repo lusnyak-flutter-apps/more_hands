@@ -6,6 +6,6 @@ class HomeState with _$HomeState {
 
   const factory HomeState.loaded({
     @Default("All") String selectedType,
-    @Default([]) List<dynamic> users,
+    @Default(<UserModel>[]) List<UserModel> users,
   }) = _HomeLoadedState;
 }

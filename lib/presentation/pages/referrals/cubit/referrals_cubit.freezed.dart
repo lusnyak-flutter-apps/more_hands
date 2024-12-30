@@ -19,20 +19,20 @@ mixin _$ReferralsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(String referralCode, List<dynamic> referrals)
+    required TResult Function(String referralCode, List<UserModel> referrals)
         loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(String referralCode, List<dynamic> referrals)? loaded,
+    TResult? Function(String referralCode, List<UserModel> referrals)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(String referralCode, List<dynamic> referrals)? loaded,
+    TResult Function(String referralCode, List<UserModel> referrals)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$ReferralsStateImpl implements _ReferralsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(String referralCode, List<dynamic> referrals)
+    required TResult Function(String referralCode, List<UserModel> referrals)
         loaded,
   }) {
     return loading();
@@ -130,7 +130,7 @@ class _$ReferralsStateImpl implements _ReferralsState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(String referralCode, List<dynamic> referrals)? loaded,
+    TResult? Function(String referralCode, List<UserModel> referrals)? loaded,
   }) {
     return loading?.call();
   }
@@ -139,7 +139,7 @@ class _$ReferralsStateImpl implements _ReferralsState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(String referralCode, List<dynamic> referrals)? loaded,
+    TResult Function(String referralCode, List<UserModel> referrals)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -190,7 +190,7 @@ abstract class _$$ReferralsLoadedStateImplCopyWith<$Res> {
           $Res Function(_$ReferralsLoadedStateImpl) then) =
       __$$ReferralsLoadedStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String referralCode, List<dynamic> referrals});
+  $Res call({String referralCode, List<UserModel> referrals});
 }
 
 /// @nodoc
@@ -217,7 +217,7 @@ class __$$ReferralsLoadedStateImplCopyWithImpl<$Res>
       referrals: null == referrals
           ? _value._referrals
           : referrals // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<UserModel>,
     ));
   }
 }
@@ -226,16 +226,17 @@ class __$$ReferralsLoadedStateImplCopyWithImpl<$Res>
 
 class _$ReferralsLoadedStateImpl implements _ReferralsLoadedState {
   const _$ReferralsLoadedStateImpl(
-      {this.referralCode = "0", final List<dynamic> referrals = const []})
+      {this.referralCode = "0",
+      final List<UserModel> referrals = const <UserModel>[]})
       : _referrals = referrals;
 
   @override
   @JsonKey()
   final String referralCode;
-  final List<dynamic> _referrals;
+  final List<UserModel> _referrals;
   @override
   @JsonKey()
-  List<dynamic> get referrals {
+  List<UserModel> get referrals {
     if (_referrals is EqualUnmodifiableListView) return _referrals;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_referrals);
@@ -275,7 +276,7 @@ class _$ReferralsLoadedStateImpl implements _ReferralsLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(String referralCode, List<dynamic> referrals)
+    required TResult Function(String referralCode, List<UserModel> referrals)
         loaded,
   }) {
     return loaded(referralCode, referrals);
@@ -285,7 +286,7 @@ class _$ReferralsLoadedStateImpl implements _ReferralsLoadedState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(String referralCode, List<dynamic> referrals)? loaded,
+    TResult? Function(String referralCode, List<UserModel> referrals)? loaded,
   }) {
     return loaded?.call(referralCode, referrals);
   }
@@ -294,7 +295,7 @@ class _$ReferralsLoadedStateImpl implements _ReferralsLoadedState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(String referralCode, List<dynamic> referrals)? loaded,
+    TResult Function(String referralCode, List<UserModel> referrals)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -338,10 +339,10 @@ class _$ReferralsLoadedStateImpl implements _ReferralsLoadedState {
 abstract class _ReferralsLoadedState implements ReferralsState {
   const factory _ReferralsLoadedState(
       {final String referralCode,
-      final List<dynamic> referrals}) = _$ReferralsLoadedStateImpl;
+      final List<UserModel> referrals}) = _$ReferralsLoadedStateImpl;
 
   String get referralCode;
-  List<dynamic> get referrals;
+  List<UserModel> get referrals;
 
   /// Create a copy of ReferralsState
   /// with the given fields replaced by the non-null parameter values.

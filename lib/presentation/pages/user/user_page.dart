@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
 import 'package:more_hands/presentation/widgets/service_info_view.dart';
+import 'package:more_hands/presentation/widgets/user_contacts_view.dart';
 import 'package:more_hands/presentation/widgets/user_info_tags_view.dart';
 import 'package:more_hands/presentation/widgets/user_name_id_view.dart';
 import 'package:more_hands/presentation/widgets/what_can_do_view.dart';
@@ -12,12 +14,14 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class UserPage extends StatelessWidget {
-  const UserPage({super.key});
+  const UserPage({super.key, required this.user});
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCubit>(
-      create: (BuildContext context) => getIt<UserCubit>(),
+      create: (BuildContext context) => getIt<UserCubit>()..loadUser(user),
       child: const _UserView(),
     );
   }
@@ -38,16 +42,19 @@ class _UserView extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+          final loading = state.when(loading: () => true, loaded: (_) => false);
+          final user = state.when(loading: () => null, loaded: (user) => user);
+          if (loading) return const Center(child: CircularProgressIndicator());
           return SingleChildScrollView(
             padding: EdgeInsets.only(
                 top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                userImagePart(context).paddingOnly(bottom: 24.h),
-                aboutUserPart(context).paddingOnly(bottom: 24.h),
+                userImagePart(context, user!).paddingOnly(bottom: 24.h),
+                aboutUserPart(context, user).paddingOnly(bottom: 24.h),
                 WhatCanDoView(
-                  items: List.generate(8, (i) => "Service $i"),
+                  items:  List.generate(8, (i) => "Service $i"),
                 ).paddingOnly(bottom: 24.h),
                 PortfolioView(
                   items: List.generate(
@@ -65,41 +72,70 @@ class _UserView extends StatelessWidget {
     );
   }
 
-  Widget userImagePart(BuildContext context) => MHImage(
+  Widget userImagePart(BuildContext context, UserModel user) => MHImage(
       size: context.width,
       emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
       imageUrl: "https://i.pravatar.cc/300?img=1");
 
-  Widget aboutUserPart(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const UserNameIdView(
-            name: "Name L.",
-            id: "12345",
-          ),
-          8.h.heightBox,
-          const UserInfoTagsView(
-            starsCount: 0,
-            transactionsCount: 0,
-            referralsCount: 0,
+  Widget aboutUserPart(BuildContext context, UserModel user) {
+    String formattedName =
+        "${user.userInfo?.firstName} ${user.userInfo?.lastName?.substring(0, 1)}.";
+    String bio = user.userInfo?.bio ?? "";
+
+    List<ContactItem> contacts = <ContactItem>[];
+    if (user.userInfo?.instagramLink != null &&
+        user.userInfo!.instagramLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.instagramLink!,
+          icon: MoreHandsAssets.icons.instagram.svg()));
+    }
+    if (user.userInfo?.whatsappLink != null &&
+        user.userInfo!.whatsappLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.whatsappLink!,
+          icon: MoreHandsAssets.icons.whatsapp.svg()));
+    }
+    if (user.userInfo?.facebookLink != null &&
+        user.userInfo!.facebookLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.facebookLink!,
+          icon: MoreHandsAssets.icons.facebook.svg()));
+    }
+    if (user.userInfo?.telegramLink != null &&
+        user.userInfo!.telegramLink!.isNotEmpty) {
+      contacts.add(ContactItem(
+          name: user.userInfo!.telegramLink!,
+          icon: MoreHandsAssets.icons.telegram.svg()));
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        UserNameIdView(
+          name: formattedName,
+          id: user.userInfo?.id.toString(),
+        ),
+        8.h.heightBox,
+        const UserInfoTagsView(
+          starsCount: 0,
+          transactionsCount: 0,
+          referralsCount: 0,
+        ).paddingOnly(bottom: 8.h),
+        _buildSendCodeToFriends(context).paddingOnly(bottom: 8.h),
+        if (contacts.isNotEmpty)
+          UserContactsView(
+            contacts: contacts,
           ).paddingOnly(bottom: 8.h),
-          _buildSendCodeToFriends(context).paddingOnly(bottom: 8.h),
-          // const UserContactsView(
-          //   contacts: [
-          //     "@username",
-          //     "user@example.com",
-          //     "+7 999 999 99 99",
-          //     "https://example.com",
-          //   ],
-          // ).paddingOnly(bottom: 8.h),
+        if (bio.isNotEmpty)
           Text(
-            "Организую туры по Бали и по островам Индонезии, помогу с правами, жильем, машиной и прочим бытовыми вопросами",
+            bio,
             style: body16Style,
             textAlign: TextAlign.left,
           ).paddingOnly(bottom: 2.h)
-        ],
-      );
+      ],
+    );
+  }
 
   Widget _buildSendCodeToFriends(BuildContext context) => InkWell(
         borderRadius: BorderRadius.circular(16.r),
@@ -134,7 +170,7 @@ class _UserView extends StatelessWidget {
   Future<void> showServiceView(BuildContext context) async {
     await showMHScrollModalBottomSheet(
       context,
-       title: "Service title",
+      title: "Service title",
       child: const ServiceInfoView(),
     );
   }

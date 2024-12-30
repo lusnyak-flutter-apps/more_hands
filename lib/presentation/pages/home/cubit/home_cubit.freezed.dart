@@ -19,19 +19,20 @@ mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(String selectedType, List<dynamic> users) loaded,
+    required TResult Function(String selectedType, List<UserModel> users)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(String selectedType, List<dynamic> users)? loaded,
+    TResult? Function(String selectedType, List<UserModel> users)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(String selectedType, List<dynamic> users)? loaded,
+    TResult Function(String selectedType, List<UserModel> users)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,7 +119,8 @@ class _$HomeStateImpl implements _HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(String selectedType, List<dynamic> users) loaded,
+    required TResult Function(String selectedType, List<UserModel> users)
+        loaded,
   }) {
     return loading();
   }
@@ -127,7 +129,7 @@ class _$HomeStateImpl implements _HomeState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(String selectedType, List<dynamic> users)? loaded,
+    TResult? Function(String selectedType, List<UserModel> users)? loaded,
   }) {
     return loading?.call();
   }
@@ -136,7 +138,7 @@ class _$HomeStateImpl implements _HomeState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(String selectedType, List<dynamic> users)? loaded,
+    TResult Function(String selectedType, List<UserModel> users)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -187,7 +189,7 @@ abstract class _$$HomeLoadedStateImplCopyWith<$Res> {
           $Res Function(_$HomeLoadedStateImpl) then) =
       __$$HomeLoadedStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String selectedType, List<dynamic> users});
+  $Res call({String selectedType, List<UserModel> users});
 }
 
 /// @nodoc
@@ -214,7 +216,7 @@ class __$$HomeLoadedStateImplCopyWithImpl<$Res>
       users: null == users
           ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<UserModel>,
     ));
   }
 }
@@ -223,16 +225,17 @@ class __$$HomeLoadedStateImplCopyWithImpl<$Res>
 
 class _$HomeLoadedStateImpl implements _HomeLoadedState {
   const _$HomeLoadedStateImpl(
-      {this.selectedType = "All", final List<dynamic> users = const []})
+      {this.selectedType = "All",
+      final List<UserModel> users = const <UserModel>[]})
       : _users = users;
 
   @override
   @JsonKey()
   final String selectedType;
-  final List<dynamic> _users;
+  final List<UserModel> _users;
   @override
   @JsonKey()
-  List<dynamic> get users {
+  List<UserModel> get users {
     if (_users is EqualUnmodifiableListView) return _users;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_users);
@@ -270,7 +273,8 @@ class _$HomeLoadedStateImpl implements _HomeLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(String selectedType, List<dynamic> users) loaded,
+    required TResult Function(String selectedType, List<UserModel> users)
+        loaded,
   }) {
     return loaded(selectedType, users);
   }
@@ -279,7 +283,7 @@ class _$HomeLoadedStateImpl implements _HomeLoadedState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(String selectedType, List<dynamic> users)? loaded,
+    TResult? Function(String selectedType, List<UserModel> users)? loaded,
   }) {
     return loaded?.call(selectedType, users);
   }
@@ -288,7 +292,7 @@ class _$HomeLoadedStateImpl implements _HomeLoadedState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(String selectedType, List<dynamic> users)? loaded,
+    TResult Function(String selectedType, List<UserModel> users)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -332,10 +336,10 @@ class _$HomeLoadedStateImpl implements _HomeLoadedState {
 abstract class _HomeLoadedState implements HomeState {
   const factory _HomeLoadedState(
       {final String selectedType,
-      final List<dynamic> users}) = _$HomeLoadedStateImpl;
+      final List<UserModel> users}) = _$HomeLoadedStateImpl;
 
   String get selectedType;
-  List<dynamic> get users;
+  List<UserModel> get users;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

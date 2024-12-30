@@ -16,6 +16,18 @@ import 'package:more_hands/data/firebase/firebase_provider/firebase_provider.dar
     as _i759;
 import 'package:more_hands/data/firebase/firebase_provider/firebase_provider_impl.dart'
     as _i369;
+import 'package:more_hands/data/local/token_storage/token_storage.dart'
+    as _i514;
+import 'package:more_hands/data/local/token_storage/token_stotage_impl.dart'
+    as _i415;
+import 'package:more_hands/data/remote/auth_remote/auth_remote.dart' as _i934;
+import 'package:more_hands/data/remote/service_remote/service_remote.dart'
+    as _i541;
+import 'package:more_hands/data/remote/user_remote/user_remote.dart' as _i761;
+import 'package:more_hands/data/repository/auth_repository.dart' as _i528;
+import 'package:more_hands/data/repository/profile_repository.dart' as _i725;
+import 'package:more_hands/data/repository/referrals_repository.dart' as _i396;
+import 'package:more_hands/data/repository/users_repository.dart' as _i443;
 import 'package:more_hands/presentation/pages/app_loading/cubit/app_loading_cubit.dart'
     as _i1030;
 import 'package:more_hands/presentation/pages/auth/cubit/authorization_cubit.dart'
@@ -56,6 +68,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i393.HomeCubit>(() => _i393.HomeCubit());
     gh.factory<_i72.SendRequestCubit>(() => _i72.SendRequestCubit());
     gh.factory<_i498.RequestsCubit>(() => _i498.RequestsCubit());
+    gh.lazySingleton<_i528.AuthRepository>(() => _i528.AuthRepository());
+    gh.lazySingleton<_i725.ProfileRepository>(() => _i725.ProfileRepository());
+    gh.lazySingleton<_i396.ReferralsRepository>(
+        () => _i396.ReferralsRepository());
+    gh.lazySingleton<_i443.UsersRepository>(() => _i443.UsersRepository());
+    gh.factory<_i514.TokenStorage>(() => _i415.TokenStorageImpl());
     gh.factory<String>(
       () => dioClient.baseUrl,
       instanceName: 'baseUrl',
@@ -63,6 +81,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i759.FirebaseProvider>(() => _i369.FirebaseProviderImpl());
     gh.lazySingleton<_i361.Dio>(
         () => dioClient.dio(gh<String>(instanceName: 'baseUrl')));
+    gh.lazySingleton<_i934.AuthRemoteApi>(
+        () => _i934.AuthRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i761.UserRemoteApi>(
+        () => _i761.UserRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i541.ServiceRemoteApi>(
+        () => _i541.ServiceRemoteApi(gh<_i361.Dio>()));
     return this;
   }
 }

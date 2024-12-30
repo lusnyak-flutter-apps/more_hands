@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:uikit/uikit.dart';
 
+class ContactItem {
+  final String name;
+  final Widget? icon;ContactItem({required this.name, this.icon});
+}
+
 class UserContactsView extends StatelessWidget {
   const UserContactsView({super.key, required this.contacts});
 
-  final List<String> contacts;
+  final List<ContactItem> contacts;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class UserContactsView extends StatelessWidget {
             horizontalTitleGap: 10.w,
             minVerticalPadding: 0,
             title: Text(
-              item,
+              item.name,
               style: body16MediumStyle,
               textAlign: TextAlign.left,
             ),
@@ -35,8 +40,8 @@ class UserContactsView extends StatelessWidget {
                 border: Border.all(
                     color: MHColors.whiteColor.withOpacity(0.26), width: 1.0),
               ),
-              child: MoreHandsAssets.icons.phone
-                  .svg(height: 20.r)
+              child: (item.icon ?? MoreHandsAssets.icons.mail
+                  .svg(height: 20.r))
                   .paddingAll(6.r),
             ),
           )

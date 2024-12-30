@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/home/cubit/home_cubit.dart';
 import 'package:more_hands/presentation/pages/referrals/sub_widgets/referral_item.dart';
 import 'package:more_hands/utils/utils.dart';
@@ -25,9 +26,10 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       final cubit = context.read<HomeCubit>();
+
       final (type, users) = state.maybeWhen(
-        loaded: (type, users) => (type, [null, null, null]),
-        orElse: () => (context.localized.all, <dynamic>[]),
+        loaded: (type, users) => (type, users),
+        orElse: () => (context.localized.all, <UserModel>[]),
       );
       debugPrint(type);
       return Scaffold(
@@ -115,7 +117,7 @@ class _HomeView extends StatelessWidget {
     });
   }
 
-  Widget _buildReferralsList(BuildContext context, List<dynamic> referrals) {
+  Widget _buildReferralsList(BuildContext context, List<UserModel> referrals) {
     return SingleChildScrollView(
       padding: EdgeInsets.only(bottom: 88.h, top: 16.h),
       child: Column(
@@ -126,11 +128,11 @@ class _HomeView extends StatelessWidget {
               showInviteButton: true,
               showPortfolio: true,
               onTap: () {
-                context.router.push(const UserRoute());
+                context.router.push( UserRoute(user:referral));
               },
               onSendRequest: () {
                 context.router.push(const SendRequestRoute());
-              },
+              }, referral: referral,
             ).paddingSymmetric(vertical: 8.h);
           }),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
  import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/referrals/cubit/referrals_cubit.dart';
 import 'package:more_hands/presentation/pages/referrals/sub_widgets/referral_item.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
@@ -38,8 +39,8 @@ class _ReferralsView extends StatelessWidget {
         child: BlocBuilder<ReferralsCubit, ReferralsState>(
           builder: (_, state) {
             final (code, referrals) = state.maybeWhen(
-              loaded: (code, referrals) => ("JFK130064XJ", [null, null, null]),
-              orElse: () => ("", <dynamic>[]),
+              loaded: (code, referrals) => (code, referrals),
+              orElse: () => ("", <UserModel>[]),
             );
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +91,7 @@ class _ReferralsView extends StatelessWidget {
       ],
     );
   }
-  Widget _buildReferralsList(BuildContext context, List<dynamic> referrals) {
+  Widget _buildReferralsList(BuildContext context, List<UserModel> referrals) {
     return SingleChildScrollView(
       padding: EdgeInsets.only(bottom: 56.h),
       child: Column(
@@ -100,8 +101,10 @@ class _ReferralsView extends StatelessWidget {
               style: body28SemiBoldStyle),
           16.h.heightBox,
           ...referrals.map((referral) {
-            return   ReferralItem(onTap: (){
-              context.router.push(const UserRoute());
+            return   ReferralItem(
+              referral: referral,
+              onTap: (){
+              context.router.push( UserRoute(user: referral));
             },).paddingSymmetric(vertical: 8.h);
           }),
         ],
