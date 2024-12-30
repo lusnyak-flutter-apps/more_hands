@@ -10,9 +10,10 @@ import 'more_hands_app.dart';
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await Preferences.instance.getSharedInstance();
   configureDependencies();
-  // await getIt<FirebaseProvider>().initializeApp();
+  await Preferences.instance.getSharedInstance();
+  await getIt<FirebaseProvider>().initializeApp();
+  await FCMService.instance.setUp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
