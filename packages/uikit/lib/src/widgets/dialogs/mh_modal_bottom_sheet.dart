@@ -9,7 +9,7 @@ Future<T?> showMHModalBottomSheet<T>(BuildContext context,
     bool isScrollControlled = false}) async {
   return await showModalBottomSheet<T>(
     backgroundColor: Colors.transparent,
-    barrierColor: MHColors.blackBGColor.withOpacity(0.32),
+    barrierColor: MHColors.blackBGColor.withValues(alpha: 0.32),
     elevation: 1,
     useSafeArea: true,
     enableDrag: true,
@@ -20,7 +20,7 @@ Future<T?> showMHModalBottomSheet<T>(BuildContext context,
         filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
         child: Container(
           decoration: BoxDecoration(
-            color: MHColors.darkerGrayColor.withOpacity(0.99),
+            color: MHColors.darkerGrayColor.withValues(alpha:0.99),
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(10.r),
             ),
@@ -67,7 +67,7 @@ Future<T?> showMHScrollModalBottomSheet<T>(
  }) async {
   return await showModalBottomSheet<T>(
     backgroundColor: Colors.transparent,
-    barrierColor: MHColors.blackBGColor.withOpacity(0.32),
+    barrierColor: MHColors.blackBGColor.withValues(alpha:0.32),
     elevation: 1,
     useSafeArea: true,
     enableDrag: true,
@@ -81,7 +81,7 @@ Future<T?> showMHScrollModalBottomSheet<T>(
             maxHeight: context.height * 0.85,
           ),
           decoration: BoxDecoration(
-            color: MHColors.darkerGrayColor.withOpacity(0.99),
+            color: MHColors.darkerGrayColor.withValues(alpha:0.99),
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(10.r),
             ),

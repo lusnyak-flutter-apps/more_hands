@@ -32,10 +32,10 @@ class MHTag extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
               color: borderColor ??
-                  tintColor ?? MHColors.whiteColor.withOpacity(0.26),
+                  tintColor ?? MHColors.whiteColor.withValues(alpha:0.26),
               width: 1.0),
           borderRadius: BorderRadius.circular(16.r),
-          color: selected ? MHColors.whiteColor :  tintColor ?? MHColors.whiteColor.withOpacity(0.24),
+          color: selected ? MHColors.whiteColor :  tintColor ?? MHColors.whiteColor.withValues(alpha: 0.24),
         ),
         child: icon != null
             ? Row(

@@ -35,10 +35,10 @@ class UserContactsView extends StatelessWidget {
             ),
             leading:  Container(
               decoration: BoxDecoration(
-                color: MHColors.whiteColor.withOpacity(0.24),
+                color: MHColors.whiteColor.withValues(alpha: 0.24),
                 shape: BoxShape.circle,
                 border: Border.all(
-                    color: MHColors.whiteColor.withOpacity(0.26), width: 1.0),
+                    color: MHColors.whiteColor.withValues(alpha: 0.26), width: 1.0),
               ),
               child: (item.icon ?? MoreHandsAssets.icons.mail
                   .svg(height: 20.r))

@@ -19,7 +19,7 @@ class ProfileDeleteBottomView extends StatelessWidget {
           ),
           40.h.heightBox,
           MHRoundedContainer(
-              color: MHColors.whiteColor.withOpacity(0.24),
+              color: MHColors.whiteColor.withValues(alpha: 0.24),
               borderRadius: 24.r,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

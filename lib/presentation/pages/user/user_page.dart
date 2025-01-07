@@ -143,7 +143,7 @@ class _UserView extends StatelessWidget {
           debugPrint("Send code to your friends 1");
         },
         child: MHRoundedContainer(
-          color: MHColors.blackBGColor.withOpacity(0.5),
+          color: MHColors.blackBGColor.withValues(alpha: 0.5),
           borderGradientColors: const [
             MHColors.yellowColor,
             MHColors.amberColor,

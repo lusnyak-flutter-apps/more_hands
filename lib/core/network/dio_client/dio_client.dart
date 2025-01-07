@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/core/network/interceptors/api_logging_interceptor.dart';
 
-import '../constants/api_constants.dart';
 
 @module
 abstract class DioClient {

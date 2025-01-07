@@ -27,7 +27,7 @@ class MHGradientTag extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-            color: MHColors.whiteColor.withOpacity(0.26), width: 1.0),
+            color: MHColors.whiteColor.withValues(alpha:0.26), width: 1.0),
         borderRadius: BorderRadius.circular(16.r),
         gradient: LinearGradient(
           begin: Alignment.centerLeft,

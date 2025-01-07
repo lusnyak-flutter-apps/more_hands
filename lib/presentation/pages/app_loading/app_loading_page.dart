@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/data.dart';
 import 'package:uikit/uikit.dart';
 import 'cubit/app_loading_cubit.dart';
 
@@ -9,6 +10,7 @@ class AppLoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FCMService.instance.delegates(context);
     return BlocProvider<AppLoadingCubit>(
       create: (BuildContext context) => getIt<AppLoadingCubit>()..loadAppData(),
       child: const _AppLoadingView(),

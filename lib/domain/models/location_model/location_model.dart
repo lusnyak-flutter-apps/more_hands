@@ -1,5 +1,4 @@
 import 'package:more_hands/core/core.dart';
-import 'package:more_hands/domain/enums/attach_category.dart';
 
 part 'location_model.freezed.dart';
 part 'location_model.g.dart';

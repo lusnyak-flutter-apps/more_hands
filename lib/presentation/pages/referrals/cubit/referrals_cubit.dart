@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/data.dart';
-import 'package:more_hands/data/repository/referrals_repository.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 
 part 'referrals_cubit.freezed.dart';

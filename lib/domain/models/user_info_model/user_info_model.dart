@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:more_hands/presentation/pages/user/user_page.dart';
 
 part 'user_info_model.freezed.dart';
 

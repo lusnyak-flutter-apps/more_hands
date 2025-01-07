@@ -36,7 +36,7 @@ class _HomeView extends StatelessWidget {
         appBar: AppBar(
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: MHColors.grayColor27.withOpacity(0.6),
+              color: MHColors.grayColor27.withValues(alpha: 0.6),
               borderRadius:
                   BorderRadius.vertical(bottom: Radius.circular(16.r)),
               border: const Border(

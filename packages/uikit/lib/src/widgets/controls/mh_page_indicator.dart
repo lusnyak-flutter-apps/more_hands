@@ -24,8 +24,8 @@ class MHPageIndicator extends StatelessWidget {
         spacing: 3.w,
         dotHeight: 6.r,
         dotWidth: 6.r,
-        dotColor: MHColors.whiteColor.withOpacity(0.4),
-        activeDotColor: MHColors.whiteColor.withOpacity(0.64),
+        dotColor: MHColors.whiteColor.withValues(alpha: 0.4),
+        activeDotColor: MHColors.whiteColor.withValues(alpha: 0.64),
       ),
     );
   }

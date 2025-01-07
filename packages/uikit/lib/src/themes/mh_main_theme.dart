@@ -41,11 +41,11 @@ ThemeData get darkTheme => ThemeData(
           style: ButtonStyle(
         padding: WidgetStateProperty.all(EdgeInsets.all(6.r)),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
-          return MHColors.whiteColor.withOpacity(0.24);
+          return MHColors.whiteColor.withValues(alpha: 0.24);
         }),
         side: WidgetStateProperty.resolveWith((states) {
           return BorderSide(
-              color: MHColors.whiteColor.withOpacity(0.26), width: 1.0);
+              color: MHColors.whiteColor.withValues(alpha: 0.26), width: 1.0);
         }),
       )),
       inputDecorationTheme: roundInputDecoration(),
@@ -98,11 +98,11 @@ ThemeData get darkTheme => ThemeData(
             borderSide: BorderSide(color: MHColors.grayColor, width: 1.0)),
       ),
       bottomSheetTheme: BottomSheetThemeData(
-        backgroundColor: MHColors.blackBGColor.withOpacity(0.8),
+        backgroundColor: MHColors.blackBGColor.withValues(alpha: 0.8),
         elevation: 1,
       ),
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: MHColors.grayColor98.withOpacity(0.8),
+        backgroundColor: MHColors.grayColor98.withValues(alpha: 0.8),
         contentTextStyle: body13Style,
         elevation: 8.0,
         // closeIconColor: MHColors.whiteColor,
@@ -110,7 +110,7 @@ ThemeData get darkTheme => ThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
           side: BorderSide(
-              color: MHColors.whiteColor.withOpacity(0.26), width: 1.0),
+              color: MHColors.whiteColor.withValues(alpha: 0.26), width: 1.0),
         ),
         insetPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         behavior: SnackBarBehavior.floating,

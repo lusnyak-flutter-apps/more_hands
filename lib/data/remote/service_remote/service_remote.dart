@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
-import 'package:more_hands/domain/models/user_model/user_model.dart';
 
 part 'service_remote.g.dart';
 

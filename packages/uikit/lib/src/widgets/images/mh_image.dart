@@ -67,7 +67,7 @@ class MHImage extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [
             Colors.transparent,
-            MHColors.blackBGColor.withOpacity(0.2),
+            MHColors.blackBGColor.withValues(alpha:0.2),
             MHColors.blackBGColor,
           ],),);
 
