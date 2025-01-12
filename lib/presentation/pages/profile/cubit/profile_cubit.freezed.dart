@@ -19,19 +19,19 @@ mixin _$ProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(UserModel user) loaded,
+    required TResult Function(UserModel user, File? userProfileImage) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(UserModel user)? loaded,
+    TResult? Function(UserModel user, File? userProfileImage)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(UserModel user)? loaded,
+    TResult Function(UserModel user, File? userProfileImage)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(UserModel user) loaded,
+    required TResult Function(UserModel user, File? userProfileImage) loaded,
   }) {
     return loading();
   }
@@ -128,7 +128,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(UserModel user)? loaded,
+    TResult? Function(UserModel user, File? userProfileImage)? loaded,
   }) {
     return loading?.call();
   }
@@ -137,7 +137,7 @@ class _$ProfileStateImpl implements _ProfileState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(UserModel user)? loaded,
+    TResult Function(UserModel user, File? userProfileImage)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -188,7 +188,7 @@ abstract class _$$ProfileLoadedStateImplCopyWith<$Res> {
           $Res Function(_$ProfileLoadedStateImpl) then) =
       __$$ProfileLoadedStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user});
+  $Res call({UserModel user, File? userProfileImage});
 
   $UserModelCopyWith<$Res> get user;
 }
@@ -207,12 +207,17 @@ class __$$ProfileLoadedStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
+    Object? userProfileImage = freezed,
   }) {
     return _then(_$ProfileLoadedStateImpl(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      userProfileImage: freezed == userProfileImage
+          ? _value.userProfileImage
+          : userProfileImage // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 
@@ -230,14 +235,16 @@ class __$$ProfileLoadedStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileLoadedStateImpl implements _ProfileLoadedState {
-  const _$ProfileLoadedStateImpl({required this.user});
+  const _$ProfileLoadedStateImpl({required this.user, this.userProfileImage});
 
   @override
   final UserModel user;
+  @override
+  final File? userProfileImage;
 
   @override
   String toString() {
-    return 'ProfileState.loaded(user: $user)';
+    return 'ProfileState.loaded(user: $user, userProfileImage: $userProfileImage)';
   }
 
   @override
@@ -245,11 +252,13 @@ class _$ProfileLoadedStateImpl implements _ProfileLoadedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileLoadedStateImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.userProfileImage, userProfileImage) ||
+                other.userProfileImage == userProfileImage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, user, userProfileImage);
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -264,29 +273,29 @@ class _$ProfileLoadedStateImpl implements _ProfileLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(UserModel user) loaded,
+    required TResult Function(UserModel user, File? userProfileImage) loaded,
   }) {
-    return loaded(user);
+    return loaded(user, userProfileImage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(UserModel user)? loaded,
+    TResult? Function(UserModel user, File? userProfileImage)? loaded,
   }) {
-    return loaded?.call(user);
+    return loaded?.call(user, userProfileImage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(UserModel user)? loaded,
+    TResult Function(UserModel user, File? userProfileImage)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(user);
+      return loaded(user, userProfileImage);
     }
     return orElse();
   }
@@ -324,10 +333,12 @@ class _$ProfileLoadedStateImpl implements _ProfileLoadedState {
 }
 
 abstract class _ProfileLoadedState implements ProfileState {
-  const factory _ProfileLoadedState({required final UserModel user}) =
-      _$ProfileLoadedStateImpl;
+  const factory _ProfileLoadedState(
+      {required final UserModel user,
+      final File? userProfileImage}) = _$ProfileLoadedStateImpl;
 
   UserModel get user;
+  File? get userProfileImage;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.

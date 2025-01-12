@@ -144,10 +144,17 @@ class OutgoingRequestsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ProfileAboutPage]
-class ProfileAboutRoute extends PageRouteInfo<void> {
-  const ProfileAboutRoute({List<PageRouteInfo>? children})
-      : super(
+class ProfileAboutRoute extends PageRouteInfo<ProfileAboutRouteArgs> {
+  ProfileAboutRoute({
+    Key? key,
+    required UserModel user,
+    List<PageRouteInfo>? children,
+  }) : super(
           ProfileAboutRoute.name,
+          args: ProfileAboutRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
@@ -156,17 +163,44 @@ class ProfileAboutRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ProfileAboutPage();
+      final args = data.argsAs<ProfileAboutRouteArgs>();
+      return ProfileAboutPage(
+        key: args.key,
+        user: args.user,
+      );
     },
   );
 }
 
+class ProfileAboutRouteArgs {
+  const ProfileAboutRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'ProfileAboutRouteArgs{key: $key, user: $user}';
+  }
+}
+
 /// generated route for
 /// [ProfileContactsPage]
-class ProfileContactsRoute extends PageRouteInfo<void> {
-  const ProfileContactsRoute({List<PageRouteInfo>? children})
-      : super(
+class ProfileContactsRoute extends PageRouteInfo<ProfileContactsRouteArgs> {
+  ProfileContactsRoute({
+    Key? key,
+    required UserModel user,
+    List<PageRouteInfo>? children,
+  }) : super(
           ProfileContactsRoute.name,
+          args: ProfileContactsRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
@@ -175,17 +209,45 @@ class ProfileContactsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ProfileContactsPage();
+      final args = data.argsAs<ProfileContactsRouteArgs>();
+      return ProfileContactsPage(
+        key: args.key,
+        user: args.user,
+      );
     },
   );
 }
 
+class ProfileContactsRouteArgs {
+  const ProfileContactsRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'ProfileContactsRouteArgs{key: $key, user: $user}';
+  }
+}
+
 /// generated route for
 /// [ProfileNameAndImagePage]
-class ProfileNameAndImageRoute extends PageRouteInfo<void> {
-  const ProfileNameAndImageRoute({List<PageRouteInfo>? children})
-      : super(
+class ProfileNameAndImageRoute
+    extends PageRouteInfo<ProfileNameAndImageRouteArgs> {
+  ProfileNameAndImageRoute({
+    Key? key,
+    required UserModel user,
+    List<PageRouteInfo>? children,
+  }) : super(
           ProfileNameAndImageRoute.name,
+          args: ProfileNameAndImageRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
@@ -194,9 +256,29 @@ class ProfileNameAndImageRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ProfileNameAndImagePage();
+      final args = data.argsAs<ProfileNameAndImageRouteArgs>();
+      return ProfileNameAndImagePage(
+        key: args.key,
+        user: args.user,
+      );
     },
   );
+}
+
+class ProfileNameAndImageRouteArgs {
+  const ProfileNameAndImageRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'ProfileNameAndImageRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for

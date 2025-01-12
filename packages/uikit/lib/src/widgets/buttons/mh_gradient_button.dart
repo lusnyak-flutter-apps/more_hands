@@ -7,7 +7,11 @@ class MHGradientButton extends StatelessWidget {
     this.onPressed,
     required this.title,
     this.gradientColors,
-    this.icon,   this.horizontalPadding = 24,   this.verticalPadding = 12, this.height = 48,
+    this.icon,
+    this.horizontalPadding = 24,
+    this.verticalPadding = 12,
+    this.height = 48,
+    this.loading = false,
   });
 
   final VoidCallback? onPressed;
@@ -17,10 +21,14 @@ class MHGradientButton extends StatelessWidget {
   final double horizontalPadding;
   final double verticalPadding;
   final double? height;
+  final bool loading;
+
   @override
   Widget build(BuildContext context) {
-
-    final text = Text(title, style: buttonTextStyles,);
+    final text = Text(
+      title,
+      style: buttonTextStyles,
+    );
     return Container(
       height: (height ?? 48).h,
       clipBehavior: Clip.hardEdge,
@@ -35,16 +43,20 @@ class MHGradientButton extends StatelessWidget {
         onPressed: onPressed,
         shape: const StadiumBorder(),
         highlightColor: MHColors.amberColor,
-        child: icon != null ? Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            icon!,
-            4.w.widthBox,
-            text,
-          ],
-        ).paddingSymmetric(horizontal: horizontalPadding.w, vertical: verticalPadding.h) : text.paddingSymmetric(horizontal: horizontalPadding.w, vertical: verticalPadding.h),
+        child: loading ?   SizedBox.square(dimension: 20.r, child: const CircularProgressIndicator(color:  MHColors.blackColor,),).paddingSymmetric(
+            horizontal: horizontalPadding.w, vertical: verticalPadding.h) : icon != null
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  icon!,
+                  4.w.widthBox,
+                  text,
+                ],
+              )
+            : text.paddingSymmetric(
+                horizontal: horizontalPadding.w, vertical: verticalPadding.h),
       ),
     );
   }

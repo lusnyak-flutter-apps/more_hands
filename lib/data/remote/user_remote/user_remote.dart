@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -13,6 +15,9 @@ abstract class UserRemoteApi {
   @GET(EndPoint.getCurrentUserInfo)
   Future<UserModel?> getCurrentUserInfo();
 
+  @GET("{path}")
+  Future<dynamic> getUserProfileImage(@Path() String path);
+
   @GET(EndPoint.getCurrentUserReferralsInfo)
   Future<List<UserModel>> getCurrentUserReferralsInfo();
 
@@ -27,4 +32,6 @@ abstract class UserRemoteApi {
     @Query('locId') int locId,
     @Query('service') int service,
   );
+
+
 }

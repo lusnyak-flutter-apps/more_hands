@@ -12,7 +12,7 @@ _$LoginResponseModelImpl _$$LoginResponseModelImplFromJson(
       token: json['token'] as String,
       expiration: (json['expiration'] as num).toInt(),
       refCode: json['ref_code'] as String,
-      closestLoc: (json['closest_loc'] as num).toInt(),
+      closestLoc: (json['closest_loc'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$LoginResponseModelImplToJson(

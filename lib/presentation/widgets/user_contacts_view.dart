@@ -3,7 +3,9 @@ import 'package:uikit/uikit.dart';
 
 class ContactItem {
   final String name;
-  final Widget? icon;ContactItem({required this.name, this.icon});
+  final Widget? icon;
+
+  ContactItem({required this.name, this.icon});
 }
 
 class UserContactsView extends StatelessWidget {

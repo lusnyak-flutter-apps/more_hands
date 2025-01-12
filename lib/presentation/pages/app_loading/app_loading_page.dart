@@ -27,7 +27,10 @@ class _AppLoadingView extends StatelessWidget {
       listener: (context, state){
         if (state.loaded) {
           debugPrint(state.onboardingLaunched.toString());
-          if(state.onboardingLaunched) {
+          if(state.logged) {
+            context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                predicate: (route) => false);
+          } else if(state.onboardingLaunched) {
             context.router.replace(const TestAuthRoute());
           } else {
             context.router.replace(const OnboardingRoute());

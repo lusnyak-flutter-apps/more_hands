@@ -14,6 +14,7 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
     const UserCredentialModel(
         username: 'd.s.koksharov', password: '123', name: "Dima"),
     const UserCredentialModel(username: 'plotn', password: '123', name: 'Yura'),
+    const UserCredentialModel(username: 'lusine', password: '123', name: 'Lusine'),
   ];
 
   Future<void> login(UserCredentialModel user) async {

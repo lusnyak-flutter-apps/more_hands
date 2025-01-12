@@ -337,4 +337,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get russian => 'Русский';
+
+  @override
+  String linkType(Object type) {
+    return '$type link';
+  }
 }

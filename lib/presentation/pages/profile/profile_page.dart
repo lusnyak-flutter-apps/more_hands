@@ -36,8 +36,11 @@ class _ProfileView extends StatelessWidget {
         bottom: false,
         child:
             BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-          final loading = state.when(loading: () => true, loaded: (_) => false);
-          final user = state.when(loading: () => null, loaded: (user) => user);
+          final loading = state.when(loading: () => true, loaded: (_, __) => false);
+          final (user, file) = state.when(loading: () => (null, null), loaded: (user, file) => (user, file));
+
+              debugPrint("${APIBase.url}${user?.userInfo?.profileImageUrl!}");
+
           if (loading) return const Center(child: CircularProgressIndicator());
           return SingleChildScrollView(
             padding: EdgeInsets.only(
@@ -48,7 +51,6 @@ class _ProfileView extends StatelessWidget {
                 profileImagePart(context, user).paddingOnly(bottom: 24.h),
                 aboutUserPart(context, user),
                 WhatCanDoView(
-                  // items: List.generate(8, (i) => "Service $i"),
                   onEdit: () {
                     context.router.push(const ServicesListRoute());
                   },
@@ -104,7 +106,16 @@ class _ProfileView extends StatelessWidget {
             right: 8.w,
             child: IconButton(
                 onPressed: () {
-                  context.router.push(const ProfileNameAndImageRoute());
+                  if (user != null) {
+                    context.router
+                        .push(ProfileNameAndImageRoute(user: user))
+                        .then((onValue) {
+                      debugPrint(onValue.toString());
+                      if (context.mounted) {
+                        context.read<ProfileCubit>().loadProfile();
+                      }
+                    });
+                  }
                 },
                 icon: MoreHandsAssets.icons.edit.svg(height: 20.r)),
           ),
@@ -135,10 +146,14 @@ class _ProfileView extends StatelessWidget {
       );
 
   Widget aboutUserPart(BuildContext context, UserModel? user) {
-    String formattedName =
-        "${user?.userInfo?.firstName} ${user?.userInfo?.lastName?.substring(0, 1)}.";
+    final fName = user?.userInfo?.firstName ?? "";
+    final lName = user?.userInfo?.lastName ?? "";
+
+    String formattedName = fName;
+    if (lName.isNotEmpty) {
+      formattedName += " ${lName.substring(0, 1)}.";
+    }
     String bio = user?.userInfo?.bio ?? "";
-    // String userName = user?.userInfo?.userLogin ?? "";
     List<ContactItem> contacts = <ContactItem>[];
     if (user?.userInfo?.instagramLink != null &&
         user!.userInfo!.instagramLink!.isNotEmpty) {
@@ -202,7 +217,16 @@ class _ProfileView extends StatelessWidget {
                 MHInkWell(
                   child: MoreHandsAssets.icons.edit.svg(),
                   onTap: () {
-                    context.router.push(const ProfileContactsRoute());
+                    if (user != null) {
+                      context.router
+                          .push(ProfileContactsRoute(user: user))
+                          .then((onValue) {
+                        debugPrint(onValue.toString());
+                        if (context.mounted) {
+                          context.read<ProfileCubit>().loadProfile();
+                        }
+                      });
+                    }
                   },
                 ),
               ],

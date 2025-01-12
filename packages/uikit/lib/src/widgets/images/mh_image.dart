@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:uikit/uikit.dart';
@@ -9,7 +11,7 @@ class MHImage extends StatelessWidget {
     this.imageUrl,
     this.aspectRatio = 1,
     this.emptyWidget,
-    this.availableForegroundDecoration = true, this.borderRadius = 16.0,
+    this.availableForegroundDecoration = true, this.borderRadius = 16.0, this.file,
   });
 
   final double? size;
@@ -18,6 +20,7 @@ class MHImage extends StatelessWidget {
   final double? aspectRatio;
   final Widget? emptyWidget;
   final bool availableForegroundDecoration;
+  final File? file;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class MHImage extends StatelessWidget {
       width: size,
       child: AspectRatio(
         aspectRatio: aspectRatio ?? 1.0,
-        child: imageUrl != null && imageUrl!.isNotEmpty
-            ? CachedNetworkImage(
+        child: file != null ? _imageBuilder(FileImage(file!))  : imageUrl != null && imageUrl!.isNotEmpty
+            ?  CachedNetworkImage(
                 width: size,
                 imageUrl: imageUrl!,
                 imageBuilder: (context, imageProvider) {

@@ -16,8 +16,18 @@ class AppLoadingCubit extends Cubit<AppLoadingState> {
     emit(state.copyWith(loading: true));
     bool onBoardingLaunch = Preferences.instance.onBoardingLaunch();
     debugPrint(onBoardingLaunch.toString());
+    final tokenModel = await getIt<TokenStorage>().readToken();
+    bool logged = tokenModel?.token != null && tokenModel!.token.isNotEmpty;
+    debugPrint(logged.toString());
     await Future.delayed(const Duration(seconds: 3), () {
-      emit(state.copyWith(loaded: true, loading: false, onboardingLaunched: onBoardingLaunch));
+      emit(
+        state.copyWith(
+          loaded: true,
+          loading: false,
+          logged: logged,
+          onboardingLaunched: onBoardingLaunch,
+        ),
+      );
     }).whenComplete(FlutterNativeSplash.remove);
   }
 }

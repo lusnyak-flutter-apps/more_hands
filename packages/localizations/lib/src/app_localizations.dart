@@ -715,6 +715,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Русский'**
   String get russian;
+
+  /// No description provided for @linkType.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ссылка {type}'**
+  String linkType(Object type);
 }
 
 class _AppLocalizationsDelegate

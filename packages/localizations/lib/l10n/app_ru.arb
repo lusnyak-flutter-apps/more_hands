@@ -102,5 +102,6 @@
   "getStarted": "Начать",
   "changeLanguage": "Изменить язык",
   "english": "English",
-  "russian": "Русский"
+  "russian": "Русский",
+  "linkType": "Ссылка {type}"
  }

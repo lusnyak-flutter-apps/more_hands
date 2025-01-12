@@ -23,7 +23,7 @@ mixin _$LoginResponseModel {
   String get token => throw _privateConstructorUsedError;
   int get expiration => throw _privateConstructorUsedError;
   String get refCode => throw _privateConstructorUsedError;
-  int get closestLoc => throw _privateConstructorUsedError;
+  int? get closestLoc => throw _privateConstructorUsedError;
 
   /// Serializes this LoginResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $LoginResponseModelCopyWith<$Res> {
           LoginResponseModel value, $Res Function(LoginResponseModel) then) =
       _$LoginResponseModelCopyWithImpl<$Res, LoginResponseModel>;
   @useResult
-  $Res call({String token, int expiration, String refCode, int closestLoc});
+  $Res call({String token, int expiration, String refCode, int? closestLoc});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
     Object? token = null,
     Object? expiration = null,
     Object? refCode = null,
-    Object? closestLoc = null,
+    Object? closestLoc = freezed,
   }) {
     return _then(_value.copyWith(
       token: null == token
@@ -77,10 +77,10 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
           ? _value.refCode
           : refCode // ignore: cast_nullable_to_non_nullable
               as String,
-      closestLoc: null == closestLoc
+      closestLoc: freezed == closestLoc
           ? _value.closestLoc
           : closestLoc // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -93,7 +93,7 @@ abstract class _$$LoginResponseModelImplCopyWith<$Res>
       __$$LoginResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, int expiration, String refCode, int closestLoc});
+  $Res call({String token, int expiration, String refCode, int? closestLoc});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
     Object? token = null,
     Object? expiration = null,
     Object? refCode = null,
-    Object? closestLoc = null,
+    Object? closestLoc = freezed,
   }) {
     return _then(_$LoginResponseModelImpl(
       token: null == token
@@ -127,10 +127,10 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
           ? _value.refCode
           : refCode // ignore: cast_nullable_to_non_nullable
               as String,
-      closestLoc: null == closestLoc
+      closestLoc: freezed == closestLoc
           ? _value.closestLoc
           : closestLoc // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -155,7 +155,7 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   @override
   final String refCode;
   @override
-  final int closestLoc;
+  final int? closestLoc;
 
   @override
   String toString() {
@@ -202,7 +202,7 @@ abstract class _LoginResponseModel implements LoginResponseModel {
       {required final String token,
       required final int expiration,
       required final String refCode,
-      required final int closestLoc}) = _$LoginResponseModelImpl;
+      required final int? closestLoc}) = _$LoginResponseModelImpl;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$LoginResponseModelImpl.fromJson;
@@ -214,7 +214,7 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   @override
   String get refCode;
   @override
-  int get closestLoc;
+  int? get closestLoc;
 
   /// Create a copy of LoginResponseModel
   /// with the given fields replaced by the non-null parameter values.

@@ -11,7 +11,7 @@ class LoginResponseModel with _$LoginResponseModel {
     required String token,
     required int expiration,
     required String refCode,
-    required int closestLoc,
+    required int? closestLoc,
   }) = _LoginResponseModel;
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
