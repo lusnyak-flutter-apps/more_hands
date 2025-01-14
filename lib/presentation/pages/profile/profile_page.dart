@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -36,10 +38,11 @@ class _ProfileView extends StatelessWidget {
         bottom: false,
         child:
             BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-          final loading = state.when(loading: () => true, loaded: (_, __) => false);
-          final (user, file) = state.when(loading: () => (null, null), loaded: (user, file) => (user, file));
-
-              debugPrint("${APIBase.url}${user?.userInfo?.profileImageUrl!}");
+          final loading =
+              state.when(loading: () => true, loaded: (_, __) => false);
+          final (user, file) = state.when(
+              loading: () => (null, null),
+              loaded: (user, file) => (user, file));
 
           if (loading) return const Center(child: CircularProgressIndicator());
           return SingleChildScrollView(
@@ -48,7 +51,7 @@ class _ProfileView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                profileImagePart(context, user).paddingOnly(bottom: 24.h),
+                profileImagePart(context, user, file).paddingOnly(bottom: 24.h),
                 aboutUserPart(context, user),
                 WhatCanDoView(
                   onEdit: () {
@@ -91,15 +94,15 @@ class _ProfileView extends StatelessWidget {
     );
   }
 
-  Widget profileImagePart(BuildContext context, UserModel? user) => Stack(
+  Widget profileImagePart(BuildContext context, UserModel? user, File? file) =>
+      Stack(
         children: [
           MHImage(
               size: context.width,
               emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
               imageUrl: user?.userInfo?.profileImageUrl != null
-                  ? "${APIBase.url}/${user!.userInfo!.profileImageUrl!}"
+                  ? "${APIBase.url}${user!.userInfo!.profileImageUrl!}"
                   : null
-              // "https://s3-alpha-sig.figma.com/img/5b4c/3cc9/5511bd0e458c8720e5240409b3476954?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Fcq0rWQJEG1pt8K70JOqTRe~2E9VOV7NDo3EhXVFGdCWkbbwToVoeXR5f5EN5j2jLgBEGJxwKa9TkIIJI7mlRb5SwNvNcYQnjVOTgaQpNBUPMbqqbpi20ZXmo33EYiHn-G8P9vinuVwk6KOwbsGQAji0q4azMqIE2VBHmDM4DvocDQedXh8sX-IhI3-WewYu2AbmiI33zsCm0SGpATFp-bBH2rfAyesioFJ~lrYlu4CXv-bgUXJWfm9UKNmAnDyGrxcwWuKMqWDb8uI0XLFtf8BhF3a5B6lPz3EzSo0mFuEgFSNGUc6xH1MryxqydR~u6HQ-jb-JIBQvCifG8Z~rAA__",
               ),
           Positioned(
             top: 8.h,

@@ -62,16 +62,19 @@ class _ProfileNameAndImageView extends StatelessWidget {
                       ),
                       24.h.heightBox,
                       MHImagePicker(
-                        onPicked: (file) {
-                          debugPrint(file.path);
-                        },
-                        child: AspectRatio(
+                        onPicked: cubit.pickImageFile,
+                        child: state.pickedFile != null ? MHImage(
+                            size: context.width,
+                            emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
+                            file: state.pickedFile,
+                        ) : AspectRatio(
                           aspectRatio: 1,
                           child: MHRoundedContainer(
                             borderGradientColors: const [
                               MHColors.yellowColor,
                               MHColors.amberColor
                             ],
+
                             child: MoreHandsAssets.icons.photoPlus.svg()
                                 .paddingAll(64.w),
                           ),

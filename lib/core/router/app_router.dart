@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/app_loading/app_loading_page.dart';
 import 'package:more_hands/presentation/pages/auth/authorization_page.dart';

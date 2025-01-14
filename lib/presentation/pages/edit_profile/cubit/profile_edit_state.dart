@@ -6,6 +6,7 @@ class ProfileEditState with _$ProfileEditState {
      UserModel? user,
     @Default(false) bool loading,
     @Default(false) bool editedComplete,
+     File? pickedFile,
      @Default(ContactType.none) ContactType primaryContact,
   }) = _ProfileEditState;
 }

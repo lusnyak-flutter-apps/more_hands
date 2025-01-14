@@ -397,10 +397,17 @@ class SendRequestRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ServiceDetailsPage]
-class ServiceDetailsRoute extends PageRouteInfo<void> {
-  const ServiceDetailsRoute({List<PageRouteInfo>? children})
-      : super(
+class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
+  ServiceDetailsRoute({
+    Key? key,
+    required ServiceModel serviceModel,
+    List<PageRouteInfo>? children,
+  }) : super(
           ServiceDetailsRoute.name,
+          args: ServiceDetailsRouteArgs(
+            key: key,
+            serviceModel: serviceModel,
+          ),
           initialChildren: children,
         );
 
@@ -409,9 +416,29 @@ class ServiceDetailsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ServiceDetailsPage();
+      final args = data.argsAs<ServiceDetailsRouteArgs>();
+      return ServiceDetailsPage(
+        key: args.key,
+        serviceModel: args.serviceModel,
+      );
     },
   );
+}
+
+class ServiceDetailsRouteArgs {
+  const ServiceDetailsRouteArgs({
+    this.key,
+    required this.serviceModel,
+  });
+
+  final Key? key;
+
+  final ServiceModel serviceModel;
+
+  @override
+  String toString() {
+    return 'ServiceDetailsRouteArgs{key: $key, serviceModel: $serviceModel}';
+  }
 }
 
 /// generated route for

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'edit_profile_remote.dart';
+part of 'user_services_remote.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'edit_profile_remote.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _EditProfileRemoteApi implements EditProfileRemoteApi {
-  _EditProfileRemoteApi(
+class _UserServicesRemoteApi implements UserServicesRemoteApi {
+  _UserServicesRemoteApi(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
@@ -24,7 +24,42 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<void> editName({EditNameRequestModel? data}) async {
+  Future<List<ServiceModel>?> getUserServices() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<ServiceModel>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/userServices/list',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<ServiceModel>? _value;
+    try {
+      _value = _result.data
+          ?.map((dynamic i) => ServiceModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<void> addUserService({UserServiceRequestModel? data}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -38,7 +73,7 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     )
         .compose(
           _dio.options,
-          '/user/name',
+          '/userServices/add',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -51,7 +86,7 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
   }
 
   @override
-  Future<void> editContacts({EditContactsRequestModel? data}) async {
+  Future<void> updateUserService({UserServiceRequestModel? data}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -59,13 +94,13 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     final _data = <String, dynamic>{};
     _data.addAll(data?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(Options(
-      method: 'POST',
+      method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/user/contacts',
+          '/userServices/update',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -78,21 +113,19 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
   }
 
   @override
-  Future<void> editBio({EditBioRequestModel? data}) async {
+  Future<void> deleteUserService({required int userServiceId}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'userServiceId': userServiceId};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(data?.toJson() ?? <String, dynamic>{});
+    const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<void>(Options(
-      method: 'POST',
+      method: 'DELETE',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/user/bio',
+          '/userServices/delete',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -105,15 +138,19 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
   }
 
   @override
-  Future<void> attachProfileImage({
-    String? attachType,
+  Future<void> attachServiceImage({
+    required int userServiceId,
+    required String attachType,
     String? attachName,
+    bool isMain = false,
     required File file,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'userServiceId': userServiceId,
       r'attachType': attachType,
       r'attachName': attachName,
+      r'isMain': isMain,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -133,7 +170,86 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     )
         .compose(
           _dio.options,
-          '/user/profileImage',
+          '/userServices/userServiceImage',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<void> updateServiceImage({
+    required int userServiceId,
+    required int userServiceFileId,
+    required String attachType,
+    String? attachName,
+    bool isMain = false,
+    required File file,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'userServiceId': userServiceId,
+      r'userServiceFileId': userServiceFileId,
+      r'attachType': attachType,
+      r'attachName': attachName,
+      r'isMain': isMain,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'file',
+      MultipartFile.fromFileSync(
+        file.path,
+        filename: file.path.split(Platform.pathSeparator).last,
+      ),
+    ));
+    final _options = _setStreamType<void>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+        .compose(
+          _dio.options,
+          '/userServices/userServiceImage',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<void> deleteServiceImage({
+    required int userServiceId,
+    required int userServiceFileId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'userServiceId': userServiceId,
+      r'userServiceFileId': userServiceFileId,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+        .compose(
+          _dio.options,
+          '/userServices/userServiceImage',
           queryParameters: queryParameters,
           data: _data,
         )

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/profile_repository.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -16,11 +15,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> loadProfile() async {
     await getIt<ProfileRepository>().getCurrentUserInfo().then((value) async {
       if(value != null) {
-        final url = "${APIBase.url}${value.userInfo!.profileImageUrl}";
-        debugPrint(url);
+        // final url = "${APIBase.url}${value.userInfo!.profileImageUrl}";
+        // debugPrint(url);
         // final file = await getIt<ProfileRepository>().getUserImage(value.userInfo!.profileImageUrl!);
         // debugPrint(jsonEncode(file.toString()).runtimeType.toString());
-        emit(ProfileState.loaded(user: value ));
+        emit(ProfileState.loaded(user: value /*, userProfileImage: file*/));
        }
     });
   }

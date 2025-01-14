@@ -5,7 +5,6 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/edit_bio_request_model/edit_bio_request_model.dart';
 import 'package:more_hands/domain/models/edit_contacts_request_model/edit_contacts_request_model.dart';
 import 'package:more_hands/domain/models/edit_name_request_model/edit_name_request_model.dart';
-import 'package:more_hands/domain/models/user_model/user_model.dart';
 
 part 'edit_profile_remote.g.dart';
 
@@ -36,7 +35,7 @@ abstract class EditProfileRemoteApi {
   @MultiPart()
   Future<void> attachProfileImage({
     @Query("attachType") String? attachType,
-    @Query("attachType") String? attachName,
+    @Query("attachName") String? attachName,
      @Part(name: "file") required File file,
   });
 }

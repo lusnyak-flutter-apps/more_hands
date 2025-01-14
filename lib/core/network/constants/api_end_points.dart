@@ -10,11 +10,23 @@ abstract class EndPoint {
 
   static const String findServices = "/service/find";
   static const String userServices = "/service/userServices";
+  static const String getServMeas = "/service/getServMeas";
 
   static const String userName = "/user/name";
   static const String userProfileImage = "/user/profileImage";
   static const String userContacts = "/user/contacts";
   static const String userBio = "/user/bio";
 
-  static const String label = "/label";
+  static const String storageDownload = "/storage/download";
+
+  static const String getCurrencyByCode = "/currency/getByCode";
+  static const String findCurrencyByCode = "/currency/findByCode";
+
+
+  static const String userServicesList= "/userServices/list";
+  static const String addUserService = "/userServices/add";
+  static const String updateUserService = "/userServices/update";
+  static const String deleteUserService = "/userServices/delete";
+  static const String userServiceImage = "/userServices/userServiceImage";
+
 }

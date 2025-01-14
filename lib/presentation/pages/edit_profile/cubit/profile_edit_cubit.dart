@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/profile_repository.dart';
@@ -117,6 +119,11 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
     }).catchError((_) {
       emit(state.copyWith(loading: false, editedComplete: false));
     });
+  }
+
+  void pickImageFile(File file) {
+    emit(state.copyWith(pickedFile: file));
+    getIt<ProfileRepository>().attachProfileImage(file: file);
   }
 
   void resetComplete() {

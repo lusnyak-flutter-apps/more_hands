@@ -15,6 +15,7 @@ class MHSearchField extends StatefulWidget {
     this.hintColor,
     this.minLines,
     this.backgroundColor,
+    this.onClear,
   });
 
   final String? hintText;
@@ -22,6 +23,7 @@ class MHSearchField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onFieldSubmitted;
   final VoidCallback? onEditingComplete;
+  final VoidCallback? onClear;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final Color? hintColor;
@@ -80,6 +82,7 @@ class _MHSearchFieldState extends State<MHSearchField> {
             borderRadius: BorderRadius.circular(10.r),
             onTap: () {
               _effectiveTextController.clear();
+              widget.onClear?.call();
               FocusScope.of(context).unfocus();
             },
             child: Icon(

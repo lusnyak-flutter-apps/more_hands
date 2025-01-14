@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'service_remote.dart';
+part of 'storage_remote.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'service_remote.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _ServiceRemoteApi implements ServiceRemoteApi {
-  _ServiceRemoteApi(
+class _StorageRemoteApi implements StorageRemoteApi {
+  _StorageRemoteApi(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
@@ -24,54 +24,19 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<ServiceModel>?> findServices(String serviceName) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'servName': serviceName};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceModel>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/service/find',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<ServiceModel>? _value;
-    try {
-      _value = _result.data
-          ?.map((dynamic i) => ServiceModel.fromJson(i as Map<String, dynamic>))
-          .toList();
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<List<ServiceModel>?> getUserServices() async {
+  Future<dynamic> downloadFileByPath(String path) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceModel>>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/service/userServices',
+          '${path}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -80,33 +45,31 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<ServiceModel>? _value;
-    try {
-      _value = _result.data
-          ?.map((dynamic i) => ServiceModel.fromJson(i as Map<String, dynamic>))
-          .toList();
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
     return _value;
   }
 
   @override
-  Future<List<ServiceMeasureModel>?> getServiceMeasures() async {
+  Future<dynamic> downloadFile(
+    String category,
+    String fileId,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'category': category,
+      r'fileId': fileId,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceMeasureModel>>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/service/getServMeas',
+          '/storage/download',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -115,17 +78,8 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<ServiceMeasureModel>? _value;
-    try {
-      _value = _result.data
-          ?.map((dynamic i) =>
-              ServiceMeasureModel.fromJson(i as Map<String, dynamic>))
-          .toList();
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
     return _value;
   }
 

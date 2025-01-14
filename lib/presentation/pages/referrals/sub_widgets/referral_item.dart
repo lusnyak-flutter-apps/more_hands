@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
@@ -34,7 +35,8 @@ class ReferralItem extends StatelessWidget {
             children: [
               MHImage(
                 size: 128.r,
-                imageUrl: "https://i.pravatar.cc/150?img=1",
+                imageUrl: referral.userInfo?.profileImageUrl != null ?  "${APIBase.url}${referral.userInfo!.profileImageUrl!}" : null,
+             emptyWidget:    MoreHandsAssets.icons.userYellow.svg(height: 64.r),
                 availableForegroundDecoration: false,
               ),
               16.w.widthBox,
@@ -58,7 +60,7 @@ class ReferralItem extends StatelessWidget {
                               MoreHandsAssets.icons.starFill.svg(height: 12.r),
                         ),
                         MHTag(
-                          title: "0",
+                          title: referral.userInfo?.dealCountSpend.toString() ?? "0" ,
                           icon: MoreHandsAssets.images.svg.hands.svg(
                               height: 12.r,
                               colorFilter: const ColorFilter.mode(

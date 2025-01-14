@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/remote/edit_profile_remote/edit_profile_remote.dart';
+import 'package:more_hands/data/remote/storage_remote/storage_remote.dart';
 import 'package:more_hands/data/remote/user_remote/user_remote.dart';
 import 'package:more_hands/domain/models/edit_bio_request_model/edit_bio_request_model.dart';
 import 'package:more_hands/domain/models/edit_contacts_request_model/edit_contacts_request_model.dart';
@@ -13,8 +16,16 @@ class ProfileRepository {
   Future<UserModel?> getCurrentUserInfo() async =>
       await getIt<UserRemoteApi>().getCurrentUserInfo();
 
-  Future<dynamic> getUserImage(String path) async =>
-      await getIt<UserRemoteApi>().getUserProfileImage(path);
+  Future<File?> getUserImage(String path) async {
+    return await getIt<StorageRemoteApi>()
+        .downloadFileByPath(path)
+        .then((response) async {
+      var file = File('image.jpg');
+      await file.writeAsBytes(response.data);
+      debugPrint("File downloaded successfully.");
+      return file;
+    });
+  }
 
   Future<void> editName({
     required EditNameRequestModel editModel,

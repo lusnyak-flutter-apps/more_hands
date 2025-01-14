@@ -19,6 +19,7 @@ mixin _$ProfileEditState {
   UserModel? get user => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   bool get editedComplete => throw _privateConstructorUsedError;
+  File? get pickedFile => throw _privateConstructorUsedError;
   ContactType get primaryContact => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfileEditState
@@ -38,6 +39,7 @@ abstract class $ProfileEditStateCopyWith<$Res> {
       {UserModel? user,
       bool loading,
       bool editedComplete,
+      File? pickedFile,
       ContactType primaryContact});
 
   $UserModelCopyWith<$Res>? get user;
@@ -61,6 +63,7 @@ class _$ProfileEditStateCopyWithImpl<$Res, $Val extends ProfileEditState>
     Object? user = freezed,
     Object? loading = null,
     Object? editedComplete = null,
+    Object? pickedFile = freezed,
     Object? primaryContact = null,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +79,10 @@ class _$ProfileEditStateCopyWithImpl<$Res, $Val extends ProfileEditState>
           ? _value.editedComplete
           : editedComplete // ignore: cast_nullable_to_non_nullable
               as bool,
+      pickedFile: freezed == pickedFile
+          ? _value.pickedFile
+          : pickedFile // ignore: cast_nullable_to_non_nullable
+              as File?,
       primaryContact: null == primaryContact
           ? _value.primaryContact
           : primaryContact // ignore: cast_nullable_to_non_nullable
@@ -110,6 +117,7 @@ abstract class _$$ProfileEditStateImplCopyWith<$Res>
       {UserModel? user,
       bool loading,
       bool editedComplete,
+      File? pickedFile,
       ContactType primaryContact});
 
   @override
@@ -132,6 +140,7 @@ class __$$ProfileEditStateImplCopyWithImpl<$Res>
     Object? user = freezed,
     Object? loading = null,
     Object? editedComplete = null,
+    Object? pickedFile = freezed,
     Object? primaryContact = null,
   }) {
     return _then(_$ProfileEditStateImpl(
@@ -147,6 +156,10 @@ class __$$ProfileEditStateImplCopyWithImpl<$Res>
           ? _value.editedComplete
           : editedComplete // ignore: cast_nullable_to_non_nullable
               as bool,
+      pickedFile: freezed == pickedFile
+          ? _value.pickedFile
+          : pickedFile // ignore: cast_nullable_to_non_nullable
+              as File?,
       primaryContact: null == primaryContact
           ? _value.primaryContact
           : primaryContact // ignore: cast_nullable_to_non_nullable
@@ -162,6 +175,7 @@ class _$ProfileEditStateImpl implements _ProfileEditState {
       {this.user,
       this.loading = false,
       this.editedComplete = false,
+      this.pickedFile,
       this.primaryContact = ContactType.none});
 
   @override
@@ -173,12 +187,14 @@ class _$ProfileEditStateImpl implements _ProfileEditState {
   @JsonKey()
   final bool editedComplete;
   @override
+  final File? pickedFile;
+  @override
   @JsonKey()
   final ContactType primaryContact;
 
   @override
   String toString() {
-    return 'ProfileEditState(user: $user, loading: $loading, editedComplete: $editedComplete, primaryContact: $primaryContact)';
+    return 'ProfileEditState(user: $user, loading: $loading, editedComplete: $editedComplete, pickedFile: $pickedFile, primaryContact: $primaryContact)';
   }
 
   @override
@@ -190,13 +206,15 @@ class _$ProfileEditStateImpl implements _ProfileEditState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.editedComplete, editedComplete) ||
                 other.editedComplete == editedComplete) &&
+            (identical(other.pickedFile, pickedFile) ||
+                other.pickedFile == pickedFile) &&
             (identical(other.primaryContact, primaryContact) ||
                 other.primaryContact == primaryContact));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, user, loading, editedComplete, primaryContact);
+  int get hashCode => Object.hash(
+      runtimeType, user, loading, editedComplete, pickedFile, primaryContact);
 
   /// Create a copy of ProfileEditState
   /// with the given fields replaced by the non-null parameter values.
@@ -213,6 +231,7 @@ abstract class _ProfileEditState implements ProfileEditState {
       {final UserModel? user,
       final bool loading,
       final bool editedComplete,
+      final File? pickedFile,
       final ContactType primaryContact}) = _$ProfileEditStateImpl;
 
   @override
@@ -221,6 +240,8 @@ abstract class _ProfileEditState implements ProfileEditState {
   bool get loading;
   @override
   bool get editedComplete;
+  @override
+  File? get pickedFile;
   @override
   ContactType get primaryContact;
 

@@ -21,14 +21,21 @@ import 'package:more_hands/data/local/token_storage/token_storage.dart'
 import 'package:more_hands/data/local/token_storage/token_stotage_impl.dart'
     as _i415;
 import 'package:more_hands/data/remote/auth_remote/auth_remote.dart' as _i934;
+import 'package:more_hands/data/remote/currency_remote/currency_remote.dart'
+    as _i952;
 import 'package:more_hands/data/remote/edit_profile_remote/edit_profile_remote.dart'
     as _i288;
 import 'package:more_hands/data/remote/service_remote/service_remote.dart'
     as _i541;
+import 'package:more_hands/data/remote/storage_remote/storage_remote.dart'
+    as _i168;
 import 'package:more_hands/data/remote/user_remote/user_remote.dart' as _i761;
+import 'package:more_hands/data/remote/user_services_remote/user_services_remote.dart'
+    as _i622;
 import 'package:more_hands/data/repository/auth_repository.dart' as _i528;
 import 'package:more_hands/data/repository/profile_repository.dart' as _i725;
 import 'package:more_hands/data/repository/referrals_repository.dart' as _i396;
+import 'package:more_hands/data/repository/service_repository.dart' as _i593;
 import 'package:more_hands/data/repository/users_repository.dart' as _i443;
 import 'package:more_hands/presentation/pages/app_loading/cubit/app_loading_cubit.dart'
     as _i1030;
@@ -48,6 +55,10 @@ import 'package:more_hands/presentation/pages/requests/cubit/requests_cubit.dart
     as _i498;
 import 'package:more_hands/presentation/pages/send_request/cubit/send_request_cubit.dart'
     as _i72;
+import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart'
+    as _i262;
+import 'package:more_hands/presentation/pages/services/cubit/service_list_cubit/service_list_cubit.dart'
+    as _i198;
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart'
     as _i106;
 
@@ -73,11 +84,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i224.ProfileCubit>(() => _i224.ProfileCubit());
     gh.factory<_i701.OnboardingCubit>(() => _i701.OnboardingCubit());
     gh.factory<_i272.ProfileEditCubit>(() => _i272.ProfileEditCubit());
+    gh.factory<_i198.ServiceListCubit>(() => _i198.ServiceListCubit());
+    gh.factory<_i262.ServiceDetailsCubit>(() => _i262.ServiceDetailsCubit());
     gh.lazySingleton<_i443.UsersRepository>(() => _i443.UsersRepository());
     gh.lazySingleton<_i528.AuthRepository>(() => _i528.AuthRepository());
     gh.lazySingleton<_i725.ProfileRepository>(() => _i725.ProfileRepository());
     gh.lazySingleton<_i396.ReferralsRepository>(
         () => _i396.ReferralsRepository());
+    gh.lazySingleton<_i593.ServiceRepository>(() => _i593.ServiceRepository());
     gh.factory<_i514.TokenStorage>(() => _i415.TokenStorageImpl());
     gh.factory<String>(
       () => dioClient.baseUrl,
@@ -94,6 +108,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i934.AuthRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i288.EditProfileRemoteApi>(
         () => _i288.EditProfileRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i168.StorageRemoteApi>(
+        () => _i168.StorageRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i952.CurrencyRemoteApi>(
+        () => _i952.CurrencyRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i622.UserServicesRemoteApi>(
+        () => _i622.UserServicesRemoteApi(gh<_i361.Dio>()));
     return this;
   }
 }
