@@ -28,7 +28,7 @@ abstract class UserServicesRemoteApi {
 
   @DELETE(EndPoint.deleteUserService)
   Future<void> deleteUserService({
-    @Query("userServiceId") int userServiceId,
+    @Query("userServiceId") required int userServiceId,
   });
 
   @POST(EndPoint.userServiceImage)

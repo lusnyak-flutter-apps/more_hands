@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/local/preferences/preferences.dart';
+import 'package:more_hands/data/local/token_storage/token_storage.dart';
 import 'package:more_hands/data/remote/edit_profile_remote/edit_profile_remote.dart';
 import 'package:more_hands/data/remote/storage_remote/storage_remote.dart';
 import 'package:more_hands/data/remote/user_remote/user_remote.dart';
@@ -10,6 +12,7 @@ import 'package:more_hands/domain/models/edit_bio_request_model/edit_bio_request
 import 'package:more_hands/domain/models/edit_contacts_request_model/edit_contacts_request_model.dart';
 import 'package:more_hands/domain/models/edit_name_request_model/edit_name_request_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
+import 'package:more_hands/more_hands_app.dart';
 
 @lazySingleton
 class ProfileRepository {
@@ -51,4 +54,17 @@ class ProfileRepository {
     await getIt<EditProfileRemoteApi>()
         .attachProfileImage(file: file, attachType: type, attachName: name);
   }
+
+  Future<void> logout() async {
+    await Future.delayed(const Duration(seconds: 2), localLogout);
+  }
+
+  Future<void> localLogout() async {
+    await Future.wait([
+      Preferences.instance.deleteAll(),
+      getIt<TokenStorage>().deleteToken(),
+    ]).whenComplete(() => appRouter.pushAndPopUntil(const TestAuthRoute(),
+        predicate: (route) => false));
+  }
+
 }

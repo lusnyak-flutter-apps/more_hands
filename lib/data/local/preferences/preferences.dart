@@ -28,7 +28,7 @@ class Preferences {
   }
 
   Future<void> deleteAll() async {
-    await _sharedPrefs?.remove(Preferences.onBoardingLaunchKey);
+    // await _sharedPrefs?.remove(Preferences.onBoardingLaunchKey);
     await _sharedPrefs?.remove(Preferences.pushTokenKey);
   }
 }

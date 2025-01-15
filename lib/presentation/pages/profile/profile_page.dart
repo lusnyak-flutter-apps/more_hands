@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -33,26 +31,23 @@ class _ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ProfileCubit>();
     return Scaffold(
       body: SafeArea(
         bottom: false,
         child:
             BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-          final loading =
-              state.when(loading: () => true, loaded: (_, __) => false);
-          final (user, file) = state.when(
-              loading: () => (null, null),
-              loaded: (user, file) => (user, file));
-
-          if (loading) return const Center(child: CircularProgressIndicator());
+          if (state.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
           return SingleChildScrollView(
             padding: EdgeInsets.only(
                 top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                profileImagePart(context, user, file).paddingOnly(bottom: 24.h),
-                aboutUserPart(context, user),
+                profileImagePart(context, state.user).paddingOnly(bottom: 24.h),
+                aboutUserPart(context, state.user),
                 WhatCanDoView(
                   onEdit: () {
                     context.router.push(const ServicesListRoute());
@@ -74,7 +69,7 @@ class _ProfileView extends StatelessWidget {
                     8.w.widthBox,
                     MHOutlinedButton(
                       title: context.localized.logout,
-                      onPressed: () {},
+                      onPressed: cubit.logout,
                       icon: MoreHandsAssets.icons.logout.svg(),
                     ).expanded(),
                   ],
@@ -94,16 +89,14 @@ class _ProfileView extends StatelessWidget {
     );
   }
 
-  Widget profileImagePart(BuildContext context, UserModel? user, File? file) =>
-      Stack(
+  Widget profileImagePart(BuildContext context, UserModel? user) => Stack(
         children: [
           MHImage(
               size: context.width,
               emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
               imageUrl: user?.userInfo?.profileImageUrl != null
                   ? "${APIBase.url}${user!.userInfo!.profileImageUrl!}"
-                  : null
-              ),
+                  : null),
           Positioned(
             top: 8.h,
             right: 8.w,

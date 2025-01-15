@@ -5,6 +5,7 @@ import 'package:more_hands/presentation/pages/referrals/cubit/referrals_cubit.da
 import 'package:more_hands/presentation/pages/referrals/sub_widgets/referral_item.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
 import 'package:more_hands/utils/utils.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:uikit/uikit.dart';
 
 @RoutePage()
@@ -27,22 +28,22 @@ class _ReferralsView extends StatelessWidget {
   Widget build(BuildContext context) {
     // final cubit = context.read<ReferralsCubit>();
 
-    return Scaffold(
-      bottomSheet: MHBottomNavigationControl(
-        buttonTitle: context.localized.copyAndSend,
-        buttonIcon: MoreHandsAssets.icons.link.svg(height: 18.r, colorFilter: const ColorFilter.mode(MHColors.blackBGColor, BlendMode.srcIn)),
-        action: () {
-          // context.router.push(const ProfileContactsRoute());
-        },
-      ).paddingOnly(bottom: 16.h),
-      body: SafeArea(
-        child: BlocBuilder<ReferralsCubit, ReferralsState>(
-          builder: (_, state) {
-            final (code, referrals) = state.maybeWhen(
-              loaded: (code, referrals) => (code, referrals),
-              orElse: () => ("", <UserModel>[]),
-            );
-            return Column(
+    return BlocBuilder<ReferralsCubit, ReferralsState>(
+      builder: (context, state) {
+        final (code, referrals) = state.maybeWhen(
+          loaded: (code, referrals) => (code, referrals),
+          orElse: () => ("", <UserModel>[]),
+        );
+        return Scaffold(
+          bottomSheet: MHBottomNavigationControl(
+            buttonTitle: context.localized.copyAndSend,
+            buttonIcon: MoreHandsAssets.icons.link.svg(height: 18.r, colorFilter: const ColorFilter.mode(MHColors.blackBGColor, BlendMode.srcIn)),
+            action: () {
+               copyAndShareReferralCode(context, referralCode: code);
+            },
+          ).paddingOnly(bottom: 16.h),
+          body: SafeArea(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -50,10 +51,10 @@ class _ReferralsView extends StatelessWidget {
                 24.h.heightBox,
                 _buildReferralsList(context, referrals).expanded(),
               ],
-            ).paddingSymmetric(horizontal: 24.w, vertical: 16.h);
-          },
-        ),
-      ),
+            ).paddingSymmetric(horizontal: 24.w, vertical: 16.h),
+          ),
+        );
+      }
     );
   }
 
@@ -110,5 +111,20 @@ class _ReferralsView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> copyAndShareReferralCode(BuildContext context, {required String referralCode}) async {
+    final box = context.findRenderObject();
+    String shareContent = "${context.localized.referralCode}: $referralCode";
+
+    context.read<ReferralsCubit>().copyReferralCode(referralCode).then((_) async {
+      if(context.mounted) {
+        await Share.share(shareContent,
+            subject: context.localized.appName,
+            sharePositionOrigin: box?.paintBounds);
+      }
+    }).catchError((onError){
+      debugPrint(onError.toString());
+    });
   }
 }

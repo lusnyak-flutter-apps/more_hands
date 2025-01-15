@@ -16,43 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserModel user, File? userProfileImage) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserModel user, File? userProfileImage)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserModel user, File? userProfileImage)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProfileState value) loading,
-    required TResult Function(_ProfileLoadedState value) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProfileState value)? loading,
-    TResult? Function(_ProfileLoadedState value)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProfileState value)? loading,
-    TResult Function(_ProfileLoadedState value)? loaded,
-    required TResult orElse(),
-  }) =>
+  bool get loading => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
+  File? get userProfileImage => throw _privateConstructorUsedError;
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProfileStateCopyWith<ProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +32,10 @@ abstract class $ProfileStateCopyWith<$Res> {
   factory $ProfileStateCopyWith(
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
+  @useResult
+  $Res call({bool loading, UserModel? user, File? userProfileImage});
+
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -75,13 +50,56 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? user = freezed,
+    Object? userProfileImage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      userProfileImage: freezed == userProfileImage
+          ? _value.userProfileImage
+          : userProfileImage // ignore: cast_nullable_to_non_nullable
+              as File?,
+    ) as $Val);
+  }
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$ProfileStateImplCopyWith<$Res> {
+abstract class _$$ProfileStateImplCopyWith<$Res>
+    implements $ProfileStateCopyWith<$Res> {
   factory _$$ProfileStateImplCopyWith(
           _$ProfileStateImpl value, $Res Function(_$ProfileStateImpl) then) =
       __$$ProfileStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool loading, UserModel? user, File? userProfileImage});
+
+  @override
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -94,255 +112,89 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProfileStateImpl implements _ProfileState {
-  const _$ProfileStateImpl();
-
-  @override
-  String toString() {
-    return 'ProfileState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProfileStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserModel user, File? userProfileImage) loaded,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserModel user, File? userProfileImage)? loaded,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserModel user, File? userProfileImage)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProfileState value) loading,
-    required TResult Function(_ProfileLoadedState value) loaded,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProfileState value)? loading,
-    TResult? Function(_ProfileLoadedState value)? loaded,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProfileState value)? loading,
-    TResult Function(_ProfileLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ProfileState implements ProfileState {
-  const factory _ProfileState() = _$ProfileStateImpl;
-}
-
-/// @nodoc
-abstract class _$$ProfileLoadedStateImplCopyWith<$Res> {
-  factory _$$ProfileLoadedStateImplCopyWith(_$ProfileLoadedStateImpl value,
-          $Res Function(_$ProfileLoadedStateImpl) then) =
-      __$$ProfileLoadedStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, File? userProfileImage});
-
-  $UserModelCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class __$$ProfileLoadedStateImplCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$ProfileLoadedStateImpl>
-    implements _$$ProfileLoadedStateImplCopyWith<$Res> {
-  __$$ProfileLoadedStateImplCopyWithImpl(_$ProfileLoadedStateImpl _value,
-      $Res Function(_$ProfileLoadedStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? loading = null,
+    Object? user = freezed,
     Object? userProfileImage = freezed,
   }) {
-    return _then(_$ProfileLoadedStateImpl(
-      user: null == user
+    return _then(_$ProfileStateImpl(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as UserModel?,
       userProfileImage: freezed == userProfileImage
           ? _value.userProfileImage
           : userProfileImage // ignore: cast_nullable_to_non_nullable
               as File?,
     ));
   }
-
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
-class _$ProfileLoadedStateImpl implements _ProfileLoadedState {
-  const _$ProfileLoadedStateImpl({required this.user, this.userProfileImage});
+class _$ProfileStateImpl implements _ProfileState {
+  const _$ProfileStateImpl(
+      {this.loading = false, this.user, this.userProfileImage});
 
   @override
-  final UserModel user;
+  @JsonKey()
+  final bool loading;
+  @override
+  final UserModel? user;
   @override
   final File? userProfileImage;
 
   @override
   String toString() {
-    return 'ProfileState.loaded(user: $user, userProfileImage: $userProfileImage)';
+    return 'ProfileState(loading: $loading, user: $user, userProfileImage: $userProfileImage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileLoadedStateImpl &&
+            other is _$ProfileStateImpl &&
+            (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.userProfileImage, userProfileImage) ||
                 other.userProfileImage == userProfileImage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, userProfileImage);
+  int get hashCode => Object.hash(runtimeType, loading, user, userProfileImage);
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileLoadedStateImplCopyWith<_$ProfileLoadedStateImpl> get copyWith =>
-      __$$ProfileLoadedStateImplCopyWithImpl<_$ProfileLoadedStateImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserModel user, File? userProfileImage) loaded,
-  }) {
-    return loaded(user, userProfileImage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserModel user, File? userProfileImage)? loaded,
-  }) {
-    return loaded?.call(user, userProfileImage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserModel user, File? userProfileImage)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(user, userProfileImage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProfileState value) loading,
-    required TResult Function(_ProfileLoadedState value) loaded,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProfileState value)? loading,
-    TResult? Function(_ProfileLoadedState value)? loaded,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProfileState value)? loading,
-    TResult Function(_ProfileLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+  _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
+      __$$ProfileStateImplCopyWithImpl<_$ProfileStateImpl>(this, _$identity);
 }
 
-abstract class _ProfileLoadedState implements ProfileState {
-  const factory _ProfileLoadedState(
-      {required final UserModel user,
-      final File? userProfileImage}) = _$ProfileLoadedStateImpl;
+abstract class _ProfileState implements ProfileState {
+  const factory _ProfileState(
+      {final bool loading,
+      final UserModel? user,
+      final File? userProfileImage}) = _$ProfileStateImpl;
 
-  UserModel get user;
+  @override
+  bool get loading;
+  @override
+  UserModel? get user;
+  @override
   File? get userProfileImage;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProfileLoadedStateImplCopyWith<_$ProfileLoadedStateImpl> get copyWith =>
+  _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

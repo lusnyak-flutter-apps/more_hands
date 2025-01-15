@@ -10,7 +10,7 @@ part 'profile_state.dart';
 
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit() : super(const ProfileState.loading());
+  ProfileCubit() : super(const ProfileState());
 
   Future<void> loadProfile() async {
     await getIt<ProfileRepository>().getCurrentUserInfo().then((value) async {
@@ -19,8 +19,12 @@ class ProfileCubit extends Cubit<ProfileState> {
         // debugPrint(url);
         // final file = await getIt<ProfileRepository>().getUserImage(value.userInfo!.profileImageUrl!);
         // debugPrint(jsonEncode(file.toString()).runtimeType.toString());
-        emit(ProfileState.loaded(user: value /*, userProfileImage: file*/));
+        emit(ProfileState(user: value /*, userProfileImage: file*/));
        }
     });
+  }
+
+  Future<void> logout() async {
+    await getIt<ProfileRepository>().logout();
   }
 }
