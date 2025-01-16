@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/domain/enums/request_status.dart';
+import 'package:more_hands/domain/models/request_model/request_model.dart';
+import 'package:more_hands/utils/extensions/date_time_extension.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
 class IncomingRequestTile extends StatelessWidget {
-  const IncomingRequestTile({super.key, this.isAccepted = false});
+  const IncomingRequestTile({super.key, required this.requestModel});
 
-  final bool isAccepted;
+  final RequestModel requestModel;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    bool isAccepted = requestModel.status == RequestStatus.accepted;
+    final imageUrl =  requestModel.profileImageUrl != null
+        ? "${APIBase.url}${requestModel.profileImageUrl!}"
+        : null;
+
+    final fName = requestModel.userFirstName ?? "";
+    final lName = requestModel.userLastName ?? "";
+
+    String formattedName = fName;
+    if (lName.isNotEmpty) {
+      formattedName += " ${lName.substring(0, 1)}.";
+    }
+    String dateFormat = requestModel.createDate?.formatDate(format: "dd.MM") ?? "";
+
+     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,11 +36,11 @@ class IncomingRequestTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MHImage(
-                imageUrl: "https://i.pravatar.cc/300?img=1",
+                imageUrl: imageUrl,
                 size: 52.w,
                 availableForegroundDecoration: false),
             MHTag(
-              title: "4.8",
+              title: requestModel.userRating.toString(),
               icon: MoreHandsAssets.icons.starFill.svg(),
             ).paddingSymmetric(vertical: 4.h),
             if (isAccepted)
@@ -34,7 +52,7 @@ class IncomingRequestTile extends StatelessWidget {
                       colorFilter: const ColorFilter.mode(
                           MHColors.yellowColor, BlendMode.srcIn)),
                   2.w.widthBox,
-                  MHGradientText(text: "30.06",
+                  MHGradientText(text: dateFormat,
                       style: body12MediumStyle),
                 ],
               )
@@ -47,7 +65,7 @@ class IncomingRequestTile extends StatelessWidget {
                     colorFilter: const ColorFilter.mode(
                         MHColors.grayColor98, BlendMode.srcIn)),
                 2.w.widthBox,
-                Text("30.06",
+                Text(dateFormat,
                     style: body12MediumStyle.copyWith(
                         color: MHColors.grayColor98)),
               ],
@@ -68,11 +86,11 @@ class IncomingRequestTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Name L.",
+              formattedName,
               style: body20SemiBoldStyle,
             ),
             Text(
-              "Здравствуйте! Ищу мастера по стиральным машинам, увидел у вас в списке услуг. У меня проблема. Примите запрос, если сможете помочь.",
+              requestModel.rqText ?? "",
               style: body16Style,
             ).paddingSymmetric(vertical: 8.h),
             if (isAccepted)

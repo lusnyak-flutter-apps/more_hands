@@ -81,7 +81,7 @@ class _ServicesListView extends StatelessWidget {
                           BorderSide(color: MHColors.grayColor, width: 1.0),
                     ),
                     title: Text(
-                      category.catName ?? "",
+                      category?.catName ?? "",
                       style: body16MediumStyle,
                     ),
                     children: [
@@ -98,10 +98,10 @@ class _ServicesListView extends StatelessWidget {
                                       BorderSide(color: MHColors.grayColor))
                               : null,
                           title: Text(
-                            service.servName ?? "",
+                             service.serviceInfo?.servName ?? "",
                             style: body16MediumStyle,
                           ),
-                          trailing: state.selected?.servId == service.servId
+                          trailing: state.selected?.serviceInfo?.servId == service.serviceInfo?.servId
                               ? MoreHandsAssets.icons.check.svg()
                               : null,
                         )

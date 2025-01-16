@@ -8,13 +8,12 @@ part of 'service_model.dart';
 
 _$ServiceModelImpl _$$ServiceModelImplFromJson(Map<String, dynamic> json) =>
     _$ServiceModelImpl(
-      catId: (json['catId'] as num).toInt(),
-      catMCode: json['catMcode'] as String?,
-      catName: json['catName'] as String?,
-      servId: (json['servId'] as num).toInt(),
-      servMCode: json['servMcode'] as String?,
-      servName: json['servName'] as String?,
-      servImageUrl: json['servImageUrl'] as String?,
+      serviceInfo: json['servInfo'] == null
+          ? null
+          : ServiceInfoModel.fromJson(json['servInfo'] as Map<String, dynamic>),
+      category: json['catInfo'] == null
+          ? null
+          : CategoryModel.fromJson(json['catInfo'] as Map<String, dynamic>),
       locations: (json['locations'] as List<dynamic>?)
               ?.map((e) => LocationModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -28,13 +27,8 @@ _$ServiceModelImpl _$$ServiceModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ServiceModelImplToJson(_$ServiceModelImpl instance) =>
     <String, dynamic>{
-      'catId': instance.catId,
-      'catMcode': instance.catMCode,
-      'catName': instance.catName,
-      'servId': instance.servId,
-      'servMcode': instance.servMCode,
-      'servName': instance.servName,
-      'servImageUrl': instance.servImageUrl,
+      'servInfo': instance.serviceInfo,
+      'catInfo': instance.category,
       'locations': instance.locations,
       'files': instance.files,
       'userHasService': instance.userHasService,

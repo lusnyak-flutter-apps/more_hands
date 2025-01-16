@@ -87,10 +87,17 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [IncomingRequestsPage]
-class IncomingRequestsRoute extends PageRouteInfo<void> {
-  const IncomingRequestsRoute({List<PageRouteInfo>? children})
-      : super(
+class IncomingRequestsRoute extends PageRouteInfo<IncomingRequestsRouteArgs> {
+  IncomingRequestsRoute({
+    Key? key,
+    required List<RequestModel> requests,
+    List<PageRouteInfo>? children,
+  }) : super(
           IncomingRequestsRoute.name,
+          args: IncomingRequestsRouteArgs(
+            key: key,
+            requests: requests,
+          ),
           initialChildren: children,
         );
 
@@ -99,9 +106,29 @@ class IncomingRequestsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const IncomingRequestsPage();
+      final args = data.argsAs<IncomingRequestsRouteArgs>();
+      return IncomingRequestsPage(
+        key: args.key,
+        requests: args.requests,
+      );
     },
   );
+}
+
+class IncomingRequestsRouteArgs {
+  const IncomingRequestsRouteArgs({
+    this.key,
+    required this.requests,
+  });
+
+  final Key? key;
+
+  final List<RequestModel> requests;
+
+  @override
+  String toString() {
+    return 'IncomingRequestsRouteArgs{key: $key, requests: $requests}';
+  }
 }
 
 /// generated route for
@@ -125,10 +152,17 @@ class OnboardingRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [OutgoingRequestsPage]
-class OutgoingRequestsRoute extends PageRouteInfo<void> {
-  const OutgoingRequestsRoute({List<PageRouteInfo>? children})
-      : super(
+class OutgoingRequestsRoute extends PageRouteInfo<OutgoingRequestsRouteArgs> {
+  OutgoingRequestsRoute({
+    Key? key,
+    required List<RequestModel> requests,
+    List<PageRouteInfo>? children,
+  }) : super(
           OutgoingRequestsRoute.name,
+          args: OutgoingRequestsRouteArgs(
+            key: key,
+            requests: requests,
+          ),
           initialChildren: children,
         );
 
@@ -137,9 +171,29 @@ class OutgoingRequestsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const OutgoingRequestsPage();
+      final args = data.argsAs<OutgoingRequestsRouteArgs>();
+      return OutgoingRequestsPage(
+        key: args.key,
+        requests: args.requests,
+      );
     },
   );
+}
+
+class OutgoingRequestsRouteArgs {
+  const OutgoingRequestsRouteArgs({
+    this.key,
+    required this.requests,
+  });
+
+  final Key? key;
+
+  final List<RequestModel> requests;
+
+  @override
+  String toString() {
+    return 'OutgoingRequestsRouteArgs{key: $key, requests: $requests}';
+  }
 }
 
 /// generated route for

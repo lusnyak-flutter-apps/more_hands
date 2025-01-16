@@ -16,49 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RequestsState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)
-        loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)?
-        loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)?
-        loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RequestsState value) loading,
-    required TResult Function(_RequestsLoadedState value) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RequestsState value)? loading,
-    TResult? Function(_RequestsLoadedState value)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RequestsState value)? loading,
-    TResult Function(_RequestsLoadedState value)? loaded,
-    required TResult orElse(),
-  }) =>
+  bool get loading => throw _privateConstructorUsedError;
+  RequestStatus get selectedStatus => throw _privateConstructorUsedError;
+  RequestType get selectedType => throw _privateConstructorUsedError;
+  List<RequestModel> get requests => throw _privateConstructorUsedError;
+
+  /// Create a copy of RequestsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $RequestsStateCopyWith<RequestsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +33,12 @@ abstract class $RequestsStateCopyWith<$Res> {
   factory $RequestsStateCopyWith(
           RequestsState value, $Res Function(RequestsState) then) =
       _$RequestsStateCopyWithImpl<$Res, RequestsState>;
+  @useResult
+  $Res call(
+      {bool loading,
+      RequestStatus selectedStatus,
+      RequestType selectedType,
+      List<RequestModel> requests});
 }
 
 /// @nodoc
@@ -81,13 +53,48 @@ class _$RequestsStateCopyWithImpl<$Res, $Val extends RequestsState>
 
   /// Create a copy of RequestsState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? selectedStatus = null,
+    Object? selectedType = null,
+    Object? requests = null,
+  }) {
+    return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      selectedStatus: null == selectedStatus
+          ? _value.selectedStatus
+          : selectedStatus // ignore: cast_nullable_to_non_nullable
+              as RequestStatus,
+      selectedType: null == selectedType
+          ? _value.selectedType
+          : selectedType // ignore: cast_nullable_to_non_nullable
+              as RequestType,
+      requests: null == requests
+          ? _value.requests
+          : requests // ignore: cast_nullable_to_non_nullable
+              as List<RequestModel>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$RequestsStateImplCopyWith<$Res> {
+abstract class _$$RequestsStateImplCopyWith<$Res>
+    implements $RequestsStateCopyWith<$Res> {
   factory _$$RequestsStateImplCopyWith(
           _$RequestsStateImpl value, $Res Function(_$RequestsStateImpl) then) =
       __$$RequestsStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool loading,
+      RequestStatus selectedStatus,
+      RequestType selectedType,
+      List<RequestModel> requests});
 }
 
 /// @nodoc
@@ -100,163 +107,58 @@ class __$$RequestsStateImplCopyWithImpl<$Res>
 
   /// Create a copy of RequestsState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$RequestsStateImpl implements _RequestsState {
-  const _$RequestsStateImpl();
-
-  @override
-  String toString() {
-    return 'RequestsState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RequestsStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)
-        loaded,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)?
-        loaded,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)?
-        loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RequestsState value) loading,
-    required TResult Function(_RequestsLoadedState value) loaded,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RequestsState value)? loading,
-    TResult? Function(_RequestsLoadedState value)? loaded,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RequestsState value)? loading,
-    TResult Function(_RequestsLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RequestsState implements RequestsState {
-  const factory _RequestsState() = _$RequestsStateImpl;
-}
-
-/// @nodoc
-abstract class _$$RequestsLoadedStateImplCopyWith<$Res> {
-  factory _$$RequestsLoadedStateImplCopyWith(_$RequestsLoadedStateImpl value,
-          $Res Function(_$RequestsLoadedStateImpl) then) =
-      __$$RequestsLoadedStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {String selectedFilter, int selectedSection, List<dynamic> requests});
-}
-
-/// @nodoc
-class __$$RequestsLoadedStateImplCopyWithImpl<$Res>
-    extends _$RequestsStateCopyWithImpl<$Res, _$RequestsLoadedStateImpl>
-    implements _$$RequestsLoadedStateImplCopyWith<$Res> {
-  __$$RequestsLoadedStateImplCopyWithImpl(_$RequestsLoadedStateImpl _value,
-      $Res Function(_$RequestsLoadedStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of RequestsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedFilter = null,
-    Object? selectedSection = null,
+    Object? loading = null,
+    Object? selectedStatus = null,
+    Object? selectedType = null,
     Object? requests = null,
   }) {
-    return _then(_$RequestsLoadedStateImpl(
-      selectedFilter: null == selectedFilter
-          ? _value.selectedFilter
-          : selectedFilter // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectedSection: null == selectedSection
-          ? _value.selectedSection
-          : selectedSection // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$RequestsStateImpl(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      selectedStatus: null == selectedStatus
+          ? _value.selectedStatus
+          : selectedStatus // ignore: cast_nullable_to_non_nullable
+              as RequestStatus,
+      selectedType: null == selectedType
+          ? _value.selectedType
+          : selectedType // ignore: cast_nullable_to_non_nullable
+              as RequestType,
       requests: null == requests
           ? _value._requests
           : requests // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<RequestModel>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$RequestsLoadedStateImpl implements _RequestsLoadedState {
-  const _$RequestsLoadedStateImpl(
-      {this.selectedFilter = "All",
-      this.selectedSection = 0,
-      final List<dynamic> requests = const []})
+class _$RequestsStateImpl implements _RequestsState {
+  const _$RequestsStateImpl(
+      {this.loading = false,
+      this.selectedStatus = RequestStatus.all,
+      this.selectedType = RequestType.sender,
+      final List<RequestModel> requests = const []})
       : _requests = requests;
 
   @override
   @JsonKey()
-  final String selectedFilter;
+  final bool loading;
   @override
   @JsonKey()
-  final int selectedSection;
-  final List<dynamic> _requests;
+  final RequestStatus selectedStatus;
   @override
   @JsonKey()
-  List<dynamic> get requests {
+  final RequestType selectedType;
+  final List<RequestModel> _requests;
+  @override
+  @JsonKey()
+  List<RequestModel> get requests {
     if (_requests is EqualUnmodifiableListView) return _requests;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_requests);
@@ -264,116 +166,55 @@ class _$RequestsLoadedStateImpl implements _RequestsLoadedState {
 
   @override
   String toString() {
-    return 'RequestsState.loaded(selectedFilter: $selectedFilter, selectedSection: $selectedSection, requests: $requests)';
+    return 'RequestsState(loading: $loading, selectedStatus: $selectedStatus, selectedType: $selectedType, requests: $requests)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RequestsLoadedStateImpl &&
-            (identical(other.selectedFilter, selectedFilter) ||
-                other.selectedFilter == selectedFilter) &&
-            (identical(other.selectedSection, selectedSection) ||
-                other.selectedSection == selectedSection) &&
+            other is _$RequestsStateImpl &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.selectedStatus, selectedStatus) ||
+                other.selectedStatus == selectedStatus) &&
+            (identical(other.selectedType, selectedType) ||
+                other.selectedType == selectedType) &&
             const DeepCollectionEquality().equals(other._requests, _requests));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedFilter, selectedSection,
-      const DeepCollectionEquality().hash(_requests));
+  int get hashCode => Object.hash(runtimeType, loading, selectedStatus,
+      selectedType, const DeepCollectionEquality().hash(_requests));
 
   /// Create a copy of RequestsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RequestsLoadedStateImplCopyWith<_$RequestsLoadedStateImpl> get copyWith =>
-      __$$RequestsLoadedStateImplCopyWithImpl<_$RequestsLoadedStateImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)
-        loaded,
-  }) {
-    return loaded(selectedFilter, selectedSection, requests);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)?
-        loaded,
-  }) {
-    return loaded?.call(selectedFilter, selectedSection, requests);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            String selectedFilter, int selectedSection, List<dynamic> requests)?
-        loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(selectedFilter, selectedSection, requests);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RequestsState value) loading,
-    required TResult Function(_RequestsLoadedState value) loaded,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RequestsState value)? loading,
-    TResult? Function(_RequestsLoadedState value)? loaded,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RequestsState value)? loading,
-    TResult Function(_RequestsLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+  _$$RequestsStateImplCopyWith<_$RequestsStateImpl> get copyWith =>
+      __$$RequestsStateImplCopyWithImpl<_$RequestsStateImpl>(this, _$identity);
 }
 
-abstract class _RequestsLoadedState implements RequestsState {
-  const factory _RequestsLoadedState(
-      {final String selectedFilter,
-      final int selectedSection,
-      final List<dynamic> requests}) = _$RequestsLoadedStateImpl;
+abstract class _RequestsState implements RequestsState {
+  const factory _RequestsState(
+      {final bool loading,
+      final RequestStatus selectedStatus,
+      final RequestType selectedType,
+      final List<RequestModel> requests}) = _$RequestsStateImpl;
 
-  String get selectedFilter;
-  int get selectedSection;
-  List<dynamic> get requests;
+  @override
+  bool get loading;
+  @override
+  RequestStatus get selectedStatus;
+  @override
+  RequestType get selectedType;
+  @override
+  List<RequestModel> get requests;
 
   /// Create a copy of RequestsState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RequestsLoadedStateImplCopyWith<_$RequestsLoadedStateImpl> get copyWith =>
+  _$$RequestsStateImplCopyWith<_$RequestsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

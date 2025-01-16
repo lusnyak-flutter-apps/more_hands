@@ -57,7 +57,7 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  state.service?.servName ?? "",
+                  "",//state.service?.servName ?? "",
                   style: body16MediumStyle,
                 ).paddingOnly(bottom: 16.h),
                 Row(

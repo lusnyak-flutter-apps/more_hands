@@ -2,11 +2,12 @@ part of 'requests_cubit.dart';
 
 @freezed
 class RequestsState with _$RequestsState {
-  const factory RequestsState.loading() = _RequestsState;
 
-  const factory RequestsState.loaded({
-    @Default("All") String selectedFilter,
-    @Default(0) int selectedSection,
-    @Default([]) List<dynamic> requests,
-  }) = _RequestsLoadedState;
+  const factory RequestsState({
+  @Default(false) bool loading,
+    @Default(RequestStatus.all) RequestStatus selectedStatus,
+    @Default(RequestType.sender) RequestType selectedType,
+    @Default([]) List<RequestModel> requests,
+  }) = _RequestsState;
 }
+

@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ServiceListState {
   bool get loading => throw _privateConstructorUsedError;
   ServiceModel? get selected => throw _privateConstructorUsedError;
-  List<ServiceListViewModel> get services => throw _privateConstructorUsedError;
+  List<ServiceByCategoryModel> get services =>
+      throw _privateConstructorUsedError;
   List<int> get expanded => throw _privateConstructorUsedError;
 
   /// Create a copy of ServiceListState
@@ -37,7 +38,7 @@ abstract class $ServiceListStateCopyWith<$Res> {
   $Res call(
       {bool loading,
       ServiceModel? selected,
-      List<ServiceListViewModel> services,
+      List<ServiceByCategoryModel> services,
       List<int> expanded});
 
   $ServiceModelCopyWith<$Res>? get selected;
@@ -75,7 +76,7 @@ class _$ServiceListStateCopyWithImpl<$Res, $Val extends ServiceListState>
       services: null == services
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<ServiceListViewModel>,
+              as List<ServiceByCategoryModel>,
       expanded: null == expanded
           ? _value.expanded
           : expanded // ignore: cast_nullable_to_non_nullable
@@ -109,7 +110,7 @@ abstract class _$$ServiceListStateImplCopyWith<$Res>
   $Res call(
       {bool loading,
       ServiceModel? selected,
-      List<ServiceListViewModel> services,
+      List<ServiceByCategoryModel> services,
       List<int> expanded});
 
   @override
@@ -146,7 +147,7 @@ class __$$ServiceListStateImplCopyWithImpl<$Res>
       services: null == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<ServiceListViewModel>,
+              as List<ServiceByCategoryModel>,
       expanded: null == expanded
           ? _value._expanded
           : expanded // ignore: cast_nullable_to_non_nullable
@@ -161,8 +162,8 @@ class _$ServiceListStateImpl implements _ServiceListState {
   const _$ServiceListStateImpl(
       {this.loading = false,
       this.selected,
-      final List<ServiceListViewModel> services =
-          const <ServiceListViewModel>[],
+      final List<ServiceByCategoryModel> services =
+          const <ServiceByCategoryModel>[],
       final List<int> expanded = const <int>[]})
       : _services = services,
         _expanded = expanded;
@@ -172,10 +173,10 @@ class _$ServiceListStateImpl implements _ServiceListState {
   final bool loading;
   @override
   final ServiceModel? selected;
-  final List<ServiceListViewModel> _services;
+  final List<ServiceByCategoryModel> _services;
   @override
   @JsonKey()
-  List<ServiceListViewModel> get services {
+  List<ServiceByCategoryModel> get services {
     if (_services is EqualUnmodifiableListView) return _services;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_services);
@@ -229,7 +230,7 @@ abstract class _ServiceListState implements ServiceListState {
   const factory _ServiceListState(
       {final bool loading,
       final ServiceModel? selected,
-      final List<ServiceListViewModel> services,
+      final List<ServiceByCategoryModel> services,
       final List<int> expanded}) = _$ServiceListStateImpl;
 
   @override
@@ -237,7 +238,7 @@ abstract class _ServiceListState implements ServiceListState {
   @override
   ServiceModel? get selected;
   @override
-  List<ServiceListViewModel> get services;
+  List<ServiceByCategoryModel> get services;
   @override
   List<int> get expanded;
 

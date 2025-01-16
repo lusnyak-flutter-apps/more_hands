@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'service_remote.dart';
+part of 'request_remote.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'service_remote.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _ServiceRemoteApi implements ServiceRemoteApi {
-  _ServiceRemoteApi(
+class _RequestRemoteApi implements RequestRemoteApi {
+  _RequestRemoteApi(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
@@ -24,19 +24,27 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<ServiceByCategoryModel>?> findServices(String serviceName) async {
+  Future<List<RequestModel>?> getBySender({
+    String status = "new",
+    int from = 0,
+    int to = 10,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'servName': serviceName};
+    final queryParameters = <String, dynamic>{
+      r'status': status,
+      r'from': from,
+      r'to': to,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceByCategoryModel>>(Options(
+    final _options = _setStreamType<List<RequestModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/service/findByCat',
+          '/request/getBySender',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -46,11 +54,10 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<ServiceByCategoryModel>? _value;
+    late List<RequestModel>? _value;
     try {
       _value = _result.data
-          ?.map((dynamic i) =>
-              ServiceByCategoryModel.fromJson(i as Map<String, dynamic>))
+          ?.map((dynamic i) => RequestModel.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -60,19 +67,27 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
   }
 
   @override
-  Future<List<ServiceMeasureModel>?> getServiceMeasures() async {
+  Future<List<RequestModel>?> getByReceiver({
+    String status = "new",
+    int from = 0,
+    int to = 10,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'status': status,
+      r'from': from,
+      r'to': to,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceMeasureModel>>(Options(
+    final _options = _setStreamType<List<RequestModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/service/getServMeas',
+          '/request/getByReceiver',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -82,11 +97,10 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<ServiceMeasureModel>? _value;
+    late List<RequestModel>? _value;
     try {
       _value = _result.data
-          ?.map((dynamic i) =>
-              ServiceMeasureModel.fromJson(i as Map<String, dynamic>))
+          ?.map((dynamic i) => RequestModel.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/service_by_category_model/service_by_category_model.dart';
 import 'package:more_hands/domain/models/service_means_model/service_measure_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 
@@ -12,12 +13,9 @@ abstract class ServiceRemoteApi {
   factory ServiceRemoteApi(Dio dio) = _ServiceRemoteApi;
 
   @GET(EndPoint.findServices)
-  Future<List<ServiceModel>?> findServices(
+  Future<List<ServiceByCategoryModel>?> findServices(
     @Query('servName') String serviceName,
   );
-
-  @GET(EndPoint.userServices)
-  Future<List<ServiceModel>?> getUserServices();
 
   @GET(EndPoint.getServMeas)
   Future<List<ServiceMeasureModel>?> getServiceMeasures();

@@ -36,7 +36,7 @@ class _UserServicesRemoteApi implements UserServicesRemoteApi {
     )
         .compose(
           _dio.options,
-          '/userServices/list',
+          '/userServices/listByCat',
           queryParameters: queryParameters,
           data: _data,
         )

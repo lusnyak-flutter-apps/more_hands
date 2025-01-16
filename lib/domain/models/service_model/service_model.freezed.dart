@@ -20,15 +20,10 @@ ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ServiceModel {
-  int get catId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'catMcode')
-  String? get catMCode => throw _privateConstructorUsedError;
-  String? get catName => throw _privateConstructorUsedError;
-  int get servId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'servMcode')
-  String? get servMCode => throw _privateConstructorUsedError;
-  String? get servName => throw _privateConstructorUsedError;
-  String? get servImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'servInfo')
+  ServiceInfoModel? get serviceInfo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'catInfo')
+  CategoryModel? get category => throw _privateConstructorUsedError;
   List<LocationModel> get locations => throw _privateConstructorUsedError;
   List<FileModel> get files => throw _privateConstructorUsedError;
   bool get userHasService => throw _privateConstructorUsedError;
@@ -50,16 +45,14 @@ abstract class $ServiceModelCopyWith<$Res> {
       _$ServiceModelCopyWithImpl<$Res, ServiceModel>;
   @useResult
   $Res call(
-      {int catId,
-      @JsonKey(name: 'catMcode') String? catMCode,
-      String? catName,
-      int servId,
-      @JsonKey(name: 'servMcode') String? servMCode,
-      String? servName,
-      String? servImageUrl,
+      {@JsonKey(name: 'servInfo') ServiceInfoModel? serviceInfo,
+      @JsonKey(name: 'catInfo') CategoryModel? category,
       List<LocationModel> locations,
       List<FileModel> files,
       bool userHasService});
+
+  $ServiceInfoModelCopyWith<$Res>? get serviceInfo;
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -77,46 +70,21 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catId = null,
-    Object? catMCode = freezed,
-    Object? catName = freezed,
-    Object? servId = null,
-    Object? servMCode = freezed,
-    Object? servName = freezed,
-    Object? servImageUrl = freezed,
+    Object? serviceInfo = freezed,
+    Object? category = freezed,
     Object? locations = null,
     Object? files = null,
     Object? userHasService = null,
   }) {
     return _then(_value.copyWith(
-      catId: null == catId
-          ? _value.catId
-          : catId // ignore: cast_nullable_to_non_nullable
-              as int,
-      catMCode: freezed == catMCode
-          ? _value.catMCode
-          : catMCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      catName: freezed == catName
-          ? _value.catName
-          : catName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      servId: null == servId
-          ? _value.servId
-          : servId // ignore: cast_nullable_to_non_nullable
-              as int,
-      servMCode: freezed == servMCode
-          ? _value.servMCode
-          : servMCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      servName: freezed == servName
-          ? _value.servName
-          : servName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      servImageUrl: freezed == servImageUrl
-          ? _value.servImageUrl
-          : servImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      serviceInfo: freezed == serviceInfo
+          ? _value.serviceInfo
+          : serviceInfo // ignore: cast_nullable_to_non_nullable
+              as ServiceInfoModel?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
       locations: null == locations
           ? _value.locations
           : locations // ignore: cast_nullable_to_non_nullable
@@ -131,6 +99,34 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
               as bool,
     ) as $Val);
   }
+
+  /// Create a copy of ServiceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ServiceInfoModelCopyWith<$Res>? get serviceInfo {
+    if (_value.serviceInfo == null) {
+      return null;
+    }
+
+    return $ServiceInfoModelCopyWith<$Res>(_value.serviceInfo!, (value) {
+      return _then(_value.copyWith(serviceInfo: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ServiceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryModelCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryModelCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -142,16 +138,16 @@ abstract class _$$ServiceModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int catId,
-      @JsonKey(name: 'catMcode') String? catMCode,
-      String? catName,
-      int servId,
-      @JsonKey(name: 'servMcode') String? servMCode,
-      String? servName,
-      String? servImageUrl,
+      {@JsonKey(name: 'servInfo') ServiceInfoModel? serviceInfo,
+      @JsonKey(name: 'catInfo') CategoryModel? category,
       List<LocationModel> locations,
       List<FileModel> files,
       bool userHasService});
+
+  @override
+  $ServiceInfoModelCopyWith<$Res>? get serviceInfo;
+  @override
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -167,46 +163,21 @@ class __$$ServiceModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catId = null,
-    Object? catMCode = freezed,
-    Object? catName = freezed,
-    Object? servId = null,
-    Object? servMCode = freezed,
-    Object? servName = freezed,
-    Object? servImageUrl = freezed,
+    Object? serviceInfo = freezed,
+    Object? category = freezed,
     Object? locations = null,
     Object? files = null,
     Object? userHasService = null,
   }) {
     return _then(_$ServiceModelImpl(
-      catId: null == catId
-          ? _value.catId
-          : catId // ignore: cast_nullable_to_non_nullable
-              as int,
-      catMCode: freezed == catMCode
-          ? _value.catMCode
-          : catMCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      catName: freezed == catName
-          ? _value.catName
-          : catName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      servId: null == servId
-          ? _value.servId
-          : servId // ignore: cast_nullable_to_non_nullable
-              as int,
-      servMCode: freezed == servMCode
-          ? _value.servMCode
-          : servMCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      servName: freezed == servName
-          ? _value.servName
-          : servName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      servImageUrl: freezed == servImageUrl
-          ? _value.servImageUrl
-          : servImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      serviceInfo: freezed == serviceInfo
+          ? _value.serviceInfo
+          : serviceInfo // ignore: cast_nullable_to_non_nullable
+              as ServiceInfoModel?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
       locations: null == locations
           ? _value._locations
           : locations // ignore: cast_nullable_to_non_nullable
@@ -227,13 +198,8 @@ class __$$ServiceModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ServiceModelImpl implements _ServiceModel {
   const _$ServiceModelImpl(
-      {required this.catId,
-      @JsonKey(name: 'catMcode') this.catMCode,
-      this.catName,
-      required this.servId,
-      @JsonKey(name: 'servMcode') this.servMCode,
-      this.servName,
-      this.servImageUrl,
+      {@JsonKey(name: 'servInfo') this.serviceInfo,
+      @JsonKey(name: 'catInfo') this.category,
       final List<LocationModel> locations = const <LocationModel>[],
       final List<FileModel> files = const <FileModel>[],
       this.userHasService = false})
@@ -244,21 +210,11 @@ class _$ServiceModelImpl implements _ServiceModel {
       _$$ServiceModelImplFromJson(json);
 
   @override
-  final int catId;
+  @JsonKey(name: 'servInfo')
+  final ServiceInfoModel? serviceInfo;
   @override
-  @JsonKey(name: 'catMcode')
-  final String? catMCode;
-  @override
-  final String? catName;
-  @override
-  final int servId;
-  @override
-  @JsonKey(name: 'servMcode')
-  final String? servMCode;
-  @override
-  final String? servName;
-  @override
-  final String? servImageUrl;
+  @JsonKey(name: 'catInfo')
+  final CategoryModel? category;
   final List<LocationModel> _locations;
   @override
   @JsonKey()
@@ -283,7 +239,7 @@ class _$ServiceModelImpl implements _ServiceModel {
 
   @override
   String toString() {
-    return 'ServiceModel(catId: $catId, catMCode: $catMCode, catName: $catName, servId: $servId, servMCode: $servMCode, servName: $servName, servImageUrl: $servImageUrl, locations: $locations, files: $files, userHasService: $userHasService)';
+    return 'ServiceModel(serviceInfo: $serviceInfo, category: $category, locations: $locations, files: $files, userHasService: $userHasService)';
   }
 
   @override
@@ -291,17 +247,10 @@ class _$ServiceModelImpl implements _ServiceModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServiceModelImpl &&
-            (identical(other.catId, catId) || other.catId == catId) &&
-            (identical(other.catMCode, catMCode) ||
-                other.catMCode == catMCode) &&
-            (identical(other.catName, catName) || other.catName == catName) &&
-            (identical(other.servId, servId) || other.servId == servId) &&
-            (identical(other.servMCode, servMCode) ||
-                other.servMCode == servMCode) &&
-            (identical(other.servName, servName) ||
-                other.servName == servName) &&
-            (identical(other.servImageUrl, servImageUrl) ||
-                other.servImageUrl == servImageUrl) &&
+            (identical(other.serviceInfo, serviceInfo) ||
+                other.serviceInfo == serviceInfo) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             const DeepCollectionEquality()
                 .equals(other._locations, _locations) &&
             const DeepCollectionEquality().equals(other._files, _files) &&
@@ -313,13 +262,8 @@ class _$ServiceModelImpl implements _ServiceModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      catId,
-      catMCode,
-      catName,
-      servId,
-      servMCode,
-      servName,
-      servImageUrl,
+      serviceInfo,
+      category,
       const DeepCollectionEquality().hash(_locations),
       const DeepCollectionEquality().hash(_files),
       userHasService);
@@ -342,13 +286,8 @@ class _$ServiceModelImpl implements _ServiceModel {
 
 abstract class _ServiceModel implements ServiceModel {
   const factory _ServiceModel(
-      {required final int catId,
-      @JsonKey(name: 'catMcode') final String? catMCode,
-      final String? catName,
-      required final int servId,
-      @JsonKey(name: 'servMcode') final String? servMCode,
-      final String? servName,
-      final String? servImageUrl,
+      {@JsonKey(name: 'servInfo') final ServiceInfoModel? serviceInfo,
+      @JsonKey(name: 'catInfo') final CategoryModel? category,
       final List<LocationModel> locations,
       final List<FileModel> files,
       final bool userHasService}) = _$ServiceModelImpl;
@@ -357,21 +296,11 @@ abstract class _ServiceModel implements ServiceModel {
       _$ServiceModelImpl.fromJson;
 
   @override
-  int get catId;
+  @JsonKey(name: 'servInfo')
+  ServiceInfoModel? get serviceInfo;
   @override
-  @JsonKey(name: 'catMcode')
-  String? get catMCode;
-  @override
-  String? get catName;
-  @override
-  int get servId;
-  @override
-  @JsonKey(name: 'servMcode')
-  String? get servMCode;
-  @override
-  String? get servName;
-  @override
-  String? get servImageUrl;
+  @JsonKey(name: 'catInfo')
+  CategoryModel? get category;
   @override
   List<LocationModel> get locations;
   @override

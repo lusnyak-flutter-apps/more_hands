@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/service_repository.dart';
+import 'package:more_hands/domain/models/service_by_category_model/service_by_category_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/presentation/pages/services/view_model/service_list_view_model.dart';
 
@@ -19,14 +20,14 @@ class ServiceListCubit extends Cubit<ServiceListState> {
     try {
       final services = await getIt<ServiceRepository>()
           .findServices(txt: searchController.text);
-      List<ServiceListViewModel> viewModels = <ServiceListViewModel>[];
-      Map<int, List<ServiceModel>> categories = groupBy(services, (service) => service.catId);
-      for(var item in categories.entries){
-        viewModels.add(ServiceListViewModel(category: item.value.first, services: item.value));
-      }
-      emit(state.copyWith(services: viewModels, loading: false));
+      // List<ServiceByCategoryModel> viewModels = <ServiceByCategoryModel>[];
+      // Map<int, List<ServiceModel>> categories = groupBy(services, (service) => service.catId);
+      // for(var item in categories.entries){
+      //   viewModels.add(ServiceByCategoryModel(category: item.value.first, services: item.value));
+      // }
+      emit(state.copyWith(services: services, loading: false));
     } catch (e) {
-      emit(state.copyWith(services: <ServiceListViewModel>[], loading: false));
+      emit(state.copyWith(services: <ServiceByCategoryModel>[], loading: false));
     }
   }
 

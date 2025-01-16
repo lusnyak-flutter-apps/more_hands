@@ -4,16 +4,17 @@ import 'package:more_hands/data/remote/currency_remote/currency_remote.dart';
 import 'package:more_hands/data/remote/service_remote/service_remote.dart';
 import 'package:more_hands/domain/enums/currency_code.dart';
 import 'package:more_hands/domain/models/currency_model/currency_model.dart';
+import 'package:more_hands/domain/models/service_by_category_model/service_by_category_model.dart';
 import 'package:more_hands/domain/models/service_means_model/service_measure_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 
 @lazySingleton
 class ServiceRepository {
-  Future<List<ServiceModel>> findServices({String txt = ""}) async {
+  Future<List<ServiceByCategoryModel>> findServices({String txt = ""}) async {
     return await getIt<ServiceRemoteApi>()
         .findServices(txt)
-        .then((onValue) => onValue ?? <ServiceModel>[])
-        .catchError((_) => <ServiceModel>[]);
+        .then((onValue) => onValue ?? <ServiceByCategoryModel>[])
+        .catchError((_) => <ServiceByCategoryModel>[]);
   }
 
   Future<List<ServiceMeasureModel>> getServiceMeasures() async {

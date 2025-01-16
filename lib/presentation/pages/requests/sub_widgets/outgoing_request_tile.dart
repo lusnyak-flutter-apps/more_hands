@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/domain/enums/request_status.dart';
+import 'package:more_hands/domain/models/request_model/request_model.dart';
+import 'package:more_hands/utils/extensions/date_time_extension.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
 class OutgoingRequestTile extends StatelessWidget {
-  const OutgoingRequestTile({super.key, this.isAccepted = false});
+  const OutgoingRequestTile({super.key, required this.requestModel});
 
-  final bool isAccepted;
+  // final bool isAccepted;
+  final RequestModel requestModel;
 
   @override
   Widget build(BuildContext context) {
+     bool isAccepted = requestModel.status == RequestStatus.accepted;
+    final imageUrl =  requestModel.profileImageUrl != null
+        ? "${APIBase.url}${requestModel.profileImageUrl!}"
+        : null;
+
+    final fName = requestModel.userFirstName ?? "";
+    final lName = requestModel.userLastName ?? "";
+
+    String formattedName = fName;
+    if (lName.isNotEmpty) {
+      formattedName += " ${lName.substring(0, 1)}.";
+    }
+
+    String dateFormat =
+        requestModel.createDate?.formatDate(format: "dd.MM") ?? "";
+
     final mainChild =   Stack(
       children: [
         MHRoundedContainer(
@@ -18,13 +39,13 @@ class OutgoingRequestTile extends StatelessWidget {
               Row(
                 children: [
                   MHImage(
-                    imageUrl: 'https://i.pravatar.cc/300?img=1',
+                    imageUrl: imageUrl,
                     size: 28.w,
                     borderRadius: 8.0,
                     availableForegroundDecoration: false,
                   ),
                   8.w.widthBox,
-                  Text("Name L.", style: body20SemiBoldStyle)
+                  Text(formattedName, style: body20SemiBoldStyle)
                 ],
               ),
               Row(
@@ -32,7 +53,7 @@ class OutgoingRequestTile extends StatelessWidget {
                   MoreHandsAssets.icons.user.svg(),
                   8.w.widthBox,
                   MHTag(
-                    title: "4.4",
+                    title: requestModel.userRating.toString(),
                     icon: MoreHandsAssets.icons.starFill.svg(),
                   ).paddingSymmetric(vertical: 4.h),
                 ],
@@ -46,7 +67,7 @@ class OutgoingRequestTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Здравствуйте! Ищу мастера по стиральным машинам, увидел у вас в списке услуг. У меня проблема. Примите запрос, если сможете помочь.",
+                requestModel.rqText ?? "",
                 style: body14Style,
               ),
               8.h.heightBox,
@@ -81,7 +102,7 @@ class OutgoingRequestTile extends StatelessWidget {
                                 color: MHColors.grayColor98)),
                       ],
                     ),
-                  Text("30.06",
+                  Text(dateFormat,
                       style: body12MediumStyle.copyWith(
                           color: MHColors.grayColor98)),
                 ],
@@ -91,7 +112,6 @@ class OutgoingRequestTile extends StatelessWidget {
         ).paddingOnly(top: 46.h),
       ],
     );
-
     return isAccepted ? Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

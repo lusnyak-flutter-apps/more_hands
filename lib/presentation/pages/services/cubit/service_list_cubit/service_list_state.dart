@@ -5,7 +5,7 @@ class ServiceListState with _$ServiceListState {
   const factory ServiceListState({
     @Default(false) bool loading,
     ServiceModel? selected,
-    @Default(<ServiceListViewModel>[]) List<ServiceListViewModel> services,
+    @Default(<ServiceByCategoryModel>[]) List<ServiceByCategoryModel> services,
     @Default(<int>[]) List<int> expanded,
   }) = _ServiceListState;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/enums/request_status.dart';
 import 'package:more_hands/presentation/pages/bottom_navigation/sub_widgets/mh_bottom_naviagtion_item.dart';
 import 'package:more_hands/presentation/pages/requests/cubit/requests_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_tabbar.dart';
@@ -30,11 +31,8 @@ class _RequestsView extends StatelessWidget {
     return BlocBuilder<RequestsCubit, RequestsState>(
       builder: (context, state) {
         final cubit = context.read<RequestsCubit>();
-        final (filter, section, requests) = state.maybeWhen(
-          loaded: (filter, section, requests) => (filter, section, requests),
-          orElse: () => (context.localized.all, 0,  <dynamic>[]),
-        );
-        final title = section == 0
+        final (filter, section, requests) =( state.selectedStatus, state.selectedType, state.requests);
+        final title = section == RequestType.sender
             ? context.localized.outgoingRequests
             : context.localized.incomingRequests;
         return Scaffold(
@@ -50,29 +48,34 @@ class _RequestsView extends StatelessWidget {
                     tintColor: MHColors.blackBGColor,
                     borderColor: MHColors.grayColor,
                     onPressed: () {
-                      cubit.changeFilter(context.localized.all,);
+                      cubit.changeFilter(RequestStatus.all);
                     },
-                    selected: filter == context.localized.all,
+                    selected: filter == RequestStatus.all,
                   ).paddingOnly(right: 8.w),
-                  for (var item in [
-                    context.localized.accepts,
-                    context.localized.waiting
-                  ])
-                    MHTag(
-                      title: item,
-                      tintColor: MHColors.blackBGColor,
-                      borderColor: MHColors.grayColor,
-                      onPressed: () {
-                        cubit.changeFilter(item);
-                      },
-                      selected: filter == item,
-                    ).paddingOnly(right: 8.w),
+                  MHTag(
+                    title: context.localized.accepts,
+                    tintColor: MHColors.blackBGColor,
+                    borderColor: MHColors.grayColor,
+                    onPressed: () {
+                      cubit.changeFilter(RequestStatus.accepted);
+                    },
+                    selected: filter == RequestStatus.accepted,
+                  ).paddingOnly(right: 8.w),
+                  MHTag(
+                    title: context.localized.waiting,
+                    tintColor: MHColors.blackBGColor,
+                    borderColor: MHColors.grayColor,
+                    onPressed: () {
+                      cubit.changeFilter(RequestStatus.new_);
+                    },
+                    selected: filter == RequestStatus.new_,
+                  ).paddingOnly(right: 8.w),
                 ],
               ).paddingSymmetric(horizontal: 24.w),
             ),
           ),
           bottomSheet: MHBottomTabbar(
-            currentIndex:section,
+            currentIndex: section.index,
             onTap: cubit.changeSection,
             items: [
               MHBottomNavigationBarItem(
@@ -88,10 +91,10 @@ class _RequestsView extends StatelessWidget {
             ],
           ).paddingOnly(bottom: 24.h),
           body: IndexedStack(
-            index: section, //,
-            children: const [
-              OutgoingRequestsPage(),
-              IncomingRequestsPage(),
+            index: section.index,
+            children:   [
+              OutgoingRequestsPage(requests: requests,),
+              IncomingRequestsPage(requests: requests,),
             ],
           ),
         );

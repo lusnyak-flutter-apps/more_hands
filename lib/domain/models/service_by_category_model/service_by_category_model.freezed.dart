@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'service_list_view_model.dart';
+part of 'service_by_category_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,60 +14,65 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ServiceListViewModel _$ServiceListViewModelFromJson(Map<String, dynamic> json) {
-  return _ServiceListViewModel.fromJson(json);
+ServiceByCategoryModel _$ServiceByCategoryModelFromJson(
+    Map<String, dynamic> json) {
+  return _ServiceByCategoryModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ServiceListViewModel {
-  ServiceModel get category => throw _privateConstructorUsedError;
+mixin _$ServiceByCategoryModel {
+  @JsonKey(name: 'catInfo')
+  CategoryModel? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userServicesInfo')
   List<ServiceModel> get services => throw _privateConstructorUsedError;
 
-  /// Serializes this ServiceListViewModel to a JSON map.
+  /// Serializes this ServiceByCategoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ServiceListViewModel
+  /// Create a copy of ServiceByCategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ServiceListViewModelCopyWith<ServiceListViewModel> get copyWith =>
+  $ServiceByCategoryModelCopyWith<ServiceByCategoryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ServiceListViewModelCopyWith<$Res> {
-  factory $ServiceListViewModelCopyWith(ServiceListViewModel value,
-          $Res Function(ServiceListViewModel) then) =
-      _$ServiceListViewModelCopyWithImpl<$Res, ServiceListViewModel>;
+abstract class $ServiceByCategoryModelCopyWith<$Res> {
+  factory $ServiceByCategoryModelCopyWith(ServiceByCategoryModel value,
+          $Res Function(ServiceByCategoryModel) then) =
+      _$ServiceByCategoryModelCopyWithImpl<$Res, ServiceByCategoryModel>;
   @useResult
-  $Res call({ServiceModel category, List<ServiceModel> services});
+  $Res call(
+      {@JsonKey(name: 'catInfo') CategoryModel? category,
+      @JsonKey(name: 'userServicesInfo') List<ServiceModel> services});
 
-  $ServiceModelCopyWith<$Res> get category;
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
-class _$ServiceListViewModelCopyWithImpl<$Res,
-        $Val extends ServiceListViewModel>
-    implements $ServiceListViewModelCopyWith<$Res> {
-  _$ServiceListViewModelCopyWithImpl(this._value, this._then);
+class _$ServiceByCategoryModelCopyWithImpl<$Res,
+        $Val extends ServiceByCategoryModel>
+    implements $ServiceByCategoryModelCopyWith<$Res> {
+  _$ServiceByCategoryModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ServiceListViewModel
+  /// Create a copy of ServiceByCategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? category = null,
+    Object? category = freezed,
     Object? services = null,
   }) {
     return _then(_value.copyWith(
-      category: null == category
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as ServiceModel,
+              as CategoryModel?,
       services: null == services
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
@@ -75,52 +80,61 @@ class _$ServiceListViewModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ServiceListViewModel
+  /// Create a copy of ServiceByCategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ServiceModelCopyWith<$Res> get category {
-    return $ServiceModelCopyWith<$Res>(_value.category, (value) {
+  $CategoryModelCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryModelCopyWith<$Res>(_value.category!, (value) {
       return _then(_value.copyWith(category: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ServiceListViewModelImplCopyWith<$Res>
-    implements $ServiceListViewModelCopyWith<$Res> {
-  factory _$$ServiceListViewModelImplCopyWith(_$ServiceListViewModelImpl value,
-          $Res Function(_$ServiceListViewModelImpl) then) =
-      __$$ServiceListViewModelImplCopyWithImpl<$Res>;
+abstract class _$$ServiceByCategoryModelImplCopyWith<$Res>
+    implements $ServiceByCategoryModelCopyWith<$Res> {
+  factory _$$ServiceByCategoryModelImplCopyWith(
+          _$ServiceByCategoryModelImpl value,
+          $Res Function(_$ServiceByCategoryModelImpl) then) =
+      __$$ServiceByCategoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ServiceModel category, List<ServiceModel> services});
+  $Res call(
+      {@JsonKey(name: 'catInfo') CategoryModel? category,
+      @JsonKey(name: 'userServicesInfo') List<ServiceModel> services});
 
   @override
-  $ServiceModelCopyWith<$Res> get category;
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
-class __$$ServiceListViewModelImplCopyWithImpl<$Res>
-    extends _$ServiceListViewModelCopyWithImpl<$Res, _$ServiceListViewModelImpl>
-    implements _$$ServiceListViewModelImplCopyWith<$Res> {
-  __$$ServiceListViewModelImplCopyWithImpl(_$ServiceListViewModelImpl _value,
-      $Res Function(_$ServiceListViewModelImpl) _then)
+class __$$ServiceByCategoryModelImplCopyWithImpl<$Res>
+    extends _$ServiceByCategoryModelCopyWithImpl<$Res,
+        _$ServiceByCategoryModelImpl>
+    implements _$$ServiceByCategoryModelImplCopyWith<$Res> {
+  __$$ServiceByCategoryModelImplCopyWithImpl(
+      _$ServiceByCategoryModelImpl _value,
+      $Res Function(_$ServiceByCategoryModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ServiceListViewModel
+  /// Create a copy of ServiceByCategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? category = null,
+    Object? category = freezed,
     Object? services = null,
   }) {
-    return _then(_$ServiceListViewModelImpl(
-      category: null == category
+    return _then(_$ServiceByCategoryModelImpl(
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as ServiceModel,
+              as CategoryModel?,
       services: null == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
@@ -131,20 +145,22 @@ class __$$ServiceListViewModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ServiceListViewModelImpl implements _ServiceListViewModel {
-  const _$ServiceListViewModelImpl(
-      {required this.category,
+class _$ServiceByCategoryModelImpl implements _ServiceByCategoryModel {
+  const _$ServiceByCategoryModelImpl(
+      {@JsonKey(name: 'catInfo') this.category,
+      @JsonKey(name: 'userServicesInfo')
       final List<ServiceModel> services = const <ServiceModel>[]})
       : _services = services;
 
-  factory _$ServiceListViewModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ServiceListViewModelImplFromJson(json);
+  factory _$ServiceByCategoryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ServiceByCategoryModelImplFromJson(json);
 
   @override
-  final ServiceModel category;
+  @JsonKey(name: 'catInfo')
+  final CategoryModel? category;
   final List<ServiceModel> _services;
   @override
-  @JsonKey()
+  @JsonKey(name: 'userServicesInfo')
   List<ServiceModel> get services {
     if (_services is EqualUnmodifiableListView) return _services;
     // ignore: implicit_dynamic_type
@@ -153,14 +169,14 @@ class _$ServiceListViewModelImpl implements _ServiceListViewModel {
 
   @override
   String toString() {
-    return 'ServiceListViewModel(category: $category, services: $services)';
+    return 'ServiceByCategoryModel(category: $category, services: $services)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ServiceListViewModelImpl &&
+            other is _$ServiceByCategoryModelImpl &&
             (identical(other.category, category) ||
                 other.category == category) &&
             const DeepCollectionEquality().equals(other._services, _services));
@@ -171,41 +187,43 @@ class _$ServiceListViewModelImpl implements _ServiceListViewModel {
   int get hashCode => Object.hash(
       runtimeType, category, const DeepCollectionEquality().hash(_services));
 
-  /// Create a copy of ServiceListViewModel
+  /// Create a copy of ServiceByCategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ServiceListViewModelImplCopyWith<_$ServiceListViewModelImpl>
-      get copyWith =>
-          __$$ServiceListViewModelImplCopyWithImpl<_$ServiceListViewModelImpl>(
-              this, _$identity);
+  _$$ServiceByCategoryModelImplCopyWith<_$ServiceByCategoryModelImpl>
+      get copyWith => __$$ServiceByCategoryModelImplCopyWithImpl<
+          _$ServiceByCategoryModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ServiceListViewModelImplToJson(
+    return _$$ServiceByCategoryModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _ServiceListViewModel implements ServiceListViewModel {
-  const factory _ServiceListViewModel(
-      {required final ServiceModel category,
-      final List<ServiceModel> services}) = _$ServiceListViewModelImpl;
+abstract class _ServiceByCategoryModel implements ServiceByCategoryModel {
+  const factory _ServiceByCategoryModel(
+      {@JsonKey(name: 'catInfo') final CategoryModel? category,
+      @JsonKey(name: 'userServicesInfo')
+      final List<ServiceModel> services}) = _$ServiceByCategoryModelImpl;
 
-  factory _ServiceListViewModel.fromJson(Map<String, dynamic> json) =
-      _$ServiceListViewModelImpl.fromJson;
+  factory _ServiceByCategoryModel.fromJson(Map<String, dynamic> json) =
+      _$ServiceByCategoryModelImpl.fromJson;
 
   @override
-  ServiceModel get category;
+  @JsonKey(name: 'catInfo')
+  CategoryModel? get category;
   @override
+  @JsonKey(name: 'userServicesInfo')
   List<ServiceModel> get services;
 
-  /// Create a copy of ServiceListViewModel
+  /// Create a copy of ServiceByCategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ServiceListViewModelImplCopyWith<_$ServiceListViewModelImpl>
+  _$$ServiceByCategoryModelImplCopyWith<_$ServiceByCategoryModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

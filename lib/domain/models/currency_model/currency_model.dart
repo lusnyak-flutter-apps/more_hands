@@ -1,6 +1,5 @@
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/currency_code.dart';
-import 'package:more_hands/domain/enums/measure_code.dart';
 
 part 'currency_model.freezed.dart';
 
