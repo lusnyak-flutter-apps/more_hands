@@ -103,5 +103,6 @@
   "changeLanguage": "Изменить язык",
   "english": "English",
   "russian": "Русский",
-  "linkType": "Ссылка {type}"
+  "linkType": "Ссылка {type}",
+  "sendRequestToSeeContacts":"Отправить запрос, чтобы увидеть контакты"
  }

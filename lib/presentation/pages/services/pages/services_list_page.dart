@@ -31,8 +31,10 @@ class _ServicesListView extends StatelessWidget {
         bottomSheet: MHBottomNavigationControl(
           buttonTitle: context.localized.next,
           action: () {
-            if(state.selected != null) {
-              context.router.push(ServiceDetailsRoute(serviceModel:state.selected!));
+            if (state.selected != null && state.category != null) {
+              context.router.push(ServiceDetailsRoute(
+                  serviceModel: state.selected!,
+                  serviceCategory: state.category!));
             }
           },
         ).paddingOnly(bottom: 16.h),
@@ -88,7 +90,7 @@ class _ServicesListView extends StatelessWidget {
                       for (var (i, service) in vm.services.indexed)
                         ListTile(
                           onTap: () {
-                            cubit.onChangeSelected(service);
+                            cubit.onChangeSelected(service, category);
                           },
                           contentPadding:
                               EdgeInsets.symmetric(horizontal: 16.w),
@@ -98,10 +100,11 @@ class _ServicesListView extends StatelessWidget {
                                       BorderSide(color: MHColors.grayColor))
                               : null,
                           title: Text(
-                             service.serviceInfo?.servName ?? "",
+                            service.serviceInfo?.servName ?? "",
                             style: body16MediumStyle,
                           ),
-                          trailing: state.selected?.serviceInfo?.servId == service.serviceInfo?.servId
+                          trailing: state.selected?.serviceInfo?.servId ==
+                                  service.serviceInfo?.servId
                               ? MoreHandsAssets.icons.check.svg()
                               : null,
                         )

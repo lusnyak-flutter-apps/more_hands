@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/home/cubit/home_cubit.dart';
 import 'package:more_hands/presentation/pages/referrals/sub_widgets/referral_item.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeCubit>(
-      create: (BuildContext context) => getIt<HomeCubit>()..getUsers(),
+      create: (BuildContext context) => getIt<HomeCubit>()..getData(),
       child: const _HomeView(),
     );
   }
@@ -27,11 +28,12 @@ class _HomeView extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       final cubit = context.read<HomeCubit>();
 
-      final (type, users) = state.maybeWhen(
-        loaded: (type, users) => (type, users),
-        orElse: () => (context.localized.all, <UserModel>[]),
-      );
-      debugPrint(type);
+      if(state.loading) {}
+      // final (type, users) = state.maybeWhen(
+      //   loaded: (type, users) => (type, users),
+      //   orElse: () => (context.localized.all, <UserModel>[]),
+      // );
+      // debugPrint(type);
       return Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
@@ -57,17 +59,22 @@ class _HomeView extends StatelessWidget {
               child: Row(
                 children: [
                   MoreHandsAssets.icons.mapPin.svg(height: 24.r),
-                  Text("Москва", style: body16MediumStyle),
+                  Text(state.selectedLocation?.locName ?? "", style: body16MediumStyle),
                 ],
               ).paddingAll(4.r),
               onTap: () {
-                context.router.push(const SelectLocationRoute());
+                context.router.push(  SelectLocationRoute(singleSelect: true)).then((onValue){
+                  if(onValue != null && onValue is List<LocationModel> && onValue.isNotEmpty) {
+                    cubit.setSelectedLocations(onValue.first);
+                  }
+                });
               },
             ).paddingOnly(right: 20.w),
           ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(116.h),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 MHSearchField(
                   hintText: context.localized.search,
@@ -80,23 +87,25 @@ class _HomeView extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Wrap(
                       direction: Axis.horizontal,
+                      alignment: WrapAlignment.start,
+
                       spacing: 8.w,
                       runSpacing: 8.h,
                       children: [
                         MHTag(
                           title: context.localized.all,
                           onPressed: () {
-                            cubit.changeType(context.localized.all,);
+                            cubit.changeService(null);
                           },
-                          selected: type == context.localized.all,
+                          selected: state.selectedServiceId == -1,
                         ),
-                        for (var item in List.generate(8, (index) => index))
+                        for (var item in state.services)
                           MHTag(
-                            title: "Service $item",
+                            title: item.serviceInfo?.servName ?? "",
                             onPressed: () {
-                              cubit.changeType("Service $item");
+                              cubit.changeService(item);
                             },
-                            selected: type == "Service $item",
+                            selected: state.selectedServiceId == item.serviceInfo?.servId,
                           ),
                       ],
                     ),
@@ -108,22 +117,22 @@ class _HomeView extends StatelessWidget {
         ),
         body: SafeArea(
           bottom: false,
-          child: _buildReferralsList(
+          child: _buildUsersList(
             context,
-            users,
+            state.users,
           ),
         ),
       );
     });
   }
 
-  Widget _buildReferralsList(BuildContext context, List<UserModel> referrals) {
+  Widget _buildUsersList(BuildContext context, List<UserModel> users) {
     return SingleChildScrollView(
       padding: EdgeInsets.only(bottom: 88.h, top: 16.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ...referrals.map((referral) {
+          ...users.map((referral) {
             return ReferralItem(
               showInviteButton: true,
               showPortfolio: true,

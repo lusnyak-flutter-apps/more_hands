@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
@@ -32,50 +33,57 @@ class _UserView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomSheet: MHBottomNavigationControl(
-        buttonTitle: context.localized.sendRequest,
-        action: () {
-          context.router.push(const SendRequestRoute());
-        },
-      ).paddingOnly(bottom: 16.h),
-      body: SafeArea(
-        bottom: false,
-        child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-          final loading = state.when(loading: () => true, loaded: (_) => false);
-          final user = state.when(loading: () => null, loaded: (user) => user);
-          if (loading) return const Center(child: CircularProgressIndicator());
-          return SingleChildScrollView(
-            padding: EdgeInsets.only(
-                top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                userImagePart(context, user!).paddingOnly(bottom: 24.h),
-                aboutUserPart(context, user).paddingOnly(bottom: 24.h),
-                WhatCanDoView(
-                  items:  List.generate(8, (i) => "Service $i"),
-                ).paddingOnly(bottom: 24.h),
-                PortfolioView(
-                  items: List.generate(
-                      4, (i) => "https://picsum.photos/200/300?random=$i"),
-                  onTapItem: (index) {
-                    debugPrint("Portfolio item $index");
-                    showServiceView(context);
-                  },
-                ).paddingOnly(bottom: 24.h),
-              ],
-            ).paddingSymmetric(horizontal: 24.w),
-          );
-        }),
-      ),
+    return BlocBuilder<UserCubit, UserState>(
+      builder: (context, state) {
+        final loading = state.when(loading: () => true, loaded: (_) => false);
+        final user = state.when(loading: () => null, loaded: (user) => user);
+        List<PortfolioItem> portfolio = [];
+        user?.services.forEach((s){
+          portfolio.addAll(s.files.map((f) => PortfolioItem(f, service: s)));
+        });
+
+        return Scaffold(
+          bottomSheet: MHBottomNavigationControl(
+            buttonTitle: user?.userInfo?.shaken != true ? context.localized.sendRequest : context.localized.requestSent,
+            action: user?.userInfo?.shaken != true ? () {
+              context.router.push(const SendRequestRoute());
+            } : null,
+          ).paddingOnly(bottom: 16.h),
+          body: SafeArea(
+            bottom: false,
+            child: loading ? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
+              padding: EdgeInsets.only(
+                  top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  userImagePart(context, user!).paddingOnly(bottom: 24.h),
+                  aboutUserPart(context, user).paddingOnly(bottom: 24.h),
+                  WhatCanDoView(
+                    items: user.services,
+                  ).paddingOnly(bottom: 24.h),
+                  PortfolioView(
+                    items: portfolio,
+                    onTapItem: (index) {
+                      debugPrint("Portfolio item $index");
+                      showServiceView(context, service: index.service);
+                    },
+                  ).paddingOnly(bottom: 24.h),
+                ],
+              ).paddingSymmetric(horizontal: 24.w),
+            ),
+          ),
+        );
+      }
     );
   }
 
   Widget userImagePart(BuildContext context, UserModel user) => MHImage(
       size: context.width,
       emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
-      imageUrl: "https://i.pravatar.cc/300?img=1");
+      imageUrl: user.userInfo?.profileImageUrl != null
+          ? "${APIBase.url}${user.userInfo!.profileImageUrl!}"
+          : null);
 
   Widget aboutUserPart(BuildContext context, UserModel user) {
     String formattedName =
@@ -122,8 +130,9 @@ class _UserView extends StatelessWidget {
           transactionsCount: 0,
           referralsCount: 0,
         ).paddingOnly(bottom: 8.h),
+        if(user.userInfo?.shaken != true)
         _buildSendCodeToFriends(context).paddingOnly(bottom: 8.h),
-        if (contacts.isNotEmpty)
+        if (contacts.isNotEmpty && user.userInfo?.shaken == true)
           UserContactsView(
             contacts: contacts,
           ).paddingOnly(bottom: 8.h),
@@ -141,6 +150,7 @@ class _UserView extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         onTap: () {
           debugPrint("Send code to your friends 1");
+          context.router.push(const SendRequestRoute());
         },
         child: MHRoundedContainer(
           color: MHColors.blackBGColor.withValues(alpha: 0.5),
@@ -158,20 +168,24 @@ class _UserView extends StatelessWidget {
                 ),
               ),
               8.w.widthBox,
-              Text(
-                context.localized.sendCodeToYourFriends,
-                style: body16Style,
+              Flexible(
+                child: Text(
+                  context.localized.sendRequestToSeeContacts,
+                  maxLines: 2,
+                  style: body16Style,
+                ),
               ),
             ],
           ).paddingAll(4.r),
         ),
       );
 
-  Future<void> showServiceView(BuildContext context) async {
+  Future<void> showServiceView(BuildContext context,
+      {required ServiceModel service}) async {
     await showMHScrollModalBottomSheet(
       context,
-      title: "Service title",
-      child: const ServiceInfoView(),
+      title: service.serviceInfo?.servName ?? "",
+      child: ServiceInfoView(service: service,),
     );
   }
 }

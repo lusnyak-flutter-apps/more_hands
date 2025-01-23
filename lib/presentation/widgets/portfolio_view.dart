@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/file_model/file_model.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
+
+class PortfolioItem {
+  final ServiceModel service;
+  final FileModel file;
+
+  PortfolioItem(this.file, {required this.service});
+
+  String get filePath => "${APIBase.url}/storage/download?category=${file.attachCategory?.rawValue}&fileId=${file.usfFileId}";
+}
 
 class PortfolioView extends StatelessWidget {
   const PortfolioView({
@@ -9,8 +21,8 @@ class PortfolioView extends StatelessWidget {
     this.onTapItem,
   });
 
-  final List<String> items;
-  final Function(int)? onTapItem;
+  final List<PortfolioItem> items;
+  final Function(PortfolioItem)? onTapItem;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +42,14 @@ class PortfolioView extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, mainAxisSpacing: 4.r, crossAxisSpacing: 4.r,),
             children: [
-              for (var index = 0; index < items.length; index++)
+              for (var item in items)
                 InkWell(
                   onTap: (){
-                    onTapItem?.call(index);
+                    onTapItem?.call(item);
                   },
                   child: MHImage(
                     size: context.width / 2 - 4.r,
-                    imageUrl: items[index],
+                    imageUrl: item.filePath,
                   ),
                 ),
             ],

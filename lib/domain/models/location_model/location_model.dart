@@ -5,11 +5,15 @@ part 'location_model.g.dart';
 
 @freezed
 class LocationModel with _$LocationModel {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory LocationModel({
-     int? uslId,
-     int? usfLocationId,
+   const factory LocationModel({
+     int? id,
+     String? countryCode,
     required String locName,
+    required String countryName,
+    num? locLat,
+    num? locLon,
+    String? countryCurrency,
+    String? currencyName,
   }) = _LocationModel;
 
   factory LocationModel.fromJson(Map<String, dynamic> json) =>

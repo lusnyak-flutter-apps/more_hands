@@ -1,99 +1,117 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/presentation/pages/location/cubit/select_location_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class SelectLocationPage extends StatelessWidget {
-  const SelectLocationPage({super.key});
-
+  const SelectLocationPage({super.key,  this.singleSelect = false});
+  final bool singleSelect;
   @override
   Widget build(BuildContext context) {
-    return const _SelectLocationView();
+    return BlocProvider<SelectLocationCubit>(
+      create: (BuildContext context) =>
+          getIt<SelectLocationCubit>()..findClosestLocations(singleSelect: singleSelect),
+      child: const _SelectLocationView(),
+    );
   }
 }
 
-class _SelectLocationView extends StatefulWidget {
+class _SelectLocationView extends StatelessWidget {
   const _SelectLocationView();
 
   @override
-  State<_SelectLocationView> createState() => _SelectLocationViewState();
-}
-
-class _SelectLocationViewState extends State<_SelectLocationView> {
-  Set<String> selected = <String>{};
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomSheet: MHBottomNavigationControl(
-        buttonTitle: context.localized.select,
-        action: () {},
-      ).paddingOnly(bottom: 16.h),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: false,
-        titleSpacing: 24.w,
-        title: Text(
-          context.localized.selectLocation,
-          style: body28SemiBoldStyle,
+    final cubit = context.read<SelectLocationCubit>();
+    return BlocBuilder<SelectLocationCubit, SelectLocationState>(
+        builder: (context, state) {
+      // final selected = state.selectedLocations.map((e) => e.locName).join(",");
+      return Scaffold(
+        bottomSheet: MHBottomNavigationControl(
+          buttonTitle: context.localized.select,
+          action: () {
+            if(state.selectedLocations.isNotEmpty) {
+              context.router.maybePop(state.selectedLocations);
+            } else {
+              context.showSnackBar(message: "Нет выбранных местоположений");
+            }
+          },
+        ).paddingOnly(bottom: 16.h),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: false,
+          titleSpacing: 24.w,
+          title: Text(
+            context.localized.selectLocation,
+            style: body28SemiBoldStyle,
+          ),
         ),
-      ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-           children: [
-              MHSearchField(hintText: context.localized.search,),
-            16.w.heightBox,
-            RichText(
-              textAlign: TextAlign.left,
-              text: TextSpan(
-                children: [
-                  WidgetSpan(
-                      child: MoreHandsAssets.icons.compass
-                          .svg(height: 18.r)
-                          .paddingOnly(right: 4.w)),
-                  TextSpan(text: selected.join(","), style: body16MediumStyle)
-                ],
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              MHSearchField(
+                hintText: context.localized.search,
               ),
-            ),
-            ListView.separated(
-              padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight.h, top: 8.h),
-              separatorBuilder: (context, index) => const Divider(
-                color: MHColors.grayColor,
-                // height: 1,
+              8.w.heightBox,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton.icon(
+                    onPressed: () {},
+                    icon: MoreHandsAssets.icons.compass.svg(height: 18.r),
+                    style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 8.0), overlayColor: MHColors.whiteColor),
+                    label: Text(
+                      context.localized.findMe,
+                       style: body16MediumStyle,
+                    )),
               ),
-              itemBuilder: (itemContext, index) {
-                final value = "Location $index";
-                return ListTile(
-                  onTap: () {
-                    if (mounted) {
-                      if (selected.contains(value)) {
-                        selected.remove(value);
-                      } else {
-                        selected.add(value);
-                      }
-                      setState(() {});
-                    }
-                  },
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                  // shape: const UnderlineInputBorder(
-                  //     borderSide: BorderSide(color: MHColors.grayColor)),
-                  title: Text(
-                    "Location $index",
-                    style: body16MediumStyle,
-                  ),
-                  trailing: selected.contains(value)
-                      ? MoreHandsAssets.icons.check.svg()
-                      : null,
-                );
-              },
-              itemCount: 20,
-            ).expanded()
-          ],
-        ).paddingSymmetric(horizontal: 24.w, vertical: 16.h),
-      ),
-    );
+              // RichText(
+              //   textAlign: TextAlign.left,
+              //   text: TextSpan(
+              //     children: [
+              //       WidgetSpan(
+              //           child: MoreHandsAssets.icons.compass
+              //               .svg(height: 18.r)
+              //               .paddingOnly(right: 4.w)),
+              //       TextSpan(text: "Найти меня", style: body16MediumStyle)
+              //     ],
+              //   ),
+              // ),
+              ListView.separated(
+                padding: EdgeInsets.only(
+                    bottom: kBottomNavigationBarHeight.h, top: 8.h),
+                separatorBuilder: (context, index) => const Divider(
+                  color: MHColors.grayColor,
+                  // height: 1,
+                ),
+                itemBuilder: (itemContext, index) {
+                  final value = state.locations[index];
+                  return ListTile(
+                    onTap: () {
+                      cubit.selectLocation(value);
+                    },
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+                    // shape: const UnderlineInputBorder(
+                    //     borderSide: BorderSide(color: MHColors.grayColor)),
+                    title: Text(
+                      value.locName,
+                      style: body16MediumStyle,
+                    ),
+                    trailing: state.selectedLocations
+                            .map((e) => e.id)
+                            .contains(value.id)
+                        ? MoreHandsAssets.icons.check.svg()
+                        : null,
+                  );
+                },
+                itemCount: state.locations.length,
+              ).expanded()
+            ],
+          ).paddingSymmetric(horizontal: 24.w, vertical: 16.h),
+        ),
+      );
+    });
   }
 }

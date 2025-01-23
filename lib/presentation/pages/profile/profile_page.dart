@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
@@ -40,6 +41,12 @@ class _ProfileView extends StatelessWidget {
           if (state.loading) {
             return const Center(child: CircularProgressIndicator());
           }
+
+          List<PortfolioItem> portfolio = [];
+          state.user?.services.forEach((s){
+            portfolio.addAll(s.files.map((f) => PortfolioItem(f, service: s)));
+          });
+
           return SingleChildScrollView(
             padding: EdgeInsets.only(
                 top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
@@ -49,13 +56,17 @@ class _ProfileView extends StatelessWidget {
                 profileImagePart(context, state.user).paddingOnly(bottom: 24.h),
                 aboutUserPart(context, state.user),
                 WhatCanDoView(
+                  items: state.user?.services ?? <ServiceModel>[],
                   onEdit: () {
-                    context.router.push(const ServicesListRoute());
+                    context.router.push(const ServicesListRoute()).then((_){
+                      if (context.mounted) {
+                        context.read<ProfileCubit>().loadProfile();
+                      }
+                    });
                   },
                 ).paddingOnly(bottom: 24.h),
-                const PortfolioView(
-                    // items: List.generate(
-                    //     4, (i) => "https://picsum.photos/200/300?random=$i"),
+                  PortfolioView(
+                  items: portfolio,
                     ),
                 const Divider().paddingSymmetric(vertical: 24.h),
                 Row(

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
 class ServiceInfoView extends StatelessWidget {
-  const ServiceInfoView({super.key});
-
+  const ServiceInfoView({super.key, required this.service});
+  final  ServiceModel service;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

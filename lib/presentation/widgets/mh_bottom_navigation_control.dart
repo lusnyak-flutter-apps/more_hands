@@ -30,12 +30,19 @@ class MHBottomNavigationControl extends StatelessWidget {
             icon: MoreHandsAssets.icons.left.svg().paddingAll(6.h),
           ),
           8.w.widthBox,
-          MHGradientButton(
-            title: buttonTitle,
-            icon: buttonIcon,
-            loading: actionLoading,
-            onPressed: action,
-          ).expanded()
+          action != null
+              ? MHGradientButton(
+                  title: buttonTitle,
+                  icon: buttonIcon,
+                  loading: actionLoading,
+                  onPressed: action,
+                ).expanded()
+              : MHOutlinedButton(
+                  title: buttonTitle,
+                  onPressed: (){},
+                  style: OutlinedButton.styleFrom(
+                      foregroundColor: MHColors.whiteColor),
+                ).expanded(),
         ],
       ).paddingSymmetric(horizontal: 24.w, vertical: 8.h),
     );

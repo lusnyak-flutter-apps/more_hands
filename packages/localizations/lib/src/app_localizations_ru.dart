@@ -341,4 +341,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String linkType(Object type) {
     return 'Ссылка $type';
   }
+
+  @override
+  String get sendRequestToSeeContacts =>
+      'Отправить запрос, чтобы увидеть контакты';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
+import 'package:more_hands/presentation/widgets/portfolio_view.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
@@ -9,7 +10,9 @@ class ReferralItem extends StatelessWidget {
     super.key,
     this.onTap,
     this.showPortfolio = false,
-    this.showInviteButton = false, this.onSendRequest, required this.referral,
+    this.showInviteButton = false,
+    this.onSendRequest,
+    required this.referral,
   });
 
   final VoidCallback? onTap;
@@ -20,9 +23,13 @@ class ReferralItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     String formattedName =
         "${referral.userInfo?.firstName} ${referral.userInfo?.lastName?.substring(0, 1)}.";
+
+    List<PortfolioItem> portfolio = [];
+    for (var s in referral.services) {
+      portfolio.addAll(s.files.map((f) => PortfolioItem(f, service: s)));
+    }
 
     return InkWell(
       onTap: onTap,
@@ -35,8 +42,10 @@ class ReferralItem extends StatelessWidget {
             children: [
               MHImage(
                 size: 128.r,
-                imageUrl: referral.userInfo?.profileImageUrl != null ?  "${APIBase.url}${referral.userInfo!.profileImageUrl!}" : null,
-             emptyWidget:    MoreHandsAssets.icons.userYellow.svg(height: 64.r),
+                imageUrl: referral.userInfo?.profileImageUrl != null
+                    ? "${APIBase.url}${referral.userInfo!.profileImageUrl!}"
+                    : null,
+                emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 64.r),
                 availableForegroundDecoration: false,
               ),
               16.w.widthBox,
@@ -55,12 +64,14 @@ class ReferralItem extends StatelessWidget {
                     Row(
                       children: [
                         MHTag(
-                          title: referral.userInfo?.userRating.toString() ?? "0",
+                          title:
+                              referral.userInfo?.userRating.toString() ?? "0",
                           icon:
                               MoreHandsAssets.icons.starFill.svg(height: 12.r),
                         ),
                         MHTag(
-                          title: referral.userInfo?.dealCountSpend.toString() ?? "0" ,
+                          title: referral.userInfo?.dealCountSpend.toString() ??
+                              "0",
                           icon: MoreHandsAssets.images.svg.hands.svg(
                               height: 12.r,
                               colorFilter: const ColorFilter.mode(
@@ -68,32 +79,33 @@ class ReferralItem extends StatelessWidget {
                         ).paddingSymmetric(horizontal: 6.w),
                       ],
                     ),
-                    8.h.heightBox,
-                    Wrap(
-                      spacing: 4.w,
-                      runSpacing: 4.h,
-                      children: [
-                        for (int i = 0; i < 2; i++)
-                          const MHTag(
-                            title: "User Tag",
-                            tintColor: MHColors.darkGrayColor,
-                            borderColor: MHColors.grayColor,
-                          )
-                      ],
-                    ),
+                    if (referral.services.isNotEmpty)
+                      Wrap(
+                        spacing: 4.w,
+                        runSpacing: 4.h,
+                        children: [
+                          for (var item in referral.services)
+                            MHTag(
+                              title: item.serviceInfo?.servName ?? "",
+                              tintColor: MHColors.darkGrayColor,
+                              borderColor: MHColors.grayColor,
+                            )
+                        ],
+                      ).paddingOnly(top: 8.h),
                   ]).expanded()
             ],
           ),
-          if(referral.userInfo?.bio != null)
-          Text(
-            referral.userInfo?.bio ?? "",
-            style: body16Style,
-          ).paddingSymmetric(vertical: 16.h),
-          if(showPortfolio)
+          if (referral.userInfo?.bio != null)
+            Text(
+              referral.userInfo?.bio ?? "",
+              style: body16Style,
+            ).paddingSymmetric(vertical: 16.h),
+          if (showPortfolio && portfolio.isNotEmpty)
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(context.localized.portfolio, style: body14SemiBoldStyle, textAlign: TextAlign.left),
+                Text(context.localized.portfolio,
+                    style: body14SemiBoldStyle, textAlign: TextAlign.left),
                 8.h.heightBox,
                 SizedBox(
                   height: 80.h,
@@ -103,10 +115,10 @@ class ReferralItem extends StatelessWidget {
                       spacing: 8.w,
                       runSpacing: 8.h,
                       children: [
-                        for (int i = 0; i < 10; i++)
+                        for (var item in portfolio)
                           MHImage(
                             size: 80.r,
-                            imageUrl: "https://i.pravatar.cc/150?img=1",
+                            imageUrl: item.filePath,
                             availableForegroundDecoration: false,
                           )
                       ],
@@ -115,7 +127,7 @@ class ReferralItem extends StatelessWidget {
                 )
               ],
             ),
-          if(showInviteButton)
+          if (showInviteButton)
             MHGradientButton(
               title: context.localized.sendRequest,
               onPressed: onSendRequest,

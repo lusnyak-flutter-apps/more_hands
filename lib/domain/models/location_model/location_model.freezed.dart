@@ -20,9 +20,14 @@ LocationModel _$LocationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LocationModel {
-  int? get uslId => throw _privateConstructorUsedError;
-  int? get usfLocationId => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get countryCode => throw _privateConstructorUsedError;
   String get locName => throw _privateConstructorUsedError;
+  String get countryName => throw _privateConstructorUsedError;
+  num? get locLat => throw _privateConstructorUsedError;
+  num? get locLon => throw _privateConstructorUsedError;
+  String? get countryCurrency => throw _privateConstructorUsedError;
+  String? get currencyName => throw _privateConstructorUsedError;
 
   /// Serializes this LocationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +45,15 @@ abstract class $LocationModelCopyWith<$Res> {
           LocationModel value, $Res Function(LocationModel) then) =
       _$LocationModelCopyWithImpl<$Res, LocationModel>;
   @useResult
-  $Res call({int? uslId, int? usfLocationId, String locName});
+  $Res call(
+      {int? id,
+      String? countryCode,
+      String locName,
+      String countryName,
+      num? locLat,
+      num? locLon,
+      String? countryCurrency,
+      String? currencyName});
 }
 
 /// @nodoc
@@ -58,23 +71,48 @@ class _$LocationModelCopyWithImpl<$Res, $Val extends LocationModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uslId = freezed,
-    Object? usfLocationId = freezed,
+    Object? id = freezed,
+    Object? countryCode = freezed,
     Object? locName = null,
+    Object? countryName = null,
+    Object? locLat = freezed,
+    Object? locLon = freezed,
+    Object? countryCurrency = freezed,
+    Object? currencyName = freezed,
   }) {
     return _then(_value.copyWith(
-      uslId: freezed == uslId
-          ? _value.uslId
-          : uslId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      usfLocationId: freezed == usfLocationId
-          ? _value.usfLocationId
-          : usfLocationId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      countryCode: freezed == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       locName: null == locName
           ? _value.locName
           : locName // ignore: cast_nullable_to_non_nullable
               as String,
+      countryName: null == countryName
+          ? _value.countryName
+          : countryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      locLat: freezed == locLat
+          ? _value.locLat
+          : locLat // ignore: cast_nullable_to_non_nullable
+              as num?,
+      locLon: freezed == locLon
+          ? _value.locLon
+          : locLon // ignore: cast_nullable_to_non_nullable
+              as num?,
+      countryCurrency: freezed == countryCurrency
+          ? _value.countryCurrency
+          : countryCurrency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currencyName: freezed == currencyName
+          ? _value.currencyName
+          : currencyName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -87,7 +125,15 @@ abstract class _$$LocationModelImplCopyWith<$Res>
       __$$LocationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? uslId, int? usfLocationId, String locName});
+  $Res call(
+      {int? id,
+      String? countryCode,
+      String locName,
+      String countryName,
+      num? locLat,
+      num? locLon,
+      String? countryCurrency,
+      String? currencyName});
 }
 
 /// @nodoc
@@ -103,47 +149,88 @@ class __$$LocationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uslId = freezed,
-    Object? usfLocationId = freezed,
+    Object? id = freezed,
+    Object? countryCode = freezed,
     Object? locName = null,
+    Object? countryName = null,
+    Object? locLat = freezed,
+    Object? locLon = freezed,
+    Object? countryCurrency = freezed,
+    Object? currencyName = freezed,
   }) {
     return _then(_$LocationModelImpl(
-      uslId: freezed == uslId
-          ? _value.uslId
-          : uslId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      usfLocationId: freezed == usfLocationId
-          ? _value.usfLocationId
-          : usfLocationId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      countryCode: freezed == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       locName: null == locName
           ? _value.locName
           : locName // ignore: cast_nullable_to_non_nullable
               as String,
+      countryName: null == countryName
+          ? _value.countryName
+          : countryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      locLat: freezed == locLat
+          ? _value.locLat
+          : locLat // ignore: cast_nullable_to_non_nullable
+              as num?,
+      locLon: freezed == locLon
+          ? _value.locLon
+          : locLon // ignore: cast_nullable_to_non_nullable
+              as num?,
+      countryCurrency: freezed == countryCurrency
+          ? _value.countryCurrency
+          : countryCurrency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currencyName: freezed == currencyName
+          ? _value.currencyName
+          : currencyName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class _$LocationModelImpl implements _LocationModel {
   const _$LocationModelImpl(
-      {this.uslId, this.usfLocationId, required this.locName});
+      {this.id,
+      this.countryCode,
+      required this.locName,
+      required this.countryName,
+      this.locLat,
+      this.locLon,
+      this.countryCurrency,
+      this.currencyName});
 
   factory _$LocationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationModelImplFromJson(json);
 
   @override
-  final int? uslId;
+  final int? id;
   @override
-  final int? usfLocationId;
+  final String? countryCode;
   @override
   final String locName;
+  @override
+  final String countryName;
+  @override
+  final num? locLat;
+  @override
+  final num? locLon;
+  @override
+  final String? countryCurrency;
+  @override
+  final String? currencyName;
 
   @override
   String toString() {
-    return 'LocationModel(uslId: $uslId, usfLocationId: $usfLocationId, locName: $locName)';
+    return 'LocationModel(id: $id, countryCode: $countryCode, locName: $locName, countryName: $countryName, locLat: $locLat, locLon: $locLon, countryCurrency: $countryCurrency, currencyName: $currencyName)';
   }
 
   @override
@@ -151,15 +238,24 @@ class _$LocationModelImpl implements _LocationModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocationModelImpl &&
-            (identical(other.uslId, uslId) || other.uslId == uslId) &&
-            (identical(other.usfLocationId, usfLocationId) ||
-                other.usfLocationId == usfLocationId) &&
-            (identical(other.locName, locName) || other.locName == locName));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
+            (identical(other.locName, locName) || other.locName == locName) &&
+            (identical(other.countryName, countryName) ||
+                other.countryName == countryName) &&
+            (identical(other.locLat, locLat) || other.locLat == locLat) &&
+            (identical(other.locLon, locLon) || other.locLon == locLon) &&
+            (identical(other.countryCurrency, countryCurrency) ||
+                other.countryCurrency == countryCurrency) &&
+            (identical(other.currencyName, currencyName) ||
+                other.currencyName == currencyName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uslId, usfLocationId, locName);
+  int get hashCode => Object.hash(runtimeType, id, countryCode, locName,
+      countryName, locLat, locLon, countryCurrency, currencyName);
 
   /// Create a copy of LocationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -179,19 +275,34 @@ class _$LocationModelImpl implements _LocationModel {
 
 abstract class _LocationModel implements LocationModel {
   const factory _LocationModel(
-      {final int? uslId,
-      final int? usfLocationId,
-      required final String locName}) = _$LocationModelImpl;
+      {final int? id,
+      final String? countryCode,
+      required final String locName,
+      required final String countryName,
+      final num? locLat,
+      final num? locLon,
+      final String? countryCurrency,
+      final String? currencyName}) = _$LocationModelImpl;
 
   factory _LocationModel.fromJson(Map<String, dynamic> json) =
       _$LocationModelImpl.fromJson;
 
   @override
-  int? get uslId;
+  int? get id;
   @override
-  int? get usfLocationId;
+  String? get countryCode;
   @override
   String get locName;
+  @override
+  String get countryName;
+  @override
+  num? get locLat;
+  @override
+  num? get locLon;
+  @override
+  String? get countryCurrency;
+  @override
+  String? get currencyName;
 
   /// Create a copy of LocationModel
   /// with the given fields replaced by the non-null parameter values.

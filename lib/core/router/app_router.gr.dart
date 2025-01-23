@@ -413,10 +413,17 @@ class RequestsTapRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SelectLocationPage]
-class SelectLocationRoute extends PageRouteInfo<void> {
-  const SelectLocationRoute({List<PageRouteInfo>? children})
-      : super(
+class SelectLocationRoute extends PageRouteInfo<SelectLocationRouteArgs> {
+  SelectLocationRoute({
+    Key? key,
+    bool singleSelect = false,
+    List<PageRouteInfo>? children,
+  }) : super(
           SelectLocationRoute.name,
+          args: SelectLocationRouteArgs(
+            key: key,
+            singleSelect: singleSelect,
+          ),
           initialChildren: children,
         );
 
@@ -425,9 +432,30 @@ class SelectLocationRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SelectLocationPage();
+      final args = data.argsAs<SelectLocationRouteArgs>(
+          orElse: () => const SelectLocationRouteArgs());
+      return SelectLocationPage(
+        key: args.key,
+        singleSelect: args.singleSelect,
+      );
     },
   );
+}
+
+class SelectLocationRouteArgs {
+  const SelectLocationRouteArgs({
+    this.key,
+    this.singleSelect = false,
+  });
+
+  final Key? key;
+
+  final bool singleSelect;
+
+  @override
+  String toString() {
+    return 'SelectLocationRouteArgs{key: $key, singleSelect: $singleSelect}';
+  }
 }
 
 /// generated route for
@@ -455,12 +483,14 @@ class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
   ServiceDetailsRoute({
     Key? key,
     required ServiceModel serviceModel,
+    required CategoryModel serviceCategory,
     List<PageRouteInfo>? children,
   }) : super(
           ServiceDetailsRoute.name,
           args: ServiceDetailsRouteArgs(
             key: key,
             serviceModel: serviceModel,
+            serviceCategory: serviceCategory,
           ),
           initialChildren: children,
         );
@@ -474,6 +504,7 @@ class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
       return ServiceDetailsPage(
         key: args.key,
         serviceModel: args.serviceModel,
+        serviceCategory: args.serviceCategory,
       );
     },
   );
@@ -483,15 +514,18 @@ class ServiceDetailsRouteArgs {
   const ServiceDetailsRouteArgs({
     this.key,
     required this.serviceModel,
+    required this.serviceCategory,
   });
 
   final Key? key;
 
   final ServiceModel serviceModel;
 
+  final CategoryModel serviceCategory;
+
   @override
   String toString() {
-    return 'ServiceDetailsRouteArgs{key: $key, serviceModel: $serviceModel}';
+    return 'ServiceDetailsRouteArgs{key: $key, serviceModel: $serviceModel, serviceCategory: $serviceCategory}';
   }
 }
 

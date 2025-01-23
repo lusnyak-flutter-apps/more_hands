@@ -13,9 +13,12 @@ abstract class ServiceRemoteApi {
   factory ServiceRemoteApi(Dio dio) = _ServiceRemoteApi;
 
   @GET(EndPoint.findServices)
+  Future<List<ServiceModel>?> getServices(
+      @Query('servName') String serviceName);
+
+  @GET(EndPoint.findServicesByCat)
   Future<List<ServiceByCategoryModel>?> findServices(
-    @Query('servName') String serviceName,
-  );
+      @Query('servName') String serviceName);
 
   @GET(EndPoint.getServMeas)
   Future<List<ServiceMeasureModel>?> getServiceMeasures();

@@ -721,6 +721,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ссылка {type}'**
   String linkType(Object type);
+
+  /// No description provided for @sendRequestToSeeContacts.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправить запрос, чтобы увидеть контакты'**
+  String get sendRequestToSeeContacts;
 }
 
 class _AppLocalizationsDelegate

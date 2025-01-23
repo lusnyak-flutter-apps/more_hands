@@ -24,7 +24,7 @@ mixin _$ServiceModel {
   ServiceInfoModel? get serviceInfo => throw _privateConstructorUsedError;
   @JsonKey(name: 'catInfo')
   CategoryModel? get category => throw _privateConstructorUsedError;
-  List<LocationModel> get locations => throw _privateConstructorUsedError;
+  List<LocationShortModel> get locations => throw _privateConstructorUsedError;
   List<FileModel> get files => throw _privateConstructorUsedError;
   bool get userHasService => throw _privateConstructorUsedError;
 
@@ -47,7 +47,7 @@ abstract class $ServiceModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'servInfo') ServiceInfoModel? serviceInfo,
       @JsonKey(name: 'catInfo') CategoryModel? category,
-      List<LocationModel> locations,
+      List<LocationShortModel> locations,
       List<FileModel> files,
       bool userHasService});
 
@@ -88,7 +88,7 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
       locations: null == locations
           ? _value.locations
           : locations // ignore: cast_nullable_to_non_nullable
-              as List<LocationModel>,
+              as List<LocationShortModel>,
       files: null == files
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ abstract class _$$ServiceModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'servInfo') ServiceInfoModel? serviceInfo,
       @JsonKey(name: 'catInfo') CategoryModel? category,
-      List<LocationModel> locations,
+      List<LocationShortModel> locations,
       List<FileModel> files,
       bool userHasService});
 
@@ -181,7 +181,7 @@ class __$$ServiceModelImplCopyWithImpl<$Res>
       locations: null == locations
           ? _value._locations
           : locations // ignore: cast_nullable_to_non_nullable
-              as List<LocationModel>,
+              as List<LocationShortModel>,
       files: null == files
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ class _$ServiceModelImpl implements _ServiceModel {
   const _$ServiceModelImpl(
       {@JsonKey(name: 'servInfo') this.serviceInfo,
       @JsonKey(name: 'catInfo') this.category,
-      final List<LocationModel> locations = const <LocationModel>[],
+      final List<LocationShortModel> locations = const <LocationShortModel>[],
       final List<FileModel> files = const <FileModel>[],
       this.userHasService = false})
       : _locations = locations,
@@ -215,10 +215,10 @@ class _$ServiceModelImpl implements _ServiceModel {
   @override
   @JsonKey(name: 'catInfo')
   final CategoryModel? category;
-  final List<LocationModel> _locations;
+  final List<LocationShortModel> _locations;
   @override
   @JsonKey()
-  List<LocationModel> get locations {
+  List<LocationShortModel> get locations {
     if (_locations is EqualUnmodifiableListView) return _locations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_locations);
@@ -288,7 +288,7 @@ abstract class _ServiceModel implements ServiceModel {
   const factory _ServiceModel(
       {@JsonKey(name: 'servInfo') final ServiceInfoModel? serviceInfo,
       @JsonKey(name: 'catInfo') final CategoryModel? category,
-      final List<LocationModel> locations,
+      final List<LocationShortModel> locations,
       final List<FileModel> files,
       final bool userHasService}) = _$ServiceModelImpl;
 
@@ -302,7 +302,7 @@ abstract class _ServiceModel implements ServiceModel {
   @JsonKey(name: 'catInfo')
   CategoryModel? get category;
   @override
-  List<LocationModel> get locations;
+  List<LocationShortModel> get locations;
   @override
   List<FileModel> get files;
   @override

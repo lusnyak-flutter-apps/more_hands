@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/currency_code.dart';
+import 'package:more_hands/domain/models/category_model/category_model.dart';
+import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
@@ -9,37 +11,41 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class ServiceDetailsPage extends StatelessWidget {
-  const ServiceDetailsPage({super.key, required this.serviceModel});
+  const ServiceDetailsPage(
+      {super.key, required this.serviceModel, required this.serviceCategory});
 
   final ServiceModel serviceModel;
+  final CategoryModel serviceCategory;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ServiceDetailsCubit>(
       create: (BuildContext context) =>
-          getIt<ServiceDetailsCubit>()..loadData(serviceModel),
+          getIt<ServiceDetailsCubit>()..loadData(serviceModel, serviceCategory),
       child: const _ServiceDetailsView(),
     );
   }
 }
 
-class _ServiceDetailsView extends StatefulWidget {
+class _ServiceDetailsView extends StatelessWidget {
   const _ServiceDetailsView();
 
   @override
-  State<_ServiceDetailsView> createState() => _ServiceDetailsViewState();
-}
-
-class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
-  @override
   Widget build(BuildContext context) {
     final cubit = context.read<ServiceDetailsCubit>();
-    return BlocBuilder<ServiceDetailsCubit, ServiceDetailsState>(
-        builder: (context, state) {
+
+    return BlocConsumer<ServiceDetailsCubit, ServiceDetailsState>(
+        listener: (_, state) {
+      if (state.serviceAdded) {
+        // context.router.maybePop(true);
+        context.router.popUntilRoot();
+      }
+    }, builder: (context, state) {
+      final selected = state.selectedLocations.map((e) => e.locName).join(",");
       return Scaffold(
         bottomSheet: MHBottomNavigationControl(
           buttonTitle: context.localized.save,
-          action: () {},
+          action: cubit.onSaved,
         ).paddingOnly(bottom: 16.h),
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -57,7 +63,7 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "",//state.service?.servName ?? "",
+                  state.service?.serviceInfo?.servName ?? "",
                   style: body16MediumStyle,
                 ).paddingOnly(bottom: 16.h),
                 Row(
@@ -65,7 +71,14 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          context.router.push(const SelectLocationRoute());
+                          context.router
+                              .push(SelectLocationRoute())
+                              .then((onValue) {
+                            if (onValue != null &&
+                                onValue is List<LocationModel>) {
+                              cubit.setSelectedLocations(onValue);
+                            }
+                          });
                         },
                         icon: MoreHandsAssets.icons.plus.svg()),
                     8.w.widthBox,
@@ -76,7 +89,7 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
                               child: MoreHandsAssets.icons.mapPin
                                   .svg(height: 18.r)
                                   .paddingOnly(right: 4.w)),
-                          TextSpan(text: "Location", style: body16MediumStyle)
+                          TextSpan(text: selected, style: body16MediumStyle)
                         ],
                       ),
                     ),
@@ -89,6 +102,9 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
                     MHTextField(
                       hintText: context.localized.entterPrice,
                       maxLines: 1,
+                      controller: cubit.priceController,
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
                     ).expanded(),
                     8.w.widthBox,
                     PopupMenuButton<CurrencyCode>(
@@ -130,10 +146,12 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
                 16.h.heightBox,
                 MHRoundedContainer(
                     child: ExpansionTile(
+                  controller: cubit.controller,
                   tilePadding:
                       EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                   collapsedShape: InputBorder.none,
                   shape: InputBorder.none,
+                  // initiallyExpanded: opened,
                   title: Text(
                     state.selectedMeasure?.name ?? context.localized.select,
                     style: body18Style.copyWith(
@@ -148,7 +166,7 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
                           cubit.selectedServiceMeasure(item);
                         },
                         contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                        shape: i < state.serviceMeasures.length -1 
+                        shape: i < state.serviceMeasures.length - 1
                             ? const UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: MHColors.grayColor))
@@ -167,6 +185,7 @@ class _ServiceDetailsViewState extends State<_ServiceDetailsView> {
                 MHTextField(
                   hintText: context.localized.description,
                   maxLines: 10,
+                  controller: cubit.descriptionController,
                   // minLines: 10,
                 ),
                 16.h.heightBox,

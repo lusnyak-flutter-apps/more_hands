@@ -16,44 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String selectedType, List<UserModel> users)
-        loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(String selectedType, List<UserModel> users)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String selectedType, List<UserModel> users)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_HomeState value) loading,
-    required TResult Function(_HomeLoadedState value) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HomeState value)? loading,
-    TResult? Function(_HomeLoadedState value)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HomeState value)? loading,
-    TResult Function(_HomeLoadedState value)? loaded,
-    required TResult orElse(),
-  }) =>
+  bool get loading => throw _privateConstructorUsedError;
+  int get selectedServiceId => throw _privateConstructorUsedError;
+  List<UserModel> get users => throw _privateConstructorUsedError;
+  List<ServiceModel> get services => throw _privateConstructorUsedError;
+  LocationModel? get selectedLocation => throw _privateConstructorUsedError;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +33,15 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
+  @useResult
+  $Res call(
+      {bool loading,
+      int selectedServiceId,
+      List<UserModel> users,
+      List<ServiceModel> services,
+      LocationModel? selectedLocation});
+
+  $LocationModelCopyWith<$Res>? get selectedLocation;
 }
 
 /// @nodoc
@@ -75,13 +56,71 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? selectedServiceId = null,
+    Object? users = null,
+    Object? services = null,
+    Object? selectedLocation = freezed,
+  }) {
+    return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      selectedServiceId: null == selectedServiceId
+          ? _value.selectedServiceId
+          : selectedServiceId // ignore: cast_nullable_to_non_nullable
+              as int,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
+      services: null == services
+          ? _value.services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ServiceModel>,
+      selectedLocation: freezed == selectedLocation
+          ? _value.selectedLocation
+          : selectedLocation // ignore: cast_nullable_to_non_nullable
+              as LocationModel?,
+    ) as $Val);
+  }
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationModelCopyWith<$Res>? get selectedLocation {
+    if (_value.selectedLocation == null) {
+      return null;
+    }
+
+    return $LocationModelCopyWith<$Res>(_value.selectedLocation!, (value) {
+      return _then(_value.copyWith(selectedLocation: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$HomeStateImplCopyWith<$Res> {
+abstract class _$$HomeStateImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
   factory _$$HomeStateImplCopyWith(
           _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
       __$$HomeStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool loading,
+      int selectedServiceId,
+      List<UserModel> users,
+      List<ServiceModel> services,
+      LocationModel? selectedLocation});
+
+  @override
+  $LocationModelCopyWith<$Res>? get selectedLocation;
 }
 
 /// @nodoc
@@ -94,144 +133,58 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl();
-
-  @override
-  String toString() {
-    return 'HomeState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HomeStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String selectedType, List<UserModel> users)
-        loaded,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(String selectedType, List<UserModel> users)? loaded,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String selectedType, List<UserModel> users)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_HomeState value) loading,
-    required TResult Function(_HomeLoadedState value) loaded,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HomeState value)? loading,
-    TResult? Function(_HomeLoadedState value)? loaded,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HomeState value)? loading,
-    TResult Function(_HomeLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _HomeState implements HomeState {
-  const factory _HomeState() = _$HomeStateImpl;
-}
-
-/// @nodoc
-abstract class _$$HomeLoadedStateImplCopyWith<$Res> {
-  factory _$$HomeLoadedStateImplCopyWith(_$HomeLoadedStateImpl value,
-          $Res Function(_$HomeLoadedStateImpl) then) =
-      __$$HomeLoadedStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String selectedType, List<UserModel> users});
-}
-
-/// @nodoc
-class __$$HomeLoadedStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeLoadedStateImpl>
-    implements _$$HomeLoadedStateImplCopyWith<$Res> {
-  __$$HomeLoadedStateImplCopyWithImpl(
-      _$HomeLoadedStateImpl _value, $Res Function(_$HomeLoadedStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedType = null,
+    Object? loading = null,
+    Object? selectedServiceId = null,
     Object? users = null,
+    Object? services = null,
+    Object? selectedLocation = freezed,
   }) {
-    return _then(_$HomeLoadedStateImpl(
-      selectedType: null == selectedType
-          ? _value.selectedType
-          : selectedType // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$HomeStateImpl(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      selectedServiceId: null == selectedServiceId
+          ? _value.selectedServiceId
+          : selectedServiceId // ignore: cast_nullable_to_non_nullable
+              as int,
       users: null == users
           ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
               as List<UserModel>,
+      services: null == services
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ServiceModel>,
+      selectedLocation: freezed == selectedLocation
+          ? _value.selectedLocation
+          : selectedLocation // ignore: cast_nullable_to_non_nullable
+              as LocationModel?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$HomeLoadedStateImpl implements _HomeLoadedState {
-  const _$HomeLoadedStateImpl(
-      {this.selectedType = "All",
-      final List<UserModel> users = const <UserModel>[]})
-      : _users = users;
+class _$HomeStateImpl implements _HomeState {
+  const _$HomeStateImpl(
+      {this.loading = false,
+      this.selectedServiceId = -1,
+      final List<UserModel> users = const <UserModel>[],
+      final List<ServiceModel> services = const <ServiceModel>[],
+      this.selectedLocation})
+      : _users = users,
+        _services = services;
 
   @override
   @JsonKey()
-  final String selectedType;
+  final bool loading;
+  @override
+  @JsonKey()
+  final int selectedServiceId;
   final List<UserModel> _users;
   @override
   @JsonKey()
@@ -241,109 +194,78 @@ class _$HomeLoadedStateImpl implements _HomeLoadedState {
     return EqualUnmodifiableListView(_users);
   }
 
+  final List<ServiceModel> _services;
+  @override
+  @JsonKey()
+  List<ServiceModel> get services {
+    if (_services is EqualUnmodifiableListView) return _services;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_services);
+  }
+
+  @override
+  final LocationModel? selectedLocation;
+
   @override
   String toString() {
-    return 'HomeState.loaded(selectedType: $selectedType, users: $users)';
+    return 'HomeState(loading: $loading, selectedServiceId: $selectedServiceId, users: $users, services: $services, selectedLocation: $selectedLocation)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeLoadedStateImpl &&
-            (identical(other.selectedType, selectedType) ||
-                other.selectedType == selectedType) &&
-            const DeepCollectionEquality().equals(other._users, _users));
+            other is _$HomeStateImpl &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.selectedServiceId, selectedServiceId) ||
+                other.selectedServiceId == selectedServiceId) &&
+            const DeepCollectionEquality().equals(other._users, _users) &&
+            const DeepCollectionEquality().equals(other._services, _services) &&
+            (identical(other.selectedLocation, selectedLocation) ||
+                other.selectedLocation == selectedLocation));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, selectedType, const DeepCollectionEquality().hash(_users));
+      runtimeType,
+      loading,
+      selectedServiceId,
+      const DeepCollectionEquality().hash(_users),
+      const DeepCollectionEquality().hash(_services),
+      selectedLocation);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeLoadedStateImplCopyWith<_$HomeLoadedStateImpl> get copyWith =>
-      __$$HomeLoadedStateImplCopyWithImpl<_$HomeLoadedStateImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String selectedType, List<UserModel> users)
-        loaded,
-  }) {
-    return loaded(selectedType, users);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(String selectedType, List<UserModel> users)? loaded,
-  }) {
-    return loaded?.call(selectedType, users);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String selectedType, List<UserModel> users)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(selectedType, users);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_HomeState value) loading,
-    required TResult Function(_HomeLoadedState value) loaded,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HomeState value)? loading,
-    TResult? Function(_HomeLoadedState value)? loaded,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HomeState value)? loading,
-    TResult Function(_HomeLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
 }
 
-abstract class _HomeLoadedState implements HomeState {
-  const factory _HomeLoadedState(
-      {final String selectedType,
-      final List<UserModel> users}) = _$HomeLoadedStateImpl;
+abstract class _HomeState implements HomeState {
+  const factory _HomeState(
+      {final bool loading,
+      final int selectedServiceId,
+      final List<UserModel> users,
+      final List<ServiceModel> services,
+      final LocationModel? selectedLocation}) = _$HomeStateImpl;
 
-  String get selectedType;
+  @override
+  bool get loading;
+  @override
+  int get selectedServiceId;
+  @override
   List<UserModel> get users;
+  @override
+  List<ServiceModel> get services;
+  @override
+  LocationModel? get selectedLocation;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HomeLoadedStateImplCopyWith<_$HomeLoadedStateImpl> get copyWith =>
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

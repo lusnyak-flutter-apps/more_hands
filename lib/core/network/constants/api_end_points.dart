@@ -8,7 +8,8 @@ abstract class EndPoint {
   static const String findUsersByLocAndText = "/user/findByLocAndText";
   static const String findUsersByLocAndServices = "/user/findByLocAndServices";
 
-  static const String findServices = "/service/findByCat";
+  static const String findServices   = "/service/find";
+  static const String findServicesByCat = "/service/findByCat";
   static const String getServMeas = "/service/getServMeas";
 
   static const String userName = "/user/name";
@@ -31,5 +32,6 @@ abstract class EndPoint {
   static const String getRequestsBySender = "/request/getBySender";
   static const String getRequestsByReceiver = "/request/getByReceiver";
 
+  static const String findClosestLocations = "/location/findClosest";
   static const String label = "/label";
  }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
@@ -6,7 +7,7 @@ class WhatCanDoView extends StatelessWidget {
   const WhatCanDoView({super.key, this.onEdit, this.items = const []});
 
   final VoidCallback? onEdit;
-  final List items;
+  final List<ServiceModel> items;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class WhatCanDoView extends StatelessWidget {
             children: [
               for (var tag in items)
                 MHTag(
-                  title: tag,
+                  title: tag.serviceInfo?.servName ?? "",
                   tintColor: MHColors.darkGrayColor,
                   borderColor: MHColors.grayColor,
                 )

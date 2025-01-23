@@ -25,6 +25,8 @@ import 'package:more_hands/data/remote/currency_remote/currency_remote.dart'
     as _i952;
 import 'package:more_hands/data/remote/edit_profile_remote/edit_profile_remote.dart'
     as _i288;
+import 'package:more_hands/data/remote/location_remote/location_remote.dart'
+    as _i823;
 import 'package:more_hands/data/remote/request_remote/request_remote.dart'
     as _i372;
 import 'package:more_hands/data/remote/service_remote/service_remote.dart'
@@ -35,6 +37,7 @@ import 'package:more_hands/data/remote/user_remote/user_remote.dart' as _i761;
 import 'package:more_hands/data/remote/user_services_remote/user_services_remote.dart'
     as _i622;
 import 'package:more_hands/data/repository/auth_repository.dart' as _i528;
+import 'package:more_hands/data/repository/location_repository.dart' as _i878;
 import 'package:more_hands/data/repository/profile_repository.dart' as _i725;
 import 'package:more_hands/data/repository/referrals_repository.dart' as _i396;
 import 'package:more_hands/data/repository/requests_repository.dart' as _i607;
@@ -48,6 +51,8 @@ import 'package:more_hands/presentation/pages/edit_profile/cubit/profile_edit_cu
     as _i272;
 import 'package:more_hands/presentation/pages/home/cubit/home_cubit.dart'
     as _i393;
+import 'package:more_hands/presentation/pages/location/cubit/select_location_cubit.dart'
+    as _i125;
 import 'package:more_hands/presentation/pages/onboarding/cubit/onboarding_cubit.dart'
     as _i701;
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart'
@@ -89,14 +94,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i198.ServiceListCubit>(() => _i198.ServiceListCubit());
     gh.factory<_i262.ServiceDetailsCubit>(() => _i262.ServiceDetailsCubit());
     gh.factory<_i701.OnboardingCubit>(() => _i701.OnboardingCubit());
+    gh.factory<_i125.SelectLocationCubit>(() => _i125.SelectLocationCubit());
     gh.lazySingleton<_i593.ServiceRepository>(() => _i593.ServiceRepository());
+    gh.lazySingleton<_i607.RequestsRepository>(
+        () => _i607.RequestsRepository());
     gh.lazySingleton<_i443.UsersRepository>(() => _i443.UsersRepository());
     gh.lazySingleton<_i528.AuthRepository>(() => _i528.AuthRepository());
     gh.lazySingleton<_i725.ProfileRepository>(() => _i725.ProfileRepository());
     gh.lazySingleton<_i396.ReferralsRepository>(
         () => _i396.ReferralsRepository());
-    gh.lazySingleton<_i607.RequestsRepository>(
-        () => _i607.RequestsRepository());
+    gh.lazySingleton<_i878.LocationRepository>(
+        () => _i878.LocationRepository());
     gh.factory<_i514.TokenStorage>(() => _i415.TokenStorageImpl());
     gh.factory<String>(
       () => dioClient.baseUrl,
@@ -105,6 +113,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i759.FirebaseProvider>(() => _i369.FirebaseProviderImpl());
     gh.lazySingleton<_i361.Dio>(
         () => dioClient.dio(gh<String>(instanceName: 'baseUrl')));
+    gh.lazySingleton<_i372.RequestRemoteApi>(
+        () => _i372.RequestRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i288.EditProfileRemoteApi>(
         () => _i288.EditProfileRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i622.UserServicesRemoteApi>(
@@ -119,8 +129,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i168.StorageRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i934.AuthRemoteApi>(
         () => _i934.AuthRemoteApi(gh<_i361.Dio>()));
-    gh.lazySingleton<_i372.RequestRemoteApi>(
-        () => _i372.RequestRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i823.LocationRemoteApi>(
+        () => _i823.LocationRemoteApi(gh<_i361.Dio>()));
     return this;
   }
 }

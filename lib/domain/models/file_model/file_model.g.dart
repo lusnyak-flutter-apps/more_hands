@@ -22,6 +22,7 @@ Map<String, dynamic> _$$FileModelImplToJson(_$FileModelImpl instance) =>
     };
 
 const _$AttachCategoryEnumMap = {
+  AttachCategory.serviceImage: 'service_image',
   AttachCategory.userServiceImage: 'user_service_image',
   AttachCategory.profileImage: 'profile_image',
 };

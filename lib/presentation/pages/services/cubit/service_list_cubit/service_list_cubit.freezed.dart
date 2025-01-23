@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ServiceListState {
   bool get loading => throw _privateConstructorUsedError;
   ServiceModel? get selected => throw _privateConstructorUsedError;
+  CategoryModel? get category => throw _privateConstructorUsedError;
   List<ServiceByCategoryModel> get services =>
       throw _privateConstructorUsedError;
   List<int> get expanded => throw _privateConstructorUsedError;
@@ -38,10 +39,12 @@ abstract class $ServiceListStateCopyWith<$Res> {
   $Res call(
       {bool loading,
       ServiceModel? selected,
+      CategoryModel? category,
       List<ServiceByCategoryModel> services,
       List<int> expanded});
 
   $ServiceModelCopyWith<$Res>? get selected;
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -61,6 +64,7 @@ class _$ServiceListStateCopyWithImpl<$Res, $Val extends ServiceListState>
   $Res call({
     Object? loading = null,
     Object? selected = freezed,
+    Object? category = freezed,
     Object? services = null,
     Object? expanded = null,
   }) {
@@ -73,6 +77,10 @@ class _$ServiceListStateCopyWithImpl<$Res, $Val extends ServiceListState>
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as ServiceModel?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
       services: null == services
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
@@ -97,6 +105,20 @@ class _$ServiceListStateCopyWithImpl<$Res, $Val extends ServiceListState>
       return _then(_value.copyWith(selected: value) as $Val);
     });
   }
+
+  /// Create a copy of ServiceListState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryModelCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryModelCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -110,11 +132,14 @@ abstract class _$$ServiceListStateImplCopyWith<$Res>
   $Res call(
       {bool loading,
       ServiceModel? selected,
+      CategoryModel? category,
       List<ServiceByCategoryModel> services,
       List<int> expanded});
 
   @override
   $ServiceModelCopyWith<$Res>? get selected;
+  @override
+  $CategoryModelCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -132,6 +157,7 @@ class __$$ServiceListStateImplCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? selected = freezed,
+    Object? category = freezed,
     Object? services = null,
     Object? expanded = null,
   }) {
@@ -144,6 +170,10 @@ class __$$ServiceListStateImplCopyWithImpl<$Res>
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as ServiceModel?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
       services: null == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
@@ -162,6 +192,7 @@ class _$ServiceListStateImpl implements _ServiceListState {
   const _$ServiceListStateImpl(
       {this.loading = false,
       this.selected,
+      this.category,
       final List<ServiceByCategoryModel> services =
           const <ServiceByCategoryModel>[],
       final List<int> expanded = const <int>[]})
@@ -173,6 +204,8 @@ class _$ServiceListStateImpl implements _ServiceListState {
   final bool loading;
   @override
   final ServiceModel? selected;
+  @override
+  final CategoryModel? category;
   final List<ServiceByCategoryModel> _services;
   @override
   @JsonKey()
@@ -193,7 +226,7 @@ class _$ServiceListStateImpl implements _ServiceListState {
 
   @override
   String toString() {
-    return 'ServiceListState(loading: $loading, selected: $selected, services: $services, expanded: $expanded)';
+    return 'ServiceListState(loading: $loading, selected: $selected, category: $category, services: $services, expanded: $expanded)';
   }
 
   @override
@@ -204,6 +237,8 @@ class _$ServiceListStateImpl implements _ServiceListState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.selected, selected) ||
                 other.selected == selected) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             const DeepCollectionEquality().equals(other._services, _services) &&
             const DeepCollectionEquality().equals(other._expanded, _expanded));
   }
@@ -213,6 +248,7 @@ class _$ServiceListStateImpl implements _ServiceListState {
       runtimeType,
       loading,
       selected,
+      category,
       const DeepCollectionEquality().hash(_services),
       const DeepCollectionEquality().hash(_expanded));
 
@@ -230,6 +266,7 @@ abstract class _ServiceListState implements ServiceListState {
   const factory _ServiceListState(
       {final bool loading,
       final ServiceModel? selected,
+      final CategoryModel? category,
       final List<ServiceByCategoryModel> services,
       final List<int> expanded}) = _$ServiceListStateImpl;
 
@@ -237,6 +274,8 @@ abstract class _ServiceListState implements ServiceListState {
   bool get loading;
   @override
   ServiceModel? get selected;
+  @override
+  CategoryModel? get category;
   @override
   List<ServiceByCategoryModel> get services;
   @override

@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ServiceDetailsState {
   bool get loading => throw _privateConstructorUsedError;
+  bool get serviceAdded => throw _privateConstructorUsedError;
   ServiceModel? get service => throw _privateConstructorUsedError;
+  CategoryModel? get category => throw _privateConstructorUsedError;
   CurrencyCode? get selectedCurrencyCode => throw _privateConstructorUsedError;
   CurrencyModel? get selectedCurrency => throw _privateConstructorUsedError;
   List<ServiceMeasureModel> get serviceMeasures =>
@@ -25,6 +27,8 @@ mixin _$ServiceDetailsState {
   ServiceMeasureModel? get selectedMeasure =>
       throw _privateConstructorUsedError;
   List<File> get selectedFiles => throw _privateConstructorUsedError;
+  List<LocationModel> get selectedLocations =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of ServiceDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,14 +45,18 @@ abstract class $ServiceDetailsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool loading,
+      bool serviceAdded,
       ServiceModel? service,
+      CategoryModel? category,
       CurrencyCode? selectedCurrencyCode,
       CurrencyModel? selectedCurrency,
       List<ServiceMeasureModel> serviceMeasures,
       ServiceMeasureModel? selectedMeasure,
-      List<File> selectedFiles});
+      List<File> selectedFiles,
+      List<LocationModel> selectedLocations});
 
   $ServiceModelCopyWith<$Res>? get service;
+  $CategoryModelCopyWith<$Res>? get category;
   $CurrencyModelCopyWith<$Res>? get selectedCurrency;
   $ServiceMeasureModelCopyWith<$Res>? get selectedMeasure;
 }
@@ -69,22 +77,33 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
   @override
   $Res call({
     Object? loading = null,
+    Object? serviceAdded = null,
     Object? service = freezed,
+    Object? category = freezed,
     Object? selectedCurrencyCode = freezed,
     Object? selectedCurrency = freezed,
     Object? serviceMeasures = null,
     Object? selectedMeasure = freezed,
     Object? selectedFiles = null,
+    Object? selectedLocations = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      serviceAdded: null == serviceAdded
+          ? _value.serviceAdded
+          : serviceAdded // ignore: cast_nullable_to_non_nullable
+              as bool,
       service: freezed == service
           ? _value.service
           : service // ignore: cast_nullable_to_non_nullable
               as ServiceModel?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
       selectedCurrencyCode: freezed == selectedCurrencyCode
           ? _value.selectedCurrencyCode
           : selectedCurrencyCode // ignore: cast_nullable_to_non_nullable
@@ -105,6 +124,10 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
           ? _value.selectedFiles
           : selectedFiles // ignore: cast_nullable_to_non_nullable
               as List<File>,
+      selectedLocations: null == selectedLocations
+          ? _value.selectedLocations
+          : selectedLocations // ignore: cast_nullable_to_non_nullable
+              as List<LocationModel>,
     ) as $Val);
   }
 
@@ -119,6 +142,20 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
 
     return $ServiceModelCopyWith<$Res>(_value.service!, (value) {
       return _then(_value.copyWith(service: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ServiceDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryModelCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryModelCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
     });
   }
 
@@ -161,15 +198,20 @@ abstract class _$$ServiceDetailsStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool loading,
+      bool serviceAdded,
       ServiceModel? service,
+      CategoryModel? category,
       CurrencyCode? selectedCurrencyCode,
       CurrencyModel? selectedCurrency,
       List<ServiceMeasureModel> serviceMeasures,
       ServiceMeasureModel? selectedMeasure,
-      List<File> selectedFiles});
+      List<File> selectedFiles,
+      List<LocationModel> selectedLocations});
 
   @override
   $ServiceModelCopyWith<$Res>? get service;
+  @override
+  $CategoryModelCopyWith<$Res>? get category;
   @override
   $CurrencyModelCopyWith<$Res>? get selectedCurrency;
   @override
@@ -190,22 +232,33 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? serviceAdded = null,
     Object? service = freezed,
+    Object? category = freezed,
     Object? selectedCurrencyCode = freezed,
     Object? selectedCurrency = freezed,
     Object? serviceMeasures = null,
     Object? selectedMeasure = freezed,
     Object? selectedFiles = null,
+    Object? selectedLocations = null,
   }) {
     return _then(_$ServiceDetailsStateImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      serviceAdded: null == serviceAdded
+          ? _value.serviceAdded
+          : serviceAdded // ignore: cast_nullable_to_non_nullable
+              as bool,
       service: freezed == service
           ? _value.service
           : service // ignore: cast_nullable_to_non_nullable
               as ServiceModel?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel?,
       selectedCurrencyCode: freezed == selectedCurrencyCode
           ? _value.selectedCurrencyCode
           : selectedCurrencyCode // ignore: cast_nullable_to_non_nullable
@@ -226,6 +279,10 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
           ? _value._selectedFiles
           : selectedFiles // ignore: cast_nullable_to_non_nullable
               as List<File>,
+      selectedLocations: null == selectedLocations
+          ? _value._selectedLocations
+          : selectedLocations // ignore: cast_nullable_to_non_nullable
+              as List<LocationModel>,
     ));
   }
 }
@@ -235,21 +292,30 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
 class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
   const _$ServiceDetailsStateImpl(
       {this.loading = false,
+      this.serviceAdded = false,
       this.service,
+      this.category,
       this.selectedCurrencyCode = CurrencyCode.ruble,
       this.selectedCurrency,
       final List<ServiceMeasureModel> serviceMeasures =
           const <ServiceMeasureModel>[],
       this.selectedMeasure,
-      final List<File> selectedFiles = const <File>[]})
+      final List<File> selectedFiles = const <File>[],
+      final List<LocationModel> selectedLocations = const <LocationModel>[]})
       : _serviceMeasures = serviceMeasures,
-        _selectedFiles = selectedFiles;
+        _selectedFiles = selectedFiles,
+        _selectedLocations = selectedLocations;
 
   @override
   @JsonKey()
   final bool loading;
   @override
+  @JsonKey()
+  final bool serviceAdded;
+  @override
   final ServiceModel? service;
+  @override
+  final CategoryModel? category;
   @override
   @JsonKey()
   final CurrencyCode? selectedCurrencyCode;
@@ -275,9 +341,19 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
     return EqualUnmodifiableListView(_selectedFiles);
   }
 
+  final List<LocationModel> _selectedLocations;
+  @override
+  @JsonKey()
+  List<LocationModel> get selectedLocations {
+    if (_selectedLocations is EqualUnmodifiableListView)
+      return _selectedLocations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedLocations);
+  }
+
   @override
   String toString() {
-    return 'ServiceDetailsState(loading: $loading, service: $service, selectedCurrencyCode: $selectedCurrencyCode, selectedCurrency: $selectedCurrency, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles)';
+    return 'ServiceDetailsState(loading: $loading, serviceAdded: $serviceAdded, service: $service, category: $category, selectedCurrencyCode: $selectedCurrencyCode, selectedCurrency: $selectedCurrency, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles, selectedLocations: $selectedLocations)';
   }
 
   @override
@@ -286,7 +362,11 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
         (other.runtimeType == runtimeType &&
             other is _$ServiceDetailsStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.serviceAdded, serviceAdded) ||
+                other.serviceAdded == serviceAdded) &&
             (identical(other.service, service) || other.service == service) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.selectedCurrencyCode, selectedCurrencyCode) ||
                 other.selectedCurrencyCode == selectedCurrencyCode) &&
             (identical(other.selectedCurrency, selectedCurrency) ||
@@ -296,19 +376,24 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
             (identical(other.selectedMeasure, selectedMeasure) ||
                 other.selectedMeasure == selectedMeasure) &&
             const DeepCollectionEquality()
-                .equals(other._selectedFiles, _selectedFiles));
+                .equals(other._selectedFiles, _selectedFiles) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedLocations, _selectedLocations));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       loading,
+      serviceAdded,
       service,
+      category,
       selectedCurrencyCode,
       selectedCurrency,
       const DeepCollectionEquality().hash(_serviceMeasures),
       selectedMeasure,
-      const DeepCollectionEquality().hash(_selectedFiles));
+      const DeepCollectionEquality().hash(_selectedFiles),
+      const DeepCollectionEquality().hash(_selectedLocations));
 
   /// Create a copy of ServiceDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -323,17 +408,24 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
 abstract class _ServiceDetailsState implements ServiceDetailsState {
   const factory _ServiceDetailsState(
       {final bool loading,
+      final bool serviceAdded,
       final ServiceModel? service,
+      final CategoryModel? category,
       final CurrencyCode? selectedCurrencyCode,
       final CurrencyModel? selectedCurrency,
       final List<ServiceMeasureModel> serviceMeasures,
       final ServiceMeasureModel? selectedMeasure,
-      final List<File> selectedFiles}) = _$ServiceDetailsStateImpl;
+      final List<File> selectedFiles,
+      final List<LocationModel> selectedLocations}) = _$ServiceDetailsStateImpl;
 
   @override
   bool get loading;
   @override
+  bool get serviceAdded;
+  @override
   ServiceModel? get service;
+  @override
+  CategoryModel? get category;
   @override
   CurrencyCode? get selectedCurrencyCode;
   @override
@@ -344,6 +436,8 @@ abstract class _ServiceDetailsState implements ServiceDetailsState {
   ServiceMeasureModel? get selectedMeasure;
   @override
   List<File> get selectedFiles;
+  @override
+  List<LocationModel> get selectedLocations;
 
   /// Create a copy of ServiceDetailsState
   /// with the given fields replaced by the non-null parameter values.

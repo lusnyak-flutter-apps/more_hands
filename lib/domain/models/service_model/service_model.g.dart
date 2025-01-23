@@ -15,9 +15,10 @@ _$ServiceModelImpl _$$ServiceModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : CategoryModel.fromJson(json['catInfo'] as Map<String, dynamic>),
       locations: (json['locations'] as List<dynamic>?)
-              ?.map((e) => LocationModel.fromJson(e as Map<String, dynamic>))
+              ?.map(
+                  (e) => LocationShortModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
-          const <LocationModel>[],
+          const <LocationShortModel>[],
       files: (json['files'] as List<dynamic>?)
               ?.map((e) => FileModel.fromJson(e as Map<String, dynamic>))
               .toList() ??

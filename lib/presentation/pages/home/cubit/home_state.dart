@@ -2,10 +2,12 @@ part of 'home_cubit.dart';
 
 @freezed
 class HomeState with _$HomeState {
-  const factory HomeState.loading() = _HomeState;
 
-  const factory HomeState.loaded({
-    @Default("All") String selectedType,
+  const factory HomeState({
+    @Default(false) bool loading,
+    @Default(-1) int selectedServiceId,
     @Default(<UserModel>[]) List<UserModel> users,
-  }) = _HomeLoadedState;
+    @Default(<ServiceModel>[]) List<ServiceModel> services,
+    LocationModel? selectedLocation,
+  }) = _HomeState;
 }

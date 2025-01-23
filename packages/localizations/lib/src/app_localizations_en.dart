@@ -342,4 +342,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String linkType(Object type) {
     return '$type link';
   }
+
+  @override
+  String get sendRequestToSeeContacts => 'Send a request to see contacts';
 }
