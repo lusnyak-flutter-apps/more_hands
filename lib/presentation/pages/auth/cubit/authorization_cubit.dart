@@ -14,6 +14,8 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
     const UserCredentialModel(
         username: 'd.s.koksharov', password: '123', name: "Dima"),
     const UserCredentialModel(username: 'plotn', password: '123', name: 'Yura'),
+    const UserCredentialModel(username: 'vasiliy', password: '123', name: 'Vasiliy'),
+    const UserCredentialModel(username: 'stanislav', password: '123', name: 'Stanislav'),
     const UserCredentialModel(username: 'lusine', password: '123', name: 'Lusine'),
   ];
 
