@@ -154,7 +154,7 @@ class _HomeView extends StatelessWidget {
         children: [
           ...users.map((referral) {
             return ReferralItem(
-              showInviteButton: true,
+              // showInviteButton: true,
               showPortfolio: true,
               onTap: () {
                 context.router.push(UserRoute(user: referral));

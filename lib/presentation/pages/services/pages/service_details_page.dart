@@ -202,13 +202,25 @@ class _ServiceDetailsView extends StatelessWidget {
                       mainAxisSpacing: 4.r,
                       crossAxisSpacing: 4.r),
                   children: [
-                    for (var file in state.selectedFiles)
+                    for (var (index, file) in state.selectedFiles.indexed)
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.r),
                           image: DecorationImage(
                               image: FileImage(file), fit: BoxFit.cover),
                         ),
+                        alignment: Alignment.topLeft,
+                        child: IconButton(
+                            onPressed: () {
+                              cubit.removeFile(index);
+                            },
+                            style: IconButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                            ),
+                            icon: MoreHandsAssets.icons.close.svg(
+                                width: 28.0,
+                                colorFilter: const ColorFilter.mode(
+                                    MHColors.redColor, BlendMode.srcIn))),
                       ),
                     MHImagePicker.multiple(
                         onPicked: cubit.pickedFiles,

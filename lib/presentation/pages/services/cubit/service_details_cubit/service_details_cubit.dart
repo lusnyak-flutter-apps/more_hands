@@ -65,6 +65,11 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
     emit(state.copyWith(selectedFiles: picked));
   }
 
+  void removeFile(int index) {
+    var picked = [...state.selectedFiles];
+    picked.removeAt(index);
+    emit(state.copyWith(selectedFiles: picked));
+  }
   void setSelectedLocations(List<LocationModel> selected) {
     if (selected.isNotEmpty) {
       emit(state.copyWith(selectedLocations: selected));
