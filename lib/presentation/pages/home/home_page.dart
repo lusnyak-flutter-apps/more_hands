@@ -14,7 +14,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeCubit>(
-      create: (BuildContext context) => getIt<HomeCubit>()..getData(),
+      create: (BuildContext context) => getIt<HomeCubit>()
+        ..getLocation()
+        ..getData(),
       child: const _HomeView(),
     );
   }
@@ -28,7 +30,7 @@ class _HomeView extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       final cubit = context.read<HomeCubit>();
 
-      if(state.loading) {}
+      if (state.loading) {}
       // final (type, users) = state.maybeWhen(
       //   loaded: (type, users) => (type, users),
       //   orElse: () => (context.localized.all, <UserModel>[]),
@@ -59,12 +61,17 @@ class _HomeView extends StatelessWidget {
               child: Row(
                 children: [
                   MoreHandsAssets.icons.mapPin.svg(height: 24.r),
-                  Text(state.selectedLocation?.locName ?? "", style: body16MediumStyle),
+                  Text(state.selectedLocation?.locName ?? "",
+                      style: body16MediumStyle),
                 ],
               ).paddingAll(4.r),
               onTap: () {
-                context.router.push(  SelectLocationRoute(singleSelect: true)).then((onValue){
-                  if(onValue != null && onValue is List<LocationModel> && onValue.isNotEmpty) {
+                context.router
+                    .push(SelectLocationRoute(singleSelect: true))
+                    .then((onValue) {
+                  if (onValue != null &&
+                      onValue is List<LocationModel> &&
+                      onValue.isNotEmpty) {
                     cubit.setSelectedLocations(onValue.first);
                   }
                 });
@@ -79,6 +86,15 @@ class _HomeView extends StatelessWidget {
                 MHSearchField(
                   hintText: context.localized.search,
                   backgroundColor: MHColors.grayColor33Opacity38,
+                  controller: cubit.searchController,
+                  onEditingComplete: () {
+                    cubit.onEditComplete();
+                    FocusScope.of(context).unfocus();
+                  },
+                  onClear: () {
+                    cubit.onEditComplete();
+                    FocusScope.of(context).unfocus();
+                  },
                 ).paddingSymmetric(horizontal: 24.w, vertical: 16.h),
                 SizedBox(
                   height: 38.h,
@@ -88,7 +104,6 @@ class _HomeView extends StatelessWidget {
                     child: Wrap(
                       direction: Axis.horizontal,
                       alignment: WrapAlignment.start,
-
                       spacing: 8.w,
                       runSpacing: 8.h,
                       children: [
@@ -105,7 +120,8 @@ class _HomeView extends StatelessWidget {
                             onPressed: () {
                               cubit.changeService(item);
                             },
-                            selected: state.selectedServiceId == item.serviceInfo?.servId,
+                            selected: state.selectedServiceId ==
+                                item.serviceInfo?.servId,
                           ),
                       ],
                     ),
@@ -117,10 +133,14 @@ class _HomeView extends StatelessWidget {
         ),
         body: SafeArea(
           bottom: false,
-          child: _buildUsersList(
-            context,
-            state.users,
-          ),
+          child: state.loading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : _buildUsersList(
+                  context,
+                  state.users,
+                ),
         ),
       );
     });
@@ -137,11 +157,12 @@ class _HomeView extends StatelessWidget {
               showInviteButton: true,
               showPortfolio: true,
               onTap: () {
-                context.router.push( UserRoute(user:referral));
+                context.router.push(UserRoute(user: referral));
               },
               onSendRequest: () {
                 context.router.push(const SendRequestRoute());
-              }, referral: referral,
+              },
+              referral: referral,
             ).paddingSymmetric(vertical: 8.h);
           }),
         ],

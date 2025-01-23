@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:location/location.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/data.dart';
 

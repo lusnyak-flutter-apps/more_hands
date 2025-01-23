@@ -26,24 +26,35 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>MoreHands use Camera to upload media files for events.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Allow Flutter tools on your connect and debug your application</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>MoreHands want to access your location to find and return users by locations</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>MoreHands want to access your location to find and return users by locations</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>MoreHands want to access your location to find and return users by locations</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>MoreHands use Michrophone to upload media files for profile and services.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>MoreHands use Photo Library to upload images for profile and services.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>MoreHands use Photo Library to upload images for profile and services.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>MoreHands use Photo Library to upload images for profile and services.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>MoreHands use Camera to upload media files for events.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>MoreHands use Michrophone to upload media files for profile and services.</string>
-    <key>NSLocalNetworkUsageDescription</key>
-    <string>Allow Flutter tools on your connect and debug your application</string>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>MoreHands use Photo Library to upload images for profile and services.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

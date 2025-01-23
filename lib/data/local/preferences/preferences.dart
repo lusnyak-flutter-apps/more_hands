@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Preferences {
   static const String onBoardingLaunchKey = "onBoardingLaunch";
   static const String pushTokenKey = "pushToken";
+  static const String latitudeKey = "latitude";
+  static const String longitudeKey = "longitude";
 
   Preferences._();
 
@@ -26,9 +28,24 @@ class Preferences {
   set pushToken(String value) {
     _sharedPrefs?.setString(Preferences.pushTokenKey, value);
   }
+  double get longitude =>
+      _sharedPrefs?.getDouble(Preferences.longitudeKey) ?? 55.647796;
+
+  set longitude(double value) {
+    _sharedPrefs?.setDouble(Preferences.longitudeKey, value);
+  }
+
+  double get latitude =>
+      _sharedPrefs?.getDouble(Preferences.latitudeKey) ?? 37.554833;
+
+  set latitude(double value) {
+    _sharedPrefs?.setDouble(Preferences.latitudeKey, value);
+  }
 
   Future<void> deleteAll() async {
     // await _sharedPrefs?.remove(Preferences.onBoardingLaunchKey);
     await _sharedPrefs?.remove(Preferences.pushTokenKey);
   }
 }
+
+

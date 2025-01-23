@@ -12,7 +12,9 @@ class AppLoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     FCMService.instance.delegates(context);
     return BlocProvider<AppLoadingCubit>(
-      create: (BuildContext context) => getIt<AppLoadingCubit>()..loadAppData(),
+      create: (BuildContext context) => getIt<AppLoadingCubit>()
+        ..loadAppData()
+        ,
       child: const _AppLoadingView(),
     );
   }
@@ -23,14 +25,14 @@ class _AppLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocListener<AppLoadingCubit, AppLoadingState>(
-      listener: (context, state){
+    return BlocListener<AppLoadingCubit, AppLoadingState>(
+      listener: (context, state) {
         if (state.loaded) {
           debugPrint(state.onboardingLaunched.toString());
-          if(state.logged) {
+          if (state.logged) {
             context.router.pushAndPopUntil(const BottomNavigationRoute(),
                 predicate: (route) => false);
-          } else if(state.onboardingLaunched) {
+          } else if (state.onboardingLaunched) {
             context.router.replace(const TestAuthRoute());
           } else {
             context.router.replace(const OnboardingRoute());
@@ -40,7 +42,7 @@ class _AppLoadingView extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: Center(
-            child: MoreHandsAssets.images.svg.moreHands.svg(width: 280.w) ,
+            child: MoreHandsAssets.images.svg.moreHands.svg(width: 280.w),
           ),
         ),
       ),

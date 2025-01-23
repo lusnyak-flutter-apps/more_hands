@@ -14,5 +14,6 @@ abstract class AuthRemoteApi {
   Future<LoginResponseModel?> login(
     @Query('username') String username,
     @Query('password') String password,
+
   );
 }
