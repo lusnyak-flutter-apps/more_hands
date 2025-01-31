@@ -31,6 +31,7 @@ abstract class EndPoint {
 
   static const String getRequestsBySender = "/request/getBySender";
   static const String getRequestsByReceiver = "/request/getByReceiver";
+  static const String createAndSendRequest = "/action/reqCreateAndSend";
 
   static const String findClosestLocations = "/location/findClosest";
   static const String label = "/label";

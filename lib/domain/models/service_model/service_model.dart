@@ -1,8 +1,7 @@
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/category_model/category_model.dart';
 import 'package:more_hands/domain/models/file_model/file_model.dart';
-import 'package:more_hands/domain/models/location_model/location_model.dart';
-import 'package:more_hands/domain/models/location_short_model/location_short_model.dart';
+ import 'package:more_hands/domain/models/location_short_model/location_short_model.dart';
 import 'package:more_hands/domain/models/service_info_model/service_info_model.dart';
 
 part 'service_model.freezed.dart';

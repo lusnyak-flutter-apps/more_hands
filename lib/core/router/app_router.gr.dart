@@ -460,10 +460,17 @@ class SelectLocationRouteArgs {
 
 /// generated route for
 /// [SendRequestPage]
-class SendRequestRoute extends PageRouteInfo<void> {
-  const SendRequestRoute({List<PageRouteInfo>? children})
-      : super(
+class SendRequestRoute extends PageRouteInfo<SendRequestRouteArgs> {
+  SendRequestRoute({
+    Key? key,
+    required int userId,
+    List<PageRouteInfo>? children,
+  }) : super(
           SendRequestRoute.name,
+          args: SendRequestRouteArgs(
+            key: key,
+            userId: userId,
+          ),
           initialChildren: children,
         );
 
@@ -472,9 +479,29 @@ class SendRequestRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SendRequestPage();
+      final args = data.argsAs<SendRequestRouteArgs>();
+      return SendRequestPage(
+        key: args.key,
+        userId: args.userId,
+      );
     },
   );
+}
+
+class SendRequestRouteArgs {
+  const SendRequestRouteArgs({
+    this.key,
+    required this.userId,
+  });
+
+  final Key? key;
+
+  final int userId;
+
+  @override
+  String toString() {
+    return 'SendRequestRouteArgs{key: $key, userId: $userId}';
+  }
 }
 
 /// generated route for

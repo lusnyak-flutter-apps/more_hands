@@ -2,6 +2,7 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/remote/request_remote/request_remote.dart';
 import 'package:more_hands/domain/enums/request_status.dart';
 import 'package:more_hands/domain/models/request_model/request_model.dart';
+import 'package:more_hands/domain/models/send_request_model/send_request_model.dart';
 
 @lazySingleton
 class RequestsRepository {
@@ -20,4 +21,9 @@ class RequestsRepository {
         .then((onValue) => onValue ?? <RequestModel>[])
         .catchError((_) => <RequestModel>[]);
   }
+
+  Future<void> createAndSendRequest({
+    required SendRequestModel sendModel,
+  }) async =>
+      await getIt<RequestRemoteApi>().createAndSendRequest(data: sendModel);
 }

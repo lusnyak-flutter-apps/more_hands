@@ -46,7 +46,7 @@ class _UserView extends StatelessWidget {
           bottomSheet: MHBottomNavigationControl(
             buttonTitle: user?.userInfo?.shaken != true ? context.localized.sendRequest : context.localized.requestSent,
             action: user?.userInfo?.shaken != true ? () {
-              context.router.push(const SendRequestRoute());
+              context.router.push(  SendRequestRoute(userId: user!.userInfo!.id));
             } : null,
           ).paddingOnly(bottom: 16.h),
           body: SafeArea(
@@ -131,7 +131,7 @@ class _UserView extends StatelessWidget {
           referralsCount: 0,
         ).paddingOnly(bottom: 8.h),
         if(user.userInfo?.shaken != true)
-        _buildSendCodeToFriends(context).paddingOnly(bottom: 8.h),
+        _buildSendCodeToFriends(context, userId: user.userInfo!.id).paddingOnly(bottom: 8.h),
         if (contacts.isNotEmpty && user.userInfo?.shaken == true)
           UserContactsView(
             contacts: contacts,
@@ -146,11 +146,11 @@ class _UserView extends StatelessWidget {
     );
   }
 
-  Widget _buildSendCodeToFriends(BuildContext context) => InkWell(
+  Widget _buildSendCodeToFriends(BuildContext context, {required int userId}) => InkWell(
         borderRadius: BorderRadius.circular(16.r),
         onTap: () {
           debugPrint("Send code to your friends 1");
-          context.router.push(const SendRequestRoute());
+          context.router.push(  SendRequestRoute(userId: userId));
         },
         child: MHRoundedContainer(
           color: MHColors.blackBGColor.withValues(alpha: 0.5),

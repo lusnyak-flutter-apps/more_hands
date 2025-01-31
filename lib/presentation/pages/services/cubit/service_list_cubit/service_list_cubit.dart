@@ -1,11 +1,9 @@
-import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
+ import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/service_repository.dart';
 import 'package:more_hands/domain/models/category_model/category_model.dart';
 import 'package:more_hands/domain/models/service_by_category_model/service_by_category_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
-import 'package:more_hands/presentation/pages/services/view_model/service_list_view_model.dart';
 
 part 'service_list_cubit.freezed.dart';
 

@@ -16,49 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SendRequestState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() completed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? completed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? completed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SendRequestState value) loading,
-    required TResult Function(_SendRequestLoadedState value) loaded,
-    required TResult Function(_SendRequestCompletedState value) completed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendRequestState value)? loading,
-    TResult? Function(_SendRequestLoadedState value)? loaded,
-    TResult? Function(_SendRequestCompletedState value)? completed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendRequestState value)? loading,
-    TResult Function(_SendRequestLoadedState value)? loaded,
-    TResult Function(_SendRequestCompletedState value)? completed,
-    required TResult orElse(),
-  }) =>
+  bool get loading => throw _privateConstructorUsedError;
+  bool get completed => throw _privateConstructorUsedError;
+  bool get haveNoSubscription => throw _privateConstructorUsedError;
+  int? get receiverId => throw _privateConstructorUsedError;
+
+  /// Create a copy of SendRequestState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SendRequestStateCopyWith<SendRequestState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +33,9 @@ abstract class $SendRequestStateCopyWith<$Res> {
   factory $SendRequestStateCopyWith(
           SendRequestState value, $Res Function(SendRequestState) then) =
       _$SendRequestStateCopyWithImpl<$Res, SendRequestState>;
+  @useResult
+  $Res call(
+      {bool loading, bool completed, bool haveNoSubscription, int? receiverId});
 }
 
 /// @nodoc
@@ -81,13 +50,45 @@ class _$SendRequestStateCopyWithImpl<$Res, $Val extends SendRequestState>
 
   /// Create a copy of SendRequestState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? completed = null,
+    Object? haveNoSubscription = null,
+    Object? receiverId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      completed: null == completed
+          ? _value.completed
+          : completed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      haveNoSubscription: null == haveNoSubscription
+          ? _value.haveNoSubscription
+          : haveNoSubscription // ignore: cast_nullable_to_non_nullable
+              as bool,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$SendRequestStateImplCopyWith<$Res> {
+abstract class _$$SendRequestStateImplCopyWith<$Res>
+    implements $SendRequestStateCopyWith<$Res> {
   factory _$$SendRequestStateImplCopyWith(_$SendRequestStateImpl value,
           $Res Function(_$SendRequestStateImpl) then) =
       __$$SendRequestStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool loading, bool completed, bool haveNoSubscription, int? receiverId});
 }
 
 /// @nodoc
@@ -100,325 +101,109 @@ class __$$SendRequestStateImplCopyWithImpl<$Res>
 
   /// Create a copy of SendRequestState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? completed = null,
+    Object? haveNoSubscription = null,
+    Object? receiverId = freezed,
+  }) {
+    return _then(_$SendRequestStateImpl(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      completed: null == completed
+          ? _value.completed
+          : completed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      haveNoSubscription: null == haveNoSubscription
+          ? _value.haveNoSubscription
+          : haveNoSubscription // ignore: cast_nullable_to_non_nullable
+              as bool,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SendRequestStateImpl implements _SendRequestState {
-  const _$SendRequestStateImpl();
+  const _$SendRequestStateImpl(
+      {this.loading = false,
+      this.completed = false,
+      this.haveNoSubscription = false,
+      this.receiverId});
+
+  @override
+  @JsonKey()
+  final bool loading;
+  @override
+  @JsonKey()
+  final bool completed;
+  @override
+  @JsonKey()
+  final bool haveNoSubscription;
+  @override
+  final int? receiverId;
 
   @override
   String toString() {
-    return 'SendRequestState.loading()';
+    return 'SendRequestState(loading: $loading, completed: $completed, haveNoSubscription: $haveNoSubscription, receiverId: $receiverId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SendRequestStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SendRequestStateImpl &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.completed, completed) ||
+                other.completed == completed) &&
+            (identical(other.haveNoSubscription, haveNoSubscription) ||
+                other.haveNoSubscription == haveNoSubscription) &&
+            (identical(other.receiverId, receiverId) ||
+                other.receiverId == receiverId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, loading, completed, haveNoSubscription, receiverId);
 
+  /// Create a copy of SendRequestState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() completed,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? completed,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? completed,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SendRequestState value) loading,
-    required TResult Function(_SendRequestLoadedState value) loaded,
-    required TResult Function(_SendRequestCompletedState value) completed,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendRequestState value)? loading,
-    TResult? Function(_SendRequestLoadedState value)? loaded,
-    TResult? Function(_SendRequestCompletedState value)? completed,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendRequestState value)? loading,
-    TResult Function(_SendRequestLoadedState value)? loaded,
-    TResult Function(_SendRequestCompletedState value)? completed,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$SendRequestStateImplCopyWith<_$SendRequestStateImpl> get copyWith =>
+      __$$SendRequestStateImplCopyWithImpl<_$SendRequestStateImpl>(
+          this, _$identity);
 }
 
 abstract class _SendRequestState implements SendRequestState {
-  const factory _SendRequestState() = _$SendRequestStateImpl;
-}
+  const factory _SendRequestState(
+      {final bool loading,
+      final bool completed,
+      final bool haveNoSubscription,
+      final int? receiverId}) = _$SendRequestStateImpl;
 
-/// @nodoc
-abstract class _$$SendRequestLoadedStateImplCopyWith<$Res> {
-  factory _$$SendRequestLoadedStateImplCopyWith(
-          _$SendRequestLoadedStateImpl value,
-          $Res Function(_$SendRequestLoadedStateImpl) then) =
-      __$$SendRequestLoadedStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SendRequestLoadedStateImplCopyWithImpl<$Res>
-    extends _$SendRequestStateCopyWithImpl<$Res, _$SendRequestLoadedStateImpl>
-    implements _$$SendRequestLoadedStateImplCopyWith<$Res> {
-  __$$SendRequestLoadedStateImplCopyWithImpl(
-      _$SendRequestLoadedStateImpl _value,
-      $Res Function(_$SendRequestLoadedStateImpl) _then)
-      : super(_value, _then);
+  @override
+  bool get loading;
+  @override
+  bool get completed;
+  @override
+  bool get haveNoSubscription;
+  @override
+  int? get receiverId;
 
   /// Create a copy of SendRequestState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SendRequestLoadedStateImpl implements _SendRequestLoadedState {
-  const _$SendRequestLoadedStateImpl();
-
   @override
-  String toString() {
-    return 'SendRequestState.loaded()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SendRequestLoadedStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() completed,
-  }) {
-    return loaded();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? completed,
-  }) {
-    return loaded?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? completed,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SendRequestState value) loading,
-    required TResult Function(_SendRequestLoadedState value) loaded,
-    required TResult Function(_SendRequestCompletedState value) completed,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendRequestState value)? loading,
-    TResult? Function(_SendRequestLoadedState value)? loaded,
-    TResult? Function(_SendRequestCompletedState value)? completed,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendRequestState value)? loading,
-    TResult Function(_SendRequestLoadedState value)? loaded,
-    TResult Function(_SendRequestCompletedState value)? completed,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SendRequestLoadedState implements SendRequestState {
-  const factory _SendRequestLoadedState() = _$SendRequestLoadedStateImpl;
-}
-
-/// @nodoc
-abstract class _$$SendRequestCompletedStateImplCopyWith<$Res> {
-  factory _$$SendRequestCompletedStateImplCopyWith(
-          _$SendRequestCompletedStateImpl value,
-          $Res Function(_$SendRequestCompletedStateImpl) then) =
-      __$$SendRequestCompletedStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SendRequestCompletedStateImplCopyWithImpl<$Res>
-    extends _$SendRequestStateCopyWithImpl<$Res,
-        _$SendRequestCompletedStateImpl>
-    implements _$$SendRequestCompletedStateImplCopyWith<$Res> {
-  __$$SendRequestCompletedStateImplCopyWithImpl(
-      _$SendRequestCompletedStateImpl _value,
-      $Res Function(_$SendRequestCompletedStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SendRequestState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SendRequestCompletedStateImpl implements _SendRequestCompletedState {
-  const _$SendRequestCompletedStateImpl();
-
-  @override
-  String toString() {
-    return 'SendRequestState.completed()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SendRequestCompletedStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
-    required TResult Function() completed,
-  }) {
-    return completed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
-    TResult? Function()? completed,
-  }) {
-    return completed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function()? completed,
-    required TResult orElse(),
-  }) {
-    if (completed != null) {
-      return completed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SendRequestState value) loading,
-    required TResult Function(_SendRequestLoadedState value) loaded,
-    required TResult Function(_SendRequestCompletedState value) completed,
-  }) {
-    return completed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendRequestState value)? loading,
-    TResult? Function(_SendRequestLoadedState value)? loaded,
-    TResult? Function(_SendRequestCompletedState value)? completed,
-  }) {
-    return completed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendRequestState value)? loading,
-    TResult Function(_SendRequestLoadedState value)? loaded,
-    TResult Function(_SendRequestCompletedState value)? completed,
-    required TResult orElse(),
-  }) {
-    if (completed != null) {
-      return completed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SendRequestCompletedState implements SendRequestState {
-  const factory _SendRequestCompletedState() = _$SendRequestCompletedStateImpl;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SendRequestStateImplCopyWith<_$SendRequestStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

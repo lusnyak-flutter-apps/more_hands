@@ -7,12 +7,14 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class SendRequestPage extends StatelessWidget {
-  const SendRequestPage({super.key});
+  const SendRequestPage({super.key, required this.userId});
+
+  final int userId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SendRequestCubit>(
-      create: (BuildContext context) => getIt<SendRequestCubit>(),
+      create: (BuildContext context) => getIt<SendRequestCubit>()..setReceiverId(userId),
       child: const _SendRequestView(),
     );
   }
@@ -25,12 +27,12 @@ class _SendRequestView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SendRequestCubit, SendRequestState>(
       listener: (context, state) {
-        state.maybeWhen(
-          completed: () {
-            context.router.maybePop();
-          },
-          orElse: () {},
-        );
+        if(state.completed) {
+          context.router.maybePop(state.receiverId);
+        }
+        if(state.haveNoSubscription){
+          context.showSnackBar(message: "You have no any subscriptions");
+        }
       },
         builder: (context, state) {
       final cubit = context.read<SendRequestCubit>();
@@ -38,6 +40,7 @@ class _SendRequestView extends StatelessWidget {
         bottomSheet: MHBottomNavigationControl(
           buttonTitle: context.localized.sendRequest,
           action: cubit.sendRequest,
+          actionLoading: state.loading,
         ).paddingOnly(bottom: 16.h),
         body: SafeArea(
           child: Column(

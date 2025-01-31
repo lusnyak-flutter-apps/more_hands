@@ -12,6 +12,6 @@ abstract class LocationRemoteApi {
 
   @GET(EndPoint.findClosestLocations)
   Future<List<LocationModel>?>  findClosestLocations({
-    @Query('locName') String locName = "",
+    @Query('city') String locName = "",
   });
 }

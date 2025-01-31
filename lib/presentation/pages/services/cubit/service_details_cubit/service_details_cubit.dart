@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/service_repository.dart';
 import 'package:more_hands/domain/enums/currency_code.dart';
@@ -86,7 +85,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
           ? num.tryParse(priceController.text)
           : 0,
       priceCurrency: state.selectedCurrency?.curCode.rawValue,
-      locations: state.selectedLocations.map((e) => e.locName).toList(),
+      locations: state.selectedLocations.map((e) => e.locName ?? "").toList(),
     );
     debugPrint(requestModel.toJson().toString());
     emit(state.copyWith(loading: true));

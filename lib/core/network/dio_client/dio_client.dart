@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:localizations/localizations.dart';
-import 'package:more_hands/core/network/constants/api_constants.dart';
+ import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/core/network/interceptors/api_logging_interceptor.dart';
 import 'package:more_hands/data/local/preferences/preferences.dart';
 

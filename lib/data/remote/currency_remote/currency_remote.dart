@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/currency_model/currency_model.dart';
-import 'package:more_hands/domain/models/service_means_model/service_measure_model.dart';
-import 'package:more_hands/domain/models/service_model/service_model.dart';
 
 part 'currency_remote.g.dart';
 

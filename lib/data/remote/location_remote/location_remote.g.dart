@@ -27,7 +27,7 @@ class _LocationRemoteApi implements LocationRemoteApi {
   Future<List<LocationModel>?> findClosestLocations(
       {String locName = ""}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'locName': locName};
+    final queryParameters = <String, dynamic>{r'city': locName};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<LocationModel>>(Options(

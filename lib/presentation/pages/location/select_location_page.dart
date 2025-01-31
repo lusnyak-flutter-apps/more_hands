@@ -96,7 +96,7 @@ class _SelectLocationView extends StatelessWidget {
                     // shape: const UnderlineInputBorder(
                     //     borderSide: BorderSide(color: MHColors.grayColor)),
                     title: Text(
-                      value.locName,
+                      value.locName ?? "",
                       style: body16MediumStyle,
                     ),
                     trailing: state.selectedLocations

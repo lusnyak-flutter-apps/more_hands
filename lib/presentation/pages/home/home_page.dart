@@ -160,7 +160,7 @@ class _HomeView extends StatelessWidget {
                 context.router.push(UserRoute(user: referral));
               },
               onSendRequest: () {
-                context.router.push(const SendRequestRoute());
+                context.router.push( SendRequestRoute(userId: referral.userInfo!.id));
               },
               referral: referral,
             ).paddingSymmetric(vertical: 8.h);
