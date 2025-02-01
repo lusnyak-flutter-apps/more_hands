@@ -13,9 +13,9 @@ import 'package:more_hands/domain/models/user_service_request_model/user_service
 @lazySingleton
 class ServiceRepository {
 
-  Future<List<ServiceModel>> getServices({String txt = ""}) async {
+  Future<List<ServiceModel>> getServices({String txt = "", List<int> loc = const <int>[]}) async {
     return await getIt<ServiceRemoteApi>()
-        .getServices(txt)
+        .getServices(txt,loc )
         .then((onValue) => onValue ?? <ServiceModel>[])
         .catchError((_) => <ServiceModel>[]);
   }

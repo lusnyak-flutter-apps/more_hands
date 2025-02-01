@@ -24,6 +24,7 @@ class MHImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("item.imageUrl - $imageUrl");
     return SizedBox(
       width: size,
       child: AspectRatio(

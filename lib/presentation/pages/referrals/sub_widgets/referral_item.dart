@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
 import 'package:more_hands/utils/utils.dart';
@@ -12,10 +13,11 @@ class ReferralItem extends StatelessWidget {
     this.showPortfolio = false,
     // this.showInviteButton = false,
     this.onSendRequest,
-    required this.referral,
+    required this.referral, this.onTapPortfolioItem,
   });
 
   final VoidCallback? onTap;
+  final Function(ServiceModel)? onTapPortfolioItem;
   final VoidCallback? onSendRequest;
   final bool showPortfolio;
   // final bool showInviteButton;
@@ -28,9 +30,13 @@ class ReferralItem extends StatelessWidget {
 
     List<PortfolioItem> portfolio = [];
     for (var s in referral.services) {
-      portfolio.addAll(s.files.map((f) => PortfolioItem(f, service: s)));
+      portfolio.addAll(s.files.map((f) => PortfolioItem( service: s, file: f)));
     }
 
+    String bio = referral.userInfo?.bio  ?? "";
+    if(bio.length > 200) {
+      bio = "${bio.substring(0, 199)}...";
+    }
     return InkWell(
       onTap: onTap,
       child: Column(
@@ -95,9 +101,9 @@ class ReferralItem extends StatelessWidget {
                   ]).expanded()
             ],
           ),
-          if (referral.userInfo?.bio != null)
+          if (bio.isNotEmpty)
             Text(
-              referral.userInfo?.bio ?? "",
+              bio,
               style: body16Style,
             ).paddingSymmetric(vertical: 16.h),
           if (showPortfolio && portfolio.isNotEmpty)
@@ -116,11 +122,16 @@ class ReferralItem extends StatelessWidget {
                       runSpacing: 8.h,
                       children: [
                         for (var item in portfolio)
-                          MHImage(
-                            size: 80.r,
-                            imageUrl: item.filePath,
-                            availableForegroundDecoration: false,
-                          )
+                          InkWell(
+                            onTap: (){
+                              onTapPortfolioItem?.call(item.service);
+                            },
+                            child: MHImage(
+                              size: 80.r,
+                              imageUrl: item.filePath,
+                              availableForegroundDecoration: false,
+                            ),
+                          ),
                       ],
                     ),
                   ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/domain/enums/request_status.dart';
 import 'package:more_hands/domain/models/request_model/request_model.dart';
+import 'package:more_hands/presentation/pages/requests/cubit/requests_cubit.dart';
 import 'package:more_hands/utils/extensions/date_time_extension.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
@@ -105,7 +107,13 @@ class IncomingRequestTile extends StatelessWidget {
               children: [
                 MHOutlinedButton(
                   title: context.localized.reject,
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<RequestsCubit>().rejectRequest(requestModel.id).catchError((e) {
+                      if(context.mounted) {
+                        context.showSnackBar(message: e.toString());
+                      }
+                    });
+                  },
                   style: OutlinedButton.styleFrom(
                       fixedSize: Size.fromHeight(32.h),
                       padding:
@@ -114,7 +122,13 @@ class IncomingRequestTile extends StatelessWidget {
                 8.w.widthBox,
                 MHGradientButton(
                   title: context.localized.accept,
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<RequestsCubit>().approveRequest(requestModel.id).catchError((e) {
+                      if(context.mounted) {
+                        context.showSnackBar(message: e.toString());
+                      }
+                    });
+                  },
                   height: 32.h,
                   verticalPadding: 0,
                   horizontalPadding: 16.w,

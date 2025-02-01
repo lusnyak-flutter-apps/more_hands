@@ -11,7 +11,8 @@ class RequestsRepository {
       RequestType type = RequestType.sender,
       int from = 0,
       int to = 10}) async {
-    final statusString = status == RequestStatus.all ? status.full : status.rawValue;
+    final statusString =
+        status == RequestStatus.all ? status.full : status.rawValue;
     final future = type == RequestType.receiver
         ? getIt<RequestRemoteApi>()
             .getByReceiver(status: statusString ?? "new", from: from, to: to)
@@ -26,4 +27,19 @@ class RequestsRepository {
     required SendRequestModel sendModel,
   }) async =>
       await getIt<RequestRemoteApi>().createAndSendRequest(data: sendModel);
+
+  Future<void> cancelRequest({
+    required int reqId,
+  }) async =>
+      await getIt<RequestRemoteApi>().cancelRequest(reqId: reqId);
+
+  Future<void> rejectRequest({
+    required int reqId,
+  }) async =>
+      await getIt<RequestRemoteApi>().rejectRequest(reqId: reqId);
+
+  Future<void> approveRequest({
+    required int reqId,
+  }) async =>
+      await getIt<RequestRemoteApi>().approveRequest(reqId: reqId);
 }

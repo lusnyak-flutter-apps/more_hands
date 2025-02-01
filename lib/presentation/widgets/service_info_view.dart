@@ -4,8 +4,9 @@ import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
 class ServiceInfoView extends StatelessWidget {
-  const ServiceInfoView({super.key, required this.service});
+  const ServiceInfoView({super.key, required this.service, required this.userId});
   final  ServiceModel service;
+  final int userId;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,10 +25,9 @@ class ServiceInfoView extends StatelessWidget {
                     Row(
                       children: [
                         MoreHandsAssets.icons.mapPin.svg(height: 24.r),
-                        Text("Москва", style: body16MediumStyle),
+                        Text(service.locations.map((e)=> e.locName).join(","), style: body16MediumStyle),
                       ],
                     ).paddingAll(4.r),
-
                   ],
                 ),
                 8.h.heightBox,
@@ -37,14 +37,16 @@ class ServiceInfoView extends StatelessWidget {
                 ),
                 16.h.heightBox,
                 Text(
-                  "Создам для вас незабываемую фотосессию, которую вы будете вспоминать еще долго, пересматривая снимки, которые я заботливо выберу и обработаю для вас, Создам для вас незабываемую фотосессию, которую вы будете вспоминать еще долго, пересматривая снимки, которые я заботливо выберу и обработаю для вас",
+                   "Создам для вас незабываемую фотосессию, которую вы будете вспоминать еще долго, пересматривая снимки, которые я заботливо выберу и обработаю для вас, Создам для вас незабываемую фотосессию, которую вы будете вспоминать еще долго, пересматривая снимки, которые я заботливо выберу и обработаю для вас",
                   style: body16Style,
                   textAlign: TextAlign.left,
                 ),
               ],
             ),
           ).expanded(),
-          MHGradientButton(title: context.localized.sendRequest, onPressed: (){},),
+          MHGradientButton(title: context.localized.sendRequest, onPressed: (){
+
+          },),
         ],
       ),
     );

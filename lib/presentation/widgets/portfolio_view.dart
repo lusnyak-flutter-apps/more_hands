@@ -9,7 +9,7 @@ class PortfolioItem {
   final ServiceModel service;
   final FileModel file;
 
-  PortfolioItem(this.file, {required this.service});
+  PortfolioItem({required this.service, required this.file, });
 
   String get filePath => "${APIBase.url}/storage/download?category=${file.attachCategory?.rawValue}&fileId=${file.usfFileId}";
 }

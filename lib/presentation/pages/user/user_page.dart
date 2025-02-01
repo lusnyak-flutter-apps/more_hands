@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/enums/contact_type.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart';
@@ -39,14 +40,14 @@ class _UserView extends StatelessWidget {
         final user = state.when(loading: () => null, loaded: (user) => user);
         List<PortfolioItem> portfolio = [];
         user?.services.forEach((s){
-          portfolio.addAll(s.files.map((f) => PortfolioItem(f, service: s)));
+          portfolio.addAll(s.files.map((f) => PortfolioItem( service: s, file: f,)));
         });
 
         return Scaffold(
           bottomSheet: MHBottomNavigationControl(
             buttonTitle: user?.userInfo?.shaken != true ? context.localized.sendRequest : context.localized.requestSent,
             action: user?.userInfo?.shaken != true ? () {
-              context.router.push(  SendRequestRoute(userId: user!.userInfo!.id));
+              context.router.push(SendRequestRoute(userId: user!.userInfo!.id));
             } : null,
           ).paddingOnly(bottom: 16.h),
           body: SafeArea(
@@ -66,7 +67,7 @@ class _UserView extends StatelessWidget {
                     items: portfolio,
                     onTapItem: (index) {
                       debugPrint("Portfolio item $index");
-                      showServiceView(context, service: index.service);
+                      showServiceView(context, service: index.service, userId: user.userInfo!.id);
                     },
                   ).paddingOnly(bottom: 24.h),
                 ],
@@ -94,24 +95,28 @@ class _UserView extends StatelessWidget {
     if (user.userInfo?.instagramLink != null &&
         user.userInfo!.instagramLink!.isNotEmpty) {
       contacts.add(ContactItem(
+          type: ContactType.instagram,
           name: user.userInfo!.instagramLink!,
           icon: MoreHandsAssets.icons.instagram.svg()));
     }
     if (user.userInfo?.whatsappLink != null &&
         user.userInfo!.whatsappLink!.isNotEmpty) {
       contacts.add(ContactItem(
+          type: ContactType.whatsApp,
           name: user.userInfo!.whatsappLink!,
           icon: MoreHandsAssets.icons.whatsapp.svg()));
     }
     if (user.userInfo?.facebookLink != null &&
         user.userInfo!.facebookLink!.isNotEmpty) {
       contacts.add(ContactItem(
+          type: ContactType.facebook,
           name: user.userInfo!.facebookLink!,
           icon: MoreHandsAssets.icons.facebook.svg()));
     }
     if (user.userInfo?.telegramLink != null &&
         user.userInfo!.telegramLink!.isNotEmpty) {
       contacts.add(ContactItem(
+          type: ContactType.telegram,
           name: user.userInfo!.telegramLink!,
           icon: MoreHandsAssets.icons.telegram.svg()));
     }
@@ -181,11 +186,11 @@ class _UserView extends StatelessWidget {
       );
 
   Future<void> showServiceView(BuildContext context,
-      {required ServiceModel service}) async {
+      {required ServiceModel service, required int userId}) async {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
-      child: ServiceInfoView(service: service,),
+      child: ServiceInfoView(service: service,userId: userId,),
     );
   }
 }

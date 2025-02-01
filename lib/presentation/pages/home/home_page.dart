@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/home/cubit/home_cubit.dart';
 import 'package:more_hands/presentation/pages/referrals/sub_widgets/referral_item.dart';
+import 'package:more_hands/presentation/widgets/service_info_view.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
@@ -156,11 +158,15 @@ class _HomeView extends StatelessWidget {
             return ReferralItem(
               // showInviteButton: true,
               showPortfolio: true,
+              onTapPortfolioItem: (s) {
+                showServiceView(context, service: s, userId: referral.userInfo!.id);
+              },
               onTap: () {
                 context.router.push(UserRoute(user: referral));
               },
               onSendRequest: () {
-                context.router.push( SendRequestRoute(userId: referral.userInfo!.id));
+                context.router
+                    .push(SendRequestRoute(userId: referral.userInfo!.id));
               },
               referral: referral,
             ).paddingSymmetric(vertical: 8.h);
@@ -168,5 +174,19 @@ class _HomeView extends StatelessWidget {
         ],
       ),
     ).paddingSymmetric(horizontal: 24.w);
+  }
+
+  Future<void> showServiceView(
+    BuildContext context, {
+    required ServiceModel service,
+        required int userId,
+  }) async {
+    await showMHScrollModalBottomSheet(
+      context,
+      title: service.serviceInfo?.servName ?? "",
+      child: ServiceInfoView(
+        service: service, userId: userId,
+      ),
+    );
   }
 }

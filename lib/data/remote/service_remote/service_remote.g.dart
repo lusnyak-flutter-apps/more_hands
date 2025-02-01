@@ -24,9 +24,15 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<ServiceModel>?> getServices(String serviceName) async {
+  Future<List<ServiceModel>?> getServices(
+    String serviceName,
+    List<int> locations,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'servName': serviceName};
+    final queryParameters = <String, dynamic>{
+      r'servName': serviceName,
+      r'loc': locations,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<ServiceModel>>(Options(

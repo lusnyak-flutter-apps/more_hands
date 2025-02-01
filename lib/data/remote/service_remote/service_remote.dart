@@ -14,7 +14,8 @@ abstract class ServiceRemoteApi {
 
   @GET(EndPoint.findServices)
   Future<List<ServiceModel>?> getServices(
-      @Query('servName') String serviceName);
+      @Query('servName') String serviceName,
+      @Query("loc") List<int> locations);
 
   @GET(EndPoint.findServicesByCat)
   Future<List<ServiceByCategoryModel>?> findServices(

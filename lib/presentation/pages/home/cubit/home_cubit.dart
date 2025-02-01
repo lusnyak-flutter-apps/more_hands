@@ -57,9 +57,15 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getServices() async {
-    await getIt<ServiceRepository>().getServices().then((onValue) {
-      emit(state.copyWith(services: onValue));
-    });
+    try {
+      final tokenData = await getIt<TokenStorage>().readToken();
+      // final locationId = state.selectedLocation?.id ?? tokenData?.closestLoc ?? 0;
+
+      final services =  await getIt<ServiceRepository>().getServices(loc: []);
+      emit(state.copyWith(services: services ,loading: false));
+    } catch (e) {
+      emit(state.copyWith(loading: false));
+    }
   }
 
   Future<void> getUsersBySearchAndLocation() async {
@@ -67,7 +73,6 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final tokenData = await getIt<TokenStorage>().readToken();
       final locationId = state.selectedLocation?.id ?? tokenData?.closestLoc ?? 0;
-
 
       final users = await getIt<UsersRepository>().findUsersByLocAndText(
           locId: locationId);
@@ -104,6 +109,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> setSelectedLocations(LocationModel selected) async {
     emit(state.copyWith(selectedLocation: selected));
+    await getServices();
     if(state.selectedServiceId != -1) {
       searchController.clear();
       await getUsersByServiceAndLocation();

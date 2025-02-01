@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/enums/contact_type.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
@@ -44,7 +45,7 @@ class _ProfileView extends StatelessWidget {
 
           List<PortfolioItem> portfolio = [];
           state.user?.services.forEach((s){
-            portfolio.addAll(s.files.map((f) => PortfolioItem(f, service: s)));
+            portfolio.addAll(s.files.map((f) => PortfolioItem( service: s, file: f)));
           });
 
           return SingleChildScrollView(
@@ -165,24 +166,28 @@ class _ProfileView extends StatelessWidget {
     if (user?.userInfo?.instagramLink != null &&
         user!.userInfo!.instagramLink!.isNotEmpty) {
       contacts.add(ContactItem(
+        type: ContactType.instagram,
           name: user.userInfo!.instagramLink!,
           icon: MoreHandsAssets.icons.instagram.svg()));
     }
     if (user?.userInfo?.whatsappLink != null &&
         user!.userInfo!.whatsappLink!.isNotEmpty) {
       contacts.add(ContactItem(
+          type: ContactType.whatsApp,
           name: user.userInfo!.whatsappLink!,
           icon: MoreHandsAssets.icons.whatsapp.svg()));
     }
     if (user?.userInfo?.facebookLink != null &&
         user!.userInfo!.facebookLink!.isNotEmpty) {
       contacts.add(ContactItem(
+          type: ContactType.facebook,
           name: user.userInfo!.facebookLink!,
           icon: MoreHandsAssets.icons.facebook.svg()));
     }
     if (user?.userInfo?.telegramLink != null &&
         user!.userInfo!.telegramLink!.isNotEmpty) {
       contacts.add(ContactItem(
+          type: ContactType.telegram,
           name: user.userInfo!.telegramLink!,
           icon: MoreHandsAssets.icons.telegram.svg()));
     }

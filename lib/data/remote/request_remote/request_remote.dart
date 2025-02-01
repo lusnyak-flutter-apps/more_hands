@@ -25,6 +25,22 @@ abstract class RequestRemoteApi {
     @Query('to') int to = 10,
   });
 
+  @POST(EndPoint.rejectRequest)
+  Future<void>  rejectRequest({
+     @Query('reqId') required int reqId,
+   });
+
+  @POST(EndPoint.cancelRequest)
+  Future<void>  cancelRequest({
+    @Query('reqId') required int reqId,
+  });
+
+
+  @POST(EndPoint.approveRequest)
+  Future<void>  approveRequest({
+    @Query('reqId') required int reqId,
+  });
+
   @POST(EndPoint.createAndSendRequest)
   Future<void> createAndSendRequest({
     @Body() SendRequestModel? data,
