@@ -9,7 +9,7 @@ enum ContactType {
     return switch (this) {
       instagram => "instagram://$txt",
       facebook => "fb://$txt",
-      telegram => "telegram://$txt",
+      telegram => "https://t.me/$txt", // "telegram://$txt",
       whatsApp => "whatsapp://send?phone=$txt",
       _ => null,
     };

@@ -16,6 +16,10 @@ import 'package:more_hands/data/firebase/firebase_provider/firebase_provider.dar
     as _i759;
 import 'package:more_hands/data/firebase/firebase_provider/firebase_provider_impl.dart'
     as _i369;
+import 'package:more_hands/data/local/social_auth/social_auth_manager.dart'
+    as _i491;
+import 'package:more_hands/data/local/social_auth/social_auth_manager_impl.dart'
+    as _i601;
 import 'package:more_hands/data/local/token_storage/token_storage.dart'
     as _i514;
 import 'package:more_hands/data/local/token_storage/token_stotage_impl.dart'
@@ -113,6 +117,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i759.FirebaseProvider>(() => _i369.FirebaseProviderImpl());
     gh.lazySingleton<_i361.Dio>(
         () => dioClient.dio(gh<String>(instanceName: 'baseUrl')));
+    gh.factory<_i491.SocialAuthManager>(() => _i601.SocialAuthManagerImpl());
     gh.lazySingleton<_i372.RequestRemoteApi>(
         () => _i372.RequestRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i288.EditProfileRemoteApi>(

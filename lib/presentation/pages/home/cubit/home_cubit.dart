@@ -58,7 +58,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getServices() async {
     try {
-      final tokenData = await getIt<TokenStorage>().readToken();
+      // final tokenData = await getIt<TokenStorage>().readToken();
       // final locationId = state.selectedLocation?.id ?? tokenData?.closestLoc ?? 0;
 
       final services =  await getIt<ServiceRepository>().getServices(loc: []);

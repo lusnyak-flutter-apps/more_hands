@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/enums/social_auth_type.dart';
 import 'package:more_hands/presentation/pages/auth/cubit/authorization_cubit.dart';
 import 'package:more_hands/utils/extensions/context_extension.dart';
 import 'package:uikit/uikit.dart';
@@ -22,6 +23,7 @@ class _AuthorizationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<AuthorizationCubit>();
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -44,8 +46,9 @@ class _AuthorizationView extends StatelessWidget {
               24.h.heightBox,
               MHOutlinedButton(
                 onPressed: () {
-                  context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                      predicate: (route) => false);
+                  cubit.loginViaSocial(SocialAuthType.google);
+                  // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                  //     predicate: (route) => false);
                 },
                 title: context.localized.google,
                 icon: MoreHandsAssets.icons.google.svg(),
@@ -53,8 +56,9 @@ class _AuthorizationView extends StatelessWidget {
               8.h.heightBox,
               MHOutlinedButton(
                 onPressed: () {
-                  context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                      predicate: (route) => false);
+                  cubit.loginViaSocial(SocialAuthType.apple);
+                  // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                  //     predicate: (route) => false);
                 },
                 title: context.localized.appleId,
                 icon: MoreHandsAssets.icons.apple.svg(),
@@ -62,8 +66,9 @@ class _AuthorizationView extends StatelessWidget {
               8.h.heightBox,
               MHOutlinedButton(
                 onPressed: () {
-                  context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                      predicate: (route) => false);
+                  cubit.loginViaSocial(SocialAuthType.facebook);
+                  // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                  //     predicate: (route) => false);
                 },
                 title: context.localized.facebook,
                 icon: MoreHandsAssets.icons.facebook.svg(),

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "292524733746-k9m9q64bl1ar9bt65p0f6lf5p7s93jcm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.more_hands.app",
+            "certificate_hash": "8784d8e687b9c924f6ddeaa9aa5583c8e527f4b4"
+          }
+        },
+        {
           "client_id": "292524733746-54agkmvudmihhiqpbqmo2a5f2qkqmbco.apps.googleusercontent.com",
           "client_type": 3
         }

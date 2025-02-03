@@ -2,4 +2,8 @@
 <resources>
     <string name="default_notification_channel_id" translatable="false">more_hands_channel_id</string>
 
+    <string name="facebook_app_id">2998940006928691</string>
+    <string name="fb_login_protocol_scheme">fb2998940006928691</string>
+    <string name="facebook_client_token">c1b619828054f475e4b6cbb4334ef473</string>
+
 </resources>

@@ -30,7 +30,7 @@ class _TestAuthView extends StatelessWidget {
                 predicate: (route) => false);
           },
           unauthorized: () {
-            context.showSnackBar( message: 'Unauthorized');
+            context.showSnackBar(message: 'Unauthorized');
           },
           orElse: () {},
         );
@@ -40,39 +40,47 @@ class _TestAuthView extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
               child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              MoreHandsAssets.images.svg.moreHands
+                  .svg(width: 200.w)
+                  .toCenter()
+                  .expanded(),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  MoreHandsAssets.images.svg.moreHands
-                      .svg(width: 200.w)
-                      .toCenter()
-                      .expanded(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        context.localized.autorization,
-                        style: body28SemiBoldStyle,
-                      ),
-                      24.h.heightBox,
-                      for(var user in cubit.demoUsers)
-                        MHOutlinedButton(
-                          onPressed: () {
-                            cubit.login(user);
-                          },
-                          title: user.name,
-                          icon: MoreHandsAssets.icons.user.svg(),
-                        ).paddingOnly(bottom: 8.h),
-                      16.h.heightBox,
-                      MHTextField(
-                        hintText: context.localized.enterInvitation,
-                      ),
-                    ],
-                  ).paddingSymmetric(horizontal: 24.w, vertical: 40.h)
+                  Text(
+                    context.localized.autorization,
+                    style: body28SemiBoldStyle,
+                  ),
+                  24.h.heightBox,
+                  for (var user in cubit.demoUsers)
+                    MHOutlinedButton(
+                      onPressed: () {
+                        cubit.login(user);
+                      },
+                      title: user.name,
+                      icon: MoreHandsAssets.icons.user.svg(),
+                    ).paddingOnly(bottom: 8.h),
+                  16.h.heightBox,
+                  MHOutlinedButton(
+                    onPressed: () {
+                      context.router.push(const AuthorizationRoute());
+                    },
+                    title: "Social login page",
+                    icon: MoreHandsAssets.icons.user.svg(),
+                  ).paddingOnly(bottom: 8.h),
+                  16.h.heightBox,
+                  MHTextField(
+                    hintText: context.localized.enterInvitation,
+                  ),
                 ],
-              )),
+              ).paddingSymmetric(horizontal: 24.w, vertical: 40.h)
+            ],
+          )),
         );
       },
     );
