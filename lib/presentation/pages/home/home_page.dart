@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<HomeCubit>(
       create: (BuildContext context) => getIt<HomeCubit>()
-        ..getLocation()
+        // ..getLocation()
         ..getData(),
       child: const _HomeView(),
     );
@@ -159,7 +159,8 @@ class _HomeView extends StatelessWidget {
               // showInviteButton: true,
               showPortfolio: true,
               onTapPortfolioItem: (s) {
-                showServiceView(context, service: s, userId: referral.userInfo!.id);
+                showServiceView(context,
+                    service: s, userId: referral.userInfo!.id);
               },
               onTap: () {
                 context.router.push(UserRoute(user: referral));
@@ -179,14 +180,19 @@ class _HomeView extends StatelessWidget {
   Future<void> showServiceView(
     BuildContext context, {
     required ServiceModel service,
-        required int userId,
+    required int userId,
   }) async {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
-      child: ServiceInfoView(
-        service: service, userId: userId,
-      ),
-    );
+      child: ServiceInfoView(service: service),
+    ).then((onValue) {
+      if (onValue is bool) {
+        if (context.mounted) {
+          context.router
+              .push(SendRequestRoute(userId: userId, serviceModel: service));
+        }
+      }
+    });
   }
 }

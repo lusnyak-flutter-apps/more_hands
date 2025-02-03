@@ -20,6 +20,7 @@ mixin _$SendRequestState {
   bool get completed => throw _privateConstructorUsedError;
   bool get haveNoSubscription => throw _privateConstructorUsedError;
   int? get receiverId => throw _privateConstructorUsedError;
+  ServiceModel? get service => throw _privateConstructorUsedError;
 
   /// Create a copy of SendRequestState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,7 +36,13 @@ abstract class $SendRequestStateCopyWith<$Res> {
       _$SendRequestStateCopyWithImpl<$Res, SendRequestState>;
   @useResult
   $Res call(
-      {bool loading, bool completed, bool haveNoSubscription, int? receiverId});
+      {bool loading,
+      bool completed,
+      bool haveNoSubscription,
+      int? receiverId,
+      ServiceModel? service});
+
+  $ServiceModelCopyWith<$Res>? get service;
 }
 
 /// @nodoc
@@ -57,6 +64,7 @@ class _$SendRequestStateCopyWithImpl<$Res, $Val extends SendRequestState>
     Object? completed = null,
     Object? haveNoSubscription = null,
     Object? receiverId = freezed,
+    Object? service = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -75,7 +83,25 @@ class _$SendRequestStateCopyWithImpl<$Res, $Val extends SendRequestState>
           ? _value.receiverId
           : receiverId // ignore: cast_nullable_to_non_nullable
               as int?,
+      service: freezed == service
+          ? _value.service
+          : service // ignore: cast_nullable_to_non_nullable
+              as ServiceModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of SendRequestState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ServiceModelCopyWith<$Res>? get service {
+    if (_value.service == null) {
+      return null;
+    }
+
+    return $ServiceModelCopyWith<$Res>(_value.service!, (value) {
+      return _then(_value.copyWith(service: value) as $Val);
+    });
   }
 }
 
@@ -88,7 +114,14 @@ abstract class _$$SendRequestStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool loading, bool completed, bool haveNoSubscription, int? receiverId});
+      {bool loading,
+      bool completed,
+      bool haveNoSubscription,
+      int? receiverId,
+      ServiceModel? service});
+
+  @override
+  $ServiceModelCopyWith<$Res>? get service;
 }
 
 /// @nodoc
@@ -108,6 +141,7 @@ class __$$SendRequestStateImplCopyWithImpl<$Res>
     Object? completed = null,
     Object? haveNoSubscription = null,
     Object? receiverId = freezed,
+    Object? service = freezed,
   }) {
     return _then(_$SendRequestStateImpl(
       loading: null == loading
@@ -126,6 +160,10 @@ class __$$SendRequestStateImplCopyWithImpl<$Res>
           ? _value.receiverId
           : receiverId // ignore: cast_nullable_to_non_nullable
               as int?,
+      service: freezed == service
+          ? _value.service
+          : service // ignore: cast_nullable_to_non_nullable
+              as ServiceModel?,
     ));
   }
 }
@@ -137,7 +175,8 @@ class _$SendRequestStateImpl implements _SendRequestState {
       {this.loading = false,
       this.completed = false,
       this.haveNoSubscription = false,
-      this.receiverId});
+      this.receiverId,
+      this.service});
 
   @override
   @JsonKey()
@@ -150,10 +189,12 @@ class _$SendRequestStateImpl implements _SendRequestState {
   final bool haveNoSubscription;
   @override
   final int? receiverId;
+  @override
+  final ServiceModel? service;
 
   @override
   String toString() {
-    return 'SendRequestState(loading: $loading, completed: $completed, haveNoSubscription: $haveNoSubscription, receiverId: $receiverId)';
+    return 'SendRequestState(loading: $loading, completed: $completed, haveNoSubscription: $haveNoSubscription, receiverId: $receiverId, service: $service)';
   }
 
   @override
@@ -167,12 +208,13 @@ class _$SendRequestStateImpl implements _SendRequestState {
             (identical(other.haveNoSubscription, haveNoSubscription) ||
                 other.haveNoSubscription == haveNoSubscription) &&
             (identical(other.receiverId, receiverId) ||
-                other.receiverId == receiverId));
+                other.receiverId == receiverId) &&
+            (identical(other.service, service) || other.service == service));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, loading, completed, haveNoSubscription, receiverId);
+      runtimeType, loading, completed, haveNoSubscription, receiverId, service);
 
   /// Create a copy of SendRequestState
   /// with the given fields replaced by the non-null parameter values.
@@ -189,7 +231,8 @@ abstract class _SendRequestState implements SendRequestState {
       {final bool loading,
       final bool completed,
       final bool haveNoSubscription,
-      final int? receiverId}) = _$SendRequestStateImpl;
+      final int? receiverId,
+      final ServiceModel? service}) = _$SendRequestStateImpl;
 
   @override
   bool get loading;
@@ -199,6 +242,8 @@ abstract class _SendRequestState implements SendRequestState {
   bool get haveNoSubscription;
   @override
   int? get receiverId;
+  @override
+  ServiceModel? get service;
 
   /// Create a copy of SendRequestState
   /// with the given fields replaced by the non-null parameter values.

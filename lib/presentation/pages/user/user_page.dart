@@ -34,49 +34,59 @@ class _UserView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserCubit, UserState>(
-      builder: (context, state) {
-        final loading = state.when(loading: () => true, loaded: (_) => false);
-        final user = state.when(loading: () => null, loaded: (user) => user);
-        List<PortfolioItem> portfolio = [];
-        user?.services.forEach((s){
-          portfolio.addAll(s.files.map((f) => PortfolioItem( service: s, file: f,)));
-        });
+    return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+      final loading = state.when(loading: () => true, loaded: (_) => false);
+      final user = state.when(loading: () => null, loaded: (user) => user);
+      List<PortfolioItem> portfolio = [];
+      user?.services.forEach((s) {
+        portfolio.addAll(s.files.map((f) => PortfolioItem(
+              service: s,
+              file: f,
+            )));
+      });
 
-        return Scaffold(
-          bottomSheet: MHBottomNavigationControl(
-            buttonTitle: user?.userInfo?.shaken != true ? context.localized.sendRequest : context.localized.requestSent,
-            action: user?.userInfo?.shaken != true ? () {
-              context.router.push(SendRequestRoute(userId: user!.userInfo!.id));
-            } : null,
-          ).paddingOnly(bottom: 16.h),
-          body: SafeArea(
-            bottom: false,
-            child: loading ? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
-              padding: EdgeInsets.only(
-                  top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  userImagePart(context, user!).paddingOnly(bottom: 24.h),
-                  aboutUserPart(context, user).paddingOnly(bottom: 24.h),
-                  WhatCanDoView(
-                    items: user.services,
-                  ).paddingOnly(bottom: 24.h),
-                  PortfolioView(
-                    items: portfolio,
-                    onTapItem: (index) {
-                      debugPrint("Portfolio item $index");
-                      showServiceView(context, service: index.service, userId: user.userInfo!.id);
-                    },
-                  ).paddingOnly(bottom: 24.h),
-                ],
-              ).paddingSymmetric(horizontal: 24.w),
-            ),
-          ),
-        );
-      }
-    );
+      return Scaffold(
+        bottomSheet: MHBottomNavigationControl(
+          buttonTitle: user?.userInfo?.shaken != true
+              ? context.localized.sendRequest
+              : context.localized.requestSent,
+          action: user?.userInfo?.shaken != true
+              ? () {
+                  context.router
+                      .push(SendRequestRoute(userId: user!.userInfo!.id));
+                }
+              : null,
+        ).paddingOnly(bottom: 16.h),
+        body: SafeArea(
+          bottom: false,
+          child: loading
+              ? const Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                      top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      userImagePart(context, user!).paddingOnly(bottom: 24.h),
+                      aboutUserPart(context, user).paddingOnly(bottom: 24.h),
+                      WhatCanDoView(
+                        items: user.services,
+                      ).paddingOnly(bottom: 24.h),
+                      PortfolioView(
+                        items: portfolio,
+                        onTapItem: (index) {
+                          debugPrint("Portfolio item $index");
+                          showServiceView(context,
+                              service: index.service,
+                              userId: user.userInfo!.id);
+                        },
+                      ).paddingOnly(bottom: 24.h),
+                    ],
+                  ).paddingSymmetric(horizontal: 24.w),
+                ),
+        ),
+      );
+    });
   }
 
   Widget userImagePart(BuildContext context, UserModel user) => MHImage(
@@ -135,8 +145,9 @@ class _UserView extends StatelessWidget {
           transactionsCount: 0,
           referralsCount: 0,
         ).paddingOnly(bottom: 8.h),
-        if(user.userInfo?.shaken != true)
-        _buildSendCodeToFriends(context, userId: user.userInfo!.id).paddingOnly(bottom: 8.h),
+        if (user.userInfo?.shaken != true)
+          _buildSendCodeToFriends(context, userId: user.userInfo!.id)
+              .paddingOnly(bottom: 8.h),
         if (contacts.isNotEmpty && user.userInfo?.shaken == true)
           UserContactsView(
             contacts: contacts,
@@ -151,11 +162,12 @@ class _UserView extends StatelessWidget {
     );
   }
 
-  Widget _buildSendCodeToFriends(BuildContext context, {required int userId}) => InkWell(
+  Widget _buildSendCodeToFriends(BuildContext context, {required int userId}) =>
+      InkWell(
         borderRadius: BorderRadius.circular(16.r),
         onTap: () {
           debugPrint("Send code to your friends 1");
-          context.router.push(  SendRequestRoute(userId: userId));
+          context.router.push(SendRequestRoute(userId: userId));
         },
         child: MHRoundedContainer(
           color: MHColors.blackBGColor.withValues(alpha: 0.5),
@@ -185,12 +197,22 @@ class _UserView extends StatelessWidget {
         ),
       );
 
-  Future<void> showServiceView(BuildContext context,
-      {required ServiceModel service, required int userId}) async {
+  Future<void> showServiceView(
+    BuildContext context, {
+    required ServiceModel service,
+    required int userId,
+  }) async {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
-      child: ServiceInfoView(service: service,userId: userId,),
-    );
+      child: ServiceInfoView(service: service),
+    ).then((onValue) {
+      if (onValue is bool) {
+        if (context.mounted) {
+          context.router
+              .push(SendRequestRoute(userId: userId, serviceModel: service));
+        }
+      }
+    });
   }
 }

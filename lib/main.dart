@@ -26,5 +26,5 @@ Future<void> main() async {
     systemStatusBarContrastEnforced: true,
   ),);
   supportImagePickerPlatformOptions();
-  runApp(moreHandsApp);
+  runApp(const MoreHandsApp());
 }

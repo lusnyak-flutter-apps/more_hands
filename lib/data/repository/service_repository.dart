@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/remote/currency_remote/currency_remote.dart';
@@ -12,10 +14,10 @@ import 'package:more_hands/domain/models/user_service_request_model/user_service
 
 @lazySingleton
 class ServiceRepository {
-
-  Future<List<ServiceModel>> getServices({String txt = "", List<int> loc = const <int>[]}) async {
+  Future<List<ServiceModel>> getServices(
+      {String txt = "", List<int> loc = const <int>[]}) async {
     return await getIt<ServiceRemoteApi>()
-        .getServices(txt,loc )
+        .getServices(txt, loc)
         .then((onValue) => onValue ?? <ServiceModel>[])
         .catchError((_) => <ServiceModel>[]);
   }
@@ -32,21 +34,38 @@ class ServiceRepository {
         .getServiceMeasures()
         .then((onValue) => onValue ?? <ServiceMeasureModel>[])
         .catchError((e) {
-          debugPrint("e.toString()");
-          debugPrint(e.toString());
+      debugPrint("e.toString()");
+      debugPrint(e.toString());
       return <ServiceMeasureModel>[];
     });
   }
 
-  Future<CurrencyModel?> getCurrencyModel(CurrencyCode code) async
-    =>  await getIt<CurrencyRemoteApi>()
-        .getByCode(code.rawValue ?? "RUB").then((onValue)=>onValue)
-         .catchError((e) {
-           debugPrint(e.toString());
+  Future<CurrencyModel?> getCurrencyModel(CurrencyCode code) async =>
+      await getIt<CurrencyRemoteApi>()
+          .getByCode(code.rawValue ?? "RUB")
+          .then((onValue) => onValue)
+          .catchError((e) {
+        debugPrint(e.toString());
         return null;
-      } );
+      });
 
-  Future<void> addUserService(UserServiceRequestModel param) async =>
+  Future<int> addUserService(UserServiceRequestModel param) async =>
       await getIt<UserServicesRemoteApi>().addUserService(data: param);
 
+  Future<bool> attachServiceFiles(List<File> files, int userServiceId) async {
+    if (files.isNotEmpty) {
+      return await Future.wait([
+        for (var (index, file) in files.indexed)
+          getIt<UserServicesRemoteApi>().attachServiceImage(
+              userServiceId: userServiceId,
+              attachType: file.path.split("/").last.split(".").last,
+              file: file,
+              isMain: index == 0,
+              attachName: file.path.split("/").last),
+      ]).then((onValue){
+        return true;
+      }).catchError((_){return false;});
+    }
+    return false;
+  }
 }

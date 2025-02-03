@@ -2,6 +2,7 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/category_model/category_model.dart';
 import 'package:more_hands/domain/models/file_model/file_model.dart';
  import 'package:more_hands/domain/models/location_short_model/location_short_model.dart';
+import 'package:more_hands/domain/models/service_additional_info_model/service_additional_info_model.dart';
 import 'package:more_hands/domain/models/service_info_model/service_info_model.dart';
 
 part 'service_model.freezed.dart';
@@ -13,6 +14,7 @@ class ServiceModel with _$ServiceModel {
   const factory ServiceModel({
     @JsonKey(name: 'servInfo') ServiceInfoModel? serviceInfo,
     @JsonKey(name: 'catInfo') CategoryModel? category,
+    @JsonKey(name: 'serviceMeasInfo') ServiceAdditionalInfoModel? serviceAdditionalInfo,
     @Default(<LocationShortModel>[]) List<LocationShortModel> locations,
     @Default(<FileModel>[]) List<FileModel> files,
     @Default(false) bool userHasService,

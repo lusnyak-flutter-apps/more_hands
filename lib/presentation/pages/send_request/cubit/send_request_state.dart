@@ -7,6 +7,6 @@ class SendRequestState with _$SendRequestState {
     @Default(false) bool completed,
     @Default(false) bool haveNoSubscription,
     int? receiverId,
-
+    ServiceModel? service,
 }) = _SendRequestState;
 }

@@ -17,7 +17,7 @@ abstract class UserServicesRemoteApi {
   Future<List<ServiceModel>?> getUserServices();
 
   @POST(EndPoint.addUserService)
-  Future<void> addUserService({
+  Future<int> addUserService({
     @Body() UserServiceRequestModel? data,
   });
 

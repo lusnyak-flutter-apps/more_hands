@@ -24,6 +24,10 @@ Map<String, dynamic> _$$ServiceMeasureModelImplToJson(
     };
 
 const _$MeasureCodeEnumMap = {
+  MeasureCode.year: 'service.measure.year',
+  MeasureCode.day: 'service.measure.day',
+  MeasureCode.month: 'service.measure.month',
+  MeasureCode.week: 'service.measure.week',
   MeasureCode.hour: 'service.measure.hour',
   MeasureCode.service: 'service.measure.service',
 };

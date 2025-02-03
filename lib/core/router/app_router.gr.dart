@@ -464,12 +464,14 @@ class SendRequestRoute extends PageRouteInfo<SendRequestRouteArgs> {
   SendRequestRoute({
     Key? key,
     required int userId,
+    ServiceModel? serviceModel,
     List<PageRouteInfo>? children,
   }) : super(
           SendRequestRoute.name,
           args: SendRequestRouteArgs(
             key: key,
             userId: userId,
+            serviceModel: serviceModel,
           ),
           initialChildren: children,
         );
@@ -483,6 +485,7 @@ class SendRequestRoute extends PageRouteInfo<SendRequestRouteArgs> {
       return SendRequestPage(
         key: args.key,
         userId: args.userId,
+        serviceModel: args.serviceModel,
       );
     },
   );
@@ -492,15 +495,18 @@ class SendRequestRouteArgs {
   const SendRequestRouteArgs({
     this.key,
     required this.userId,
+    this.serviceModel,
   });
 
   final Key? key;
 
   final int userId;
 
+  final ServiceModel? serviceModel;
+
   @override
   String toString() {
-    return 'SendRequestRouteArgs{key: $key, userId: $userId}';
+    return 'SendRequestRouteArgs{key: $key, userId: $userId, serviceModel: $serviceModel}';
   }
 }
 

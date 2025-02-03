@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/presentation/pages/send_request/cubit/send_request_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
 import 'package:more_hands/utils/utils.dart';
@@ -7,9 +8,10 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class SendRequestPage extends StatelessWidget {
-  const SendRequestPage({super.key, required this.userId});
+  const SendRequestPage({super.key, required this.userId, this.serviceModel});
 
   final int userId;
+  final ServiceModel? serviceModel;
 
   @override
   Widget build(BuildContext context) {

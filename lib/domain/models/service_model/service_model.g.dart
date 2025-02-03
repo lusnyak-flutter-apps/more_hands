@@ -14,6 +14,10 @@ _$ServiceModelImpl _$$ServiceModelImplFromJson(Map<String, dynamic> json) =>
       category: json['catInfo'] == null
           ? null
           : CategoryModel.fromJson(json['catInfo'] as Map<String, dynamic>),
+      serviceAdditionalInfo: json['serviceMeasInfo'] == null
+          ? null
+          : ServiceAdditionalInfoModel.fromJson(
+              json['serviceMeasInfo'] as Map<String, dynamic>),
       locations: (json['locations'] as List<dynamic>?)
               ?.map(
                   (e) => LocationShortModel.fromJson(e as Map<String, dynamic>))
@@ -30,6 +34,7 @@ Map<String, dynamic> _$$ServiceModelImplToJson(_$ServiceModelImpl instance) =>
     <String, dynamic>{
       'servInfo': instance.serviceInfo,
       'catInfo': instance.category,
+      'serviceMeasInfo': instance.serviceAdditionalInfo,
       'locations': instance.locations,
       'files': instance.files,
       'userHasService': instance.userHasService,

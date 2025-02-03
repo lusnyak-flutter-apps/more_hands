@@ -89,10 +89,19 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
     );
     debugPrint(requestModel.toJson().toString());
     emit(state.copyWith(loading: true));
-    await getIt<ServiceRepository>().addUserService(requestModel).then((_) {
-      emit(state.copyWith(serviceAdded: true, loading: false));
-    }).catchError((_) {
+
+    try {
+      int id = await getIt<ServiceRepository>().addUserService(requestModel);
+      if(state.selectedFiles.isNotEmpty) {
+        await getIt<ServiceRepository>().attachServiceFiles(
+            state.selectedFiles, id);
+        emit(state.copyWith(serviceAdded: true, loading: false));
+      } else {
+        emit(state.copyWith(serviceAdded: true, loading: false));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
       emit(state.copyWith(loading: false));
-    });
+    }
   }
 }

@@ -24,6 +24,9 @@ mixin _$ServiceModel {
   ServiceInfoModel? get serviceInfo => throw _privateConstructorUsedError;
   @JsonKey(name: 'catInfo')
   CategoryModel? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'serviceMeasInfo')
+  ServiceAdditionalInfoModel? get serviceAdditionalInfo =>
+      throw _privateConstructorUsedError;
   List<LocationShortModel> get locations => throw _privateConstructorUsedError;
   List<FileModel> get files => throw _privateConstructorUsedError;
   bool get userHasService => throw _privateConstructorUsedError;
@@ -47,12 +50,15 @@ abstract class $ServiceModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'servInfo') ServiceInfoModel? serviceInfo,
       @JsonKey(name: 'catInfo') CategoryModel? category,
+      @JsonKey(name: 'serviceMeasInfo')
+      ServiceAdditionalInfoModel? serviceAdditionalInfo,
       List<LocationShortModel> locations,
       List<FileModel> files,
       bool userHasService});
 
   $ServiceInfoModelCopyWith<$Res>? get serviceInfo;
   $CategoryModelCopyWith<$Res>? get category;
+  $ServiceAdditionalInfoModelCopyWith<$Res>? get serviceAdditionalInfo;
 }
 
 /// @nodoc
@@ -72,6 +78,7 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
   $Res call({
     Object? serviceInfo = freezed,
     Object? category = freezed,
+    Object? serviceAdditionalInfo = freezed,
     Object? locations = null,
     Object? files = null,
     Object? userHasService = null,
@@ -85,6 +92,10 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
+      serviceAdditionalInfo: freezed == serviceAdditionalInfo
+          ? _value.serviceAdditionalInfo
+          : serviceAdditionalInfo // ignore: cast_nullable_to_non_nullable
+              as ServiceAdditionalInfoModel?,
       locations: null == locations
           ? _value.locations
           : locations // ignore: cast_nullable_to_non_nullable
@@ -127,6 +138,21 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
       return _then(_value.copyWith(category: value) as $Val);
     });
   }
+
+  /// Create a copy of ServiceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ServiceAdditionalInfoModelCopyWith<$Res>? get serviceAdditionalInfo {
+    if (_value.serviceAdditionalInfo == null) {
+      return null;
+    }
+
+    return $ServiceAdditionalInfoModelCopyWith<$Res>(
+        _value.serviceAdditionalInfo!, (value) {
+      return _then(_value.copyWith(serviceAdditionalInfo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -140,6 +166,8 @@ abstract class _$$ServiceModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'servInfo') ServiceInfoModel? serviceInfo,
       @JsonKey(name: 'catInfo') CategoryModel? category,
+      @JsonKey(name: 'serviceMeasInfo')
+      ServiceAdditionalInfoModel? serviceAdditionalInfo,
       List<LocationShortModel> locations,
       List<FileModel> files,
       bool userHasService});
@@ -148,6 +176,8 @@ abstract class _$$ServiceModelImplCopyWith<$Res>
   $ServiceInfoModelCopyWith<$Res>? get serviceInfo;
   @override
   $CategoryModelCopyWith<$Res>? get category;
+  @override
+  $ServiceAdditionalInfoModelCopyWith<$Res>? get serviceAdditionalInfo;
 }
 
 /// @nodoc
@@ -165,6 +195,7 @@ class __$$ServiceModelImplCopyWithImpl<$Res>
   $Res call({
     Object? serviceInfo = freezed,
     Object? category = freezed,
+    Object? serviceAdditionalInfo = freezed,
     Object? locations = null,
     Object? files = null,
     Object? userHasService = null,
@@ -178,6 +209,10 @@ class __$$ServiceModelImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
+      serviceAdditionalInfo: freezed == serviceAdditionalInfo
+          ? _value.serviceAdditionalInfo
+          : serviceAdditionalInfo // ignore: cast_nullable_to_non_nullable
+              as ServiceAdditionalInfoModel?,
       locations: null == locations
           ? _value._locations
           : locations // ignore: cast_nullable_to_non_nullable
@@ -200,6 +235,7 @@ class _$ServiceModelImpl implements _ServiceModel {
   const _$ServiceModelImpl(
       {@JsonKey(name: 'servInfo') this.serviceInfo,
       @JsonKey(name: 'catInfo') this.category,
+      @JsonKey(name: 'serviceMeasInfo') this.serviceAdditionalInfo,
       final List<LocationShortModel> locations = const <LocationShortModel>[],
       final List<FileModel> files = const <FileModel>[],
       this.userHasService = false})
@@ -215,6 +251,9 @@ class _$ServiceModelImpl implements _ServiceModel {
   @override
   @JsonKey(name: 'catInfo')
   final CategoryModel? category;
+  @override
+  @JsonKey(name: 'serviceMeasInfo')
+  final ServiceAdditionalInfoModel? serviceAdditionalInfo;
   final List<LocationShortModel> _locations;
   @override
   @JsonKey()
@@ -239,7 +278,7 @@ class _$ServiceModelImpl implements _ServiceModel {
 
   @override
   String toString() {
-    return 'ServiceModel(serviceInfo: $serviceInfo, category: $category, locations: $locations, files: $files, userHasService: $userHasService)';
+    return 'ServiceModel(serviceInfo: $serviceInfo, category: $category, serviceAdditionalInfo: $serviceAdditionalInfo, locations: $locations, files: $files, userHasService: $userHasService)';
   }
 
   @override
@@ -251,6 +290,8 @@ class _$ServiceModelImpl implements _ServiceModel {
                 other.serviceInfo == serviceInfo) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.serviceAdditionalInfo, serviceAdditionalInfo) ||
+                other.serviceAdditionalInfo == serviceAdditionalInfo) &&
             const DeepCollectionEquality()
                 .equals(other._locations, _locations) &&
             const DeepCollectionEquality().equals(other._files, _files) &&
@@ -264,6 +305,7 @@ class _$ServiceModelImpl implements _ServiceModel {
       runtimeType,
       serviceInfo,
       category,
+      serviceAdditionalInfo,
       const DeepCollectionEquality().hash(_locations),
       const DeepCollectionEquality().hash(_files),
       userHasService);
@@ -288,6 +330,8 @@ abstract class _ServiceModel implements ServiceModel {
   const factory _ServiceModel(
       {@JsonKey(name: 'servInfo') final ServiceInfoModel? serviceInfo,
       @JsonKey(name: 'catInfo') final CategoryModel? category,
+      @JsonKey(name: 'serviceMeasInfo')
+      final ServiceAdditionalInfoModel? serviceAdditionalInfo,
       final List<LocationShortModel> locations,
       final List<FileModel> files,
       final bool userHasService}) = _$ServiceModelImpl;
@@ -301,6 +345,9 @@ abstract class _ServiceModel implements ServiceModel {
   @override
   @JsonKey(name: 'catInfo')
   CategoryModel? get category;
+  @override
+  @JsonKey(name: 'serviceMeasInfo')
+  ServiceAdditionalInfoModel? get serviceAdditionalInfo;
   @override
   List<LocationShortModel> get locations;
   @override

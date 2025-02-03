@@ -11,6 +11,7 @@ class ServiceMeasureModel with _$ServiceMeasureModel {
     required int id,
     @Default(MeasureCode.hour) MeasureCode mCode,
     @JsonKey(name: 'measName') String? name,
+
   }) = _ServiceMeasureModel;
 
   factory ServiceMeasureModel.fromJson(Map<String, dynamic> json) =>

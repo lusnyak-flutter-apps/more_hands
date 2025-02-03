@@ -46,6 +46,7 @@ class _ServiceDetailsView extends StatelessWidget {
         bottomSheet: MHBottomNavigationControl(
           buttonTitle: context.localized.save,
           action: cubit.onSaved,
+          actionLoading: state.loading,
         ).paddingOnly(bottom: 16.h),
         appBar: AppBar(
           automaticallyImplyLeading: false,

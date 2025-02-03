@@ -11,6 +11,6 @@ import 'package:more_hands/more_hands_app.dart';
 
 void main() {
   testWidgets('MoreHands App', (WidgetTester tester) async {
-    await tester.pumpWidget(moreHandsApp);
+    await tester.pumpWidget(const MoreHandsApp());
   });
 }
