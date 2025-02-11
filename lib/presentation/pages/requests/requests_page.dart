@@ -31,7 +31,7 @@ class _RequestsView extends StatelessWidget {
     return BlocBuilder<RequestsCubit, RequestsState>(
       builder: (context, state) {
         final cubit = context.read<RequestsCubit>();
-        final (filter, section, requests) =( state.selectedStatus, state.selectedType, state.requests);
+        final (filter, section, requests) = (state.selectedStatus, state.selectedType, state.requests);
         final title = section == RequestType.sender
             ? context.localized.outgoingRequests
             : context.localized.incomingRequests;
@@ -79,12 +79,12 @@ class _RequestsView extends StatelessWidget {
             onTap: cubit.changeSection,
             items: [
               MHBottomNavigationBarItem(
-                  label: context.localized.outgoing,
+                  label: context.localized.incoming,
                   icon: MoreHandsAssets.icons.chat.svg(height: 20.r),
                   activeIcon: MoreHandsAssets.icons.chatYellow.svg(height: 20.r),
                   index: 0),
               MHBottomNavigationBarItem(
-                  label: context.localized.incoming,
+                  label: context.localized.outgoing,
                   icon: MoreHandsAssets.icons.chat.svg(height: 20.r),
                   activeIcon: MoreHandsAssets.icons.chatYellow.svg(height: 20.r),
                   index: 1),
@@ -93,8 +93,8 @@ class _RequestsView extends StatelessWidget {
           body: IndexedStack(
             index: section.index,
             children:   [
-              OutgoingRequestsPage(requests: requests,),
               IncomingRequestsPage(requests: requests,),
+              OutgoingRequestsPage(requests: requests,),
             ],
           ),
         );

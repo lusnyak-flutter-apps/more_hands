@@ -1,6 +1,6 @@
 import 'dart:io';
 
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/service_repository.dart';
 import 'package:more_hands/domain/enums/currency_code.dart';
@@ -21,6 +21,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final ExpansionTileController controller = ExpansionTileController();
+
   Future<void> loadData(ServiceModel service, CategoryModel category) async {
     try {
       final measures = await getIt<ServiceRepository>().getServiceMeasures();
@@ -69,6 +70,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
     picked.removeAt(index);
     emit(state.copyWith(selectedFiles: picked));
   }
+
   void setSelectedLocations(List<LocationModel> selected) {
     if (selected.isNotEmpty) {
       emit(state.copyWith(selectedLocations: selected));
@@ -76,32 +78,44 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
   }
 
   Future<void> onSaved() async {
-    UserServiceRequestModel requestModel = UserServiceRequestModel(
-      servCatMCode: state.category?.catMCode,
-      serviceMCode: state.service?.serviceInfo?.servMCode,
-      servMeasMCode: state.selectedMeasure?.mCode.rawValue,
-      addInfo: descriptionController.text,
-      price: priceController.text.isNotEmpty
-          ? num.tryParse(priceController.text)
-          : 0,
-      priceCurrency: state.selectedCurrency?.curCode.rawValue,
-      locations: state.selectedLocations.map((e) => e.locName ?? "").toList(),
-    );
-    debugPrint(requestModel.toJson().toString());
-    emit(state.copyWith(loading: true));
-
-    try {
-      int id = await getIt<ServiceRepository>().addUserService(requestModel);
-      if(state.selectedFiles.isNotEmpty) {
-        await getIt<ServiceRepository>().attachServiceFiles(
-            state.selectedFiles, id);
-        emit(state.copyWith(serviceAdded: true, loading: false));
-      } else {
-        emit(state.copyWith(serviceAdded: true, loading: false));
+    final validated = state.selectedLocations.isNotEmpty &&
+        state.selectedCurrency != null &&
+        (priceController.text.isNotEmpty &&
+            num.tryParse(priceController.text) != null) &&
+        state.selectedMeasure != null &&
+        state.selectedCurrencyCode != null &&
+        descriptionController.text.isNotEmpty;
+    emit(state.copyWith(validated: validated));
+    if (validated) {
+      UserServiceRequestModel requestModel = UserServiceRequestModel(
+        servCatMCode: state.category?.catMCode,
+        serviceMCode: state.service?.serviceInfo?.servMCode,
+        servMeasMCode: state.selectedMeasure?.mCode.rawValue,
+        addInfo: descriptionController.text,
+        price: priceController.text.isNotEmpty
+            ? num.tryParse(priceController.text)
+            : 0,
+        priceCurrency: state.selectedCurrency?.curCode.rawValue,
+        locations: state.selectedLocations.map((e) => e.locName ?? "").toList(),
+      );
+      debugPrint(requestModel.toJson().toString());
+      emit(state.copyWith(loading: true, validated: null));
+      try {
+        int id = await getIt<ServiceRepository>().addUserService(requestModel);
+        if (state.selectedFiles.isNotEmpty) {
+          await getIt<ServiceRepository>()
+              .attachServiceFiles(state.selectedFiles, id);
+          emit(state.copyWith(serviceAdded: true, loading: false));
+        } else {
+          emit(state.copyWith(
+              serviceAdded: true, loading: false, validated: null));
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+        emit(state.copyWith(loading: false, validated: null));
       }
-    } catch (e) {
-      debugPrint(e.toString());
-      emit(state.copyWith(loading: false));
+    } else {
+      emit(state.copyWith(validated: null));
     }
   }
 }

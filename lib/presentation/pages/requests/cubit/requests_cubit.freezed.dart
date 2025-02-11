@@ -142,7 +142,7 @@ class _$RequestsStateImpl implements _RequestsState {
   const _$RequestsStateImpl(
       {this.loading = false,
       this.selectedStatus = RequestStatus.all,
-      this.selectedType = RequestType.sender,
+      this.selectedType = RequestType.receiver,
       final List<RequestModel> requests = const []})
       : _requests = requests;
 

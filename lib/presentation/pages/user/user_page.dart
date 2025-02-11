@@ -202,10 +202,10 @@ class _UserView extends StatelessWidget {
     required ServiceModel service,
     required int userId,
   }) async {
-    await showMHScrollModalBottomSheet(
+     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
-      child: ServiceInfoView(service: service),
+      child: ServiceInfoView(service: service, userHasService: false,),
     ).then((onValue) {
       if (onValue is bool) {
         if (context.mounted) {

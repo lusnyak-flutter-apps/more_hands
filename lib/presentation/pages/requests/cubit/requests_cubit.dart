@@ -58,7 +58,7 @@ class RequestsCubit extends Cubit<RequestsState> {
 
   Future<void> changeSection(int section) async {
     if (state.loading) return;
-    final type = section == 0 ? RequestType.sender : RequestType.receiver;
+    final type = section == 0 ? RequestType.receiver : RequestType.sender;
     emit(state.copyWith(
         selectedType: type,
         selectedStatus: RequestStatus.all,

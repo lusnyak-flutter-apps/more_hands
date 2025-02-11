@@ -8,10 +8,11 @@ class ServiceInfoView extends StatefulWidget {
   const ServiceInfoView({
     super.key,
     required this.service,
-    // required this.userId,
+    this.userHasService = false,
   });
 
   final ServiceModel service;
+  final bool userHasService;
   // final int userId;
    @override
   State<ServiceInfoView> createState() => _ServiceInfoViewState();
@@ -39,13 +40,19 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     MHTag(title: priceTag),
-                    Row(
-                      children: [
-                        MoreHandsAssets.icons.mapPin.svg(height: 24.r),
-                        Text(widget.service.locations.map((e) => e.locName).join(","),
-                            style: body16MediumStyle),
-                      ],
-                    ).paddingAll(4.r),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          MoreHandsAssets.icons.mapPin.svg(height: 24.r),
+                          Flexible(
+                            child: Text(widget.service.locations.map((e) => e.locName).join(","),
+                                style: body16MediumStyle, maxLines: 1 ,overflow: TextOverflow.ellipsis,),
+                          ),
+                        ],
+                      ).paddingAll(4.r),
+                    ),
                   ],
                 ),
                 8.h.heightBox,
@@ -87,7 +94,7 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
               ],
             ),
           ).expanded(),
-          if(!widget.service.userHasService)
+          if(!widget.userHasService)
           MHGradientButton(
             title: context.localized.sendRequest,
             onPressed: () {

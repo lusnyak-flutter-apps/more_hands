@@ -22,7 +22,6 @@ abstract class EndPoint {
   static const String getCurrencyByCode = "/currency/getByCode";
   static const String findCurrencyByCode = "/currency/findByCode";
 
-
   static const String userServicesList= "/userServices/listByCat";
   static const String addUserService = "/userServices/add";
   static const String updateUserService = "/userServices/update";
@@ -36,6 +35,7 @@ abstract class EndPoint {
   static const String approveRequest = "/action/reqApprove";
   static const String createAndSendRequest = "/action/reqCreateAndSend";
 
+  static const String whereAmI = "/location/whereami";
   static const String findClosestLocations = "/location/findClosest";
   static const String label = "/label";
  }

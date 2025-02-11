@@ -16,7 +16,7 @@ class SelectLocationCubit extends Cubit<SelectLocationState> {
     emit(state.copyWith(loading: true, singleSelect: singleSelect));
     try {
       final locations =
-          await getIt<LocationRepository>().findUsersByLocAndText(txt: name);
+          await getIt<LocationRepository>().findClosestLocations(txt: name);
       emit(state.copyWith(locations: locations, loading: false));
     } catch (e) {
       debugPrint(e.toString());

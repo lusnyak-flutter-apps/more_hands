@@ -21,7 +21,6 @@ enum RequestStatus {
 }
 
 enum RequestType {
-  sender, receiver
-
-
+  receiver,
+  sender,
 }

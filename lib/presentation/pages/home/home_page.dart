@@ -60,13 +60,18 @@ class _HomeView extends StatelessWidget {
           actions: [
             InkWell(
               borderRadius: BorderRadius.circular(24.r),
-              child: Row(
-                children: [
-                  MoreHandsAssets.icons.mapPin.svg(height: 24.r),
-                  Text(state.selectedLocation?.locName ?? "",
-                      style: body16MediumStyle),
-                ],
-              ).paddingAll(4.r),
+              child: SizedBox(
+                width: 150,
+                child: Row(
+                  children: [
+                    MoreHandsAssets.icons.mapPin.svg(height: 24.r),
+                    Expanded(
+                      child: Text(state.selectedLocation?.locName ?? "",
+                          style: body16MediumStyle, maxLines: 1, overflow: TextOverflow.ellipsis,),
+                    ),
+                  ],
+                ).paddingAll(4.r),
+              ),
               onTap: () {
                 context.router
                     .push(SelectLocationRoute(singleSelect: true))
@@ -185,7 +190,10 @@ class _HomeView extends StatelessWidget {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
-      child: ServiceInfoView(service: service),
+      child: ServiceInfoView(
+        service: service,
+        userHasService: false,
+      ),
     ).then((onValue) {
       if (onValue is bool) {
         if (context.mounted) {

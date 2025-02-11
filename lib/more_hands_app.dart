@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:localizations/localizations.dart';
 import 'package:location/location.dart';
+import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/data.dart';
+// import 'package:more_hands/data/local/token_storage/token_stotage_impl.dart';
 import 'package:uikit/uikit.dart';
 
-import 'core/router/app_router.dart';
-import 'data/local/preferences/preferences.dart';
 
 final appRouter = AppRouter();
-
 
 class MoreHandsApp extends StatefulWidget {
   const MoreHandsApp({super.key});
@@ -17,8 +17,7 @@ class MoreHandsApp extends StatefulWidget {
 }
 
 class _MoreHandsAppState extends State<MoreHandsApp> {
-
-  Location location =  Location();
+  Location location = Location();
 
   bool _serviceEnabled = false;
   PermissionStatus? _permissionGranted;
@@ -28,15 +27,26 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
   void initState() {
     super.initState();
     getLocation();
+    // onLocationChanged();
+    enableBackgroundMode();
+  }
 
+  void onLocationChanged() {
     location.onLocationChanged.listen((LocationData currentLocation) async {
       _locationData = currentLocation;
-      if(_locationData?.longitude != null && _locationData?.latitude != null) {
-        Preferences.instance.latitude = _locationData!.longitude!;
+      debugPrint(currentLocation.provider);
+      debugPrint(currentLocation.longitude.toString());
+      debugPrint(currentLocation.latitude.toString());
+      debugPrint(currentLocation.time.toString());
+      if (_locationData?.longitude != null &&
+          _locationData?.latitude != null &&
+          _locationData?.longitude != Preferences.instance.longitude &&
+          _locationData?.latitude != Preferences.instance.latitude) {
+        Preferences.instance.latitude = _locationData!.latitude!;
         Preferences.instance.longitude = _locationData!.longitude!;
+        await getIt<LocationRepository>().whereAmI();
       }
     });
-    enableBackgroundMode();
   }
 
   Future<void> getLocation() async {
@@ -57,9 +67,10 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
     }
 
     _locationData = await location.getLocation();
-    if(_locationData?.longitude != null && _locationData?.latitude != null) {
+    if (_locationData?.longitude != null && _locationData?.latitude != null) {
       Preferences.instance.latitude = _locationData!.longitude!;
       Preferences.instance.longitude = _locationData!.longitude!;
+      await getIt<LocationRepository>().whereAmI();
     }
   }
 
@@ -83,8 +94,6 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -101,7 +110,8 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
           theme: darkTheme,
           darkTheme: darkTheme,
           routerConfig: appRouter.config(),
-          locale: const Locale("ru"), // AppLocalizations.supportedLocales.first,
+          locale: const Locale("ru"),
+          // AppLocalizations.supportedLocales.first,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           // localeResolutionCallback: (locale, supportedLocales) {
           //   if (locale != null) {

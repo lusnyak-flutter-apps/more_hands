@@ -36,16 +36,23 @@ class _ServiceDetailsView extends StatelessWidget {
 
     return BlocConsumer<ServiceDetailsCubit, ServiceDetailsState>(
         listener: (_, state) {
+      if (state.validated != null && !state.validated!) {
+        context.showSnackBar(message: "Заполните все поля", backgroundColor: MHColors.redColor.withAlpha(90));
+      }
       if (state.serviceAdded) {
         // context.router.maybePop(true);
         context.router.popUntilRoot();
       }
     }, builder: (context, state) {
       final selected = state.selectedLocations.map((e) => e.locName).join(",");
+
       return Scaffold(
         bottomSheet: MHBottomNavigationControl(
           buttonTitle: context.localized.save,
-          action: cubit.onSaved,
+          action: (){
+            FocusScope.of(context).unfocus();
+            cubit.onSaved();
+          } ,
           actionLoading: state.loading,
         ).paddingOnly(bottom: 16.h),
         appBar: AppBar(
@@ -83,15 +90,17 @@ class _ServiceDetailsView extends StatelessWidget {
                         },
                         icon: MoreHandsAssets.icons.plus.svg()),
                     8.w.widthBox,
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          WidgetSpan(
-                              child: MoreHandsAssets.icons.mapPin
-                                  .svg(height: 18.r)
-                                  .paddingOnly(right: 4.w)),
-                          TextSpan(text: selected, style: body16MediumStyle)
-                        ],
+                    Flexible(
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            WidgetSpan(
+                                child: MoreHandsAssets.icons.mapPin
+                                    .svg(height: 18.r)
+                                    .paddingOnly(right: 4.w)),
+                            TextSpan(text: selected, style: body16MediumStyle)
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -111,6 +120,10 @@ class _ServiceDetailsView extends StatelessWidget {
                     PopupMenuButton<CurrencyCode>(
                       tooltip: '',
                       position: PopupMenuPosition.under,
+                      onOpened: () {
+                        cubit.controller.collapse();
+                      },
+                      onCanceled: () {},
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.r)),
                       onSelected: cubit.changeCurrencyCode,

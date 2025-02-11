@@ -8,6 +8,7 @@ import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete
 import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
 import 'package:more_hands/presentation/widgets/mh_language_list_view.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
+import 'package:more_hands/presentation/widgets/service_info_view.dart';
 import 'package:more_hands/presentation/widgets/user_contacts_view.dart';
 import 'package:more_hands/presentation/widgets/user_info_tags_view.dart';
 import 'package:more_hands/presentation/widgets/user_name_id_view.dart';
@@ -44,8 +45,9 @@ class _ProfileView extends StatelessWidget {
           }
 
           List<PortfolioItem> portfolio = [];
-          state.user?.services.forEach((s){
-            portfolio.addAll(s.files.map((f) => PortfolioItem( service: s, file: f)));
+          state.user?.services.forEach((s) {
+            portfolio
+                .addAll(s.files.map((f) => PortfolioItem(service: s, file: f)));
           });
 
           return SingleChildScrollView(
@@ -59,16 +61,22 @@ class _ProfileView extends StatelessWidget {
                 WhatCanDoView(
                   items: state.user?.services ?? <ServiceModel>[],
                   onEdit: () {
-                    context.router.push(const ServicesListRoute()).then((_){
+                    context.router.push(const ServicesListRoute()).then((_) {
                       if (context.mounted) {
                         context.read<ProfileCubit>().loadProfile();
                       }
                     });
                   },
                 ).paddingOnly(bottom: 24.h),
-                  PortfolioView(
+                PortfolioView(
                   items: portfolio,
-                    ),
+                  onTapItem: (index) {
+                    debugPrint("Portfolio item $index");
+                    showServiceView(context,
+                        service: index.service,
+                        userId: state.user!.userInfo!.id);
+                  },
+                ),
                 const Divider().paddingSymmetric(vertical: 24.h),
                 Row(
                   children: [
@@ -166,7 +174,7 @@ class _ProfileView extends StatelessWidget {
     if (user?.userInfo?.instagramLink != null &&
         user!.userInfo!.instagramLink!.isNotEmpty) {
       contacts.add(ContactItem(
-        type: ContactType.instagram,
+          type: ContactType.instagram,
           name: user.userInfo!.instagramLink!,
           icon: MoreHandsAssets.icons.instagram.svg()));
     }
@@ -288,5 +296,24 @@ class _ProfileView extends StatelessWidget {
       title: context.localized.changeLanguage,
       child: const MhLanguageListView(),
     );
+  }
+
+  Future<void> showServiceView(
+    BuildContext context, {
+    required ServiceModel service,
+    required int userId,
+  }) async {
+    await showMHScrollModalBottomSheet(
+      context,
+      title: service.serviceInfo?.servName ?? "",
+      child: ServiceInfoView(service: service, userHasService: true,),
+    ).then((onValue) {
+      if (onValue is bool) {
+        if (context.mounted) {
+          context.router
+              .push(SendRequestRoute(userId: userId, serviceModel: service));
+        }
+      }
+    });
   }
 }

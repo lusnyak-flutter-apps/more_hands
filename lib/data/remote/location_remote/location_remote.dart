@@ -11,7 +11,10 @@ abstract class LocationRemoteApi {
   factory LocationRemoteApi(Dio dio) = _LocationRemoteApi;
 
   @GET(EndPoint.findClosestLocations)
-  Future<List<LocationModel>?>  findClosestLocations({
+  Future<List<LocationModel>?> findClosestLocations({
     @Query('city') String locName = "",
   });
+
+  @GET(EndPoint.whereAmI)
+  Future<LocationModel?> whereAmI();
 }

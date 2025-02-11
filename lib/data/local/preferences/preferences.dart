@@ -5,6 +5,7 @@ class Preferences {
   static const String pushTokenKey = "pushToken";
   static const String latitudeKey = "latitude";
   static const String longitudeKey = "longitude";
+  static const String locationIdKey = "locationId";
 
   Preferences._();
 
@@ -42,9 +43,17 @@ class Preferences {
     _sharedPrefs?.setDouble(Preferences.latitudeKey, value);
   }
 
+  int get locationId =>
+      _sharedPrefs?.getInt(Preferences.locationIdKey) ?? 0;
+
+  set locationId(int value) {
+    _sharedPrefs?.setInt(Preferences.locationIdKey, value);
+  }
+
   Future<void> deleteAll() async {
     // await _sharedPrefs?.remove(Preferences.onBoardingLaunchKey);
     await _sharedPrefs?.remove(Preferences.pushTokenKey);
+    await _sharedPrefs?.remove(Preferences.locationIdKey);
   }
 }
 
