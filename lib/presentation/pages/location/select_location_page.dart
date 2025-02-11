@@ -7,13 +7,15 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class SelectLocationPage extends StatelessWidget {
-  const SelectLocationPage({super.key,  this.singleSelect = false});
+  const SelectLocationPage({super.key,  this.singleSelect = false,  this.selectedLocationId});
   final bool singleSelect;
+  final int? selectedLocationId;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SelectLocationCubit>(
       create: (BuildContext context) =>
-          getIt<SelectLocationCubit>()..findClosestLocations(singleSelect: singleSelect),
+          getIt<SelectLocationCubit>()..findClosestLocations(singleSelect: singleSelect, initialSelected: selectedLocationId),
       child: const _SelectLocationView(),
     );
   }
@@ -59,11 +61,12 @@ class _SelectLocationView extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: cubit.findMe,
                     icon: MoreHandsAssets.icons.compass.svg(height: 18.r),
                     style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 8.0), overlayColor: MHColors.whiteColor),
                     label: Text(
-                      context.localized.findMe,
+                      state.myLocation != null ?
+                      "${context.localized.findMe}:${state.myLocation?.locName}" : context.localized.findMe,
                        style: body16MediumStyle,
                     )),
               ),

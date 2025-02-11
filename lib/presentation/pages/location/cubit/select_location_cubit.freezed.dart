@@ -21,6 +21,7 @@ mixin _$SelectLocationState {
   List<LocationModel> get locations => throw _privateConstructorUsedError;
   List<LocationModel> get selectedLocations =>
       throw _privateConstructorUsedError;
+  LocationModel? get myLocation => throw _privateConstructorUsedError;
 
   /// Create a copy of SelectLocationState
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +40,10 @@ abstract class $SelectLocationStateCopyWith<$Res> {
       {bool loading,
       bool singleSelect,
       List<LocationModel> locations,
-      List<LocationModel> selectedLocations});
+      List<LocationModel> selectedLocations,
+      LocationModel? myLocation});
+
+  $LocationModelCopyWith<$Res>? get myLocation;
 }
 
 /// @nodoc
@@ -61,6 +65,7 @@ class _$SelectLocationStateCopyWithImpl<$Res, $Val extends SelectLocationState>
     Object? singleSelect = null,
     Object? locations = null,
     Object? selectedLocations = null,
+    Object? myLocation = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -79,7 +84,25 @@ class _$SelectLocationStateCopyWithImpl<$Res, $Val extends SelectLocationState>
           ? _value.selectedLocations
           : selectedLocations // ignore: cast_nullable_to_non_nullable
               as List<LocationModel>,
+      myLocation: freezed == myLocation
+          ? _value.myLocation
+          : myLocation // ignore: cast_nullable_to_non_nullable
+              as LocationModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of SelectLocationState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationModelCopyWith<$Res>? get myLocation {
+    if (_value.myLocation == null) {
+      return null;
+    }
+
+    return $LocationModelCopyWith<$Res>(_value.myLocation!, (value) {
+      return _then(_value.copyWith(myLocation: value) as $Val);
+    });
   }
 }
 
@@ -95,7 +118,11 @@ abstract class _$$SelectLocationStateImplCopyWith<$Res>
       {bool loading,
       bool singleSelect,
       List<LocationModel> locations,
-      List<LocationModel> selectedLocations});
+      List<LocationModel> selectedLocations,
+      LocationModel? myLocation});
+
+  @override
+  $LocationModelCopyWith<$Res>? get myLocation;
 }
 
 /// @nodoc
@@ -115,6 +142,7 @@ class __$$SelectLocationStateImplCopyWithImpl<$Res>
     Object? singleSelect = null,
     Object? locations = null,
     Object? selectedLocations = null,
+    Object? myLocation = freezed,
   }) {
     return _then(_$SelectLocationStateImpl(
       loading: null == loading
@@ -133,6 +161,10 @@ class __$$SelectLocationStateImplCopyWithImpl<$Res>
           ? _value._selectedLocations
           : selectedLocations // ignore: cast_nullable_to_non_nullable
               as List<LocationModel>,
+      myLocation: freezed == myLocation
+          ? _value.myLocation
+          : myLocation // ignore: cast_nullable_to_non_nullable
+              as LocationModel?,
     ));
   }
 }
@@ -144,7 +176,8 @@ class _$SelectLocationStateImpl implements _SelectLocationState {
       {this.loading = false,
       this.singleSelect = false,
       final List<LocationModel> locations = const [],
-      final List<LocationModel> selectedLocations = const []})
+      final List<LocationModel> selectedLocations = const [],
+      this.myLocation})
       : _locations = locations,
         _selectedLocations = selectedLocations;
 
@@ -174,8 +207,11 @@ class _$SelectLocationStateImpl implements _SelectLocationState {
   }
 
   @override
+  final LocationModel? myLocation;
+
+  @override
   String toString() {
-    return 'SelectLocationState(loading: $loading, singleSelect: $singleSelect, locations: $locations, selectedLocations: $selectedLocations)';
+    return 'SelectLocationState(loading: $loading, singleSelect: $singleSelect, locations: $locations, selectedLocations: $selectedLocations, myLocation: $myLocation)';
   }
 
   @override
@@ -189,7 +225,9 @@ class _$SelectLocationStateImpl implements _SelectLocationState {
             const DeepCollectionEquality()
                 .equals(other._locations, _locations) &&
             const DeepCollectionEquality()
-                .equals(other._selectedLocations, _selectedLocations));
+                .equals(other._selectedLocations, _selectedLocations) &&
+            (identical(other.myLocation, myLocation) ||
+                other.myLocation == myLocation));
   }
 
   @override
@@ -198,7 +236,8 @@ class _$SelectLocationStateImpl implements _SelectLocationState {
       loading,
       singleSelect,
       const DeepCollectionEquality().hash(_locations),
-      const DeepCollectionEquality().hash(_selectedLocations));
+      const DeepCollectionEquality().hash(_selectedLocations),
+      myLocation);
 
   /// Create a copy of SelectLocationState
   /// with the given fields replaced by the non-null parameter values.
@@ -215,7 +254,8 @@ abstract class _SelectLocationState implements SelectLocationState {
       {final bool loading,
       final bool singleSelect,
       final List<LocationModel> locations,
-      final List<LocationModel> selectedLocations}) = _$SelectLocationStateImpl;
+      final List<LocationModel> selectedLocations,
+      final LocationModel? myLocation}) = _$SelectLocationStateImpl;
 
   @override
   bool get loading;
@@ -225,6 +265,8 @@ abstract class _SelectLocationState implements SelectLocationState {
   List<LocationModel> get locations;
   @override
   List<LocationModel> get selectedLocations;
+  @override
+  LocationModel? get myLocation;
 
   /// Create a copy of SelectLocationState
   /// with the given fields replaced by the non-null parameter values.

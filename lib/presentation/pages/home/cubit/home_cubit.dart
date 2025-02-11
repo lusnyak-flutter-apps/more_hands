@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/data.dart';
+import 'package:more_hands/data/local/current_location/current_location_storage.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -15,10 +16,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   final TextEditingController searchController = TextEditingController();
 
-
-
-  void getData() {
-    emit(state.copyWith(loading: true));
+  Future<void> getData() async {
+    final location = await getIt<CurrentLocationStorage>().readLocation();
+    emit(state.copyWith(loading: true, selectedLocation: location),);
     Future.wait([
       getServices(),
       getUsersBySearchAndLocation(),

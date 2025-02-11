@@ -8,6 +8,7 @@ class SelectLocationState with _$SelectLocationState {
     @Default(false) bool singleSelect,
     @Default([]) List<LocationModel> locations,
     @Default([]) List<LocationModel> selectedLocations,
+     LocationModel? myLocation,
   }) = _SelectLocationState;
 }
 

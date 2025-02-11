@@ -16,6 +16,10 @@ import 'package:more_hands/data/firebase/firebase_provider/firebase_provider.dar
     as _i759;
 import 'package:more_hands/data/firebase/firebase_provider/firebase_provider_impl.dart'
     as _i369;
+import 'package:more_hands/data/local/current_location/current_location_storage.dart'
+    as _i311;
+import 'package:more_hands/data/local/current_location/current_location_storage_impl.dart'
+    as _i943;
 import 'package:more_hands/data/local/social_auth/social_auth_manager.dart'
     as _i491;
 import 'package:more_hands/data/local/social_auth/social_auth_manager_impl.dart'
@@ -110,6 +114,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i396.ReferralsRepository>(
         () => _i396.ReferralsRepository());
     gh.factory<_i514.TokenStorage>(() => _i415.TokenStorageImpl());
+    gh.factory<_i311.CurrentLocationStorage>(
+        () => _i943.CurrentLocationStorageImpl());
     gh.factory<String>(
       () => dioClient.baseUrl,
       instanceName: 'baseUrl',

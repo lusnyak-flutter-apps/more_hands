@@ -61,12 +61,16 @@ class _HomeView extends StatelessWidget {
             InkWell(
               borderRadius: BorderRadius.circular(24.r),
               child: SizedBox(
-                width: 150,
+                width: 150.w,
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     MoreHandsAssets.icons.mapPin.svg(height: 24.r),
-                    Expanded(
+                    Flexible(
                       child: Text(state.selectedLocation?.locName ?? "",
+                          textAlign: TextAlign.right,
                           style: body16MediumStyle, maxLines: 1, overflow: TextOverflow.ellipsis,),
                     ),
                   ],
@@ -74,7 +78,7 @@ class _HomeView extends StatelessWidget {
               ),
               onTap: () {
                 context.router
-                    .push(SelectLocationRoute(singleSelect: true))
+                    .push(SelectLocationRoute(singleSelect: true, selectedLocationId: state.selectedLocation?.id))
                     .then((onValue) {
                   if (onValue != null &&
                       onValue is List<LocationModel> &&

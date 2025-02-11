@@ -417,12 +417,14 @@ class SelectLocationRoute extends PageRouteInfo<SelectLocationRouteArgs> {
   SelectLocationRoute({
     Key? key,
     bool singleSelect = false,
+    int? selectedLocationId,
     List<PageRouteInfo>? children,
   }) : super(
           SelectLocationRoute.name,
           args: SelectLocationRouteArgs(
             key: key,
             singleSelect: singleSelect,
+            selectedLocationId: selectedLocationId,
           ),
           initialChildren: children,
         );
@@ -437,6 +439,7 @@ class SelectLocationRoute extends PageRouteInfo<SelectLocationRouteArgs> {
       return SelectLocationPage(
         key: args.key,
         singleSelect: args.singleSelect,
+        selectedLocationId: args.selectedLocationId,
       );
     },
   );
@@ -446,15 +449,18 @@ class SelectLocationRouteArgs {
   const SelectLocationRouteArgs({
     this.key,
     this.singleSelect = false,
+    this.selectedLocationId,
   });
 
   final Key? key;
 
   final bool singleSelect;
 
+  final int? selectedLocationId;
+
   @override
   String toString() {
-    return 'SelectLocationRouteArgs{key: $key, singleSelect: $singleSelect}';
+    return 'SelectLocationRouteArgs{key: $key, singleSelect: $singleSelect, selectedLocationId: $selectedLocationId}';
   }
 }
 
