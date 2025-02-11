@@ -14,12 +14,12 @@ abstract class DioClient {
   Dio dio(@Named('baseUrl') String url) => Dio(BaseOptions(
       baseUrl: url,
       contentType: 'application/json',
-      headers: {
-        "X-Lat": Preferences.instance.latitude,
-        "X-Lon": Preferences.instance.longitude,
-        "X-Lang" : "ru",
-        "X-Timezone-Offset" : "+03:00"
-      },
+      // headers: {
+      //   "X-Lat": Preferences.instance.latitude,
+      //   "X-Lon": Preferences.instance.longitude,
+      //   "X-Lang" : "ru",
+      //   "X-Timezone-Offset" : "+03:00"
+      // },
       // responseDecoder: (a, b, c) {
       //   return jsonDecode(c.s);
       // },

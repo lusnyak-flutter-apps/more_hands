@@ -6,6 +6,7 @@ class Preferences {
   static const String latitudeKey = "latitude";
   static const String longitudeKey = "longitude";
   static const String locationIdKey = "locationId";
+  static const String languageCodeKey = "languageCode";
 
   Preferences._();
 
@@ -29,6 +30,14 @@ class Preferences {
   set pushToken(String value) {
     _sharedPrefs?.setString(Preferences.pushTokenKey, value);
   }
+
+  String get languageCode =>
+      _sharedPrefs?.getString(Preferences.languageCodeKey) ?? "ru";
+
+  set languageCode(String value) {
+    _sharedPrefs?.setString(Preferences.languageCodeKey, value);
+  }
+
   double get longitude =>
       _sharedPrefs?.getDouble(Preferences.longitudeKey) ?? 55.647796;
 

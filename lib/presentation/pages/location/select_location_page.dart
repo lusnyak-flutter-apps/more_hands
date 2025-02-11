@@ -66,7 +66,7 @@ class _SelectLocationView extends StatelessWidget {
                     style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 8.0), overlayColor: MHColors.whiteColor),
                     label: Text(
                       state.myLocation != null ?
-                      "${context.localized.findMe}:${state.myLocation?.locName}" : context.localized.findMe,
+                      "${context.localized.findMe}: ${state.myLocation?.locName}" : context.localized.findMe,
                        style: body16MediumStyle,
                     )),
               ),

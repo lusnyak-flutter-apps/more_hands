@@ -27,24 +27,24 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
   void initState() {
     super.initState();
     getLocation();
-    // onLocationChanged();
+    onLocationChanged();
     enableBackgroundMode();
   }
 
   void onLocationChanged() {
     location.onLocationChanged.listen((LocationData currentLocation) async {
       _locationData = currentLocation;
-      debugPrint(currentLocation.provider);
+       debugPrint(currentLocation.latitude.toString());
       debugPrint(currentLocation.longitude.toString());
-      debugPrint(currentLocation.latitude.toString());
-      debugPrint(currentLocation.time.toString());
+
       if (_locationData?.longitude != null &&
           _locationData?.latitude != null &&
           _locationData?.longitude != Preferences.instance.longitude &&
           _locationData?.latitude != Preferences.instance.latitude) {
         Preferences.instance.latitude = _locationData!.latitude!;
         Preferences.instance.longitude = _locationData!.longitude!;
-        await getIt<LocationRepository>().whereAmI();
+        debugPrint(_locationData.toString());
+        // await getIt<LocationRepository>().whereAmI();
       }
     });
   }
@@ -68,7 +68,7 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
 
     _locationData = await location.getLocation();
     if (_locationData?.longitude != null && _locationData?.latitude != null) {
-      Preferences.instance.latitude = _locationData!.longitude!;
+      Preferences.instance.latitude = _locationData!.latitude!;
       Preferences.instance.longitude = _locationData!.longitude!;
       await getIt<LocationRepository>().whereAmI();
     }

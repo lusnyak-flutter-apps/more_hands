@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:location/location.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/local/preferences/preferences.dart';
 import 'package:more_hands/data/repository/repository.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
 
@@ -10,6 +12,7 @@ part 'select_location_state.dart';
 @injectable
 class SelectLocationCubit extends Cubit<SelectLocationState> {
   SelectLocationCubit() : super(const SelectLocationState());
+  Location location = Location();
 
   Future<void> findClosestLocations(
       {String name = "",
@@ -40,10 +43,15 @@ class SelectLocationCubit extends Cubit<SelectLocationState> {
   }
 
   Future<void> findMe() async {
-    final myLocation = await getIt<LocationRepository>().whereAmI();
-    if (myLocation != null) {
-      emit(state.copyWith(myLocation: myLocation));
-      selectLocation(myLocation);
+    final locationData = await location.getLocation();
+    if (locationData.longitude != null && locationData.latitude != null) {
+      Preferences.instance.latitude = locationData.latitude!;
+      Preferences.instance.longitude = locationData.longitude!;
+      final myLocation = await getIt<LocationRepository>().whereAmI();
+      if (myLocation != null) {
+        emit(state.copyWith(myLocation: myLocation));
+        selectLocation(myLocation);
+      }
     }
   }
 

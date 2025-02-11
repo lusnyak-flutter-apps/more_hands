@@ -12,10 +12,22 @@ class ApiLoggingInterceptor extends Interceptor {
       RequestOptions options, RequestInterceptorHandler handler) async {
     options.headers[HeaderParameterKeys.accept] = HeaderValues.applicationJson;
 
+
     final tokenMdl = await getIt<TokenStorage>().readToken();
     if (tokenMdl != null && tokenMdl.token.isNotEmpty) {
       options.headers['Authorization'] = tokenMdl.token;
     }
+
+    final lat = Preferences.instance.latitude;
+    final long = Preferences.instance.longitude;
+    options.headers['X-Lat'] = lat;
+    options.headers['X-Lon'] = long;
+
+    final lng = Preferences.instance.languageCode;
+    options.headers['X-Lang'] = lng;
+
+    final tZone =  DateTime.now().timeZoneOffset.toString();
+    options.headers['X-Timezone-Offset'] = tZone;
 
     debugPrint(
         'REQUEST[${options.method}] => PATH: ${options.uri} => HEADER: ${options.headers}  => BODY: ${options.data} => QUERY: ${options.queryParameters}');
