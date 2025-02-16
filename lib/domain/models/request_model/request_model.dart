@@ -14,6 +14,8 @@ class RequestModel with _$RequestModel{
     @Default(0) int userServiceId,
     @Default(0) int serviceId,
     @Default(0) num userRating,
+    @Default(false) bool seenBySender,
+    @Default(false) bool seenByReceiver,
     String? profileImageUrl,
     String? userFirstName,
     String? userLastName,

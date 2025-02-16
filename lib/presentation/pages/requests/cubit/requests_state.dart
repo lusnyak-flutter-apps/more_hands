@@ -8,6 +8,8 @@ class RequestsState with _$RequestsState {
     @Default(RequestStatus.all) RequestStatus selectedStatus,
     @Default(RequestType.receiver) RequestType selectedType,
     @Default([]) List<RequestModel> requests,
+    @Default(0) int receiverUnseenCount,
+    @Default(0) int senderUnseenCount,
   }) = _RequestsState;
 }
 

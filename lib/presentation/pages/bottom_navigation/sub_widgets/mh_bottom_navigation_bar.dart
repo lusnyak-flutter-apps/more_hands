@@ -30,8 +30,10 @@ class _MHBottomNavigationBarState extends State<MHBottomNavigationBar> {
     required String label,
     bool selected = false,
     VoidCallback? onTap,
+    int badgeCount = 0,
   }) {
-    return InkWell(
+    debugPrint(badgeCount.toString());
+    final item = InkWell(
       onTap: onTap,
       overlayColor: const WidgetStatePropertyAll(MHColors.grayColor),
       child: Column(
@@ -50,6 +52,17 @@ class _MHBottomNavigationBarState extends State<MHBottomNavigationBar> {
         ],
       ),
     );
+
+    if (badgeCount != 0) {
+      return Badge.count(
+        count: badgeCount,
+        backgroundColor: MHColors.lightRedColor,
+        textColor: MHColors.whiteColor,
+        textStyle: body12Style.copyWith(color: MHColors.whiteColor),
+        child: item,
+      );
+    }
+    return item;
   }
 
   @override
@@ -62,7 +75,8 @@ class _MHBottomNavigationBarState extends State<MHBottomNavigationBar> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 48.0, sigmaY: 48.0),
             child: Container(
-              width: 201.w, // widget.items.length * 72.w,
+              width: 201.w,
+              // widget.items.length * 72.w,
               height: 60.h,
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -81,6 +95,7 @@ class _MHBottomNavigationBarState extends State<MHBottomNavigationBar> {
                         icon: item.icon,
                         label: item.label,
                         selected: widget.currentIndex == item.index,
+                        badgeCount: item.badgeValue,
                         onTap: () {
                           widget.onTap?.call(item.index);
                         },

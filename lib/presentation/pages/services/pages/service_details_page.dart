@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
-import 'package:more_hands/domain/enums/currency_code.dart';
 import 'package:more_hands/domain/models/category_model/category_model.dart';
+import 'package:more_hands/domain/models/currency_model/currency_model.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart';
@@ -117,7 +117,7 @@ class _ServiceDetailsView extends StatelessWidget {
                           const TextInputType.numberWithOptions(decimal: true),
                     ).expanded(),
                     8.w.widthBox,
-                    PopupMenuButton<CurrencyCode>(
+                    PopupMenuButton<CurrencyModel>(
                       tooltip: '',
                       position: PopupMenuPosition.under,
                       onOpened: () {
@@ -129,24 +129,23 @@ class _ServiceDetailsView extends StatelessWidget {
                       onSelected: cubit.changeCurrencyCode,
                       itemBuilder: (context) {
                         return [
-                          for (var item in CurrencyCode
-                              .values) // ["\$", "€", "£", "¥", "₣"])
-                            PopupMenuItem<CurrencyCode>(
+                          for (var item in state.currencies) // ["\$", "€", "£", "¥", "₣"])
+                            PopupMenuItem<CurrencyModel>(
                               height: 40,
                               value: item,
-                              child: Text(item.symbolSign),
+                              child: Text(item.curSign),
                             ),
                         ];
                       },
                       child: MHRoundedContainer(
-                        width: 64.w,
+                        width: 72.w,
                         height: 56.h,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              state.selectedCurrencyCode?.symbolSign ??
-                                  CurrencyCode.ruble.symbolSign,
+                              state.selectedCurrency?.curSign ??
+                                 "₽",
                               style: body16MediumStyle,
                             ),
                             8.w.widthBox,

@@ -25,7 +25,7 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
     String priceTag = "";
     if (widget.service.serviceAdditionalInfo != null) {
       priceTag =
-          "${widget.service.serviceAdditionalInfo!.price}${widget.service.serviceAdditionalInfo!.priceCurrency!.symbolSign} ${widget.service.serviceAdditionalInfo!.measureCode!.title(context)}";
+          "${widget.service.serviceAdditionalInfo!.price}${widget.service.serviceAdditionalInfo!.priceCurrency} ${widget.service.serviceAdditionalInfo!.measureCode!.title(context)}";
     }
     return SafeArea(
       child: Column(

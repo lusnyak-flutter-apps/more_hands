@@ -1,13 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/repository/requests_repository.dart';
 import 'package:more_hands/presentation/pages/bottom_navigation/sub_widgets/mh_bottom_naviagtion_item.dart';
 import 'package:more_hands/presentation/pages/bottom_navigation/sub_widgets/mh_bottom_navigation_bar.dart';
 import 'package:more_hands/utils/extensions/context_extension.dart';
 import 'package:uikit/uikit.dart';
 
 @RoutePage()
-class BottomNavigationPage extends StatelessWidget {
+class BottomNavigationPage extends StatefulWidget {
   const BottomNavigationPage({super.key});
+
+  @override
+  State<BottomNavigationPage> createState() => _BottomNavigationPageState();
+}
+
+class _BottomNavigationPageState extends State<BottomNavigationPage> {
+  int unseenCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getUnseenCounts();
+  }
+
+  Future<void> getUnseenCounts() async {
+    final (receiverUnseenCount, senderUnseenCount) =
+        await getIt<RequestsRepository>().getUnseenRequestsCount();
+    debugPrint(receiverUnseenCount.toString());
+    debugPrint(senderUnseenCount.toString());
+    if (mounted) {
+      setState(() {
+        unseenCount = receiverUnseenCount + senderUnseenCount;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +59,31 @@ class BottomNavigationPage extends StatelessWidget {
               MHBottomNavigationBar(
                 currentIndex: tabsRouter.activeIndex,
                 onTap: (int index) {
-                  if(index != 1) {
+                  if (index != 1) {
                     tabsRouter.setActiveIndex(index);
                   } else {
                     context.router.push(const RequestsRoute());
                   }
-                 },
+                },
                 items: [
                   MHBottomNavigationBarItem(
                       label: context.localized.home,
                       icon: MoreHandsAssets.icons.home.svg(height: 20.r),
-                      activeIcon: MoreHandsAssets.icons.homeYellow.svg(height: 20.r),
+                      activeIcon:
+                          MoreHandsAssets.icons.homeYellow.svg(height: 20.r),
                       index: 0),
                   MHBottomNavigationBarItem(
                       label: context.localized.requests,
                       icon: MoreHandsAssets.icons.chat.svg(height: 20.r),
-                      activeIcon: MoreHandsAssets.icons.chatYellow.svg(height: 20.r),
+                      activeIcon:
+                          MoreHandsAssets.icons.chatYellow.svg(height: 20.r),
+                      badgeValue: unseenCount != 0 ? 1 : 0,
                       index: 1),
                   MHBottomNavigationBarItem(
                       label: context.localized.profile,
                       icon: MoreHandsAssets.icons.user.svg(height: 20.r),
-                      activeIcon: MoreHandsAssets.icons.userYellow.svg(height: 20.r),
+                      activeIcon:
+                          MoreHandsAssets.icons.userYellow.svg(height: 20.r),
                       index: 2),
                 ],
               ),

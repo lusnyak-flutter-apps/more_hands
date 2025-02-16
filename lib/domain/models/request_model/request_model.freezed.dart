@@ -26,6 +26,8 @@ mixin _$RequestModel {
   int get userServiceId => throw _privateConstructorUsedError;
   int get serviceId => throw _privateConstructorUsedError;
   num get userRating => throw _privateConstructorUsedError;
+  bool get seenBySender => throw _privateConstructorUsedError;
+  bool get seenByReceiver => throw _privateConstructorUsedError;
   String? get profileImageUrl => throw _privateConstructorUsedError;
   String? get userFirstName => throw _privateConstructorUsedError;
   String? get userLastName => throw _privateConstructorUsedError;
@@ -61,6 +63,8 @@ abstract class $RequestModelCopyWith<$Res> {
       int userServiceId,
       int serviceId,
       num userRating,
+      bool seenBySender,
+      bool seenByReceiver,
       String? profileImageUrl,
       String? userFirstName,
       String? userLastName,
@@ -92,6 +96,8 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
     Object? userServiceId = null,
     Object? serviceId = null,
     Object? userRating = null,
+    Object? seenBySender = null,
+    Object? seenByReceiver = null,
     Object? profileImageUrl = freezed,
     Object? userFirstName = freezed,
     Object? userLastName = freezed,
@@ -126,6 +132,14 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
           ? _value.userRating
           : userRating // ignore: cast_nullable_to_non_nullable
               as num,
+      seenBySender: null == seenBySender
+          ? _value.seenBySender
+          : seenBySender // ignore: cast_nullable_to_non_nullable
+              as bool,
+      seenByReceiver: null == seenByReceiver
+          ? _value.seenByReceiver
+          : seenByReceiver // ignore: cast_nullable_to_non_nullable
+              as bool,
       profileImageUrl: freezed == profileImageUrl
           ? _value.profileImageUrl
           : profileImageUrl // ignore: cast_nullable_to_non_nullable
@@ -177,6 +191,8 @@ abstract class _$$RequestModelImplCopyWith<$Res>
       int userServiceId,
       int serviceId,
       num userRating,
+      bool seenBySender,
+      bool seenByReceiver,
       String? profileImageUrl,
       String? userFirstName,
       String? userLastName,
@@ -206,6 +222,8 @@ class __$$RequestModelImplCopyWithImpl<$Res>
     Object? userServiceId = null,
     Object? serviceId = null,
     Object? userRating = null,
+    Object? seenBySender = null,
+    Object? seenByReceiver = null,
     Object? profileImageUrl = freezed,
     Object? userFirstName = freezed,
     Object? userLastName = freezed,
@@ -240,6 +258,14 @@ class __$$RequestModelImplCopyWithImpl<$Res>
           ? _value.userRating
           : userRating // ignore: cast_nullable_to_non_nullable
               as num,
+      seenBySender: null == seenBySender
+          ? _value.seenBySender
+          : seenBySender // ignore: cast_nullable_to_non_nullable
+              as bool,
+      seenByReceiver: null == seenByReceiver
+          ? _value.seenByReceiver
+          : seenByReceiver // ignore: cast_nullable_to_non_nullable
+              as bool,
       profileImageUrl: freezed == profileImageUrl
           ? _value.profileImageUrl
           : profileImageUrl // ignore: cast_nullable_to_non_nullable
@@ -286,6 +312,8 @@ class _$RequestModelImpl implements _RequestModel {
       this.userServiceId = 0,
       this.serviceId = 0,
       this.userRating = 0,
+      this.seenBySender = false,
+      this.seenByReceiver = false,
       this.profileImageUrl,
       this.userFirstName,
       this.userLastName,
@@ -317,6 +345,12 @@ class _$RequestModelImpl implements _RequestModel {
   @JsonKey()
   final num userRating;
   @override
+  @JsonKey()
+  final bool seenBySender;
+  @override
+  @JsonKey()
+  final bool seenByReceiver;
+  @override
   final String? profileImageUrl;
   @override
   final String? userFirstName;
@@ -338,7 +372,7 @@ class _$RequestModelImpl implements _RequestModel {
 
   @override
   String toString() {
-    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, userRating: $userRating, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status)';
+    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, userRating: $userRating, seenBySender: $seenBySender, seenByReceiver: $seenByReceiver, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status)';
   }
 
   @override
@@ -357,6 +391,10 @@ class _$RequestModelImpl implements _RequestModel {
                 other.serviceId == serviceId) &&
             (identical(other.userRating, userRating) ||
                 other.userRating == userRating) &&
+            (identical(other.seenBySender, seenBySender) ||
+                other.seenBySender == seenBySender) &&
+            (identical(other.seenByReceiver, seenByReceiver) ||
+                other.seenByReceiver == seenByReceiver) &&
             (identical(other.profileImageUrl, profileImageUrl) ||
                 other.profileImageUrl == profileImageUrl) &&
             (identical(other.userFirstName, userFirstName) ||
@@ -383,6 +421,8 @@ class _$RequestModelImpl implements _RequestModel {
       userServiceId,
       serviceId,
       userRating,
+      seenBySender,
+      seenByReceiver,
       profileImageUrl,
       userFirstName,
       userLastName,
@@ -416,6 +456,8 @@ abstract class _RequestModel implements RequestModel {
           final int userServiceId,
           final int serviceId,
           final num userRating,
+          final bool seenBySender,
+          final bool seenByReceiver,
           final String? profileImageUrl,
           final String? userFirstName,
           final String? userLastName,
@@ -441,6 +483,10 @@ abstract class _RequestModel implements RequestModel {
   int get serviceId;
   @override
   num get userRating;
+  @override
+  bool get seenBySender;
+  @override
+  bool get seenByReceiver;
   @override
   String? get profileImageUrl;
   @override

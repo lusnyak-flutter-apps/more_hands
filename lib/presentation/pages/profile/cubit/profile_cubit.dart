@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/data.dart';
 import 'package:more_hands/data/repository/profile_repository.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 
@@ -26,5 +27,11 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> logout() async {
     await getIt<ProfileRepository>().logout();
+  }
+
+  Future<void> deleteUserService(int id)async {
+    await getIt<ServiceRepository>().deleteUserService(id).then((onValue){
+        loadProfile();
+    });
   }
 }

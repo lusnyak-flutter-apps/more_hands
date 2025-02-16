@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/service_repository.dart';
-import 'package:more_hands/domain/enums/currency_code.dart';
-import 'package:more_hands/domain/models/category_model/category_model.dart';
+ import 'package:more_hands/domain/models/category_model/category_model.dart';
 import 'package:more_hands/domain/models/currency_model/currency_model.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/service_means_model/service_measure_model.dart';
@@ -24,20 +23,21 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
 
   Future<void> loadData(ServiceModel service, CategoryModel category) async {
     try {
+      final currencies = await getIt<ServiceRepository>().getCurrencies();
       final measures = await getIt<ServiceRepository>().getServiceMeasures();
-      final currencyModel =
-          await getIt<ServiceRepository>().getCurrencyModel(CurrencyCode.ruble);
+      // final currencyModel =
+      //     await getIt<ServiceRepository>().getCurrencyModel("RUB");
       emit(state.copyWith(
         service: service,
+        currencies: currencies,
         category: category,
-        selectedCurrencyCode: CurrencyCode.ruble,
         serviceMeasures: measures,
-        selectedCurrency: currencyModel,
+
+        selectedCurrency: currencies.firstOrNull,
       ));
     } catch (_) {
       emit(state.copyWith(
         service: service,
-        selectedCurrencyCode: CurrencyCode.ruble,
       ));
     }
   }
@@ -47,16 +47,8 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
     controller.collapse();
   }
 
-  void changeCurrencyCode(CurrencyCode code) async {
-    final oldCode = state.selectedCurrencyCode ?? CurrencyCode.ruble;
-    emit(state.copyWith(selectedCurrencyCode: code));
-    try {
-      final currencyModel =
-          await getIt<ServiceRepository>().getCurrencyModel(code);
-      emit(state.copyWith(selectedCurrency: currencyModel));
-    } catch (_) {
-      emit(state.copyWith(selectedCurrencyCode: oldCode));
-    }
+  void changeCurrencyCode(CurrencyModel currency) async {
+     emit(state.copyWith(selectedCurrency: currency));
   }
 
   void pickedFiles(List<File> files) {
@@ -83,8 +75,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
         (priceController.text.isNotEmpty &&
             num.tryParse(priceController.text) != null) &&
         state.selectedMeasure != null &&
-        state.selectedCurrencyCode != null &&
-        descriptionController.text.isNotEmpty;
+         descriptionController.text.isNotEmpty && state.selectedFiles.isNotEmpty;
     emit(state.copyWith(validated: validated));
     if (validated) {
       UserServiceRequestModel requestModel = UserServiceRequestModel(
@@ -95,7 +86,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
         price: priceController.text.isNotEmpty
             ? num.tryParse(priceController.text)
             : 0,
-        priceCurrency: state.selectedCurrency?.curCode.rawValue,
+        priceCurrency: state.selectedCurrency?.curCode,
         locations: state.selectedLocations.map((e) => e.locName ?? "").toList(),
       );
       debugPrint(requestModel.toJson().toString());

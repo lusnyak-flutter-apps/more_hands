@@ -20,6 +20,8 @@ mixin _$RequestsState {
   RequestStatus get selectedStatus => throw _privateConstructorUsedError;
   RequestType get selectedType => throw _privateConstructorUsedError;
   List<RequestModel> get requests => throw _privateConstructorUsedError;
+  int get receiverUnseenCount => throw _privateConstructorUsedError;
+  int get senderUnseenCount => throw _privateConstructorUsedError;
 
   /// Create a copy of RequestsState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +40,9 @@ abstract class $RequestsStateCopyWith<$Res> {
       {bool loading,
       RequestStatus selectedStatus,
       RequestType selectedType,
-      List<RequestModel> requests});
+      List<RequestModel> requests,
+      int receiverUnseenCount,
+      int senderUnseenCount});
 }
 
 /// @nodoc
@@ -60,6 +64,8 @@ class _$RequestsStateCopyWithImpl<$Res, $Val extends RequestsState>
     Object? selectedStatus = null,
     Object? selectedType = null,
     Object? requests = null,
+    Object? receiverUnseenCount = null,
+    Object? senderUnseenCount = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -78,6 +84,14 @@ class _$RequestsStateCopyWithImpl<$Res, $Val extends RequestsState>
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
               as List<RequestModel>,
+      receiverUnseenCount: null == receiverUnseenCount
+          ? _value.receiverUnseenCount
+          : receiverUnseenCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      senderUnseenCount: null == senderUnseenCount
+          ? _value.senderUnseenCount
+          : senderUnseenCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -94,7 +108,9 @@ abstract class _$$RequestsStateImplCopyWith<$Res>
       {bool loading,
       RequestStatus selectedStatus,
       RequestType selectedType,
-      List<RequestModel> requests});
+      List<RequestModel> requests,
+      int receiverUnseenCount,
+      int senderUnseenCount});
 }
 
 /// @nodoc
@@ -114,6 +130,8 @@ class __$$RequestsStateImplCopyWithImpl<$Res>
     Object? selectedStatus = null,
     Object? selectedType = null,
     Object? requests = null,
+    Object? receiverUnseenCount = null,
+    Object? senderUnseenCount = null,
   }) {
     return _then(_$RequestsStateImpl(
       loading: null == loading
@@ -132,6 +150,14 @@ class __$$RequestsStateImplCopyWithImpl<$Res>
           ? _value._requests
           : requests // ignore: cast_nullable_to_non_nullable
               as List<RequestModel>,
+      receiverUnseenCount: null == receiverUnseenCount
+          ? _value.receiverUnseenCount
+          : receiverUnseenCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      senderUnseenCount: null == senderUnseenCount
+          ? _value.senderUnseenCount
+          : senderUnseenCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -143,7 +169,9 @@ class _$RequestsStateImpl implements _RequestsState {
       {this.loading = false,
       this.selectedStatus = RequestStatus.all,
       this.selectedType = RequestType.receiver,
-      final List<RequestModel> requests = const []})
+      final List<RequestModel> requests = const [],
+      this.receiverUnseenCount = 0,
+      this.senderUnseenCount = 0})
       : _requests = requests;
 
   @override
@@ -165,8 +193,15 @@ class _$RequestsStateImpl implements _RequestsState {
   }
 
   @override
+  @JsonKey()
+  final int receiverUnseenCount;
+  @override
+  @JsonKey()
+  final int senderUnseenCount;
+
+  @override
   String toString() {
-    return 'RequestsState(loading: $loading, selectedStatus: $selectedStatus, selectedType: $selectedType, requests: $requests)';
+    return 'RequestsState(loading: $loading, selectedStatus: $selectedStatus, selectedType: $selectedType, requests: $requests, receiverUnseenCount: $receiverUnseenCount, senderUnseenCount: $senderUnseenCount)';
   }
 
   @override
@@ -179,12 +214,22 @@ class _$RequestsStateImpl implements _RequestsState {
                 other.selectedStatus == selectedStatus) &&
             (identical(other.selectedType, selectedType) ||
                 other.selectedType == selectedType) &&
-            const DeepCollectionEquality().equals(other._requests, _requests));
+            const DeepCollectionEquality().equals(other._requests, _requests) &&
+            (identical(other.receiverUnseenCount, receiverUnseenCount) ||
+                other.receiverUnseenCount == receiverUnseenCount) &&
+            (identical(other.senderUnseenCount, senderUnseenCount) ||
+                other.senderUnseenCount == senderUnseenCount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, selectedStatus,
-      selectedType, const DeepCollectionEquality().hash(_requests));
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      selectedStatus,
+      selectedType,
+      const DeepCollectionEquality().hash(_requests),
+      receiverUnseenCount,
+      senderUnseenCount);
 
   /// Create a copy of RequestsState
   /// with the given fields replaced by the non-null parameter values.
@@ -200,7 +245,9 @@ abstract class _RequestsState implements RequestsState {
       {final bool loading,
       final RequestStatus selectedStatus,
       final RequestType selectedType,
-      final List<RequestModel> requests}) = _$RequestsStateImpl;
+      final List<RequestModel> requests,
+      final int receiverUnseenCount,
+      final int senderUnseenCount}) = _$RequestsStateImpl;
 
   @override
   bool get loading;
@@ -210,6 +257,10 @@ abstract class _RequestsState implements RequestsState {
   RequestType get selectedType;
   @override
   List<RequestModel> get requests;
+  @override
+  int get receiverUnseenCount;
+  @override
+  int get senderUnseenCount;
 
   /// Create a copy of RequestsState
   /// with the given fields replaced by the non-null parameter values.

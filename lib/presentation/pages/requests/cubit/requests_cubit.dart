@@ -12,6 +12,16 @@ part 'requests_cubit.freezed.dart';
 class RequestsCubit extends Cubit<RequestsState> {
   RequestsCubit() : super(const RequestsState());
 
+  Future<void> getUnseenCounts() async {
+    final (receiverUnseenCount, senderUnseenCount) =
+        await getIt<RequestsRepository>().getUnseenRequestsCount();
+    debugPrint(receiverUnseenCount.toString());
+    debugPrint(senderUnseenCount.toString());
+    emit(state.copyWith(
+        senderUnseenCount: senderUnseenCount,
+        receiverUnseenCount: receiverUnseenCount));
+  }
+
   Future<void> getRequests() async {
     if (state.loading) return;
     emit(state.copyWith(loading: true));
@@ -29,30 +39,36 @@ class RequestsCubit extends Cubit<RequestsState> {
 
   Future<void> approveRequest(int id) async {
     if (state.loading) return;
-    return  await getIt<RequestsRepository>().approveRequest(reqId: id).then((onValue){
+    return await getIt<RequestsRepository>()
+        .approveRequest(reqId: id)
+        .then((onValue) {
       List<RequestModel> requests = [...state.requests];
-      requests.removeWhere((e)=>e.id == id);
-      emit(state.copyWith(requests:requests, loading: false));
+      requests.removeWhere((e) => e.id == id);
+      emit(state.copyWith(requests: requests, loading: false));
     });
   }
 
   Future<void> rejectRequest(int id) async {
     if (state.loading) return;
 
-    return  await getIt<RequestsRepository>().rejectRequest(reqId: id).then((onValue){
+    return await getIt<RequestsRepository>()
+        .rejectRequest(reqId: id)
+        .then((onValue) {
       List<RequestModel> requests = [...state.requests];
-      requests.removeWhere((e)=>e.id == id);
-      emit(state.copyWith(requests:requests, loading: false));
+      requests.removeWhere((e) => e.id == id);
+      emit(state.copyWith(requests: requests, loading: false));
     });
   }
 
   Future<void> cancelRequest(int id) async {
     if (state.loading) return;
     // emit(state.copyWith(loading: true));
-    return  await getIt<RequestsRepository>().cancelRequest(reqId: id).then((onValue){
+    return await getIt<RequestsRepository>()
+        .cancelRequest(reqId: id)
+        .then((onValue) {
       List<RequestModel> requests = [...state.requests];
-      requests.removeWhere((e)=>e.id == id);
-      emit(state.copyWith(requests:requests, loading: false));
+      requests.removeWhere((e) => e.id == id);
+      emit(state.copyWith(requests: requests, loading: false));
     });
   }
 

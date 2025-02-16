@@ -5,7 +5,6 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/remote/currency_remote/currency_remote.dart';
 import 'package:more_hands/data/remote/service_remote/service_remote.dart';
 import 'package:more_hands/data/remote/user_services_remote/user_services_remote.dart';
-import 'package:more_hands/domain/enums/currency_code.dart';
 import 'package:more_hands/domain/models/currency_model/currency_model.dart';
 import 'package:more_hands/domain/models/service_by_category_model/service_by_category_model.dart';
 import 'package:more_hands/domain/models/service_means_model/service_measure_model.dart';
@@ -40,17 +39,30 @@ class ServiceRepository {
     });
   }
 
-  Future<CurrencyModel?> getCurrencyModel(CurrencyCode code) async =>
+  Future<CurrencyModel?> getCurrencyModel(String code) async =>
       await getIt<CurrencyRemoteApi>()
-          .getByCode(code.rawValue ?? "RUB")
+          .getByCode(code)
           .then((onValue) => onValue)
           .catchError((e) {
         debugPrint(e.toString());
         return null;
       });
 
+
+  Future<List<CurrencyModel>> getCurrencies() async =>
+      await getIt<CurrencyRemoteApi>()
+          .findByCode()
+          .then((onValue) => onValue ?? <CurrencyModel>[])
+          .catchError((e) {
+        debugPrint(e.toString());
+        return <CurrencyModel>[];
+      });
+
   Future<int> addUserService(UserServiceRequestModel param) async =>
       await getIt<UserServicesRemoteApi>().addUserService(data: param);
+
+  Future<void> deleteUserService(int userServiceId) async =>
+      await getIt<UserServicesRemoteApi>().deleteUserService(userServiceId: userServiceId);
 
   Future<bool> attachServiceFiles(List<File> files, int userServiceId) async {
     if (files.isNotEmpty) {

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
@@ -46,8 +47,8 @@ class _ProfileView extends StatelessWidget {
 
           List<PortfolioItem> portfolio = [];
           state.user?.services.forEach((s) {
-            portfolio
-                .addAll(s.files.map((f) => PortfolioItem(service: s, file: f)));
+            portfolio.addAll(s.files.mapIndexed(((i, f) =>
+                PortfolioItem(service: s, file: f, isMain: i == 0))));
           });
 
           return SingleChildScrollView(
@@ -70,6 +71,13 @@ class _ProfileView extends StatelessWidget {
                 ).paddingOnly(bottom: 24.h),
                 PortfolioView(
                   items: portfolio,
+                  my: true,
+                  onDeletedItem: (service) {
+                    if (service.serviceAdditionalInfo?.userServiceId != null) {
+                      cubit.deleteUserService(
+                          service.serviceAdditionalInfo!.userServiceId);
+                    }
+                  },
                   onTapItem: (index) {
                     debugPrint("Portfolio item $index");
                     showServiceView(context,
@@ -306,7 +314,10 @@ class _ProfileView extends StatelessWidget {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
-      child: ServiceInfoView(service: service, userHasService: true,),
+      child: ServiceInfoView(
+        service: service,
+        userHasService: true,
+      ),
     ).then((onValue) {
       if (onValue is bool) {
         if (context.mounted) {

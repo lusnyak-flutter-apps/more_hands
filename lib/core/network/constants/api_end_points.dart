@@ -29,7 +29,11 @@ abstract class EndPoint {
   static const String userServiceImage = "/userServices/userServiceImage";
 
   static const String getRequestsBySender = "/request/getBySender";
+  static const String getUnseenCountBySender = "/request/getBySenderCnt";
   static const String getRequestsByReceiver = "/request/getByReceiver";
+  static const String getUnseenCountByReceiver = "/request/getByReceiverCnt";
+  static const String seenRequest = "/request/see";
+
   static const String rejectRequest = "/action/reqReject";
   static const String cancelRequest = "/action/reqCancel";
   static const String approveRequest = "/action/reqApprove";

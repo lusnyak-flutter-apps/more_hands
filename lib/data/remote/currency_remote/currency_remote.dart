@@ -14,5 +14,6 @@ abstract class CurrencyRemoteApi {
   Future<CurrencyModel?> getByCode(@Query('curCode') String code);
 
   @GET(EndPoint.findCurrencyByCode)
-  Future<List<CurrencyModel>?> findByCode(@Query('curCode') String code);
+  Future<List<CurrencyModel>?> findByCode({@Query('curCode') String code = "",
+      @Query('onlyActive') bool isActive = true});
 }

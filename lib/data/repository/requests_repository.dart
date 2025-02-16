@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/remote/request_remote/request_remote.dart';
 import 'package:more_hands/domain/enums/request_status.dart';
@@ -22,6 +23,22 @@ class RequestsRepository {
         .then((onValue) => onValue ?? <RequestModel>[])
         .catchError((_) => <RequestModel>[]);
   }
+
+  Future<(int, int)> getUnseenRequestsCount() async {
+    try {
+      final senderUnseenCount = await getIt<RequestRemoteApi>().getUnseenCountBySender();
+      final receiverUnseenCount = await getIt<RequestRemoteApi>().getUnseenCountByReceiver();
+      return (receiverUnseenCount?.countNotSeen ?? 0, senderUnseenCount?.countNotSeen ?? 0);
+    } catch(e){
+      debugPrint(e.toString());
+      return (0,0);
+    }
+  }
+
+  Future<void> seenRequest({
+    required int reqId,
+  }) async =>
+      await getIt<RequestRemoteApi>().seenRequest(reqId: reqId);
 
   Future<void> createAndSendRequest({
     required SendRequestModel sendModel,

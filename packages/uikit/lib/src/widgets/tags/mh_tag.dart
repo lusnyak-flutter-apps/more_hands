@@ -9,7 +9,9 @@ class MHTag extends StatelessWidget {
     this.icon,
     this.tintColor,
     this.borderColor,
-    this.iconAlignment = IconAlignment.start,   this.selected = false,
+    this.iconAlignment = IconAlignment.start,
+    this.selected = false,
+    this.fontSize,
   });
 
   final VoidCallback? onPressed;
@@ -19,11 +21,12 @@ class MHTag extends StatelessWidget {
   final Color? borderColor;
   final IconAlignment iconAlignment;
   final bool selected;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
     final label = Text(title,
-        style: body13MediumStyle.copyWith(color: selected ? MHColors.blackBGColor : MHColors.whiteColor));
+        style: body12MediumStyle.copyWith(color: selected ? MHColors.blackBGColor : MHColors.whiteColor, fontSize: fontSize));
     return InkWell(
       borderRadius: BorderRadius.circular(16.r),
       onTap: onPressed,

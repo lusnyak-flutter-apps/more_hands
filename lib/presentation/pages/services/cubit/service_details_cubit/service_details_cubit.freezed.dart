@@ -21,8 +21,8 @@ mixin _$ServiceDetailsState {
   bool? get validated => throw _privateConstructorUsedError;
   ServiceModel? get service => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
-  CurrencyCode? get selectedCurrencyCode => throw _privateConstructorUsedError;
   CurrencyModel? get selectedCurrency => throw _privateConstructorUsedError;
+  List<CurrencyModel> get currencies => throw _privateConstructorUsedError;
   List<ServiceMeasureModel> get serviceMeasures =>
       throw _privateConstructorUsedError;
   ServiceMeasureModel? get selectedMeasure =>
@@ -50,8 +50,8 @@ abstract class $ServiceDetailsStateCopyWith<$Res> {
       bool? validated,
       ServiceModel? service,
       CategoryModel? category,
-      CurrencyCode? selectedCurrencyCode,
       CurrencyModel? selectedCurrency,
+      List<CurrencyModel> currencies,
       List<ServiceMeasureModel> serviceMeasures,
       ServiceMeasureModel? selectedMeasure,
       List<File> selectedFiles,
@@ -83,8 +83,8 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
     Object? validated = freezed,
     Object? service = freezed,
     Object? category = freezed,
-    Object? selectedCurrencyCode = freezed,
     Object? selectedCurrency = freezed,
+    Object? currencies = null,
     Object? serviceMeasures = null,
     Object? selectedMeasure = freezed,
     Object? selectedFiles = null,
@@ -111,14 +111,14 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      selectedCurrencyCode: freezed == selectedCurrencyCode
-          ? _value.selectedCurrencyCode
-          : selectedCurrencyCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
       selectedCurrency: freezed == selectedCurrency
           ? _value.selectedCurrency
           : selectedCurrency // ignore: cast_nullable_to_non_nullable
               as CurrencyModel?,
+      currencies: null == currencies
+          ? _value.currencies
+          : currencies // ignore: cast_nullable_to_non_nullable
+              as List<CurrencyModel>,
       serviceMeasures: null == serviceMeasures
           ? _value.serviceMeasures
           : serviceMeasures // ignore: cast_nullable_to_non_nullable
@@ -209,8 +209,8 @@ abstract class _$$ServiceDetailsStateImplCopyWith<$Res>
       bool? validated,
       ServiceModel? service,
       CategoryModel? category,
-      CurrencyCode? selectedCurrencyCode,
       CurrencyModel? selectedCurrency,
+      List<CurrencyModel> currencies,
       List<ServiceMeasureModel> serviceMeasures,
       ServiceMeasureModel? selectedMeasure,
       List<File> selectedFiles,
@@ -244,8 +244,8 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
     Object? validated = freezed,
     Object? service = freezed,
     Object? category = freezed,
-    Object? selectedCurrencyCode = freezed,
     Object? selectedCurrency = freezed,
+    Object? currencies = null,
     Object? serviceMeasures = null,
     Object? selectedMeasure = freezed,
     Object? selectedFiles = null,
@@ -272,14 +272,14 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      selectedCurrencyCode: freezed == selectedCurrencyCode
-          ? _value.selectedCurrencyCode
-          : selectedCurrencyCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
       selectedCurrency: freezed == selectedCurrency
           ? _value.selectedCurrency
           : selectedCurrency // ignore: cast_nullable_to_non_nullable
               as CurrencyModel?,
+      currencies: null == currencies
+          ? _value._currencies
+          : currencies // ignore: cast_nullable_to_non_nullable
+              as List<CurrencyModel>,
       serviceMeasures: null == serviceMeasures
           ? _value._serviceMeasures
           : serviceMeasures // ignore: cast_nullable_to_non_nullable
@@ -309,14 +309,15 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
       this.validated,
       this.service,
       this.category,
-      this.selectedCurrencyCode = CurrencyCode.ruble,
       this.selectedCurrency,
+      final List<CurrencyModel> currencies = const <CurrencyModel>[],
       final List<ServiceMeasureModel> serviceMeasures =
           const <ServiceMeasureModel>[],
       this.selectedMeasure,
       final List<File> selectedFiles = const <File>[],
       final List<LocationModel> selectedLocations = const <LocationModel>[]})
-      : _serviceMeasures = serviceMeasures,
+      : _currencies = currencies,
+        _serviceMeasures = serviceMeasures,
         _selectedFiles = selectedFiles,
         _selectedLocations = selectedLocations;
 
@@ -333,10 +334,16 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
   @override
   final CategoryModel? category;
   @override
-  @JsonKey()
-  final CurrencyCode? selectedCurrencyCode;
-  @override
   final CurrencyModel? selectedCurrency;
+  final List<CurrencyModel> _currencies;
+  @override
+  @JsonKey()
+  List<CurrencyModel> get currencies {
+    if (_currencies is EqualUnmodifiableListView) return _currencies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_currencies);
+  }
+
   final List<ServiceMeasureModel> _serviceMeasures;
   @override
   @JsonKey()
@@ -369,7 +376,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
 
   @override
   String toString() {
-    return 'ServiceDetailsState(loading: $loading, serviceAdded: $serviceAdded, validated: $validated, service: $service, category: $category, selectedCurrencyCode: $selectedCurrencyCode, selectedCurrency: $selectedCurrency, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles, selectedLocations: $selectedLocations)';
+    return 'ServiceDetailsState(loading: $loading, serviceAdded: $serviceAdded, validated: $validated, service: $service, category: $category, selectedCurrency: $selectedCurrency, currencies: $currencies, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles, selectedLocations: $selectedLocations)';
   }
 
   @override
@@ -385,10 +392,10 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
             (identical(other.service, service) || other.service == service) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.selectedCurrencyCode, selectedCurrencyCode) ||
-                other.selectedCurrencyCode == selectedCurrencyCode) &&
             (identical(other.selectedCurrency, selectedCurrency) ||
                 other.selectedCurrency == selectedCurrency) &&
+            const DeepCollectionEquality()
+                .equals(other._currencies, _currencies) &&
             const DeepCollectionEquality()
                 .equals(other._serviceMeasures, _serviceMeasures) &&
             (identical(other.selectedMeasure, selectedMeasure) ||
@@ -407,8 +414,8 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
       validated,
       service,
       category,
-      selectedCurrencyCode,
       selectedCurrency,
+      const DeepCollectionEquality().hash(_currencies),
       const DeepCollectionEquality().hash(_serviceMeasures),
       selectedMeasure,
       const DeepCollectionEquality().hash(_selectedFiles),
@@ -431,8 +438,8 @@ abstract class _ServiceDetailsState implements ServiceDetailsState {
       final bool? validated,
       final ServiceModel? service,
       final CategoryModel? category,
-      final CurrencyCode? selectedCurrencyCode,
       final CurrencyModel? selectedCurrency,
+      final List<CurrencyModel> currencies,
       final List<ServiceMeasureModel> serviceMeasures,
       final ServiceMeasureModel? selectedMeasure,
       final List<File> selectedFiles,
@@ -449,9 +456,9 @@ abstract class _ServiceDetailsState implements ServiceDetailsState {
   @override
   CategoryModel? get category;
   @override
-  CurrencyCode? get selectedCurrencyCode;
-  @override
   CurrencyModel? get selectedCurrency;
+  @override
+  List<CurrencyModel> get currencies;
   @override
   List<ServiceMeasureModel> get serviceMeasures;
   @override

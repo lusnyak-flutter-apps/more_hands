@@ -14,8 +14,7 @@ _$ServiceAdditionalInfoModelImpl _$$ServiceAdditionalInfoModelImplFromJson(
       measureCode:
           $enumDecodeNullable(_$MeasureCodeEnumMap, json['servMeasMcode']),
       servMCode: json['servMcode'] as String?,
-      priceCurrency:
-          $enumDecodeNullable(_$CurrencyCodeEnumMap, json['priceCurrency']),
+      priceCurrency: json['priceCurrency'] as String?,
       price: json['price'] as num?,
       addInfo: json['addInfo'] as String?,
     );
@@ -27,7 +26,7 @@ Map<String, dynamic> _$$ServiceAdditionalInfoModelImplToJson(
       'servMeasId': instance.servMeasId,
       'servMeasMcode': _$MeasureCodeEnumMap[instance.measureCode],
       'servMcode': instance.servMCode,
-      'priceCurrency': _$CurrencyCodeEnumMap[instance.priceCurrency],
+      'priceCurrency': instance.priceCurrency,
       'price': instance.price,
       'addInfo': instance.addInfo,
     };
@@ -39,10 +38,4 @@ const _$MeasureCodeEnumMap = {
   MeasureCode.week: 'service.measure.week',
   MeasureCode.hour: 'service.measure.hour',
   MeasureCode.service: 'service.measure.service',
-};
-
-const _$CurrencyCodeEnumMap = {
-  CurrencyCode.usDollar: 'USD',
-  CurrencyCode.euro: 'EUR',
-  CurrencyCode.ruble: 'RUB',
 };

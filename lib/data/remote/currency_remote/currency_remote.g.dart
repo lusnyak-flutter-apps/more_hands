@@ -58,9 +58,15 @@ class _CurrencyRemoteApi implements CurrencyRemoteApi {
   }
 
   @override
-  Future<List<CurrencyModel>?> findByCode(String code) async {
+  Future<List<CurrencyModel>?> findByCode({
+    String code = "",
+    bool isActive = true,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'curCode': code};
+    final queryParameters = <String, dynamic>{
+      r'curCode': code,
+      r'onlyActive': isActive,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<CurrencyModel>>(Options(

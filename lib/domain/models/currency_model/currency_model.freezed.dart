@@ -21,9 +21,11 @@ CurrencyModel _$CurrencyModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CurrencyModel {
   int get id => throw _privateConstructorUsedError;
-  CurrencyCode get curCode => throw _privateConstructorUsedError;
+  String get curCode => throw _privateConstructorUsedError;
   int get curNumber => throw _privateConstructorUsedError;
   String get curName => throw _privateConstructorUsedError;
+  String get curSign => throw _privateConstructorUsedError;
+  bool get isActive => throw _privateConstructorUsedError;
 
   /// Serializes this CurrencyModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +43,13 @@ abstract class $CurrencyModelCopyWith<$Res> {
           CurrencyModel value, $Res Function(CurrencyModel) then) =
       _$CurrencyModelCopyWithImpl<$Res, CurrencyModel>;
   @useResult
-  $Res call({int id, CurrencyCode curCode, int curNumber, String curName});
+  $Res call(
+      {int id,
+      String curCode,
+      int curNumber,
+      String curName,
+      String curSign,
+      bool isActive});
 }
 
 /// @nodoc
@@ -63,6 +71,8 @@ class _$CurrencyModelCopyWithImpl<$Res, $Val extends CurrencyModel>
     Object? curCode = null,
     Object? curNumber = null,
     Object? curName = null,
+    Object? curSign = null,
+    Object? isActive = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -72,7 +82,7 @@ class _$CurrencyModelCopyWithImpl<$Res, $Val extends CurrencyModel>
       curCode: null == curCode
           ? _value.curCode
           : curCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode,
+              as String,
       curNumber: null == curNumber
           ? _value.curNumber
           : curNumber // ignore: cast_nullable_to_non_nullable
@@ -81,6 +91,14 @@ class _$CurrencyModelCopyWithImpl<$Res, $Val extends CurrencyModel>
           ? _value.curName
           : curName // ignore: cast_nullable_to_non_nullable
               as String,
+      curSign: null == curSign
+          ? _value.curSign
+          : curSign // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -93,7 +111,13 @@ abstract class _$$CurrencyModelImplCopyWith<$Res>
       __$$CurrencyModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, CurrencyCode curCode, int curNumber, String curName});
+  $Res call(
+      {int id,
+      String curCode,
+      int curNumber,
+      String curName,
+      String curSign,
+      bool isActive});
 }
 
 /// @nodoc
@@ -113,6 +137,8 @@ class __$$CurrencyModelImplCopyWithImpl<$Res>
     Object? curCode = null,
     Object? curNumber = null,
     Object? curName = null,
+    Object? curSign = null,
+    Object? isActive = null,
   }) {
     return _then(_$CurrencyModelImpl(
       id: null == id
@@ -122,7 +148,7 @@ class __$$CurrencyModelImplCopyWithImpl<$Res>
       curCode: null == curCode
           ? _value.curCode
           : curCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode,
+              as String,
       curNumber: null == curNumber
           ? _value.curNumber
           : curNumber // ignore: cast_nullable_to_non_nullable
@@ -131,6 +157,14 @@ class __$$CurrencyModelImplCopyWithImpl<$Res>
           ? _value.curName
           : curName // ignore: cast_nullable_to_non_nullable
               as String,
+      curSign: null == curSign
+          ? _value.curSign
+          : curSign // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -142,7 +176,9 @@ class _$CurrencyModelImpl implements _CurrencyModel {
       {required this.id,
       required this.curCode,
       required this.curNumber,
-      required this.curName});
+      required this.curName,
+      required this.curSign,
+      this.isActive = true});
 
   factory _$CurrencyModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrencyModelImplFromJson(json);
@@ -150,15 +186,20 @@ class _$CurrencyModelImpl implements _CurrencyModel {
   @override
   final int id;
   @override
-  final CurrencyCode curCode;
+  final String curCode;
   @override
   final int curNumber;
   @override
   final String curName;
+  @override
+  final String curSign;
+  @override
+  @JsonKey()
+  final bool isActive;
 
   @override
   String toString() {
-    return 'CurrencyModel(id: $id, curCode: $curCode, curNumber: $curNumber, curName: $curName)';
+    return 'CurrencyModel(id: $id, curCode: $curCode, curNumber: $curNumber, curName: $curName, curSign: $curSign, isActive: $isActive)';
   }
 
   @override
@@ -170,12 +211,16 @@ class _$CurrencyModelImpl implements _CurrencyModel {
             (identical(other.curCode, curCode) || other.curCode == curCode) &&
             (identical(other.curNumber, curNumber) ||
                 other.curNumber == curNumber) &&
-            (identical(other.curName, curName) || other.curName == curName));
+            (identical(other.curName, curName) || other.curName == curName) &&
+            (identical(other.curSign, curSign) || other.curSign == curSign) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, curCode, curNumber, curName);
+  int get hashCode => Object.hash(
+      runtimeType, id, curCode, curNumber, curName, curSign, isActive);
 
   /// Create a copy of CurrencyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -196,9 +241,11 @@ class _$CurrencyModelImpl implements _CurrencyModel {
 abstract class _CurrencyModel implements CurrencyModel {
   const factory _CurrencyModel(
       {required final int id,
-      required final CurrencyCode curCode,
+      required final String curCode,
       required final int curNumber,
-      required final String curName}) = _$CurrencyModelImpl;
+      required final String curName,
+      required final String curSign,
+      final bool isActive}) = _$CurrencyModelImpl;
 
   factory _CurrencyModel.fromJson(Map<String, dynamic> json) =
       _$CurrencyModelImpl.fromJson;
@@ -206,11 +253,15 @@ abstract class _CurrencyModel implements CurrencyModel {
   @override
   int get id;
   @override
-  CurrencyCode get curCode;
+  String get curCode;
   @override
   int get curNumber;
   @override
   String get curName;
+  @override
+  String get curSign;
+  @override
+  bool get isActive;
 
   /// Create a copy of CurrencyModel
   /// with the given fields replaced by the non-null parameter values.

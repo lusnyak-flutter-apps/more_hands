@@ -27,7 +27,7 @@ mixin _$ServiceAdditionalInfoModel {
   MeasureCode? get measureCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'servMcode')
   String? get servMCode => throw _privateConstructorUsedError;
-  CurrencyCode? get priceCurrency => throw _privateConstructorUsedError;
+  String? get priceCurrency => throw _privateConstructorUsedError;
   num? get price => throw _privateConstructorUsedError;
   String? get addInfo => throw _privateConstructorUsedError;
 
@@ -53,7 +53,7 @@ abstract class $ServiceAdditionalInfoModelCopyWith<$Res> {
       int? servMeasId,
       @JsonKey(name: 'servMeasMcode') MeasureCode? measureCode,
       @JsonKey(name: 'servMcode') String? servMCode,
-      CurrencyCode? priceCurrency,
+      String? priceCurrency,
       num? price,
       String? addInfo});
 }
@@ -102,7 +102,7 @@ class _$ServiceAdditionalInfoModelCopyWithImpl<$Res,
       priceCurrency: freezed == priceCurrency
           ? _value.priceCurrency
           : priceCurrency // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
+              as String?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ abstract class _$$ServiceAdditionalInfoModelImplCopyWith<$Res>
       int? servMeasId,
       @JsonKey(name: 'servMeasMcode') MeasureCode? measureCode,
       @JsonKey(name: 'servMcode') String? servMCode,
-      CurrencyCode? priceCurrency,
+      String? priceCurrency,
       num? price,
       String? addInfo});
 }
@@ -177,7 +177,7 @@ class __$$ServiceAdditionalInfoModelImplCopyWithImpl<$Res>
       priceCurrency: freezed == priceCurrency
           ? _value.priceCurrency
           : priceCurrency // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
+              as String?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -217,7 +217,7 @@ class _$ServiceAdditionalInfoModelImpl implements _ServiceAdditionalInfoModel {
   @JsonKey(name: 'servMcode')
   final String? servMCode;
   @override
-  final CurrencyCode? priceCurrency;
+  final String? priceCurrency;
   @override
   final num? price;
   @override
@@ -276,7 +276,7 @@ abstract class _ServiceAdditionalInfoModel
       final int? servMeasId,
       @JsonKey(name: 'servMeasMcode') final MeasureCode? measureCode,
       @JsonKey(name: 'servMcode') final String? servMCode,
-      final CurrencyCode? priceCurrency,
+      final String? priceCurrency,
       final num? price,
       final String? addInfo}) = _$ServiceAdditionalInfoModelImpl;
 
@@ -294,7 +294,7 @@ abstract class _ServiceAdditionalInfoModel
   @JsonKey(name: 'servMcode')
   String? get servMCode;
   @override
-  CurrencyCode? get priceCurrency;
+  String? get priceCurrency;
   @override
   num? get price;
   @override

@@ -8,21 +8,35 @@ import 'package:uikit/uikit.dart';
 class PortfolioItem {
   final ServiceModel service;
   final FileModel file;
+  final bool isMain;
 
-  PortfolioItem({required this.service, required this.file, });
+  PortfolioItem(
+      {required this.service, required this.file, this.isMain = false});
 
-  String get filePath => "${APIBase.url}/storage/download?category=${file.attachCategory?.rawValue}&fileId=${file.usfFileId}";
+  String get filePath =>
+      "${APIBase.url}/storage/download?category=${file.attachCategory?.rawValue}&fileId=${file.usfFileId}";
 }
 
-class PortfolioView extends StatelessWidget {
+class PortfolioView extends StatefulWidget {
   const PortfolioView({
     super.key,
     this.items = const [],
     this.onTapItem,
+    this.my = false,
+    this.onDeletedItem,
   });
 
   final List<PortfolioItem> items;
   final Function(PortfolioItem)? onTapItem;
+  final Function(ServiceModel)? onDeletedItem;
+  final bool my;
+
+  @override
+  State<PortfolioView> createState() => _PortfolioViewState();
+}
+
+class _PortfolioViewState extends State<PortfolioView> {
+  bool showDeleteOptions = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,27 +44,96 @@ class PortfolioView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          context.localized.portfolio,
-          style: body24SemiBoldStyle,
-          textAlign: TextAlign.left,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              context.localized.portfolio,
+              style: body24SemiBoldStyle,
+              textAlign: TextAlign.left,
+            ),
+            if (widget.my)
+              MHInkWell(
+                onTap: () {
+                  if(mounted) {
+                    setState(() {
+                      showDeleteOptions = true;
+                    });
+                  }
+                },
+                child: MoreHandsAssets.icons.edit.svg(),
+              ),
+          ],
         ),
-        if (items.isNotEmpty)
+        if (widget.items.isNotEmpty)
           GridView(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisSpacing: 4.r, crossAxisSpacing: 4.r,),
+              crossAxisCount: 2,
+              mainAxisSpacing: 4.r,
+              crossAxisSpacing: 4.r,
+            ),
             children: [
-              for (var item in items)
+              for (var item in widget.items)
                 InkWell(
-                  onTap: (){
-                    onTapItem?.call(item);
+                  onTap: () {
+                    widget.onTapItem?.call(item);
                   },
-                  child: MHImage(
-                    size: context.width / 2 - 4.r,
-                    imageUrl: item.filePath,
-                  ),
+                  child: item.isMain
+                      ? Stack(
+                          alignment: Alignment.bottomLeft,
+                          children: [
+                            MHImage(
+                              size: context.width / 2 - 4.r,
+                              imageUrl: item.filePath,
+                            ),
+                            if(showDeleteOptions)
+                            Positioned(
+                              top: 8.0,
+                              left: 8.0,
+                              child: IconButton(
+                                onPressed: () {
+                                  widget.onDeletedItem?.call(item.service);
+                                },
+                                style: IconButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                ),
+                                icon: MoreHandsAssets.icons.close.svg(
+                                  width: 28.0,
+                                  colorFilter: const ColorFilter.mode(
+                                      MHColors.redColor, BlendMode.srcIn),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 8.0,
+                              left: 8.0,
+                              right: 8.0,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    item.service.serviceInfo?.servName ?? "",
+                                    style: body14SemiBoldStyle,
+                                  ),
+                                  if (item.service.serviceAdditionalInfo !=
+                                      null)
+                                    MHTag(
+                                            title:
+                                                "${item.service.serviceAdditionalInfo!.price}${item.service.serviceAdditionalInfo!.priceCurrency} ${item.service.serviceAdditionalInfo!.measureCode!.title(context)}")
+                                        .paddingOnly(top: 4.w),
+                                ],
+                              ).paddingSymmetric(
+                                  horizontal: 8.w, vertical: 8.w),
+                            ),
+                          ],
+                        )
+                      : MHImage(
+                          size: context.width / 2 - 4.r,
+                          imageUrl: item.filePath,
+                        ),
                 ),
             ],
           ).paddingOnly(top: 16.h)
