@@ -13,13 +13,17 @@ class ReferralItem extends StatelessWidget {
     this.showPortfolio = false,
     // this.showInviteButton = false,
     this.onSendRequest,
-    required this.referral, this.onTapPortfolioItem,
+    required this.referral,
+    this.onTapPortfolioItem,
+    this.onLeaveAReview,
   });
 
   final VoidCallback? onTap;
   final Function(ServiceModel)? onTapPortfolioItem;
   final VoidCallback? onSendRequest;
+  final VoidCallback? onLeaveAReview;
   final bool showPortfolio;
+
   // final bool showInviteButton;
   final UserModel referral;
 
@@ -30,11 +34,11 @@ class ReferralItem extends StatelessWidget {
 
     List<PortfolioItem> portfolio = [];
     for (var s in referral.services) {
-      portfolio.addAll(s.files.map((f) => PortfolioItem( service: s, file: f)));
+      portfolio.addAll(s.files.map((f) => PortfolioItem(service: s, file: f)));
     }
 
-    String bio = referral.userInfo?.bio  ?? "";
-    if(bio.length > 200) {
+    String bio = referral.userInfo?.bio ?? "";
+    if (bio.length > 200) {
       bio = "${bio.substring(0, 199)}...";
     }
     return InkWell(
@@ -123,7 +127,7 @@ class ReferralItem extends StatelessWidget {
                       children: [
                         for (var item in portfolio)
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               onTapPortfolioItem?.call(item.service);
                             },
                             child: MHImage(
@@ -138,7 +142,14 @@ class ReferralItem extends StatelessWidget {
                 )
               ],
             ),
-          if (referral.userInfo?.shaken != true)
+          if (referral.userInfo?.shaken == true && onLeaveAReview != null)
+            MHOutlinedButton(
+              title: context.localized.leaveAReview,
+              onPressed: onLeaveAReview,
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: MHColors.whiteColor),
+            ).paddingOnly(top: 16.h),
+          if (referral.userInfo?.shaken == false && onSendRequest != null)
             MHGradientButton(
               title: context.localized.sendRequest,
               onPressed: onSendRequest,

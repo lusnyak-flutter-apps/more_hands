@@ -69,16 +69,22 @@ class _HomeView extends StatelessWidget {
                   children: [
                     MoreHandsAssets.icons.mapPin.svg(height: 24.r),
                     Flexible(
-                      child: Text(state.selectedLocation?.locName ?? "",
-                          textAlign: TextAlign.right,
-                          style: body16MediumStyle, maxLines: 1, overflow: TextOverflow.ellipsis,),
+                      child: Text(
+                        state.selectedLocation?.locName ?? "",
+                        textAlign: TextAlign.right,
+                        style: body16MediumStyle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ).paddingAll(4.r),
               ),
               onTap: () {
                 context.router
-                    .push(SelectLocationRoute(singleSelect: true, selectedLocationId: state.selectedLocation?.id))
+                    .push(SelectLocationRoute(
+                        singleSelect: true,
+                        selectedLocationId: state.selectedLocation?.id))
                     .then((onValue) {
                   if (onValue != null &&
                       onValue is List<LocationModel> &&
@@ -159,13 +165,12 @@ class _HomeView extends StatelessWidget {
 
   Widget _buildUsersList(BuildContext context, List<UserModel> users) {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(bottom: 88.h, top: 16.h),
+      padding: EdgeInsets.only(bottom: 96.h, top: 16.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ...users.map((referral) {
             return ReferralItem(
-              // showInviteButton: true,
               showPortfolio: true,
               onTapPortfolioItem: (s) {
                 showServiceView(context,
@@ -178,6 +183,7 @@ class _HomeView extends StatelessWidget {
                 context.router
                     .push(SendRequestRoute(userId: referral.userInfo!.id));
               },
+              onLeaveAReview: () {},
               referral: referral,
             ).paddingSymmetric(vertical: 8.h);
           }),
