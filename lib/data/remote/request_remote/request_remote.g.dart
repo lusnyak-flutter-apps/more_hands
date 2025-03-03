@@ -182,9 +182,9 @@ class _RequestRemoteApi implements RequestRemoteApi {
   }
 
   @override
-  Future<void> seenRequest({required int reqId}) async {
+  Future<void> seenRequest({required List<int> reqIds}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'reqId': reqId};
+    final queryParameters = <String, dynamic>{r'reqIds': reqIds};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<void>(Options(

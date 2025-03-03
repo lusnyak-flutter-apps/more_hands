@@ -36,9 +36,9 @@ class RequestsRepository {
   }
 
   Future<void> seenRequest({
-    required int reqId,
+    required List<int> reqIds,
   }) async =>
-      await getIt<RequestRemoteApi>().seenRequest(reqId: reqId);
+      await getIt<RequestRemoteApi>().seenRequest(reqIds: reqIds);
 
   Future<void> createAndSendRequest({
     required SendRequestModel sendModel,

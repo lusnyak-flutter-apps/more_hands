@@ -79,7 +79,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> setSelectedLocations(LocationModel selected) async {
-    emit(state.copyWith(selectedLocation: selected));
+    emit(state.copyWith(selectedLocation: selected, selectedServiceId: -1));
     await getServices();
     if(state.selectedServiceId != -1) {
       searchController.clear();

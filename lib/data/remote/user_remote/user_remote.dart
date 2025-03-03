@@ -27,4 +27,7 @@ abstract class UserRemoteApi {
     @Query('locId') int locId,
     @Query('service') int service,
   );
+
+  @GET(EndPoint.getUserInfo)
+  Future<UserModel?> getUserInfo(@Query('userId') int userId);
 }

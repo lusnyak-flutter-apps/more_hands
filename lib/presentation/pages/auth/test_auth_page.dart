@@ -25,7 +25,7 @@ class _TestAuthView extends StatelessWidget {
     return BlocConsumer<AuthorizationCubit, AuthorizationState>(
       listener: (BuildContext context, AuthorizationState state) {
         state.maybeWhen(
-          authorized: () {
+          authorized: (_) {
             context.router.pushAndPopUntil(const BottomNavigationRoute(),
                 predicate: (route) => false);
           },

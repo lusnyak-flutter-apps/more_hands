@@ -1,4 +1,5 @@
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_info_model/user_info_model.dart';
 
@@ -11,6 +12,7 @@ class UserModel with _$UserModel {
   const factory UserModel({
     UserInfoModel? userInfo,
     @Default(<ServiceModel>[]) List<ServiceModel> services,
+    LastReqInfoModel? lastReqInfo,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

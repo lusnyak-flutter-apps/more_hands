@@ -9,4 +9,7 @@ class UsersRepository {
 
   Future<List<UserModel>> findUsersByLocAndServices({required int locId, required int service}) async =>
       await getIt<UserRemoteApi>().findUsersByLocAndServices(locId, service);
+
+  Future<UserModel?> getUserInfo({required int userId}) async =>
+      await getIt<UserRemoteApi>().getUserInfo(userId);
 }

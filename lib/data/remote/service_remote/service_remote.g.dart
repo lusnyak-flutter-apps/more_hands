@@ -25,11 +25,13 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
 
   @override
   Future<List<ServiceModel>?> getServices(
+    bool excludeOwn,
     String serviceName,
     List<int> locations,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'excludeOwn': excludeOwn,
       r'servName': serviceName,
       r'loc': locations,
     };

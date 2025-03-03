@@ -17,6 +17,7 @@ _$ServiceAdditionalInfoModelImpl _$$ServiceAdditionalInfoModelImplFromJson(
       priceCurrency: json['priceCurrency'] as String?,
       price: json['price'] as num?,
       addInfo: json['addInfo'] as String?,
+      priceCurrencySign: json['priceCurrencySign'] as String?,
     );
 
 Map<String, dynamic> _$$ServiceAdditionalInfoModelImplToJson(
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$ServiceAdditionalInfoModelImplToJson(
       'priceCurrency': instance.priceCurrency,
       'price': instance.price,
       'addInfo': instance.addInfo,
+      'priceCurrencySign': instance.priceCurrencySign,
     };
 
 const _$MeasureCodeEnumMap = {

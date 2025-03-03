@@ -30,6 +30,7 @@ mixin _$ServiceAdditionalInfoModel {
   String? get priceCurrency => throw _privateConstructorUsedError;
   num? get price => throw _privateConstructorUsedError;
   String? get addInfo => throw _privateConstructorUsedError;
+  String? get priceCurrencySign => throw _privateConstructorUsedError;
 
   /// Serializes this ServiceAdditionalInfoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +56,8 @@ abstract class $ServiceAdditionalInfoModelCopyWith<$Res> {
       @JsonKey(name: 'servMcode') String? servMCode,
       String? priceCurrency,
       num? price,
-      String? addInfo});
+      String? addInfo,
+      String? priceCurrencySign});
 }
 
 /// @nodoc
@@ -81,6 +83,7 @@ class _$ServiceAdditionalInfoModelCopyWithImpl<$Res,
     Object? priceCurrency = freezed,
     Object? price = freezed,
     Object? addInfo = freezed,
+    Object? priceCurrencySign = freezed,
   }) {
     return _then(_value.copyWith(
       userServiceId: null == userServiceId
@@ -111,6 +114,10 @@ class _$ServiceAdditionalInfoModelCopyWithImpl<$Res,
           ? _value.addInfo
           : addInfo // ignore: cast_nullable_to_non_nullable
               as String?,
+      priceCurrencySign: freezed == priceCurrencySign
+          ? _value.priceCurrencySign
+          : priceCurrencySign // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -131,7 +138,8 @@ abstract class _$$ServiceAdditionalInfoModelImplCopyWith<$Res>
       @JsonKey(name: 'servMcode') String? servMCode,
       String? priceCurrency,
       num? price,
-      String? addInfo});
+      String? addInfo,
+      String? priceCurrencySign});
 }
 
 /// @nodoc
@@ -156,6 +164,7 @@ class __$$ServiceAdditionalInfoModelImplCopyWithImpl<$Res>
     Object? priceCurrency = freezed,
     Object? price = freezed,
     Object? addInfo = freezed,
+    Object? priceCurrencySign = freezed,
   }) {
     return _then(_$ServiceAdditionalInfoModelImpl(
       userServiceId: null == userServiceId
@@ -186,6 +195,10 @@ class __$$ServiceAdditionalInfoModelImplCopyWithImpl<$Res>
           ? _value.addInfo
           : addInfo // ignore: cast_nullable_to_non_nullable
               as String?,
+      priceCurrencySign: freezed == priceCurrencySign
+          ? _value.priceCurrencySign
+          : priceCurrencySign // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -200,7 +213,8 @@ class _$ServiceAdditionalInfoModelImpl implements _ServiceAdditionalInfoModel {
       @JsonKey(name: 'servMcode') this.servMCode,
       this.priceCurrency,
       this.price,
-      this.addInfo});
+      this.addInfo,
+      this.priceCurrencySign});
 
   factory _$ServiceAdditionalInfoModelImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -222,10 +236,12 @@ class _$ServiceAdditionalInfoModelImpl implements _ServiceAdditionalInfoModel {
   final num? price;
   @override
   final String? addInfo;
+  @override
+  final String? priceCurrencySign;
 
   @override
   String toString() {
-    return 'ServiceAdditionalInfoModel(userServiceId: $userServiceId, servMeasId: $servMeasId, measureCode: $measureCode, servMCode: $servMCode, priceCurrency: $priceCurrency, price: $price, addInfo: $addInfo)';
+    return 'ServiceAdditionalInfoModel(userServiceId: $userServiceId, servMeasId: $servMeasId, measureCode: $measureCode, servMCode: $servMCode, priceCurrency: $priceCurrency, price: $price, addInfo: $addInfo, priceCurrencySign: $priceCurrencySign)';
   }
 
   @override
@@ -244,13 +260,15 @@ class _$ServiceAdditionalInfoModelImpl implements _ServiceAdditionalInfoModel {
             (identical(other.priceCurrency, priceCurrency) ||
                 other.priceCurrency == priceCurrency) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.addInfo, addInfo) || other.addInfo == addInfo));
+            (identical(other.addInfo, addInfo) || other.addInfo == addInfo) &&
+            (identical(other.priceCurrencySign, priceCurrencySign) ||
+                other.priceCurrencySign == priceCurrencySign));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userServiceId, servMeasId,
-      measureCode, servMCode, priceCurrency, price, addInfo);
+      measureCode, servMCode, priceCurrency, price, addInfo, priceCurrencySign);
 
   /// Create a copy of ServiceAdditionalInfoModel
   /// with the given fields replaced by the non-null parameter values.
@@ -278,7 +296,8 @@ abstract class _ServiceAdditionalInfoModel
       @JsonKey(name: 'servMcode') final String? servMCode,
       final String? priceCurrency,
       final num? price,
-      final String? addInfo}) = _$ServiceAdditionalInfoModelImpl;
+      final String? addInfo,
+      final String? priceCurrencySign}) = _$ServiceAdditionalInfoModelImpl;
 
   factory _ServiceAdditionalInfoModel.fromJson(Map<String, dynamic> json) =
       _$ServiceAdditionalInfoModelImpl.fromJson;
@@ -299,6 +318,8 @@ abstract class _ServiceAdditionalInfoModel
   num? get price;
   @override
   String? get addInfo;
+  @override
+  String? get priceCurrencySign;
 
   /// Create a copy of ServiceAdditionalInfoModel
   /// with the given fields replaced by the non-null parameter values.

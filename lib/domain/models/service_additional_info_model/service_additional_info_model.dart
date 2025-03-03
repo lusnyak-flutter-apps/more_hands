@@ -15,6 +15,7 @@ class ServiceAdditionalInfoModel with _$ServiceAdditionalInfoModel {
     String? priceCurrency,
     num? price,
     String? addInfo,
+    String? priceCurrencySign,
   }) = _ServiceAdditionalInfoModel;
 
   factory ServiceAdditionalInfoModel.fromJson(Map<String, dynamic> json) =>

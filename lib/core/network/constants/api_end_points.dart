@@ -41,5 +41,6 @@ abstract class EndPoint {
 
   static const String whereAmI = "/location/whereami";
   static const String findClosestLocations = "/location/findClosest";
+  static const String getUserInfo = "/user/getUserInfo";
   static const String label = "/label";
  }

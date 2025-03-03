@@ -172,7 +172,7 @@ class _HomeView extends StatelessWidget {
                     service: s, userId: referral.userInfo!.id);
               },
               onTap: () {
-                context.router.push(UserRoute(user: referral));
+                context.router.push(UserRoute(userId: referral.userInfo!.id));
               },
               onSendRequest: () {
                 context.router

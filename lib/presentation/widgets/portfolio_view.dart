@@ -122,7 +122,7 @@ class _PortfolioViewState extends State<PortfolioView> {
                                       null)
                                     MHTag(
                                             title:
-                                                "${item.service.serviceAdditionalInfo!.price}${item.service.serviceAdditionalInfo!.priceCurrency} ${item.service.serviceAdditionalInfo!.measureCode!.title(context)}")
+                                                "${item.service.serviceAdditionalInfo!.price}${item.service.serviceAdditionalInfo!.priceCurrencySign} ${item.service.serviceAdditionalInfo!.measureCode!.title(context)}")
                                         .paddingOnly(top: 4.w),
                                 ],
                               ).paddingSymmetric(

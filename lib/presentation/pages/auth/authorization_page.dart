@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/social_auth_type.dart';
 import 'package:more_hands/presentation/pages/auth/cubit/authorization_cubit.dart';
@@ -23,64 +24,99 @@ class _AuthorizationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final cubit = context.read<AuthorizationCubit>();
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          MoreHandsAssets.images.svg.moreHands
-              .svg(width: 200.w)
-              .toCenter()
-              .expanded(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                context.localized.autorization,
-                style: body28SemiBoldStyle,
-              ),
-              24.h.heightBox,
-              MHOutlinedButton(
-                onPressed: () {
-                  cubit.loginViaSocial(SocialAuthType.google);
-                  // context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                  //     predicate: (route) => false);
-                },
-                title: context.localized.google,
-                icon: MoreHandsAssets.icons.google.svg(),
-              ),
-              8.h.heightBox,
-              MHOutlinedButton(
-                onPressed: () {
-                  cubit.loginViaSocial(SocialAuthType.apple);
-                  // context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                  //     predicate: (route) => false);
-                },
-                title: context.localized.appleId,
-                icon: MoreHandsAssets.icons.apple.svg(),
-              ),
-              8.h.heightBox,
-              MHOutlinedButton(
-                onPressed: () {
-                  cubit.loginViaSocial(SocialAuthType.facebook);
-                  // context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                  //     predicate: (route) => false);
-                },
-                title: context.localized.facebook,
-                icon: MoreHandsAssets.icons.facebook.svg(),
-              ),
-              24.h.heightBox,
-              MHTextField(
-                hintText: context.localized.enterInvitation,
-              ),
-            ],
-          ).paddingSymmetric(horizontal: 24.w, vertical: 40.h)
-        ],
-      )),
-    );
+    return BlocConsumer<AuthorizationCubit, AuthorizationState>(
+        listener: (context, state) {
+      state.maybeWhen(
+        authorized: (credential) {},
+        unauthorized: () {
+          context.showSnackBar(message: 'Unauthorized');
+        },
+        orElse: () {},
+      );
+    }, builder: (context, state) {
+      final credential = state.maybeWhen(
+        authorized: (a) => a,
+        orElse: () {},
+      );
+      return Scaffold(
+        body: SafeArea(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            MoreHandsAssets.images.svg.moreHands
+                .svg(width: 200.w)
+                .toCenter()
+                .expanded(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  context.localized.autorization,
+                  style: body28SemiBoldStyle,
+                ),
+                24.h.heightBox,
+                MHOutlinedButton(
+                  onPressed: () {
+                    cubit.loginViaSocial(SocialAuthType.google);
+                    // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                    //     predicate: (route) => false);
+                  },
+                  title: context.localized.google,
+                  icon: MoreHandsAssets.icons.google.svg(),
+                ),
+                8.h.heightBox,
+                MHOutlinedButton(
+                  onPressed: () {
+                    cubit.loginViaSocial(SocialAuthType.apple);
+                    // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                    //     predicate: (route) => false);
+                  },
+                  title: context.localized.appleId,
+                  icon: MoreHandsAssets.icons.apple.svg(),
+                ),
+                8.h.heightBox,
+                MHOutlinedButton(
+                  onPressed: () {
+                    cubit.loginViaSocial(SocialAuthType.facebook);
+                    // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                    //     predicate: (route) => false);
+                  },
+                  title: context.localized.facebook,
+                  icon: MoreHandsAssets.icons.facebook.svg(),
+                ),
+                24.h.heightBox,
+                if (credential != null)
+                  MHOutlinedButton(
+                    onPressed: () async {
+                      await Clipboard.setData(ClipboardData(
+                              text: credential.toJson().toString()))
+                          .then((_) {
+                        if (context.mounted) {
+                          context.showSnackBar(
+                              message: 'Copied to clipboard successfully');
+                        }
+                      });
+                    },
+                    title: "Copy data to clipboard",
+                    icon: const Icon(
+                      Icons.copy,
+                      color: MHColors.whiteColor,
+                    ),
+                  ),
+                24.h.heightBox,
+                MHTextField(
+                  hintText: context.localized.enterInvitation,
+                ),
+              ],
+            ).paddingSymmetric(horizontal: 24.w, vertical: 40.h)
+          ],
+        )),
+      );
+    });
   }
 }

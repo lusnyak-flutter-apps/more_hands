@@ -32,9 +32,17 @@ class RequestsCubit extends Cubit<RequestsState> {
           from: state.requests.length,
           to: state.requests.length + 10);
       emit(state.copyWith(requests: requests, loading: false));
+      seenRequest(requests.map((e)=>e.id).toList());
+      getUnseenCounts();
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  Future<void> seenRequest(List<int> ids, {RequestType type = RequestType.receiver}) async {
+    if (state.loading) return;
+    return await getIt<RequestsRepository>()
+        .seenRequest(reqIds: ids);
   }
 
   Future<void> approveRequest(int id) async {

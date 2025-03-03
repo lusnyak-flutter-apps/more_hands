@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/core/router/app_router.dart';
 import 'package:more_hands/domain/enums/request_status.dart';
 import 'package:more_hands/domain/models/request_model/request_model.dart';
 import 'package:more_hands/presentation/pages/requests/cubit/requests_cubit.dart';
@@ -17,8 +19,8 @@ class OutgoingRequestTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     bool isAccepted = requestModel.status == RequestStatus.accepted;
-    final imageUrl =  requestModel.profileImageUrl != null
+    bool isAccepted = requestModel.status == RequestStatus.accepted;
+    final imageUrl = requestModel.profileImageUrl != null
         ? "${APIBase.url}${requestModel.profileImageUrl!}"
         : null;
 
@@ -33,25 +35,31 @@ class OutgoingRequestTile extends StatelessWidget {
     String dateFormat =
         requestModel.createDate?.formatDate(format: "dd.MM") ?? "";
 
-    final mainChild =   Slidable(
-
+    final mainChild = Slidable(
       key: ValueKey(requestModel.id),
-      endActionPane: ActionPane(motion: const BehindMotion(), extentRatio: 0.15, children: [
-        SlidableAction(
-          onPressed: (c){
-            context.read<RequestsCubit>().cancelRequest(requestModel.id).catchError((e) {
-              if(context.mounted) {
-                context.showSnackBar(message: e.toString());
-              }
-            });
-          },
-          backgroundColor: MHColors.darkRedColor,
-          foregroundColor:  MHColors.whiteColor,
-          icon: Icons.delete_outline_rounded,
-          borderRadius: const BorderRadius.horizontal(right: Radius.circular(16.0)),
-          padding: const EdgeInsets.all(8.0),
-         ),
-      ]),
+      endActionPane: ActionPane(
+          motion: const BehindMotion(),
+          extentRatio: 0.15,
+          children: [
+            SlidableAction(
+              onPressed: (c) {
+                context
+                    .read<RequestsCubit>()
+                    .cancelRequest(requestModel.id)
+                    .catchError((e) {
+                  if (context.mounted) {
+                    context.showSnackBar(message: e.toString());
+                  }
+                });
+              },
+              backgroundColor: MHColors.darkRedColor,
+              foregroundColor: MHColors.whiteColor,
+              icon: Icons.delete_outline_rounded,
+              borderRadius:
+                  const BorderRadius.horizontal(right: Radius.circular(16.0)),
+              padding: const EdgeInsets.all(8.0),
+            ),
+          ]),
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -59,18 +67,25 @@ class OutgoingRequestTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    MHImage(
-                      imageUrl: imageUrl,
-                      size: 28.w,
-                      borderRadius: 8.0,
-                      availableForegroundDecoration: false,
-                    ),
-                    8.w.widthBox,
-                    Text(formattedName, style: body20SemiBoldStyle)
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    context.router
+                        .push(UserRoute(userId: requestModel.receiverId));
+                  },
+                  child: Row(
+                    children: [
+                      MHImage(
+                        imageUrl: imageUrl,
+                        size: 28.w,
+                        borderRadius: 8.0,
+                        availableForegroundDecoration: false,
+                      ),
+                      8.w.widthBox,
+                      Text(formattedName, style: body20SemiBoldStyle)
+                    ],
+                  ),
                 ),
+                const Spacer(),
                 Row(
                   children: [
                     MoreHandsAssets.icons.user.svg(),
@@ -136,19 +151,21 @@ class OutgoingRequestTile extends StatelessWidget {
         ],
       ),
     );
-    return isAccepted ? Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        mainChild,
-        8.h.heightBox,
-        MHGradientButton(
-          title: context.localized.leaveAReview,
-          onPressed: () {},
-          // height: 32.h,
-          // verticalPadding: 0,
-          // horizontalPadding: 16.w,
-        ),
-      ],
-    ) : mainChild;
+    return isAccepted
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              mainChild,
+              8.h.heightBox,
+              MHGradientButton(
+                title: context.localized.leaveAReview,
+                onPressed: () {},
+                // height: 32.h,
+                // verticalPadding: 0,
+                // horizontalPadding: 16.w,
+              ),
+            ],
+          )
+        : mainChild;
   }
 }

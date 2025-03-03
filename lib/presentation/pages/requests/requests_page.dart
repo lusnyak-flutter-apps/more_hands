@@ -99,12 +99,8 @@ class _RequestsView extends StatelessWidget {
         body: IndexedStack(
           index: section.index,
           children: [
-            IncomingRequestsPage(
-              requests: requests,
-            ),
-            OutgoingRequestsPage(
-              requests: requests,
-            ),
+            IncomingRequestsPage(requests: requests),
+            OutgoingRequestsPage(requests: requests),
           ],
         ),
       );

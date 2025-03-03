@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/core/router/app_router.dart';
 import 'package:more_hands/domain/enums/request_status.dart';
 import 'package:more_hands/domain/models/request_model/request_model.dart';
 import 'package:more_hands/presentation/pages/requests/cubit/requests_cubit.dart';
@@ -37,10 +39,17 @@ class IncomingRequestTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MHImage(
-                imageUrl: imageUrl,
-                size: 52.w,
-                availableForegroundDecoration: false),
+            InkWell(
+              overlayColor: WidgetStatePropertyAll(MHColors.whiteColor.withValues(alpha: 0.01)),
+              borderRadius: const  BorderRadius.all(Radius.circular(16.0)),
+              onTap: (){
+                context.router.push( UserRoute(userId: requestModel.senderId));
+              },
+              child: MHImage(
+                  imageUrl: imageUrl,
+                  size: 52.w,
+                  availableForegroundDecoration: false),
+            ),
             MHTag(
               title: requestModel.userRating.toString(),
               icon: MoreHandsAssets.icons.starFill.svg(),
@@ -87,9 +96,15 @@ class IncomingRequestTile extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              formattedName,
-              style: body20SemiBoldStyle,
+            InkWell(
+               overlayColor: WidgetStatePropertyAll(MHColors.whiteColor.withValues(alpha: 0.01)),
+              onTap: (){
+                context.router.push( UserRoute(userId: requestModel.senderId));
+              },
+              child: Text(
+                formattedName,
+                style: body20SemiBoldStyle,
+              ),
             ),
             Text(
               requestModel.rqText ?? "",

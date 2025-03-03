@@ -11,7 +11,9 @@ class MHImage extends StatelessWidget {
     this.imageUrl,
     this.aspectRatio = 1,
     this.emptyWidget,
-    this.availableForegroundDecoration = true, this.borderRadius = 16.0, this.file,
+    this.availableForegroundDecoration = true,
+    this.borderRadius = 16.0,
+    this.file,
   });
 
   final double? size;
@@ -29,17 +31,19 @@ class MHImage extends StatelessWidget {
       width: size,
       child: AspectRatio(
         aspectRatio: aspectRatio ?? 1.0,
-        child: file != null ? _imageBuilder(FileImage(file!))  : imageUrl != null && imageUrl!.isNotEmpty
-            ?  CachedNetworkImage(
-                width: size,
-                imageUrl: imageUrl!,
-                imageBuilder: (context, imageProvider) {
-                  return _imageBuilder(imageProvider);
-                },
-                placeholder: (context, url) => _buildEmpty,
-                errorWidget: (context, url, error) => _buildEmpty,
-              )
-            : _buildEmpty,
+        child: file != null
+            ? _imageBuilder(FileImage(file!))
+            : imageUrl != null && imageUrl!.isNotEmpty
+                ? CachedNetworkImage(
+                    width: size,
+                    imageUrl: imageUrl!,
+                    imageBuilder: (context, imageProvider) {
+                      return _imageBuilder(imageProvider);
+                    },
+                    placeholder: (context, url) => _buildEmpty,
+                    errorWidget: (context, url, error) => _buildEmpty,
+                  )
+                : _buildEmpty,
       ),
     );
   }
@@ -48,7 +52,8 @@ class MHImage extends StatelessWidget {
         aspectRatio: aspectRatio ?? 1.0,
         child: Container(
           decoration: boxDecorator(imageProvider),
-          foregroundDecoration: availableForegroundDecoration ? foregroundDecorator() : null,
+          foregroundDecoration:
+              availableForegroundDecoration ? foregroundDecorator() : null,
           clipBehavior: Clip.hardEdge,
         ),
       );
@@ -59,21 +64,24 @@ class MHImage extends StatelessWidget {
           alignment: Alignment.center,
           decoration: boxDecorator(),
           clipBehavior: Clip.hardEdge,
-          foregroundDecoration: availableForegroundDecoration ? foregroundDecorator() : null,
+          foregroundDecoration:
+              availableForegroundDecoration ? foregroundDecorator() : null,
           child: emptyWidget,
         ),
       );
 
   BoxDecoration foregroundDecorator() => BoxDecoration(
-      borderRadius: BorderRadius.circular((borderRadius ?? 16).r),
-      gradient:   LinearGradient(
+        borderRadius: BorderRadius.circular((borderRadius ?? 16).r),
+        gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
             Colors.transparent,
-            MHColors.blackBGColor.withValues(alpha:0.2),
+            MHColors.blackBGColor.withValues(alpha: 0.2),
             MHColors.blackBGColor,
-          ],),);
+          ],
+        ),
+      );
 
   BoxDecoration boxDecorator([ImageProvider? image]) => BoxDecoration(
         color: MHColors.darkerGrayColor,

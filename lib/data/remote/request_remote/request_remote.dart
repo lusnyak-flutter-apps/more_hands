@@ -38,7 +38,7 @@ abstract class RequestRemoteApi {
 
   @POST(EndPoint.seenRequest)
   Future<void> seenRequest({
-     @Query('reqId') required int reqId,
+     @Query('reqIds') required List<int> reqIds,
    });
 
   @POST(EndPoint.rejectRequest)

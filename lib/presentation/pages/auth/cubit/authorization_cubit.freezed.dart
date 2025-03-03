@@ -19,21 +19,21 @@ mixin _$AuthorizationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(SocialAuthModel? socialAuthModel) authorized,
     required TResult Function() unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult? Function()? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(SocialAuthModel? socialAuthModel) authorized,
     required TResult Function() unauthorized,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult? Function()? unauthorized,
   }) {
     return initial?.call();
@@ -146,7 +146,7 @@ class _$AuthorizationStateImpl implements _AuthorizationState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
@@ -202,6 +202,8 @@ abstract class _$$AuthorizationAuthorizedStateImplCopyWith<$Res> {
           _$AuthorizationAuthorizedStateImpl value,
           $Res Function(_$AuthorizationAuthorizedStateImpl) then) =
       __$$AuthorizationAuthorizedStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SocialAuthModel? socialAuthModel});
 }
 
 /// @nodoc
@@ -216,59 +218,86 @@ class __$$AuthorizationAuthorizedStateImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthorizationState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? socialAuthModel = freezed,
+  }) {
+    return _then(_$AuthorizationAuthorizedStateImpl(
+      freezed == socialAuthModel
+          ? _value.socialAuthModel
+          : socialAuthModel // ignore: cast_nullable_to_non_nullable
+              as SocialAuthModel?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AuthorizationAuthorizedStateImpl
     implements _AuthorizationAuthorizedState {
-  const _$AuthorizationAuthorizedStateImpl();
+  const _$AuthorizationAuthorizedStateImpl(this.socialAuthModel);
+
+  @override
+  final SocialAuthModel? socialAuthModel;
 
   @override
   String toString() {
-    return 'AuthorizationState.authorized()';
+    return 'AuthorizationState.authorized(socialAuthModel: $socialAuthModel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthorizationAuthorizedStateImpl);
+            other is _$AuthorizationAuthorizedStateImpl &&
+            (identical(other.socialAuthModel, socialAuthModel) ||
+                other.socialAuthModel == socialAuthModel));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, socialAuthModel);
+
+  /// Create a copy of AuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthorizationAuthorizedStateImplCopyWith<
+          _$AuthorizationAuthorizedStateImpl>
+      get copyWith => __$$AuthorizationAuthorizedStateImplCopyWithImpl<
+          _$AuthorizationAuthorizedStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(SocialAuthModel? socialAuthModel) authorized,
     required TResult Function() unauthorized,
   }) {
-    return authorized();
+    return authorized(socialAuthModel);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult? Function()? unauthorized,
   }) {
-    return authorized?.call();
+    return authorized?.call(socialAuthModel);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
     if (authorized != null) {
-      return authorized();
+      return authorized(socialAuthModel);
     }
     return orElse();
   }
@@ -310,8 +339,18 @@ class _$AuthorizationAuthorizedStateImpl
 }
 
 abstract class _AuthorizationAuthorizedState implements AuthorizationState {
-  const factory _AuthorizationAuthorizedState() =
+  const factory _AuthorizationAuthorizedState(
+          final SocialAuthModel? socialAuthModel) =
       _$AuthorizationAuthorizedStateImpl;
+
+  SocialAuthModel? get socialAuthModel;
+
+  /// Create a copy of AuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AuthorizationAuthorizedStateImplCopyWith<
+          _$AuthorizationAuthorizedStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -361,7 +400,7 @@ class _$AuthorizationUnauthorizedStateImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(SocialAuthModel? socialAuthModel) authorized,
     required TResult Function() unauthorized,
   }) {
     return unauthorized();
@@ -371,7 +410,7 @@ class _$AuthorizationUnauthorizedStateImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult? Function()? unauthorized,
   }) {
     return unauthorized?.call();
@@ -381,7 +420,7 @@ class _$AuthorizationUnauthorizedStateImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(SocialAuthModel? socialAuthModel)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {

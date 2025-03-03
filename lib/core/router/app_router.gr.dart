@@ -611,13 +611,13 @@ class TestAuthRoute extends PageRouteInfo<void> {
 class UserRoute extends PageRouteInfo<UserRouteArgs> {
   UserRoute({
     Key? key,
-    required UserModel user,
+    required int userId,
     List<PageRouteInfo>? children,
   }) : super(
           UserRoute.name,
           args: UserRouteArgs(
             key: key,
-            user: user,
+            userId: userId,
           ),
           initialChildren: children,
         );
@@ -630,7 +630,7 @@ class UserRoute extends PageRouteInfo<UserRouteArgs> {
       final args = data.argsAs<UserRouteArgs>();
       return UserPage(
         key: args.key,
-        user: args.user,
+        userId: args.userId,
       );
     },
   );
@@ -639,15 +639,15 @@ class UserRoute extends PageRouteInfo<UserRouteArgs> {
 class UserRouteArgs {
   const UserRouteArgs({
     this.key,
-    required this.user,
+    required this.userId,
   });
 
   final Key? key;
 
-  final UserModel user;
+  final int userId;
 
   @override
   String toString() {
-    return 'UserRouteArgs{key: $key, user: $user}';
+    return 'UserRouteArgs{key: $key, userId: $userId}';
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/data.dart';
 import 'package:more_hands/data/local/social_auth/social_auth_manager.dart';
+import 'package:more_hands/data/local/social_auth/social_auth_model.dart';
 import 'package:more_hands/domain/enums/social_auth_type.dart';
 import 'package:more_hands/domain/models/user_credential_model/user_credential_model.dart';
 
@@ -28,7 +29,7 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
   Future<void> login(UserCredentialModel user) async {
     await getIt<AuthRepository>().login(user).then((value) {
       if (value) {
-        emit(const AuthorizationState.authorized());
+        emit(const AuthorizationState.authorized(null));
       } else {
         emit(const AuthorizationState.unauthorized());
       }
@@ -37,7 +38,10 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
 
   Future<void> loginViaSocial(SocialAuthType authType) async {
     final credential = await getIt<SocialAuthManager>().signIn(authType);
-    debugPrint(credential?.toJson().toString());
-    debugPrint(credential?.idToken);
+    if (credential != null) {
+      debugPrint(credential.toJson().toString());
+      emit(AuthorizationState.authorized(credential));
+      return;
+    }
   }
 }

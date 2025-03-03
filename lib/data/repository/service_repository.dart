@@ -16,7 +16,7 @@ class ServiceRepository {
   Future<List<ServiceModel>> getServices(
       {String txt = "", List<int> loc = const <int>[]}) async {
     return await getIt<ServiceRemoteApi>()
-        .getServices(txt, loc)
+        .getServices(true, txt, loc)
         .then((onValue) => onValue ?? <ServiceModel>[])
         .catchError((_) => <ServiceModel>[]);
   }

@@ -15,10 +15,15 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <ServiceModel>[],
+      lastReqInfo: json['lastReqInfo'] == null
+          ? null
+          : LastReqInfoModel.fromJson(
+              json['lastReqInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
     <String, dynamic>{
       'userInfo': instance.userInfo,
       'services': instance.services,
+      'lastReqInfo': instance.lastReqInfo,
     };

@@ -16,14 +16,14 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class UserPage extends StatelessWidget {
-  const UserPage({super.key, required this.user});
+  const UserPage({super.key, required this.userId});
 
-  final UserModel user;
+  final int userId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCubit>(
-      create: (BuildContext context) => getIt<UserCubit>()..loadUser(user),
+      create: (BuildContext context) => getIt<UserCubit>()..loadUser(userId),
       child: const _UserView(),
     );
   }
@@ -49,13 +49,13 @@ class _UserView extends StatelessWidget {
         bottomSheet: MHBottomNavigationControl(
           buttonTitle: user?.userInfo?.shaken != true
               ? context.localized.sendRequest
-              : context.localized.requestSent,
+              : context.localized.leaveAReview,
           action: user?.userInfo?.shaken != true
               ? () {
                   context.router
                       .push(SendRequestRoute(userId: user!.userInfo!.id));
                 }
-              : null,
+              : (){},
         ).paddingOnly(bottom: 16.h),
         body: SafeArea(
           bottom: false,

@@ -105,7 +105,7 @@ class _ReferralsView extends StatelessWidget {
             return   ReferralItem(
               referral: referral,
               onTap: (){
-              context.router.push( UserRoute(user: referral));
+              context.router.push( UserRoute(userId: referral.userInfo!.id));
             },).paddingSymmetric(vertical: 8.h);
           }),
         ],

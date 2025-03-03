@@ -17,7 +17,7 @@ class IncomingRequestsPage extends StatelessWidget {
         child: requests.isNotEmpty ? ListView.separated(
           padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight.h),
           separatorBuilder: (context, index) => const Divider(),
-          itemBuilder: (context, index) =>  IncomingRequestTile(requestModel: requests[index],),
+          itemBuilder: (context, index) => IncomingRequestTile(requestModel: requests[index],),
           itemCount: requests.length,
         ).paddingSymmetric(horizontal: 24.w, vertical: 8.h) : const SizedBox.shrink(),
       ),

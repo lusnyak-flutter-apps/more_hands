@@ -1,5 +1,4 @@
 import 'package:more_hands/core/core.dart';
-import 'package:more_hands/domain/enums/request_status.dart';
 
 part 'requests_count_model.freezed.dart';
 
