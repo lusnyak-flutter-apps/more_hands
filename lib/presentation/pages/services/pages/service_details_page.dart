@@ -11,8 +11,11 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class ServiceDetailsPage extends StatelessWidget {
-  const ServiceDetailsPage(
-      {super.key, required this.serviceModel, required this.serviceCategory});
+  const ServiceDetailsPage({
+    super.key,
+    required this.serviceModel,
+    required this.serviceCategory,
+  });
 
   final ServiceModel serviceModel;
   final CategoryModel serviceCategory;
@@ -37,7 +40,9 @@ class _ServiceDetailsView extends StatelessWidget {
     return BlocConsumer<ServiceDetailsCubit, ServiceDetailsState>(
         listener: (_, state) {
       if (state.validated != null && !state.validated!) {
-        context.showSnackBar(message: "Заполните все поля", backgroundColor: MHColors.redColor.withAlpha(90));
+        context.showSnackBar(
+            message: "Заполните все поля",
+            backgroundColor: MHColors.redColor.withAlpha(90));
       }
       if (state.serviceAdded) {
         // context.router.maybePop(true);
@@ -49,10 +54,10 @@ class _ServiceDetailsView extends StatelessWidget {
       return Scaffold(
         bottomSheet: MHBottomNavigationControl(
           buttonTitle: context.localized.save,
-          action: (){
+          action: () {
             FocusScope.of(context).unfocus();
             cubit.onSaved();
-          } ,
+          },
           actionLoading: state.loading,
         ).paddingOnly(bottom: 16.h),
         appBar: AppBar(
@@ -129,7 +134,8 @@ class _ServiceDetailsView extends StatelessWidget {
                       onSelected: cubit.changeCurrencyCode,
                       itemBuilder: (context) {
                         return [
-                          for (var item in state.currencies) // ["\$", "€", "£", "¥", "₣"])
+                          for (var item in state
+                              .currencies) // ["\$", "€", "£", "¥", "₣"])
                             PopupMenuItem<CurrencyModel>(
                               height: 40,
                               value: item,
@@ -144,8 +150,7 @@ class _ServiceDetailsView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              state.selectedCurrency?.curSign ??
-                                 "₽",
+                              state.selectedCurrency?.curSign ?? "₽",
                               style: body16MediumStyle,
                             ),
                             8.w.widthBox,

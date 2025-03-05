@@ -104,5 +104,6 @@
   "english": "English",
   "russian": "Русский",
   "linkType": "Ссылка {type}",
-  "sendRequestToSeeContacts":"Отправить запрос, чтобы увидеть контакты"
+  "sendRequestToSeeContacts":"Отправить запрос, чтобы увидеть контакты",
+  "waitingForAResponse":"Ожидает ответа"
  }

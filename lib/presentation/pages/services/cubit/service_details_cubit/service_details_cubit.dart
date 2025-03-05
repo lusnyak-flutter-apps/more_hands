@@ -106,7 +106,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
         emit(state.copyWith(loading: false, validated: null));
       }
     } else {
-      emit(state.copyWith(validated: null));
+      emit(state.copyWith(validated: null, loading: false,));
     }
   }
 }

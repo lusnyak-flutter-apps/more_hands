@@ -17,7 +17,7 @@ enum RequestStatus {
 
   const RequestStatus(this.rawValue);
 
-  String get full => "new,accepted,rejected,canceled";
+  String get full => "new,accepted,rejected";
 }
 
 enum RequestType {

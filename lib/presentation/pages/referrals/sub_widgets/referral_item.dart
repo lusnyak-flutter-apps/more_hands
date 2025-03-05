@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
@@ -11,7 +12,6 @@ class ReferralItem extends StatelessWidget {
     super.key,
     this.onTap,
     this.showPortfolio = false,
-    // this.showInviteButton = false,
     this.onSendRequest,
     required this.referral,
     this.onTapPortfolioItem,
@@ -23,8 +23,6 @@ class ReferralItem extends StatelessWidget {
   final VoidCallback? onSendRequest;
   final VoidCallback? onLeaveAReview;
   final bool showPortfolio;
-
-  // final bool showInviteButton;
   final UserModel referral;
 
   @override
@@ -41,6 +39,11 @@ class ReferralItem extends StatelessWidget {
     if (bio.length > 200) {
       bio = "${bio.substring(0, 199)}...";
     }
+    String? buttonTitle =
+        actionButtonTitleByLastRequests(context, referral.lastReqInfo);
+    String? actionKey = actionByLastRequests(referral.lastReqInfo);
+    debugPrint(buttonTitle);
+    debugPrint(actionKey);
     return InkWell(
       onTap: onTap,
       child: Column(
@@ -142,14 +145,21 @@ class ReferralItem extends StatelessWidget {
                 )
               ],
             ),
-          if (referral.userInfo?.shaken == true && onLeaveAReview != null)
+          if (actionKey == waitingForAResponse || actionKey == requestSent)
             MHOutlinedButton(
-              title: context.localized.leaveAReview,
-              onPressed: onLeaveAReview,
+              title: buttonTitle ?? "",
+              onPressed: () {},
               style: OutlinedButton.styleFrom(
                   foregroundColor: MHColors.whiteColor),
             ).paddingOnly(top: 16.h),
-          if (referral.userInfo?.shaken == false && onSendRequest != null)
+
+          if (actionKey == leaveAReview && onLeaveAReview != null)
+            MHGradientButton(
+              title: context.localized.leaveAReview,
+              onPressed: onLeaveAReview,
+            ).paddingOnly(top: 16.h),
+
+          if (actionKey == sendRequest && onSendRequest != null)
             MHGradientButton(
               title: context.localized.sendRequest,
               onPressed: onSendRequest,

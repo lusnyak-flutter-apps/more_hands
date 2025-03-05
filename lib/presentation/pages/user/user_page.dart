@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
+import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart';
@@ -24,14 +25,35 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCubit>(
-      create: (BuildContext context) => getIt<UserCubit>()..loadUser(userId),
+      create: (BuildContext context) =>
+      getIt<UserCubit>()
+        ..loadUser(userId),
       child: const _UserView(),
     );
   }
 }
 
-class _UserView extends StatelessWidget {
+class _UserView extends StatefulWidget {
   const _UserView();
+
+  @override
+  State<_UserView> createState() => _UserViewState();
+}
+
+class _UserViewState extends State<_UserView> {
+
+  void onLeaveAReview() {}
+
+  void onSendRequest(int? userId) {
+    if (userId != null) {
+      final cubit = context.read<UserCubit>();
+      context.router.push(SendRequestRoute(userId: userId)).then((onValue) {
+        if (onValue is bool && onValue) {
+          cubit.loadUser(userId);
+        }
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,60 +66,65 @@ class _UserView extends StatelessWidget {
             ((i, f) => PortfolioItem(service: s, file: f, isMain: i == 0))));
       });
 
+      String? buttonTitle =
+      actionButtonTitleByLastRequests(context, user?.lastReqInfo);
+      String? actionKey = actionByLastRequests(user?.lastReqInfo);
       return Scaffold(
-        bottomSheet: MHBottomNavigationControl(
-          buttonTitle: user?.userInfo?.shaken != true
-              ? context.localized.sendRequest
-              : context.localized.leaveAReview,
-          action: user?.userInfo?.shaken != true
-              ? () {
-                  context.router
-                      .push(SendRequestRoute(userId: user!.userInfo!.id));
-                }
-              : () {},
-        ).paddingOnly(bottom: 16.h),
+        bottomSheet: buttonTitle != null
+            ? MHBottomNavigationControl(
+          buttonTitle: buttonTitle,
+          action: actionKey == sendRequest
+              ? () => onSendRequest(user?.userInfo?.id)
+              : actionKey == leaveAReview
+              ? onLeaveAReview
+              : null,
+        ).paddingOnly(bottom: 16.h)
+            : null,
         body: SafeArea(
           bottom: false,
           child: loading
               ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
-                  padding: EdgeInsets.only(
-                      top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      userImagePart(context, user!).paddingOnly(bottom: 24.h),
-                      aboutUserPart(context, user).paddingOnly(bottom: 24.h),
-                      WhatCanDoView(
-                        items: user.services,
-                      ).paddingOnly(bottom: 24.h),
-                      PortfolioView(
-                        items: portfolio,
-                        onTapItem: (index) {
-                          debugPrint("Portfolio item $index");
-                          showServiceView(context,
-                              service: index.service,
-                              userId: user.userInfo!.id);
-                        },
-                      ).paddingOnly(bottom: 24.h),
-                    ],
-                  ).paddingSymmetric(horizontal: 24.w),
-                ),
+            padding: EdgeInsets.only(
+                top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                userImagePart(context, user!).paddingOnly(bottom: 24.h),
+                aboutUserPart(context, user).paddingOnly(bottom: 24.h),
+                WhatCanDoView(
+                  items: user.services,
+                ).paddingOnly(bottom: 24.h),
+                PortfolioView(
+                  items: portfolio,
+                  onTapItem: (index) {
+                    debugPrint("Portfolio item $index");
+                    showServiceView(context,
+                      service: index.service,
+                      userId: user.userInfo!.id,
+                      lastReqInfo: user.lastReqInfo,);
+                  },
+                ).paddingOnly(bottom: 24.h),
+              ],
+            ).paddingSymmetric(horizontal: 24.w),
+          ),
         ),
       );
     });
   }
 
-  Widget userImagePart(BuildContext context, UserModel user) => MHImage(
-      size: context.width,
-      emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
-      imageUrl: user.userInfo?.profileImageUrl != null
-          ? "${APIBase.url}${user.userInfo!.profileImageUrl!}"
-          : null);
+  Widget userImagePart(BuildContext context, UserModel user) =>
+      MHImage(
+          size: context.width,
+          emptyWidget: MoreHandsAssets.icons.userYellow.svg(height: 130.r),
+          imageUrl: user.userInfo?.profileImageUrl != null
+              ? "${APIBase.url}${user.userInfo!.profileImageUrl!}"
+              : null);
 
   Widget aboutUserPart(BuildContext context, UserModel user) {
     String formattedName =
-        "${user.userInfo?.firstName} ${user.userInfo?.lastName?.substring(0, 1)}.";
+        "${user.userInfo?.firstName} ${user.userInfo?.lastName?.substring(
+        0, 1)}.";
     String bio = user.userInfo?.bio ?? "";
 
     List<ContactItem> contacts = <ContactItem>[];
@@ -196,20 +223,21 @@ class _UserView extends StatelessWidget {
         ),
       );
 
-  Future<void> showServiceView(
-    BuildContext context, {
+  Future<void> showServiceView(BuildContext context, {
     required ServiceModel service,
     required int userId,
+    required LastReqInfoModel? lastReqInfo,
   }) async {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
       child: ServiceInfoView(
         service: service,
+        lastReqInfo: lastReqInfo,
         userHasService: false,
       ),
     ).then((onValue) {
-      if (onValue is bool) {
+      if (onValue is String && onValue == sendRequest) {
         if (context.mounted) {
           context.router
               .push(SendRequestRoute(userId: userId, serviceModel: service));

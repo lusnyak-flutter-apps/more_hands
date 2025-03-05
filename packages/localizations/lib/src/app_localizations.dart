@@ -727,6 +727,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Отправить запрос, чтобы увидеть контакты'**
   String get sendRequestToSeeContacts;
+
+  /// No description provided for @waitingForAResponse.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ожидает ответа'**
+  String get waitingForAResponse;
 }
 
 class _AppLocalizationsDelegate
