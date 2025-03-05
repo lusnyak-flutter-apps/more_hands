@@ -41,6 +41,7 @@ class RequestsCubit extends Cubit<RequestsState> {
 
   Future<void> seenRequest(List<int> ids, {RequestType type = RequestType.receiver}) async {
     if (state.loading) return;
+    if(ids.isEmpty) return;
     return await getIt<RequestsRepository>()
         .seenRequest(reqIds: ids);
   }

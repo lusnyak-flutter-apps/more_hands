@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
@@ -39,10 +40,8 @@ class _UserView extends StatelessWidget {
       final user = state.when(loading: () => null, loaded: (user) => user);
       List<PortfolioItem> portfolio = [];
       user?.services.forEach((s) {
-        portfolio.addAll(s.files.map((f) => PortfolioItem(
-              service: s,
-              file: f,
-            )));
+        portfolio.addAll(s.files.mapIndexed(
+            ((i, f) => PortfolioItem(service: s, file: f, isMain: i == 0))));
       });
 
       return Scaffold(
@@ -55,7 +54,7 @@ class _UserView extends StatelessWidget {
                   context.router
                       .push(SendRequestRoute(userId: user!.userInfo!.id));
                 }
-              : (){},
+              : () {},
         ).paddingOnly(bottom: 16.h),
         body: SafeArea(
           bottom: false,
@@ -202,10 +201,13 @@ class _UserView extends StatelessWidget {
     required ServiceModel service,
     required int userId,
   }) async {
-     await showMHScrollModalBottomSheet(
+    await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
-      child: ServiceInfoView(service: service, userHasService: false,),
+      child: ServiceInfoView(
+        service: service,
+        userHasService: false,
+      ),
     ).then((onValue) {
       if (onValue is bool) {
         if (context.mounted) {

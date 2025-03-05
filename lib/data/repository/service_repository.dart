@@ -23,7 +23,7 @@ class ServiceRepository {
 
   Future<List<ServiceByCategoryModel>> findServices({String txt = ""}) async {
     return await getIt<ServiceRemoteApi>()
-        .findServices(txt)
+        .findServices(false, txt)
         .then((onValue) => onValue ?? <ServiceByCategoryModel>[])
         .catchError((_) => <ServiceByCategoryModel>[]);
   }

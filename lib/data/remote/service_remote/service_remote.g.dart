@@ -67,9 +67,15 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
   }
 
   @override
-  Future<List<ServiceByCategoryModel>?> findServices(String serviceName) async {
+  Future<List<ServiceByCategoryModel>?> findServices(
+    bool excludeOwn,
+    String serviceName,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'servName': serviceName};
+    final queryParameters = <String, dynamic>{
+      r'excludeOwn': excludeOwn,
+      r'servName': serviceName,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<ServiceByCategoryModel>>(Options(

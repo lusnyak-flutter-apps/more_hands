@@ -20,6 +20,7 @@ abstract class ServiceRemoteApi {
 
   @GET(EndPoint.findServicesByCat)
   Future<List<ServiceByCategoryModel>?> findServices(
+      @Query('excludeOwn') bool excludeOwn,
       @Query('servName') String serviceName);
 
   @GET(EndPoint.getServMeas)
