@@ -13,7 +13,7 @@ class UserInfoTagsView extends StatelessWidget {
 
   final VoidCallback? onReferralsTap;
   final int referralsCount;
-  final int starsCount;
+  final double starsCount;
   final int transactionsCount;
 
   @override
@@ -21,7 +21,7 @@ class UserInfoTagsView extends StatelessWidget {
     return Row(
       children: [
         MHTag(
-          title: starsCount.toString(),
+          title: starsCount == 0.0 ? "0" : starsCount.toStringAsFixed(1),
           icon: MoreHandsAssets.icons.starFill.svg(height: 12.r),
         ),
         6.w.widthBox,

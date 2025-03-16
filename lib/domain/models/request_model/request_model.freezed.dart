@@ -25,7 +25,8 @@ mixin _$RequestModel {
   int get receiverId => throw _privateConstructorUsedError;
   int get userServiceId => throw _privateConstructorUsedError;
   int get serviceId => throw _privateConstructorUsedError;
-  num get userRating => throw _privateConstructorUsedError;
+  num get senderRating => throw _privateConstructorUsedError;
+  num get receiverRating => throw _privateConstructorUsedError;
   bool get seenBySender => throw _privateConstructorUsedError;
   bool get seenByReceiver => throw _privateConstructorUsedError;
   String? get profileImageUrl => throw _privateConstructorUsedError;
@@ -62,7 +63,8 @@ abstract class $RequestModelCopyWith<$Res> {
       int receiverId,
       int userServiceId,
       int serviceId,
-      num userRating,
+      num senderRating,
+      num receiverRating,
       bool seenBySender,
       bool seenByReceiver,
       String? profileImageUrl,
@@ -95,7 +97,8 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
     Object? receiverId = null,
     Object? userServiceId = null,
     Object? serviceId = null,
-    Object? userRating = null,
+    Object? senderRating = null,
+    Object? receiverRating = null,
     Object? seenBySender = null,
     Object? seenByReceiver = null,
     Object? profileImageUrl = freezed,
@@ -128,9 +131,13 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
           ? _value.serviceId
           : serviceId // ignore: cast_nullable_to_non_nullable
               as int,
-      userRating: null == userRating
-          ? _value.userRating
-          : userRating // ignore: cast_nullable_to_non_nullable
+      senderRating: null == senderRating
+          ? _value.senderRating
+          : senderRating // ignore: cast_nullable_to_non_nullable
+              as num,
+      receiverRating: null == receiverRating
+          ? _value.receiverRating
+          : receiverRating // ignore: cast_nullable_to_non_nullable
               as num,
       seenBySender: null == seenBySender
           ? _value.seenBySender
@@ -190,7 +197,8 @@ abstract class _$$RequestModelImplCopyWith<$Res>
       int receiverId,
       int userServiceId,
       int serviceId,
-      num userRating,
+      num senderRating,
+      num receiverRating,
       bool seenBySender,
       bool seenByReceiver,
       String? profileImageUrl,
@@ -221,7 +229,8 @@ class __$$RequestModelImplCopyWithImpl<$Res>
     Object? receiverId = null,
     Object? userServiceId = null,
     Object? serviceId = null,
-    Object? userRating = null,
+    Object? senderRating = null,
+    Object? receiverRating = null,
     Object? seenBySender = null,
     Object? seenByReceiver = null,
     Object? profileImageUrl = freezed,
@@ -254,9 +263,13 @@ class __$$RequestModelImplCopyWithImpl<$Res>
           ? _value.serviceId
           : serviceId // ignore: cast_nullable_to_non_nullable
               as int,
-      userRating: null == userRating
-          ? _value.userRating
-          : userRating // ignore: cast_nullable_to_non_nullable
+      senderRating: null == senderRating
+          ? _value.senderRating
+          : senderRating // ignore: cast_nullable_to_non_nullable
+              as num,
+      receiverRating: null == receiverRating
+          ? _value.receiverRating
+          : receiverRating // ignore: cast_nullable_to_non_nullable
               as num,
       seenBySender: null == seenBySender
           ? _value.seenBySender
@@ -311,7 +324,8 @@ class _$RequestModelImpl implements _RequestModel {
       this.receiverId = 0,
       this.userServiceId = 0,
       this.serviceId = 0,
-      this.userRating = 0,
+      this.senderRating = 0,
+      this.receiverRating = 0,
       this.seenBySender = false,
       this.seenByReceiver = false,
       this.profileImageUrl,
@@ -343,7 +357,10 @@ class _$RequestModelImpl implements _RequestModel {
   final int serviceId;
   @override
   @JsonKey()
-  final num userRating;
+  final num senderRating;
+  @override
+  @JsonKey()
+  final num receiverRating;
   @override
   @JsonKey()
   final bool seenBySender;
@@ -372,7 +389,7 @@ class _$RequestModelImpl implements _RequestModel {
 
   @override
   String toString() {
-    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, userRating: $userRating, seenBySender: $seenBySender, seenByReceiver: $seenByReceiver, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status)';
+    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, senderRating: $senderRating, receiverRating: $receiverRating, seenBySender: $seenBySender, seenByReceiver: $seenByReceiver, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status)';
   }
 
   @override
@@ -389,8 +406,10 @@ class _$RequestModelImpl implements _RequestModel {
                 other.userServiceId == userServiceId) &&
             (identical(other.serviceId, serviceId) ||
                 other.serviceId == serviceId) &&
-            (identical(other.userRating, userRating) ||
-                other.userRating == userRating) &&
+            (identical(other.senderRating, senderRating) ||
+                other.senderRating == senderRating) &&
+            (identical(other.receiverRating, receiverRating) ||
+                other.receiverRating == receiverRating) &&
             (identical(other.seenBySender, seenBySender) ||
                 other.seenBySender == seenBySender) &&
             (identical(other.seenByReceiver, seenByReceiver) ||
@@ -420,7 +439,8 @@ class _$RequestModelImpl implements _RequestModel {
       receiverId,
       userServiceId,
       serviceId,
-      userRating,
+      senderRating,
+      receiverRating,
       seenBySender,
       seenByReceiver,
       profileImageUrl,
@@ -455,7 +475,8 @@ abstract class _RequestModel implements RequestModel {
           final int receiverId,
           final int userServiceId,
           final int serviceId,
-          final num userRating,
+          final num senderRating,
+          final num receiverRating,
           final bool seenBySender,
           final bool seenByReceiver,
           final String? profileImageUrl,
@@ -482,7 +503,9 @@ abstract class _RequestModel implements RequestModel {
   @override
   int get serviceId;
   @override
-  num get userRating;
+  num get senderRating;
+  @override
+  num get receiverRating;
   @override
   bool get seenBySender;
   @override

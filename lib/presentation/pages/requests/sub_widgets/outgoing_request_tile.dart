@@ -91,7 +91,7 @@ class OutgoingRequestTile extends StatelessWidget {
                     MoreHandsAssets.icons.user.svg(),
                     8.w.widthBox,
                     MHTag(
-                      title: requestModel.userRating.toString(),
+                      title: requestModel.receiverRating.ceilToDouble().toString(),
                       icon: MoreHandsAssets.icons.starFill.svg(),
                     ).paddingSymmetric(vertical: 4.h),
                   ],

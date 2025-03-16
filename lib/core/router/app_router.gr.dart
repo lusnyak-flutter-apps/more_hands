@@ -523,6 +523,7 @@ class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
     Key? key,
     required ServiceModel serviceModel,
     required CategoryModel serviceCategory,
+    ServiceDetailsMode mode = ServiceDetailsMode.add,
     List<PageRouteInfo>? children,
   }) : super(
           ServiceDetailsRoute.name,
@@ -530,6 +531,7 @@ class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
             key: key,
             serviceModel: serviceModel,
             serviceCategory: serviceCategory,
+            mode: mode,
           ),
           initialChildren: children,
         );
@@ -544,6 +546,7 @@ class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
         key: args.key,
         serviceModel: args.serviceModel,
         serviceCategory: args.serviceCategory,
+        mode: args.mode,
       );
     },
   );
@@ -554,6 +557,7 @@ class ServiceDetailsRouteArgs {
     this.key,
     required this.serviceModel,
     required this.serviceCategory,
+    this.mode = ServiceDetailsMode.add,
   });
 
   final Key? key;
@@ -562,9 +566,11 @@ class ServiceDetailsRouteArgs {
 
   final CategoryModel serviceCategory;
 
+  final ServiceDetailsMode mode;
+
   @override
   String toString() {
-    return 'ServiceDetailsRouteArgs{key: $key, serviceModel: $serviceModel, serviceCategory: $serviceCategory}';
+    return 'ServiceDetailsRouteArgs{key: $key, serviceModel: $serviceModel, serviceCategory: $serviceCategory, mode: $mode}';
   }
 }
 

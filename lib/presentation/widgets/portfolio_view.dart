@@ -24,11 +24,13 @@ class PortfolioView extends StatefulWidget {
     this.onTapItem,
     this.my = false,
     this.onDeletedItem,
+    this.onEditItem,
   });
 
   final List<PortfolioItem> items;
   final Function(PortfolioItem)? onTapItem;
   final Function(ServiceModel)? onDeletedItem;
+  final Function(ServiceModel)? onEditItem;
   final bool my;
 
   @override
@@ -92,18 +94,37 @@ class _PortfolioViewState extends State<PortfolioView> {
                             Positioned(
                               top: 8.0,
                               left: 8.0,
-                              child: IconButton(
-                                onPressed: () {
-                                  widget.onDeletedItem?.call(item.service);
-                                },
-                                style: IconButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                ),
-                                icon: MoreHandsAssets.icons.close.svg(
-                                  width: 28.0,
-                                  colorFilter: const ColorFilter.mode(
-                                      MHColors.redColor, BlendMode.srcIn),
-                                ),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      widget.onDeletedItem?.call(item.service);
+                                    },
+                                    style: IconButton.styleFrom(
+                                      padding: EdgeInsets.zero,
+                                        backgroundColor: MHColors.darkerGrayColor.withValues(alpha: 0.8)
+                                    ),
+                                    icon: MoreHandsAssets.icons.close.svg(
+                                      width: 28.0,
+                                      colorFilter: const ColorFilter.mode(
+                                          MHColors.redColor, BlendMode.srcIn),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      widget.onEditItem?.call(item.service);
+                                    },
+                                    style: IconButton.styleFrom(
+                                      padding: EdgeInsets.zero,
+                                      backgroundColor: MHColors.darkerGrayColor.withValues(alpha: 0.8)
+                                    ),
+                                    icon: MoreHandsAssets.icons.edit.svg(
+                                      width: 28.0,
+                                      colorFilter: const ColorFilter.mode(
+                                          MHColors.amberColor, BlendMode.srcIn),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Positioned(

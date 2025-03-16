@@ -4,6 +4,7 @@ import 'package:more_hands/domain/enums/request_status.dart';
 import 'package:more_hands/utils/extensions/context_extension.dart';
 
 part 'last_req_info_model.freezed.dart';
+
 part 'last_req_info_model.g.dart';
 
 @freezed
@@ -17,10 +18,9 @@ class LastReqInfoModel with _$LastReqInfoModel {
     RequestStatus? rreqStatus,
   }) = _LastReqInfoModel;
 
-factory LastReqInfoModel.fromJson(Map<String, dynamic> json) =>
+  factory LastReqInfoModel.fromJson(Map<String, dynamic> json) =>
       _$LastReqInfoModelFromJson(json);
 }
-
 
 String? actionButtonTitleByLastRequests(
     BuildContext context, LastReqInfoModel? lastReq) {
@@ -28,7 +28,8 @@ String? actionButtonTitleByLastRequests(
   RequestStatus? rRequestStatus = lastReq?.rreqStatus;
 
   // Send request
-  if (sRequestStatus == null && rRequestStatus == null) {
+  if ((sRequestStatus == null || sRequestStatus == RequestStatus.canceled) &&
+      rRequestStatus == null) {
     return context.localized.sendRequest;
   }
 
@@ -45,20 +46,20 @@ String? actionButtonTitleByLastRequests(
 
   // leaveAReview
   if ((sRequestStatus == RequestStatus.new_ ||
-      sRequestStatus == RequestStatus.accepted ||
-      sRequestStatus == RequestStatus.canceled) &&
+          sRequestStatus == RequestStatus.accepted ||
+          sRequestStatus == RequestStatus.canceled) &&
       rRequestStatus == RequestStatus.accepted) {
     return context.localized.leaveAReview;
   }
 
   // Ожидает ответа
   if ((sRequestStatus == null ||
-      sRequestStatus == RequestStatus.canceled ||
-      sRequestStatus == RequestStatus.rejected) &&
+          sRequestStatus == RequestStatus.canceled ||
+          sRequestStatus == RequestStatus.rejected) &&
       rRequestStatus == RequestStatus.new_) {
     return context.localized.waitingForAResponse;
   }
-  return null;
+  return context.localized.sendRequest;
 }
 
 String? actionByLastRequests(LastReqInfoModel? lastReq) {
@@ -66,7 +67,8 @@ String? actionByLastRequests(LastReqInfoModel? lastReq) {
   RequestStatus? rRequestStatus = lastReq?.rreqStatus;
 
   // Send request
-  if (sRequestStatus == null && rRequestStatus == null) {
+  if ((sRequestStatus == null || sRequestStatus == RequestStatus.canceled) &&
+      rRequestStatus == null) {
     return sendRequest;
   }
 
@@ -83,24 +85,24 @@ String? actionByLastRequests(LastReqInfoModel? lastReq) {
 
   // leaveAReview
   if ((sRequestStatus == RequestStatus.new_ ||
-      sRequestStatus == RequestStatus.accepted ||
-      sRequestStatus == RequestStatus.canceled) &&
+          sRequestStatus == RequestStatus.accepted ||
+          sRequestStatus == RequestStatus.canceled) &&
       rRequestStatus == RequestStatus.accepted) {
     return leaveAReview;
   }
 
   // Ожидает ответа
   if ((sRequestStatus == null ||
-      sRequestStatus == RequestStatus.canceled ||
-      sRequestStatus == RequestStatus.rejected) &&
+          sRequestStatus == RequestStatus.canceled ||
+          sRequestStatus == RequestStatus.rejected) &&
       rRequestStatus == RequestStatus.new_) {
     return waitingForAResponse;
   }
 
-  return null;
+  return sendRequest;
 }
 
- const waitingForAResponse = "waitingForAResponse";
- const leaveAReview = "leaveAReview";
- const requestSent = "requestSent";
- const sendRequest = "sendRequest";
+const waitingForAResponse = "waitingForAResponse";
+const leaveAReview = "leaveAReview";
+const requestSent = "requestSent";
+const sendRequest = "sendRequest";

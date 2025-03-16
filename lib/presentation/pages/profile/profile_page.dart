@@ -7,6 +7,7 @@ import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
+import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_language_list_view.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
 import 'package:more_hands/presentation/widgets/service_info_view.dart';
@@ -72,6 +73,9 @@ class _ProfileView extends StatelessWidget {
                 PortfolioView(
                   items: portfolio,
                   my: true,
+                  onEditItem: (service){
+                    context.router.push(ServiceDetailsRoute(serviceModel: service, serviceCategory: service.category!,mode: ServiceDetailsMode.edit));
+                  },
                   onDeletedItem: (service) {
                     if (service.serviceAdditionalInfo?.userServiceId != null) {
                       cubit.deleteUserService(
@@ -221,7 +225,7 @@ class _ProfileView extends StatelessWidget {
             ),
             8.h.heightBox,
             UserInfoTagsView(
-              starsCount: user?.userInfo?.userRating.toInt() ?? 0,
+              starsCount: user?.userInfo?.userRating.toDouble() ?? 0.0,
               transactionsCount: user?.userInfo?.dealCountSpend.toInt() ?? 0,
               referralsCount: user?.userInfo?.refCount.toInt() ?? 0,
               onReferralsTap: () {

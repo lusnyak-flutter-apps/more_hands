@@ -51,7 +51,7 @@ class IncomingRequestTile extends StatelessWidget {
                   availableForegroundDecoration: false),
             ),
             MHTag(
-              title: requestModel.userRating.toString(),
+              title: requestModel.senderRating.ceilToDouble().toString(),
               icon: MoreHandsAssets.icons.starFill.svg(),
             ).paddingSymmetric(vertical: 4.h),
             if (isAccepted)

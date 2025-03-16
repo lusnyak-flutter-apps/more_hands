@@ -16,3 +16,8 @@ class FileModel with _$FileModel {
   factory FileModel.fromJson(Map<String, dynamic> json) =>
       _$FileModelFromJson(json);
 }
+
+extension FileModelExt on FileModel {
+  String get path =>
+      "${APIBase.url}/storage/download?category=${attachCategory?.rawValue}&fileId=$usfFileId";
+}

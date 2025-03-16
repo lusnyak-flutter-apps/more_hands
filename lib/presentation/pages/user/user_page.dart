@@ -61,6 +61,7 @@ class _UserViewState extends State<_UserView> {
       final loading = state.when(loading: () => true, loaded: (_) => false);
       final user = state.when(loading: () => null, loaded: (user) => user);
       List<PortfolioItem> portfolio = [];
+      // List<String> cats = <String>[];
       user?.services.forEach((s) {
         portfolio.addAll(s.files.mapIndexed(
             ((i, f) => PortfolioItem(service: s, file: f, isMain: i == 0))));
@@ -72,8 +73,8 @@ class _UserViewState extends State<_UserView> {
       return Scaffold(
         bottomSheet: buttonTitle != null
             ? MHBottomNavigationControl(
-          buttonTitle: buttonTitle,
-          action: actionKey == sendRequest
+          buttonTitle:user?.userInfo?.shaken == true ? context.localized.leaveAReview : buttonTitle,
+          action: user?.userInfo?.shaken == true ? onLeaveAReview :  actionKey == sendRequest
               ? () => onSendRequest(user?.userInfo?.id)
               : actionKey == leaveAReview
               ? onLeaveAReview
@@ -166,10 +167,10 @@ class _UserViewState extends State<_UserView> {
           id: user.userInfo?.id.toString(),
         ),
         8.h.heightBox,
-        const UserInfoTagsView(
-          starsCount: 0,
-          transactionsCount: 0,
-          referralsCount: 0,
+          UserInfoTagsView(
+          starsCount: user.userInfo?.userRating.toDouble() ?? 0.0,
+          transactionsCount: user.userInfo?.dealCountSpend.toInt() ?? 0,
+          referralsCount: user.userInfo?.refCount.toInt() ?? 0,
         ).paddingOnly(bottom: 8.h),
         if (user.userInfo?.shaken != true)
           _buildSendCodeToFriends(context, userId: user.userInfo!.id)

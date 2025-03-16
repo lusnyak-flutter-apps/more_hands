@@ -4,13 +4,29 @@ import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
 class WhatCanDoView extends StatelessWidget {
-  const WhatCanDoView({super.key, this.onEdit, this.items = const []});
+  const WhatCanDoView({
+    super.key,
+    this.onEdit,
+    this.items = const [],
+  });
 
   final VoidCallback? onEdit;
   final List<ServiceModel> items;
 
+  List<String> filterCategories() {
+    List<String> cats = <String>[];
+    for (var e in items) {
+      if (e.serviceInfo?.servName != null &&
+          !cats.contains(e.serviceInfo!.servName)) {
+        cats.add(e.serviceInfo!.servName!);
+      }
+    }
+    return cats;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final tags = filterCategories();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
@@ -35,9 +51,9 @@ class WhatCanDoView extends StatelessWidget {
             spacing: 4.w,
             runSpacing: 4.h,
             children: [
-              for (var tag in items)
+              for (var tag in tags)
                 MHTag(
-                  title: tag.serviceInfo?.servName ?? "",
+                  title: tag,
                   tintColor: MHColors.darkGrayColor,
                   borderColor: MHColors.grayColor,
                 )

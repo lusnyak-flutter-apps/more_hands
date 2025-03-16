@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/category_model/category_model.dart';
 import 'package:more_hands/domain/models/currency_model/currency_model.dart';
+import 'package:more_hands/domain/models/file_model/file_model.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart';
@@ -15,16 +16,22 @@ class ServiceDetailsPage extends StatelessWidget {
     super.key,
     required this.serviceModel,
     required this.serviceCategory,
+    this.mode = ServiceDetailsMode.add,
   });
 
   final ServiceModel serviceModel;
   final CategoryModel serviceCategory;
+  final ServiceDetailsMode mode;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ServiceDetailsCubit>(
-      create: (BuildContext context) =>
-          getIt<ServiceDetailsCubit>()..loadData(serviceModel, serviceCategory),
+      create: (BuildContext context) => getIt<ServiceDetailsCubit>()
+        ..loadData(
+          service: serviceModel,
+          category: serviceCategory,
+          mode: mode,
+        ),
       child: const _ServiceDetailsView(),
     );
   }
@@ -220,6 +227,35 @@ class _ServiceDetailsView extends StatelessWidget {
                       mainAxisSpacing: 4.r,
                       crossAxisSpacing: 4.r),
                   children: [
+                    if(state.mode == ServiceDetailsMode.edit && state.service?.files != null)
+                      for (var file in state.service!.files)
+                        Stack(
+                          alignment: Alignment.bottomLeft,
+                          children: [
+                            MHImage(
+                              size: context.width / 2 - 4.r,
+                              imageUrl: file.path,
+
+                            ),
+                            Positioned(
+                              top: 8.0,
+                              left: 8.0,
+                              child: IconButton(
+                                onPressed: () {
+                                },
+                                style: IconButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    backgroundColor: MHColors.darkerGrayColor.withValues(alpha: 0.8)
+                                ),
+                                icon: MoreHandsAssets.icons.close.svg(
+                                  width: 28.0,
+                                  colorFilter: const ColorFilter.mode(
+                                      MHColors.redColor, BlendMode.srcIn),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                     for (var (index, file) in state.selectedFiles.indexed)
                       Container(
                         decoration: BoxDecoration(

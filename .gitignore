@@ -75,6 +75,7 @@ version
 
 # packages file containing multi-root paths
 .packages.generated
+.metadata
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -86,6 +87,7 @@ version
 **/android/**/GeneratedPluginRegistrant.java
 **/android/key.properties
 **/android/app/*.jks
+**/android/app/.cxx/
 **/android/.idea/
 *.jks
 
@@ -135,3 +137,4 @@ packages/**/pubspec.lock
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
+

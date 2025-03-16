@@ -16,6 +16,7 @@ import 'package:more_hands/presentation/pages/referrals/referrals_page.dart';
 import 'package:more_hands/presentation/pages/requests/incoming_requests_page.dart';
 import 'package:more_hands/presentation/pages/requests/outgoing_requests_page.dart';
 import 'package:more_hands/presentation/pages/send_request/send_request_page.dart';
+import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart';
 import 'package:more_hands/presentation/pages/services/pages/services_list_page.dart';
 import 'package:more_hands/presentation/pages/services/pages/service_details_page.dart';
 import 'package:more_hands/presentation/pages/home/home_page.dart';

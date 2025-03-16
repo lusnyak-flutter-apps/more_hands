@@ -28,6 +28,7 @@ mixin _$ServiceDetailsState {
   ServiceMeasureModel? get selectedMeasure =>
       throw _privateConstructorUsedError;
   List<File> get selectedFiles => throw _privateConstructorUsedError;
+  ServiceDetailsMode get mode => throw _privateConstructorUsedError;
   List<LocationModel> get selectedLocations =>
       throw _privateConstructorUsedError;
 
@@ -55,6 +56,7 @@ abstract class $ServiceDetailsStateCopyWith<$Res> {
       List<ServiceMeasureModel> serviceMeasures,
       ServiceMeasureModel? selectedMeasure,
       List<File> selectedFiles,
+      ServiceDetailsMode mode,
       List<LocationModel> selectedLocations});
 
   $ServiceModelCopyWith<$Res>? get service;
@@ -88,6 +90,7 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
     Object? serviceMeasures = null,
     Object? selectedMeasure = freezed,
     Object? selectedFiles = null,
+    Object? mode = null,
     Object? selectedLocations = null,
   }) {
     return _then(_value.copyWith(
@@ -131,6 +134,10 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
           ? _value.selectedFiles
           : selectedFiles // ignore: cast_nullable_to_non_nullable
               as List<File>,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as ServiceDetailsMode,
       selectedLocations: null == selectedLocations
           ? _value.selectedLocations
           : selectedLocations // ignore: cast_nullable_to_non_nullable
@@ -214,6 +221,7 @@ abstract class _$$ServiceDetailsStateImplCopyWith<$Res>
       List<ServiceMeasureModel> serviceMeasures,
       ServiceMeasureModel? selectedMeasure,
       List<File> selectedFiles,
+      ServiceDetailsMode mode,
       List<LocationModel> selectedLocations});
 
   @override
@@ -249,6 +257,7 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
     Object? serviceMeasures = null,
     Object? selectedMeasure = freezed,
     Object? selectedFiles = null,
+    Object? mode = null,
     Object? selectedLocations = null,
   }) {
     return _then(_$ServiceDetailsStateImpl(
@@ -292,6 +301,10 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
           ? _value._selectedFiles
           : selectedFiles // ignore: cast_nullable_to_non_nullable
               as List<File>,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as ServiceDetailsMode,
       selectedLocations: null == selectedLocations
           ? _value._selectedLocations
           : selectedLocations // ignore: cast_nullable_to_non_nullable
@@ -315,6 +328,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
           const <ServiceMeasureModel>[],
       this.selectedMeasure,
       final List<File> selectedFiles = const <File>[],
+      this.mode = ServiceDetailsMode.add,
       final List<LocationModel> selectedLocations = const <LocationModel>[]})
       : _currencies = currencies,
         _serviceMeasures = serviceMeasures,
@@ -364,6 +378,9 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
     return EqualUnmodifiableListView(_selectedFiles);
   }
 
+  @override
+  @JsonKey()
+  final ServiceDetailsMode mode;
   final List<LocationModel> _selectedLocations;
   @override
   @JsonKey()
@@ -376,7 +393,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
 
   @override
   String toString() {
-    return 'ServiceDetailsState(loading: $loading, serviceAdded: $serviceAdded, validated: $validated, service: $service, category: $category, selectedCurrency: $selectedCurrency, currencies: $currencies, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles, selectedLocations: $selectedLocations)';
+    return 'ServiceDetailsState(loading: $loading, serviceAdded: $serviceAdded, validated: $validated, service: $service, category: $category, selectedCurrency: $selectedCurrency, currencies: $currencies, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles, mode: $mode, selectedLocations: $selectedLocations)';
   }
 
   @override
@@ -402,6 +419,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
                 other.selectedMeasure == selectedMeasure) &&
             const DeepCollectionEquality()
                 .equals(other._selectedFiles, _selectedFiles) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
             const DeepCollectionEquality()
                 .equals(other._selectedLocations, _selectedLocations));
   }
@@ -419,6 +437,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
       const DeepCollectionEquality().hash(_serviceMeasures),
       selectedMeasure,
       const DeepCollectionEquality().hash(_selectedFiles),
+      mode,
       const DeepCollectionEquality().hash(_selectedLocations));
 
   /// Create a copy of ServiceDetailsState
@@ -443,6 +462,7 @@ abstract class _ServiceDetailsState implements ServiceDetailsState {
       final List<ServiceMeasureModel> serviceMeasures,
       final ServiceMeasureModel? selectedMeasure,
       final List<File> selectedFiles,
+      final ServiceDetailsMode mode,
       final List<LocationModel> selectedLocations}) = _$ServiceDetailsStateImpl;
 
   @override
@@ -465,6 +485,8 @@ abstract class _ServiceDetailsState implements ServiceDetailsState {
   ServiceMeasureModel? get selectedMeasure;
   @override
   List<File> get selectedFiles;
+  @override
+  ServiceDetailsMode get mode;
   @override
   List<LocationModel> get selectedLocations;
 

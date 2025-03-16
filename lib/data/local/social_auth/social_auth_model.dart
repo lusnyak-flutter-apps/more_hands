@@ -58,7 +58,7 @@ class SocialAuthModel {
         "oauthProvider": oauthProvider,
         "id": id,
         "accessToken": accessToken,
-        // "idToken": idToken,
+        "idToken": idToken,
         "displayName": displayName,
         "serverAuthCode": serverAuthCode,
         "email": email,

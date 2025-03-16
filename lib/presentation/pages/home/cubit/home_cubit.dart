@@ -45,7 +45,7 @@ class HomeCubit extends Cubit<HomeState> {
       final tokenData = await getIt<TokenStorage>().readToken();
       final locationId = state.selectedLocation?.id ?? tokenData?.closestLoc ?? 0;
 
-      final users = await getIt<UsersRepository>().findUsersByLocAndText(
+      final users = await getIt<UsersRepository>().findUsersByLocAndText(txt: searchController.text,
           locId: locationId);
       emit(state.copyWith(users: users,loading: false));
     } catch (e) {
@@ -88,7 +88,6 @@ class HomeCubit extends Cubit<HomeState> {
       await getUsersBySearchAndLocation();
     }
   }
-
 
   Future<void> onEditComplete() async {
     emit(state.copyWith(selectedServiceId: -1));

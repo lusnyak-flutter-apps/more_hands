@@ -1,9 +1,10 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/repository/service_repository.dart';
- import 'package:more_hands/domain/models/category_model/category_model.dart';
+import 'package:more_hands/domain/models/category_model/category_model.dart';
 import 'package:more_hands/domain/models/currency_model/currency_model.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/service_means_model/service_measure_model.dart';
@@ -21,20 +22,45 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
   final TextEditingController descriptionController = TextEditingController();
   final ExpansionTileController controller = ExpansionTileController();
 
-  Future<void> loadData(ServiceModel service, CategoryModel category) async {
+  Future<void> loadData({
+    required ServiceModel service,
+    required CategoryModel category,
+    ServiceDetailsMode mode = ServiceDetailsMode.add,
+  }) async {
     try {
       final currencies = await getIt<ServiceRepository>().getCurrencies();
       final measures = await getIt<ServiceRepository>().getServiceMeasures();
       // final currencyModel =
       //     await getIt<ServiceRepository>().getCurrencyModel("RUB");
-      emit(state.copyWith(
-        service: service,
-        currencies: currencies,
-        category: category,
-        serviceMeasures: measures,
 
-        selectedCurrency: currencies.firstOrNull,
-      ));
+      if(mode == ServiceDetailsMode.edit) {
+        priceController.text = service.serviceAdditionalInfo?.price != null ? service.serviceAdditionalInfo!.price!.toString() : "";
+        descriptionController.text =   service.serviceAdditionalInfo?.addInfo ?? "";
+        priceController.text = service.serviceAdditionalInfo?.price != null ? service.serviceAdditionalInfo!.price!.toString() : "";
+        final currencyModel = currencies.firstWhereOrNull((c)=>c.curCode == service.serviceAdditionalInfo?.priceCurrency);
+        final measureModel = measures.firstWhereOrNull((m)=>m.mCode == service.serviceAdditionalInfo?.measureCode);
+        final locations = service.locations.map((l)=>LocationModel(id: l.usfLocationId, locName: l.locName)).toList();
+        emit(state.copyWith(
+          service: service,
+          currencies: currencies,
+          category: category,
+          serviceMeasures: measures,
+          mode: mode,
+          selectedLocations: locations,
+          selectedCurrency: currencyModel,
+          selectedMeasure: measureModel,
+        ));
+      }
+      if(mode == ServiceDetailsMode.add) {
+        emit(state.copyWith(
+          service: service,
+          currencies: currencies,
+          category: category,
+          serviceMeasures: measures,
+          mode: mode,
+          selectedCurrency: currencies.firstOrNull,
+        ));
+      } 
     } catch (_) {
       emit(state.copyWith(
         service: service,
@@ -48,7 +74,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
   }
 
   void changeCurrencyCode(CurrencyModel currency) async {
-     emit(state.copyWith(selectedCurrency: currency));
+    emit(state.copyWith(selectedCurrency: currency));
   }
 
   void pickedFiles(List<File> files) {
@@ -75,7 +101,8 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
         (priceController.text.isNotEmpty &&
             num.tryParse(priceController.text) != null) &&
         state.selectedMeasure != null &&
-         descriptionController.text.isNotEmpty && state.selectedFiles.isNotEmpty;
+        descriptionController.text.isNotEmpty &&
+        state.selectedFiles.isNotEmpty;
     emit(state.copyWith(validated: validated));
     if (validated) {
       UserServiceRequestModel requestModel = UserServiceRequestModel(
@@ -106,7 +133,10 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
         emit(state.copyWith(loading: false, validated: null));
       }
     } else {
-      emit(state.copyWith(validated: null, loading: false,));
+      emit(state.copyWith(
+        validated: null,
+        loading: false,
+      ));
     }
   }
 }

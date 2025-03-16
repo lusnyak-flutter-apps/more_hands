@@ -78,7 +78,7 @@ class ReferralItem extends StatelessWidget {
                       children: [
                         MHTag(
                           title:
-                              referral.userInfo?.userRating.toString() ?? "0",
+                              referral.userInfo?.userRating.toStringAsFixed(1) ?? "0",
                           icon:
                               MoreHandsAssets.icons.starFill.svg(height: 12.r),
                         ),
@@ -145,21 +145,24 @@ class ReferralItem extends StatelessWidget {
                 )
               ],
             ),
-          if (actionKey == waitingForAResponse || actionKey == requestSent)
+          if (referral.userInfo?.shaken == true)
+            MHGradientButton(
+              title: context.localized.leaveAReview,
+              onPressed: onLeaveAReview,
+            ).paddingOnly(top: 16.h)
+          else if (actionKey == waitingForAResponse || actionKey == requestSent)
             MHOutlinedButton(
               title: buttonTitle ?? "",
               onPressed: () {},
               style: OutlinedButton.styleFrom(
                   foregroundColor: MHColors.whiteColor),
-            ).paddingOnly(top: 16.h),
-
-          if (actionKey == leaveAReview && onLeaveAReview != null)
+            ).paddingOnly(top: 16.h)
+          else if (actionKey == leaveAReview && onLeaveAReview != null)
             MHGradientButton(
               title: context.localized.leaveAReview,
               onPressed: onLeaveAReview,
-            ).paddingOnly(top: 16.h),
-
-          if (actionKey == sendRequest && onSendRequest != null)
+            ).paddingOnly(top: 16.h)
+          else if (actionKey == sendRequest && onSendRequest != null)
             MHGradientButton(
               title: context.localized.sendRequest,
               onPressed: onSendRequest,

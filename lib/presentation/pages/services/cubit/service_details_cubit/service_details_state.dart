@@ -13,6 +13,11 @@ class ServiceDetailsState with _$ServiceDetailsState {
     @Default(<ServiceMeasureModel>[]) List<ServiceMeasureModel> serviceMeasures,
     ServiceMeasureModel? selectedMeasure,
     @Default(<File>[]) List<File> selectedFiles,
+    @Default(ServiceDetailsMode.add) ServiceDetailsMode mode,
     @Default(<LocationModel>[]) List<LocationModel> selectedLocations,
     }) = _ServiceDetailsState;
+}
+
+enum ServiceDetailsMode {
+  add, edit
 }
