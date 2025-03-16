@@ -109,7 +109,7 @@ class MHImagePicker extends StatelessWidget {
       if(multiPick) {
         final pickedFiles = await ImagePicker().pickMultiImage(
           limit: limit,
-          imageQuality: 50,
+          imageQuality: 30,
         );
         if (pickedFiles.isNotEmpty) {
           final imageFiles =
@@ -129,7 +129,7 @@ class MHImagePicker extends StatelessWidget {
     } else {
       final pickedFile = await ImagePicker().pickImage(
         source: ImageSource.camera,
-        imageQuality: 50,
+        imageQuality: 30,
       );
       if (pickedFile != null) {
         final imageFile = File(pickedFile.path);

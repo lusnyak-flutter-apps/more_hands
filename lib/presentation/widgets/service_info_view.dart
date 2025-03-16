@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
-import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
