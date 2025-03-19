@@ -164,32 +164,37 @@ class _HomeView extends StatelessWidget {
   }
 
   Widget _buildUsersList(BuildContext context, List<UserModel> users) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.only(bottom: 96.h, top: 16.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ...users.map((referral) {
-            return ReferralItem(
-              showPortfolio: true,
-              onTapPortfolioItem: (s) {
-                showServiceView(context,
-                    service: s, userId: referral.userInfo!.id);
-              },
-              onTap: () {
-                context.router.push(UserRoute(userId: referral.userInfo!.id));
-              },
-              onSendRequest: () {
-                context.router
-                    .push(SendRequestRoute(userId: referral.userInfo!.id));
-              },
-              onLeaveAReview: () {},
-              referral: referral,
-            ).paddingSymmetric(vertical: 8.h);
-          }),
-        ],
-      ),
-    ).paddingSymmetric(horizontal: 24.w);
+    return RefreshIndicator(
+      onRefresh: () {
+        return context.read<HomeCubit>().refresh();
+      },
+      child: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 96.h, top: 16.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ...users.map((referral) {
+              return ReferralItem(
+                showPortfolio: true,
+                onTapPortfolioItem: (s) {
+                  showServiceView(context,
+                      service: s, userId: referral.userInfo!.id);
+                },
+                onTap: () {
+                  context.router.push(UserRoute(userId: referral.userInfo!.id));
+                },
+                onSendRequest: () {
+                  context.router
+                      .push(SendRequestRoute(userId: referral.userInfo!.id));
+                },
+                onLeaveAReview: () {},
+                referral: referral,
+              ).paddingSymmetric(vertical: 8.h);
+            }),
+          ],
+        ),
+      ).paddingSymmetric(horizontal: 24.w),
+    );
   }
 
   Future<void> showServiceView(
