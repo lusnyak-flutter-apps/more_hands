@@ -5,6 +5,7 @@ class ServiceDetailsState with _$ServiceDetailsState {
   const factory ServiceDetailsState({
     @Default(false) bool loading,
     @Default(false) bool serviceAdded,
+    @Default(false) bool serviceEdited,
     bool? validated,
     ServiceModel? service,
     CategoryModel? category,

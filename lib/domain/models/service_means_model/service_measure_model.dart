@@ -9,6 +9,7 @@ part 'service_measure_model.g.dart';
 class ServiceMeasureModel with _$ServiceMeasureModel {
   const factory ServiceMeasureModel({
     required int id,
+    @JsonKey(name: 'mcode')
     @Default(MeasureCode.hour) MeasureCode mCode,
     @JsonKey(name: 'measName') String? name,
 

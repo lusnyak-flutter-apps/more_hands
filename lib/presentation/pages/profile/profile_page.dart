@@ -40,83 +40,93 @@ class _ProfileView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         bottom: false,
-        child:
-            BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-          if (state.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            if (state.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          List<PortfolioItem> portfolio = [];
-          state.user?.services.forEach((s) {
-            portfolio.addAll(s.files.mapIndexed(((i, f) =>
-                PortfolioItem(service: s, file: f, isMain: i == 0))));
-          });
+            List<PortfolioItem> portfolio = [];
+            state.user?.services.forEach((s) {
+              portfolio.addAll(s.files.mapIndexed(((i, f) =>
+                  PortfolioItem(service: s, file: f, isMain: i == 0))));
+            });
 
-          return SingleChildScrollView(
-            padding: EdgeInsets.only(
-                top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                profileImagePart(context, state.user).paddingOnly(bottom: 24.h),
-                aboutUserPart(context, state.user),
-                WhatCanDoView(
-                  items: state.user?.services ?? <ServiceModel>[],
-                  onEdit: () {
-                    context.router.push(const ServicesListRoute()).then((_) {
-                      if (context.mounted) {
-                        context.read<ProfileCubit>().loadProfile();
+            return SingleChildScrollView(
+              padding: EdgeInsets.only(
+                  top: 24.h, bottom: 2 * kBottomNavigationBarHeight),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  profileImagePart(context, state.user)
+                      .paddingOnly(bottom: 24.h),
+                  aboutUserPart(context, state.user),
+                  WhatCanDoView(
+                    items: state.user?.services ?? <ServiceModel>[],
+                    onEdit: () {
+                      context.router.push(const ServicesListRoute()).then((_) {
+                        if (context.mounted) {
+                          context.read<ProfileCubit>().loadProfile();
+                        }
+                      });
+                    },
+                  ).paddingOnly(bottom: 24.h),
+                  PortfolioView(
+                    items: portfolio,
+                    my: true,
+                    onEditItem: (service) {
+                      context.router.push(ServiceDetailsRoute(
+                          serviceModel: service,
+                          serviceCategory: service.category!,
+                          mode: ServiceDetailsMode.edit)).then((flag) {
+                        if (context.mounted && flag is bool && flag == true) {
+                          context.read<ProfileCubit>().loadProfile();
+                        }
+                      });
+                    },
+                    onDeletedItem: (service) {
+                      if (service.serviceAdditionalInfo?.userServiceId !=
+                          null) {
+                        cubit.deleteUserService(
+                            service.serviceAdditionalInfo!.userServiceId);
                       }
-                    });
-                  },
-                ).paddingOnly(bottom: 24.h),
-                PortfolioView(
-                  items: portfolio,
-                  my: true,
-                  onEditItem: (service){
-                    context.router.push(ServiceDetailsRoute(serviceModel: service, serviceCategory: service.category!,mode: ServiceDetailsMode.edit));
-                  },
-                  onDeletedItem: (service) {
-                    if (service.serviceAdditionalInfo?.userServiceId != null) {
-                      cubit.deleteUserService(
-                          service.serviceAdditionalInfo!.userServiceId);
-                    }
-                  },
-                  onTapItem: (index) {
-                    debugPrint("Portfolio item $index");
-                    showServiceView(context,
-                        service: index.service,
-                        userId: state.user!.userInfo!.id);
-                  },
-                ),
-                const Divider().paddingSymmetric(vertical: 24.h),
-                Row(
-                  children: [
-                    MHOutlinedButton(
-                      title: context.localized.deleteProfile,
-                      onPressed: () {
-                        showProfileDeleteSheet(context);
-                      },
-                    ).expanded(),
-                    8.w.widthBox,
-                    MHOutlinedButton(
-                      title: context.localized.logout,
-                      onPressed: cubit.logout,
-                      icon: MoreHandsAssets.icons.logout.svg(),
-                    ).expanded(),
-                  ],
-                ),
-                8.h.heightBox,
-                MHOutlinedButton(
-                  title: "Language",
-                  onPressed: () async {
-                    await showLanguages(context);
-                  },
-                ).paddingSymmetric(horizontal: context.width / 4),
-              ],
-            ).paddingSymmetric(horizontal: 24.w),
-          );
-        }),
+                    },
+                    onTapItem: (index) {
+                      debugPrint("Portfolio item $index");
+                      showServiceView(context,
+                          service: index.service,
+                          userId: state.user!.userInfo!.id);
+                    },
+                  ),
+                  const Divider().paddingSymmetric(vertical: 24.h),
+                  Row(
+                    children: [
+                      MHOutlinedButton(
+                        title: context.localized.deleteProfile,
+                        onPressed: () {
+                          showProfileDeleteSheet(context);
+                        },
+                      ).expanded(),
+                      8.w.widthBox,
+                      MHOutlinedButton(
+                        title: context.localized.logout,
+                        onPressed: cubit.logout,
+                        icon: MoreHandsAssets.icons.logout.svg(),
+                      ).expanded(),
+                    ],
+                  ),
+                  8.h.heightBox,
+                  MHOutlinedButton(
+                    title: "Language",
+                    onPressed: () async {
+                      await showLanguages(context);
+                    },
+                  ).paddingSymmetric(horizontal: context.width / 4),
+                ],
+              ).paddingSymmetric(horizontal: 24.w),
+            );
+          },
+        ),
       ),
     );
   }

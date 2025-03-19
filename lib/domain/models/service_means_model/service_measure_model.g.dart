@@ -10,7 +10,7 @@ _$ServiceMeasureModelImpl _$$ServiceMeasureModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ServiceMeasureModelImpl(
       id: (json['id'] as num).toInt(),
-      mCode: $enumDecodeNullable(_$MeasureCodeEnumMap, json['mCode']) ??
+      mCode: $enumDecodeNullable(_$MeasureCodeEnumMap, json['mcode']) ??
           MeasureCode.hour,
       name: json['measName'] as String?,
     );
@@ -19,7 +19,7 @@ Map<String, dynamic> _$$ServiceMeasureModelImplToJson(
         _$ServiceMeasureModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'mCode': _$MeasureCodeEnumMap[instance.mCode]!,
+      'mcode': _$MeasureCodeEnumMap[instance.mCode]!,
       'measName': instance.name,
     };
 

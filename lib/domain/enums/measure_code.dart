@@ -5,11 +5,11 @@ enum MeasureCode {
   @JsonValue("service.measure.year")
   year("service.measure.year"),
   @JsonValue("service.measure.day")
-  day("service.measure.hour"),
+  day("service.measure.day"),
   @JsonValue("service.measure.month")
-  month("service.measure.hour"),
+  month("service.measure.month"),
   @JsonValue("service.measure.week")
-  week("service.measure.hour"),
+  week("service.measure.week"),
   @JsonValue("service.measure.hour")
   hour("service.measure.hour"),
   @JsonValue("service.measure.service")

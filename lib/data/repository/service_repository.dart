@@ -61,6 +61,9 @@ class ServiceRepository {
   Future<int> addUserService(UserServiceRequestModel param) async =>
       await getIt<UserServicesRemoteApi>().addUserService(data: param);
 
+  Future<int> updateUserService(UserServiceRequestModel param) async =>
+      await getIt<UserServicesRemoteApi>().updateUserService(data: param);
+
   Future<void> deleteUserService(int userServiceId) async =>
       await getIt<UserServicesRemoteApi>().deleteUserService(userServiceId: userServiceId);
 

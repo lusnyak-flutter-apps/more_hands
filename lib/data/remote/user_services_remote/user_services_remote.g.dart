@@ -94,14 +94,14 @@ class _UserServicesRemoteApi implements UserServicesRemoteApi {
   }
 
   @override
-  Future<void> updateUserService({UserServiceRequestModel? data}) async {
+  Future<int> updateUserService({UserServiceRequestModel? data}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data?.toJson() ?? <String, dynamic>{});
-    final _options = _setStreamType<void>(Options(
+    final _options = _setStreamType<int>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -117,7 +117,15 @@ class _UserServicesRemoteApi implements UserServicesRemoteApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<int>(_options);
+    late int _value;
+    try {
+      _value = _result.data!;
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override

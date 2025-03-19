@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ServiceDetailsState {
   bool get loading => throw _privateConstructorUsedError;
   bool get serviceAdded => throw _privateConstructorUsedError;
+  bool get serviceEdited => throw _privateConstructorUsedError;
   bool? get validated => throw _privateConstructorUsedError;
   ServiceModel? get service => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $ServiceDetailsStateCopyWith<$Res> {
   $Res call(
       {bool loading,
       bool serviceAdded,
+      bool serviceEdited,
       bool? validated,
       ServiceModel? service,
       CategoryModel? category,
@@ -82,6 +84,7 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
   $Res call({
     Object? loading = null,
     Object? serviceAdded = null,
+    Object? serviceEdited = null,
     Object? validated = freezed,
     Object? service = freezed,
     Object? category = freezed,
@@ -101,6 +104,10 @@ class _$ServiceDetailsStateCopyWithImpl<$Res, $Val extends ServiceDetailsState>
       serviceAdded: null == serviceAdded
           ? _value.serviceAdded
           : serviceAdded // ignore: cast_nullable_to_non_nullable
+              as bool,
+      serviceEdited: null == serviceEdited
+          ? _value.serviceEdited
+          : serviceEdited // ignore: cast_nullable_to_non_nullable
               as bool,
       validated: freezed == validated
           ? _value.validated
@@ -213,6 +220,7 @@ abstract class _$$ServiceDetailsStateImplCopyWith<$Res>
   $Res call(
       {bool loading,
       bool serviceAdded,
+      bool serviceEdited,
       bool? validated,
       ServiceModel? service,
       CategoryModel? category,
@@ -249,6 +257,7 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? serviceAdded = null,
+    Object? serviceEdited = null,
     Object? validated = freezed,
     Object? service = freezed,
     Object? category = freezed,
@@ -268,6 +277,10 @@ class __$$ServiceDetailsStateImplCopyWithImpl<$Res>
       serviceAdded: null == serviceAdded
           ? _value.serviceAdded
           : serviceAdded // ignore: cast_nullable_to_non_nullable
+              as bool,
+      serviceEdited: null == serviceEdited
+          ? _value.serviceEdited
+          : serviceEdited // ignore: cast_nullable_to_non_nullable
               as bool,
       validated: freezed == validated
           ? _value.validated
@@ -319,6 +332,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
   const _$ServiceDetailsStateImpl(
       {this.loading = false,
       this.serviceAdded = false,
+      this.serviceEdited = false,
       this.validated,
       this.service,
       this.category,
@@ -341,6 +355,9 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
   @override
   @JsonKey()
   final bool serviceAdded;
+  @override
+  @JsonKey()
+  final bool serviceEdited;
   @override
   final bool? validated;
   @override
@@ -393,7 +410,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
 
   @override
   String toString() {
-    return 'ServiceDetailsState(loading: $loading, serviceAdded: $serviceAdded, validated: $validated, service: $service, category: $category, selectedCurrency: $selectedCurrency, currencies: $currencies, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles, mode: $mode, selectedLocations: $selectedLocations)';
+    return 'ServiceDetailsState(loading: $loading, serviceAdded: $serviceAdded, serviceEdited: $serviceEdited, validated: $validated, service: $service, category: $category, selectedCurrency: $selectedCurrency, currencies: $currencies, serviceMeasures: $serviceMeasures, selectedMeasure: $selectedMeasure, selectedFiles: $selectedFiles, mode: $mode, selectedLocations: $selectedLocations)';
   }
 
   @override
@@ -404,6 +421,8 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.serviceAdded, serviceAdded) ||
                 other.serviceAdded == serviceAdded) &&
+            (identical(other.serviceEdited, serviceEdited) ||
+                other.serviceEdited == serviceEdited) &&
             (identical(other.validated, validated) ||
                 other.validated == validated) &&
             (identical(other.service, service) || other.service == service) &&
@@ -429,6 +448,7 @@ class _$ServiceDetailsStateImpl implements _ServiceDetailsState {
       runtimeType,
       loading,
       serviceAdded,
+      serviceEdited,
       validated,
       service,
       category,
@@ -454,6 +474,7 @@ abstract class _ServiceDetailsState implements ServiceDetailsState {
   const factory _ServiceDetailsState(
       {final bool loading,
       final bool serviceAdded,
+      final bool serviceEdited,
       final bool? validated,
       final ServiceModel? service,
       final CategoryModel? category,
@@ -469,6 +490,8 @@ abstract class _ServiceDetailsState implements ServiceDetailsState {
   bool get loading;
   @override
   bool get serviceAdded;
+  @override
+  bool get serviceEdited;
   @override
   bool? get validated;
   @override

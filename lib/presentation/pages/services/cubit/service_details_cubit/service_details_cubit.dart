@@ -33,13 +33,30 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
       // final currencyModel =
       //     await getIt<ServiceRepository>().getCurrencyModel("RUB");
 
-      if(mode == ServiceDetailsMode.edit) {
-        priceController.text = service.serviceAdditionalInfo?.price != null ? service.serviceAdditionalInfo!.price!.toString() : "";
-        descriptionController.text =   service.serviceAdditionalInfo?.addInfo ?? "";
-        priceController.text = service.serviceAdditionalInfo?.price != null ? service.serviceAdditionalInfo!.price!.toString() : "";
-        final currencyModel = currencies.firstWhereOrNull((c)=>c.curCode == service.serviceAdditionalInfo?.priceCurrency);
-        final measureModel = measures.firstWhereOrNull((m)=>m.mCode == service.serviceAdditionalInfo?.measureCode);
-        final locations = service.locations.map((l)=>LocationModel(id: l.usfLocationId, locName: l.locName)).toList();
+      if (mode == ServiceDetailsMode.edit) {
+        priceController.text = service.serviceAdditionalInfo?.price != null
+            ? service.serviceAdditionalInfo!.price!.toString()
+            : "";
+        descriptionController.text =
+            service.serviceAdditionalInfo?.addInfo ?? "";
+        priceController.text = service.serviceAdditionalInfo?.price != null
+            ? service.serviceAdditionalInfo!.price!.toString()
+            : "";
+        final currencyModel = currencies.firstWhereOrNull(
+            (c) => c.curCode == service.serviceAdditionalInfo?.priceCurrency);
+        final measureModel = measures
+            .where((m) =>
+                m.mCode.rawValue ==
+                service.serviceAdditionalInfo?.measureCode?.rawValue)
+            .firstOrNull;
+        debugPrint(service.serviceAdditionalInfo?.measureCode?.name);
+        debugPrint(service.serviceAdditionalInfo?.measureCode?.rawValue);
+        debugPrint(measures.toString());
+        debugPrint(measureModel?.toJson().toString());
+        debugPrint(measureModel?.name);
+        final locations = service.locations
+            .map((l) => LocationModel(id: l.usfLocationId, locName: l.locName))
+            .toList();
         emit(state.copyWith(
           service: service,
           currencies: currencies,
@@ -51,7 +68,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
           selectedMeasure: measureModel,
         ));
       }
-      if(mode == ServiceDetailsMode.add) {
+      if (mode == ServiceDetailsMode.add) {
         emit(state.copyWith(
           service: service,
           currencies: currencies,
@@ -60,7 +77,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
           mode: mode,
           selectedCurrency: currencies.firstOrNull,
         ));
-      } 
+      }
     } catch (_) {
       emit(state.copyWith(
         service: service,
@@ -136,6 +153,59 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
       emit(state.copyWith(
         validated: null,
         loading: false,
+      ));
+    }
+  }
+
+  Future<void> onEdited() async {
+    final validated = state.selectedLocations.isNotEmpty &&
+        state.selectedCurrency != null &&
+        (priceController.text.isNotEmpty &&
+            num.tryParse(priceController.text) != null) &&
+        state.selectedMeasure != null &&
+        descriptionController.text.isNotEmpty;
+    emit(state.copyWith(validated: validated));
+    debugPrint(state.selectedMeasure?.mCode.rawValue);
+    if (validated) {
+      UserServiceRequestModel requestModel = UserServiceRequestModel(
+        userServiceId: state.service?.serviceAdditionalInfo?.userServiceId,
+        servCatMCode: state.category?.catMCode,
+        serviceMCode: state.service?.serviceInfo?.servMCode,
+        servMeasMCode: state.selectedMeasure?.mCode.rawValue,
+        addInfo: descriptionController.text,
+        price: priceController.text.isNotEmpty
+            ? num.tryParse(priceController.text)
+            : 0,
+        priceCurrency: state.selectedCurrency?.curCode,
+        locations: state.selectedLocations.map((e) => e.locName ?? "").toList(),
+      );
+      debugPrint(requestModel.toJson().toString());
+      emit(state.copyWith(loading: true, validated: null));
+      try {
+        int id =
+            await getIt<ServiceRepository>().updateUserService(requestModel);
+        if (state.selectedFiles.isNotEmpty) {
+          await getIt<ServiceRepository>().attachServiceFiles(
+              state.selectedFiles,
+              state.service?.serviceAdditionalInfo?.userServiceId ?? id);
+          emit(state.copyWith(serviceEdited: true, loading: false));
+        } else {
+          emit(state.copyWith(
+              serviceEdited: true, loading: false, validated: null));
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+        emit(state.copyWith(
+          loading: false,
+          validated: null,
+          serviceEdited: false,
+        ));
+      }
+    } else {
+      emit(state.copyWith(
+        validated: null,
+        loading: false,
+        serviceEdited: false,
       ));
     }
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/file_model/file_model.dart';
+import 'package:more_hands/domain/models/service_additional_info_model/service_additional_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
@@ -113,6 +114,11 @@ class _PortfolioViewState extends State<PortfolioView> {
                                   IconButton(
                                     onPressed: () {
                                       widget.onEditItem?.call(item.service);
+                                      if(mounted) {
+                                        setState(() {
+                                          showDeleteOptions = false;
+                                        });
+                                      }
                                     },
                                     style: IconButton.styleFrom(
                                       padding: EdgeInsets.zero,
@@ -143,7 +149,7 @@ class _PortfolioViewState extends State<PortfolioView> {
                                       null)
                                     MHTag(
                                             title:
-                                                "${item.service.serviceAdditionalInfo!.price}${item.service.serviceAdditionalInfo!.priceCurrencySign} ${item.service.serviceAdditionalInfo!.measureCode!.title(context)}")
+                                                "${item.service.serviceAdditionalInfo!.formatPrice}${item.service.serviceAdditionalInfo!.priceCurrencySign} ${item.service.serviceAdditionalInfo!.measureCode!.title(context)}")
                                         .paddingOnly(top: 4.w),
                                 ],
                               ).paddingSymmetric(

@@ -51,8 +51,12 @@ class _ServiceDetailsView extends StatelessWidget {
             message: "Заполните все поля",
             backgroundColor: MHColors.redColor.withAlpha(90));
       }
+
+      if(state.serviceEdited) {
+        context.router.maybePop(true);
+      }
+
       if (state.serviceAdded) {
-        // context.router.maybePop(true);
         context.router.popUntilRoot();
       }
     }, builder: (context, state) {
@@ -63,7 +67,11 @@ class _ServiceDetailsView extends StatelessWidget {
           buttonTitle: context.localized.save,
           action: () {
             FocusScope.of(context).unfocus();
-            cubit.onSaved();
+            if(state.mode == ServiceDetailsMode.add) {
+              cubit.onSaved();
+            } else {
+              cubit.onEdited();
+            }
           },
           actionLoading: state.loading,
         ).paddingOnly(bottom: 16.h),

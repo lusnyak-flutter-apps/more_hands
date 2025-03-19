@@ -22,7 +22,7 @@ abstract class UserServicesRemoteApi {
   });
 
   @PUT(EndPoint.updateUserService)
-  Future<void> updateUserService({
+  Future<int> updateUserService({
     @Body() UserServiceRequestModel? data,
   });
 

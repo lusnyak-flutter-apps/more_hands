@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
+import 'package:more_hands/domain/models/service_additional_info_model/service_additional_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
@@ -30,7 +31,7 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
     String priceTag = "";
     if (widget.service.serviceAdditionalInfo != null) {
       priceTag =
-          "${widget.service.serviceAdditionalInfo!.price}${widget.service.serviceAdditionalInfo!.priceCurrencySign} ${widget.service.serviceAdditionalInfo!.measureCode!.title(context)}";
+          "${widget.service.serviceAdditionalInfo!.formatPrice}${widget.service.serviceAdditionalInfo!.priceCurrencySign} ${widget.service.serviceAdditionalInfo!.measureCode!.title(context)}";
     }
     String? buttonTitle =
         actionButtonTitleByLastRequests(context, widget.lastReqInfo);
@@ -113,7 +114,7 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
               ],
             ),
           ).expanded(),
-          if(widget.userHasService)
+          if (widget.userHasService)
             MHOutlinedButton(
               title: context.localized.deleteService,
               onPressed: () {},

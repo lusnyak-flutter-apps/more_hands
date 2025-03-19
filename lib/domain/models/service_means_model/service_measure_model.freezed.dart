@@ -21,6 +21,7 @@ ServiceMeasureModel _$ServiceMeasureModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ServiceMeasureModel {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'mcode')
   MeasureCode get mCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'measName')
   String? get name => throw _privateConstructorUsedError;
@@ -42,7 +43,9 @@ abstract class $ServiceMeasureModelCopyWith<$Res> {
       _$ServiceMeasureModelCopyWithImpl<$Res, ServiceMeasureModel>;
   @useResult
   $Res call(
-      {int id, MeasureCode mCode, @JsonKey(name: 'measName') String? name});
+      {int id,
+      @JsonKey(name: 'mcode') MeasureCode mCode,
+      @JsonKey(name: 'measName') String? name});
 }
 
 /// @nodoc
@@ -90,7 +93,9 @@ abstract class _$$ServiceMeasureModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, MeasureCode mCode, @JsonKey(name: 'measName') String? name});
+      {int id,
+      @JsonKey(name: 'mcode') MeasureCode mCode,
+      @JsonKey(name: 'measName') String? name});
 }
 
 /// @nodoc
@@ -132,7 +137,7 @@ class __$$ServiceMeasureModelImplCopyWithImpl<$Res>
 class _$ServiceMeasureModelImpl implements _ServiceMeasureModel {
   const _$ServiceMeasureModelImpl(
       {required this.id,
-      this.mCode = MeasureCode.hour,
+      @JsonKey(name: 'mcode') this.mCode = MeasureCode.hour,
       @JsonKey(name: 'measName') this.name});
 
   factory _$ServiceMeasureModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -141,7 +146,7 @@ class _$ServiceMeasureModelImpl implements _ServiceMeasureModel {
   @override
   final int id;
   @override
-  @JsonKey()
+  @JsonKey(name: 'mcode')
   final MeasureCode mCode;
   @override
   @JsonKey(name: 'measName')
@@ -186,7 +191,7 @@ class _$ServiceMeasureModelImpl implements _ServiceMeasureModel {
 abstract class _ServiceMeasureModel implements ServiceMeasureModel {
   const factory _ServiceMeasureModel(
           {required final int id,
-          final MeasureCode mCode,
+          @JsonKey(name: 'mcode') final MeasureCode mCode,
           @JsonKey(name: 'measName') final String? name}) =
       _$ServiceMeasureModelImpl;
 
@@ -196,6 +201,7 @@ abstract class _ServiceMeasureModel implements ServiceMeasureModel {
   @override
   int get id;
   @override
+  @JsonKey(name: 'mcode')
   MeasureCode get mCode;
   @override
   @JsonKey(name: 'measName')
