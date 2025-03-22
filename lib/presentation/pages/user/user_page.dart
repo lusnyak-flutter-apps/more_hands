@@ -2,10 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
+import 'package:more_hands/domain/models/comment_model/comment_model.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/user/cubit/user_cubit.dart';
+import 'package:more_hands/presentation/widgets/comment_tile.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
 import 'package:more_hands/presentation/widgets/service_info_view.dart';
@@ -25,7 +27,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCubit>(
-      create: (BuildContext context) => getIt<UserCubit>()..loadUser(userId),
+      create: (BuildContext context) => getIt<UserCubit>()..loadUser(userId)..getComments(),
       child: const _UserView(),
     );
   }
@@ -59,8 +61,8 @@ class _UserViewState extends State<_UserView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-      final loading = state.when(loading: () => true, loaded: (_) => false);
-      final user = state.when(loading: () => null, loaded: (user) => user);
+      final loading = state.loading;
+      final user = state.user;
       List<PortfolioItem> portfolio = [];
       // List<String> cats = <String>[];
       user?.services.forEach((s) {
@@ -113,13 +115,35 @@ class _UserViewState extends State<_UserView> {
                           );
                         },
                       ).paddingOnly(bottom: 24.h),
+                      if (state.comments.isNotEmpty)
+                        buildCommentsList(context, state.comments),
                     ],
                   ).paddingSymmetric(horizontal: 24.w),
+
                 ),
         ),
       );
     });
   }
+
+  Widget buildCommentsList(BuildContext context, List<CommentModel> comments) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          context.localized.reviewsCount(comments.length),
+          style: body24SemiBoldStyle,
+          textAlign: TextAlign.left,
+        ).paddingSymmetric(vertical: 8.h),
+        for (var comment in comments)
+          CommentTile(
+            comment: comment,
+          ),
+      ],
+    );
+  }
+
 
   Widget userImagePart(BuildContext context, UserModel user) => MHImage(
       size: context.width,

@@ -16,43 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserModel user) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserModel user)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserModel user)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UserState value) loading,
-    required TResult Function(_UserLoadedState value) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserState value)? loading,
-    TResult? Function(_UserLoadedState value)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserState value)? loading,
-    TResult Function(_UserLoadedState value)? loaded,
-    required TResult orElse(),
-  }) =>
+  bool get loading => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
+  List<CommentModel> get comments => throw _privateConstructorUsedError;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UserStateCopyWith<UserState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,6 +31,10 @@ mixin _$UserState {
 abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
+  @useResult
+  $Res call({bool loading, UserModel? user, List<CommentModel> comments});
+
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -74,122 +49,56 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$UserStateImplCopyWith<$Res> {
-  factory _$$UserStateImplCopyWith(
-          _$UserStateImpl value, $Res Function(_$UserStateImpl) then) =
-      __$$UserStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UserStateImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserStateImpl>
-    implements _$$UserStateImplCopyWith<$Res> {
-  __$$UserStateImplCopyWithImpl(
-      _$UserStateImpl _value, $Res Function(_$UserStateImpl) _then)
-      : super(_value, _then);
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? user = freezed,
+    Object? comments = null,
+  }) {
+    return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      comments: null == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentModel>,
+    ) as $Val);
+  }
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-
-class _$UserStateImpl implements _UserState {
-  const _$UserStateImpl();
-
-  @override
-  String toString() {
-    return 'UserState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserModel user) loaded,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserModel user)? loaded,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserModel user)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UserState value) loading,
-    required TResult Function(_UserLoadedState value) loaded,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserState value)? loading,
-    TResult? Function(_UserLoadedState value)? loaded,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserState value)? loading,
-    TResult Function(_UserLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserState implements UserState {
-  const factory _UserState() = _$UserStateImpl;
-}
-
-/// @nodoc
-abstract class _$$UserLoadedStateImplCopyWith<$Res> {
+abstract class _$$UserLoadedStateImplCopyWith<$Res>
+    implements $UserStateCopyWith<$Res> {
   factory _$$UserLoadedStateImplCopyWith(_$UserLoadedStateImpl value,
           $Res Function(_$UserLoadedStateImpl) then) =
       __$$UserLoadedStateImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({UserModel user});
+  $Res call({bool loading, UserModel? user, List<CommentModel> comments});
 
-  $UserModelCopyWith<$Res> get user;
+  @override
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -205,38 +114,53 @@ class __$$UserLoadedStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? loading = null,
+    Object? user = freezed,
+    Object? comments = null,
   }) {
     return _then(_$UserLoadedStateImpl(
-      user: null == user
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as UserModel?,
+      comments: null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentModel>,
     ));
-  }
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$UserLoadedStateImpl implements _UserLoadedState {
-  const _$UserLoadedStateImpl({required this.user});
+  const _$UserLoadedStateImpl(
+      {this.loading = false,
+      this.user,
+      final List<CommentModel> comments = const <CommentModel>[]})
+      : _comments = comments;
 
   @override
-  final UserModel user;
+  @JsonKey()
+  final bool loading;
+  @override
+  final UserModel? user;
+  final List<CommentModel> _comments;
+  @override
+  @JsonKey()
+  List<CommentModel> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_comments);
+  }
 
   @override
   String toString() {
-    return 'UserState.loaded(user: $user)';
+    return 'UserState(loading: $loading, user: $user, comments: $comments)';
   }
 
   @override
@@ -244,11 +168,14 @@ class _$UserLoadedStateImpl implements _UserLoadedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserLoadedStateImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, loading, user,
+      const DeepCollectionEquality().hash(_comments));
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -258,78 +185,24 @@ class _$UserLoadedStateImpl implements _UserLoadedState {
   _$$UserLoadedStateImplCopyWith<_$UserLoadedStateImpl> get copyWith =>
       __$$UserLoadedStateImplCopyWithImpl<_$UserLoadedStateImpl>(
           this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserModel user) loaded,
-  }) {
-    return loaded(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserModel user)? loaded,
-  }) {
-    return loaded?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserModel user)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UserState value) loading,
-    required TResult Function(_UserLoadedState value) loaded,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserState value)? loading,
-    TResult? Function(_UserLoadedState value)? loaded,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserState value)? loading,
-    TResult Function(_UserLoadedState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _UserLoadedState implements UserState {
-  const factory _UserLoadedState({required final UserModel user}) =
-      _$UserLoadedStateImpl;
+  const factory _UserLoadedState(
+      {final bool loading,
+      final UserModel? user,
+      final List<CommentModel> comments}) = _$UserLoadedStateImpl;
 
-  UserModel get user;
+  @override
+  bool get loading;
+  @override
+  UserModel? get user;
+  @override
+  List<CommentModel> get comments;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserLoadedStateImplCopyWith<_$UserLoadedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -71,9 +71,10 @@ class CommentTile extends StatelessWidget {
             comment.commentText ?? "",
             style: body16Style,
           ).paddingOnly(top: 8.h),
-        if(comment.replyToCommentId == null)
-          MHGradientButton(title: context.localized.answer, onPressed: onReply).paddingSymmetric(vertical: 16.h),
-        8.w.widthBox,
+        if(comment.replyToCommentId == null && onReply != null)
+          MHGradientButton(title: context.localized.answer, onPressed: onReply).paddingSymmetric(vertical: 16.h)
+        else 16.h.heightBox,
+        8.w.heightBox,
        ],
     );
   }
