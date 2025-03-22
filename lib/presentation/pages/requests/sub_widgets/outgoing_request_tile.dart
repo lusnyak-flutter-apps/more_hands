@@ -161,7 +161,7 @@ class OutgoingRequestTile extends StatelessWidget {
                 title: context.localized.leaveAReview,
                 onPressed: () {
                   context.router
-                      .push( AddReviewRoute(requestId: requestModel.id));
+                      .push( AddReviewRoute(requestId: requestModel.id, userRelatedLogin: requestModel.userLogin));
                 },
                 // height: 32.h,
                 // verticalPadding: 0,

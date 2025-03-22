@@ -21,6 +21,7 @@ class RequestModel with _$RequestModel{
     String? userFirstName,
     String? userLastName,
     String? userMiddleName,
+    String? userLogin,
     String? rqText,
     @JsonKey(name: 'createDttm') DateTime? createDate,
     @JsonKey(name: 'modifyDttm') DateTime? modifyDate,

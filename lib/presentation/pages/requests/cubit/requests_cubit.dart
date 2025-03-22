@@ -32,7 +32,15 @@ class RequestsCubit extends Cubit<RequestsState> {
           from: state.requests.length,
           to: state.requests.length + 10);
       emit(state.copyWith(requests: requests, loading: false));
-      seenRequest(requests.map((e)=>e.id).toList());
+
+      seenRequest(requests.where((e) {
+        if(state.selectedType == RequestType.receiver){
+          return e.status == RequestStatus.new_;
+        } else {
+          return e.status == RequestStatus.accepted;
+        }
+      }).map((e)=>e.id).toList());
+
       getUnseenCounts();
     } catch (e) {
       debugPrint(e.toString());

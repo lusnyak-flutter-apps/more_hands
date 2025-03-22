@@ -21,6 +21,7 @@ _$RequestModelImpl _$$RequestModelImplFromJson(Map<String, dynamic> json) =>
       userFirstName: json['userFirstName'] as String?,
       userLastName: json['userLastName'] as String?,
       userMiddleName: json['userMiddleName'] as String?,
+      userLogin: json['userLogin'] as String?,
       rqText: json['rqText'] as String?,
       createDate: json['createDttm'] == null
           ? null
@@ -47,6 +48,7 @@ Map<String, dynamic> _$$RequestModelImplToJson(_$RequestModelImpl instance) =>
       'userFirstName': instance.userFirstName,
       'userLastName': instance.userLastName,
       'userMiddleName': instance.userMiddleName,
+      'userLogin': instance.userLogin,
       'rqText': instance.rqText,
       'createDttm': instance.createDate?.toIso8601String(),
       'modifyDttm': instance.modifyDate?.toIso8601String(),

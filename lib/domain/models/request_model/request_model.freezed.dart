@@ -33,6 +33,7 @@ mixin _$RequestModel {
   String? get userFirstName => throw _privateConstructorUsedError;
   String? get userLastName => throw _privateConstructorUsedError;
   String? get userMiddleName => throw _privateConstructorUsedError;
+  String? get userLogin => throw _privateConstructorUsedError;
   String? get rqText => throw _privateConstructorUsedError;
   @JsonKey(name: 'createDttm')
   DateTime? get createDate => throw _privateConstructorUsedError;
@@ -71,6 +72,7 @@ abstract class $RequestModelCopyWith<$Res> {
       String? userFirstName,
       String? userLastName,
       String? userMiddleName,
+      String? userLogin,
       String? rqText,
       @JsonKey(name: 'createDttm') DateTime? createDate,
       @JsonKey(name: 'modifyDttm') DateTime? modifyDate,
@@ -105,6 +107,7 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
     Object? userFirstName = freezed,
     Object? userLastName = freezed,
     Object? userMiddleName = freezed,
+    Object? userLogin = freezed,
     Object? rqText = freezed,
     Object? createDate = freezed,
     Object? modifyDate = freezed,
@@ -163,6 +166,10 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
           ? _value.userMiddleName
           : userMiddleName // ignore: cast_nullable_to_non_nullable
               as String?,
+      userLogin: freezed == userLogin
+          ? _value.userLogin
+          : userLogin // ignore: cast_nullable_to_non_nullable
+              as String?,
       rqText: freezed == rqText
           ? _value.rqText
           : rqText // ignore: cast_nullable_to_non_nullable
@@ -205,6 +212,7 @@ abstract class _$$RequestModelImplCopyWith<$Res>
       String? userFirstName,
       String? userLastName,
       String? userMiddleName,
+      String? userLogin,
       String? rqText,
       @JsonKey(name: 'createDttm') DateTime? createDate,
       @JsonKey(name: 'modifyDttm') DateTime? modifyDate,
@@ -237,6 +245,7 @@ class __$$RequestModelImplCopyWithImpl<$Res>
     Object? userFirstName = freezed,
     Object? userLastName = freezed,
     Object? userMiddleName = freezed,
+    Object? userLogin = freezed,
     Object? rqText = freezed,
     Object? createDate = freezed,
     Object? modifyDate = freezed,
@@ -295,6 +304,10 @@ class __$$RequestModelImplCopyWithImpl<$Res>
           ? _value.userMiddleName
           : userMiddleName // ignore: cast_nullable_to_non_nullable
               as String?,
+      userLogin: freezed == userLogin
+          ? _value.userLogin
+          : userLogin // ignore: cast_nullable_to_non_nullable
+              as String?,
       rqText: freezed == rqText
           ? _value.rqText
           : rqText // ignore: cast_nullable_to_non_nullable
@@ -332,6 +345,7 @@ class _$RequestModelImpl implements _RequestModel {
       this.userFirstName,
       this.userLastName,
       this.userMiddleName,
+      this.userLogin,
       this.rqText,
       @JsonKey(name: 'createDttm') this.createDate,
       @JsonKey(name: 'modifyDttm') this.modifyDate,
@@ -376,6 +390,8 @@ class _$RequestModelImpl implements _RequestModel {
   @override
   final String? userMiddleName;
   @override
+  final String? userLogin;
+  @override
   final String? rqText;
   @override
   @JsonKey(name: 'createDttm')
@@ -389,7 +405,7 @@ class _$RequestModelImpl implements _RequestModel {
 
   @override
   String toString() {
-    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, senderRating: $senderRating, receiverRating: $receiverRating, seenBySender: $seenBySender, seenByReceiver: $seenByReceiver, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status)';
+    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, senderRating: $senderRating, receiverRating: $receiverRating, seenBySender: $seenBySender, seenByReceiver: $seenByReceiver, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, userLogin: $userLogin, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status)';
   }
 
   @override
@@ -422,6 +438,8 @@ class _$RequestModelImpl implements _RequestModel {
                 other.userLastName == userLastName) &&
             (identical(other.userMiddleName, userMiddleName) ||
                 other.userMiddleName == userMiddleName) &&
+            (identical(other.userLogin, userLogin) ||
+                other.userLogin == userLogin) &&
             (identical(other.rqText, rqText) || other.rqText == rqText) &&
             (identical(other.createDate, createDate) ||
                 other.createDate == createDate) &&
@@ -447,6 +465,7 @@ class _$RequestModelImpl implements _RequestModel {
       userFirstName,
       userLastName,
       userMiddleName,
+      userLogin,
       rqText,
       createDate,
       modifyDate,
@@ -483,6 +502,7 @@ abstract class _RequestModel implements RequestModel {
           final String? userFirstName,
           final String? userLastName,
           final String? userMiddleName,
+          final String? userLogin,
           final String? rqText,
           @JsonKey(name: 'createDttm') final DateTime? createDate,
           @JsonKey(name: 'modifyDttm') final DateTime? modifyDate,
@@ -518,6 +538,8 @@ abstract class _RequestModel implements RequestModel {
   String? get userLastName;
   @override
   String? get userMiddleName;
+  @override
+  String? get userLogin;
   @override
   String? get rqText;
   @override
