@@ -60,6 +60,7 @@ class _ServicesListView extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ).paddingOnly(bottom: 8.h),
               MHSearchField(
+                hintText: context.localized.search,
                 controller: cubit.searchController,
                 onEditingComplete: cubit.findServices,
                 onClear: cubit.findServices,

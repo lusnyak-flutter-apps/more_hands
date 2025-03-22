@@ -35,7 +35,7 @@ class Preferences {
       _sharedPrefs?.getString(Preferences.languageCodeKey) ?? "ru";
 
   set languageCode(String value) {
-    _sharedPrefs?.setString(Preferences.languageCodeKey, value);
+      _sharedPrefs?.setString(Preferences.languageCodeKey, value);
   }
 
   double get longitude =>

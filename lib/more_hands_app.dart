@@ -3,6 +3,7 @@ import 'package:localizations/localizations.dart';
 import 'package:location/location.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/data.dart';
+import 'package:more_hands/language/language_cubit.dart';
 
 // import 'package:more_hands/data/local/token_storage/token_stotage_impl.dart';
 import 'package:uikit/uikit.dart';
@@ -94,20 +95,26 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       builder: (context, _) {
-        return MaterialApp.router(
-          builder: (context, child) {
-            return MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(textScaler: TextScaler.noScaling),
-                child: child!);
-          },
-          debugShowCheckedModeBanner: false,
-          theme: darkTheme,
-          darkTheme: darkTheme,
-          routerConfig: appRouter.config(),
-          locale: const Locale("ru"),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
+        return BlocProvider(
+          create: (context) => LanguageCubit()..onLoadSelectedLanguage(),
+          child: BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
+            String localeCode = locale.languageCode;
+            return MaterialApp.router(
+              builder: (context, child) {
+                return MediaQuery(
+                    data: MediaQuery.of(context)
+                        .copyWith(textScaler: TextScaler.noScaling),
+                    child: child!);
+              },
+              debugShowCheckedModeBanner: false,
+              theme: darkTheme,
+              darkTheme: darkTheme,
+              routerConfig: appRouter.config(),
+              locale:   Locale(localeCode),
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+            );
+          }),
         );
       },
     );
