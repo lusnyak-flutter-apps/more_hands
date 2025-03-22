@@ -106,3 +106,4 @@ const waitingForAResponse = "waitingForAResponse";
 const leaveAReview = "leaveAReview";
 const requestSent = "requestSent";
 const sendRequest = "sendRequest";
+const removeService = "removeService";

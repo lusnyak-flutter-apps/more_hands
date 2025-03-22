@@ -350,4 +350,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get waitingForAResponse => 'Waiting for a response';
+
+  @override
+  String get ago => 'ago';
+
+  @override
+  String get answer => 'Ответить';
 }

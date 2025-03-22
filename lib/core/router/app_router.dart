@@ -4,6 +4,7 @@ import 'package:more_hands/domain/models/category_model/category_model.dart';
 import 'package:more_hands/domain/models/request_model/request_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
+import 'package:more_hands/presentation/pages/add_review/add_review_page.dart';
 import 'package:more_hands/presentation/pages/app_loading/app_loading_page.dart';
 import 'package:more_hands/presentation/pages/auth/authorization_page.dart';
 import 'package:more_hands/presentation/pages/auth/test_auth_page.dart';
@@ -52,6 +53,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ReferralsRoute.page),
         AutoRoute(page: UserRoute.page),
         AutoRoute(page: SendRequestRoute.page),
+        AutoRoute(page: AddReviewRoute.page),
         CustomRoute(
           page: RequestsRoute.page,
           transitionsBuilder: TransitionsBuilders.fadeIn,

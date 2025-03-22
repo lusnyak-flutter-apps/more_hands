@@ -3,6 +3,7 @@ import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_additional_info_model/service_additional_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
+import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
@@ -10,12 +11,12 @@ class ServiceInfoView extends StatefulWidget {
   const ServiceInfoView({
     super.key,
     required this.service,
-    this.lastReqInfo,
+    this.user,
     this.userHasService = false,
   });
 
   final ServiceModel service;
-  final LastReqInfoModel? lastReqInfo;
+  final UserModel? user;
   final bool userHasService;
 
   // final int userId;
@@ -34,8 +35,8 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
           "${widget.service.serviceAdditionalInfo!.formatPrice}${widget.service.serviceAdditionalInfo!.priceCurrencySign} ${widget.service.serviceAdditionalInfo!.measureCode!.title(context)}";
     }
     String? buttonTitle =
-        actionButtonTitleByLastRequests(context, widget.lastReqInfo);
-    String? actionKey = actionByLastRequests(widget.lastReqInfo);
+        actionButtonTitleByLastRequests(context, widget.user?.lastReqInfo);
+    String? actionKey = actionByLastRequests(widget.user?.lastReqInfo);
 
     return SafeArea(
       child: Column(
@@ -117,31 +118,40 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
           if (widget.userHasService)
             MHOutlinedButton(
               title: context.localized.deleteService,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).maybePop(removeService);
+              },
               style: OutlinedButton.styleFrom(
                   foregroundColor: MHColors.whiteColor),
-            ).paddingOnly(top: 16.h),
-          if (!widget.userHasService && actionKey == "waitingForAResponse")
+            ).paddingOnly(top: 16.h)
+          else if (widget.user?.userInfo?.shaken == true)
+            MHGradientButton(
+              title: context.localized.leaveAReview,
+              onPressed: (){
+                Navigator.of(context).maybePop(leaveAReview);
+              },
+            ).paddingOnly(top: 16.h)
+          else if (actionKey == waitingForAResponse || actionKey == requestSent)
             MHOutlinedButton(
               title: buttonTitle ?? "",
               onPressed: () {},
               style: OutlinedButton.styleFrom(
                   foregroundColor: MHColors.whiteColor),
-            ).paddingOnly(top: 16.h),
-          if (!widget.userHasService && actionKey == "leaveAReview")
-            MHGradientButton(
-              title: context.localized.leaveAReview,
-              onPressed: () {
-                Navigator.of(context).maybePop("leaveAReview");
-              },
-            ).paddingOnly(top: 16.h),
-          if (!widget.userHasService && actionKey == "sendRequest")
-            MHGradientButton(
-              title: context.localized.sendRequest,
-              onPressed: () {
-                Navigator.of(context).maybePop("sendRequest");
-              },
             ).paddingOnly(top: 16.h)
+          else if (actionKey == leaveAReview)
+              MHGradientButton(
+                title: context.localized.leaveAReview,
+                onPressed:  (){
+                  Navigator.of(context).maybePop(leaveAReview);
+                },
+              ).paddingOnly(top: 16.h)
+            else if (actionKey == sendRequest)
+                MHGradientButton(
+                  title: context.localized.sendRequest,
+                  onPressed:  (){
+                    Navigator.of(context).maybePop(sendRequest);
+                  } ,
+                ).paddingOnly(top: 16.h)
         ],
       ),
     );

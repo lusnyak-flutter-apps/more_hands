@@ -112,7 +112,10 @@ class IncomingRequestTile extends StatelessWidget {
             ).paddingSymmetric(vertical: 8.h),
             if (isAccepted)
               MHGradientButton(title: context.localized.leaveAReview,
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router
+                        .push( AddReviewRoute(requestId: requestModel.id, /* userRelatedLogin: requestModel.userRelatedLogin*/));
+                  },
                   height: 32.h,
                   verticalPadding: 0,
                   horizontalPadding: 16.w)

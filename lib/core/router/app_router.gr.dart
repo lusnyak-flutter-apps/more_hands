@@ -10,6 +10,65 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AddReviewPage]
+class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
+  AddReviewRoute({
+    Key? key,
+    int? replyToCommentId,
+    int? requestId,
+    String? userRelatedLogin,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AddReviewRoute.name,
+          args: AddReviewRouteArgs(
+            key: key,
+            replyToCommentId: replyToCommentId,
+            requestId: requestId,
+            userRelatedLogin: userRelatedLogin,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AddReviewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AddReviewRouteArgs>(
+          orElse: () => const AddReviewRouteArgs());
+      return AddReviewPage(
+        key: args.key,
+        replyToCommentId: args.replyToCommentId,
+        requestId: args.requestId,
+        userRelatedLogin: args.userRelatedLogin,
+      );
+    },
+  );
+}
+
+class AddReviewRouteArgs {
+  const AddReviewRouteArgs({
+    this.key,
+    this.replyToCommentId,
+    this.requestId,
+    this.userRelatedLogin,
+  });
+
+  final Key? key;
+
+  final int? replyToCommentId;
+
+  final int? requestId;
+
+  final String? userRelatedLogin;
+
+  @override
+  String toString() {
+    return 'AddReviewRouteArgs{key: $key, replyToCommentId: $replyToCommentId, requestId: $requestId, userRelatedLogin: $userRelatedLogin}';
+  }
+}
+
+/// generated route for
 /// [AppLoadingPage]
 class AppLoadingRoute extends PageRouteInfo<void> {
   const AppLoadingRoute({List<PageRouteInfo>? children})

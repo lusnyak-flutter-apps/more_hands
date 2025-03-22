@@ -37,6 +37,8 @@ import 'package:more_hands/data/remote/location_remote/location_remote.dart'
     as _i823;
 import 'package:more_hands/data/remote/request_remote/request_remote.dart'
     as _i372;
+import 'package:more_hands/data/remote/review_remote/review_remote.dart'
+    as _i935;
 import 'package:more_hands/data/remote/service_remote/service_remote.dart'
     as _i541;
 import 'package:more_hands/data/remote/storage_remote/storage_remote.dart'
@@ -45,12 +47,15 @@ import 'package:more_hands/data/remote/user_remote/user_remote.dart' as _i761;
 import 'package:more_hands/data/remote/user_services_remote/user_services_remote.dart'
     as _i622;
 import 'package:more_hands/data/repository/auth_repository.dart' as _i528;
+import 'package:more_hands/data/repository/comments_repository.dart' as _i576;
 import 'package:more_hands/data/repository/location_repository.dart' as _i878;
 import 'package:more_hands/data/repository/profile_repository.dart' as _i725;
 import 'package:more_hands/data/repository/referrals_repository.dart' as _i396;
 import 'package:more_hands/data/repository/requests_repository.dart' as _i607;
 import 'package:more_hands/data/repository/service_repository.dart' as _i593;
 import 'package:more_hands/data/repository/users_repository.dart' as _i443;
+import 'package:more_hands/presentation/pages/add_review/cubit/add_review_cubit.dart'
+    as _i54;
 import 'package:more_hands/presentation/pages/app_loading/cubit/app_loading_cubit.dart'
     as _i1030;
 import 'package:more_hands/presentation/pages/auth/cubit/authorization_cubit.dart'
@@ -100,6 +105,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i498.RequestsCubit>(() => _i498.RequestsCubit());
     gh.factory<_i72.SendRequestCubit>(() => _i72.SendRequestCubit());
     gh.factory<_i224.ProfileCubit>(() => _i224.ProfileCubit());
+    gh.factory<_i54.AddReviewCubit>(() => _i54.AddReviewCubit());
     gh.factory<_i198.ServiceListCubit>(() => _i198.ServiceListCubit());
     gh.factory<_i262.ServiceDetailsCubit>(() => _i262.ServiceDetailsCubit());
     gh.factory<_i701.OnboardingCubit>(() => _i701.OnboardingCubit());
@@ -113,6 +119,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i725.ProfileRepository>(() => _i725.ProfileRepository());
     gh.lazySingleton<_i396.ReferralsRepository>(
         () => _i396.ReferralsRepository());
+    gh.lazySingleton<_i576.CommentsRepository>(
+        () => _i576.CommentsRepository());
     gh.factory<_i514.TokenStorage>(() => _i415.TokenStorageImpl());
     gh.factory<_i311.CurrentLocationStorage>(
         () => _i943.CurrentLocationStorageImpl());
@@ -142,6 +150,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i168.StorageRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i934.AuthRemoteApi>(
         () => _i934.AuthRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i935.ReviewRemoteApi>(
+        () => _i935.ReviewRemoteApi(gh<_i361.Dio>()));
     return this;
   }
 }

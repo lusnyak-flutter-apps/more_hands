@@ -42,6 +42,7 @@ class ReferralItem extends StatelessWidget {
     String? buttonTitle =
         actionButtonTitleByLastRequests(context, referral.lastReqInfo);
     String? actionKey = actionByLastRequests(referral.lastReqInfo);
+
     debugPrint(buttonTitle);
     debugPrint(actionKey);
     return InkWell(

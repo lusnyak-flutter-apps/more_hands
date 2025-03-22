@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/data.dart';
+import 'package:more_hands/data/repository/comments_repository.dart';
+import 'package:more_hands/domain/models/comment_model/comment_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 
 part 'profile_cubit.freezed.dart';
@@ -19,8 +21,14 @@ class ProfileCubit extends Cubit<ProfileState> {
         // debugPrint(url);
         // final file = await getIt<ProfileRepository>().getUserImage(value.userInfo!.profileImageUrl!);
         // debugPrint(jsonEncode(file.toString()).runtimeType.toString());
-        emit(ProfileState(user: value /*, userProfileImage: file*/));
+        emit(state.copyWith(user: value /*, userProfileImage: file*/));
        }
+    });
+  }
+
+  Future<void> getComments() async {
+    await getIt<CommentsRepository>().getCommentsByUserId().then((value) {
+      emit(state.copyWith(comments: value));
     });
   }
 
@@ -28,7 +36,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     await getIt<ProfileRepository>().logout();
   }
 
-  Future<void> deleteUserService(int id)async {
+  Future<void> deleteUserService(int id) async {
     await getIt<ServiceRepository>().deleteUserService(id).then((onValue){
         loadProfile();
     });

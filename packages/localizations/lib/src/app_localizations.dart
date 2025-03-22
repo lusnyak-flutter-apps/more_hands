@@ -733,6 +733,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ожидает ответа'**
   String get waitingForAResponse;
+
+  /// No description provided for @ago.
+  ///
+  /// In ru, this message translates to:
+  /// **'назад'**
+  String get ago;
+
+  /// No description provided for @answer.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ответить'**
+  String get answer;
 }
 
 class _AppLocalizationsDelegate

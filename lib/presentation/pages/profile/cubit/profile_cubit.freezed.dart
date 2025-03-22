@@ -19,6 +19,7 @@ mixin _$ProfileState {
   bool get loading => throw _privateConstructorUsedError;
   UserModel? get user => throw _privateConstructorUsedError;
   File? get userProfileImage => throw _privateConstructorUsedError;
+  List<CommentModel> get comments => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,11 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({bool loading, UserModel? user, File? userProfileImage});
+  $Res call(
+      {bool loading,
+      UserModel? user,
+      File? userProfileImage,
+      List<CommentModel> comments});
 
   $UserModelCopyWith<$Res>? get user;
 }
@@ -56,6 +61,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? loading = null,
     Object? user = freezed,
     Object? userProfileImage = freezed,
+    Object? comments = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -70,6 +76,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.userProfileImage
           : userProfileImage // ignore: cast_nullable_to_non_nullable
               as File?,
+      comments: null == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentModel>,
     ) as $Val);
   }
 
@@ -96,7 +106,11 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, UserModel? user, File? userProfileImage});
+  $Res call(
+      {bool loading,
+      UserModel? user,
+      File? userProfileImage,
+      List<CommentModel> comments});
 
   @override
   $UserModelCopyWith<$Res>? get user;
@@ -118,6 +132,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? user = freezed,
     Object? userProfileImage = freezed,
+    Object? comments = null,
   }) {
     return _then(_$ProfileStateImpl(
       loading: null == loading
@@ -132,6 +147,10 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
           ? _value.userProfileImage
           : userProfileImage // ignore: cast_nullable_to_non_nullable
               as File?,
+      comments: null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentModel>,
     ));
   }
 }
@@ -140,7 +159,11 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 
 class _$ProfileStateImpl implements _ProfileState {
   const _$ProfileStateImpl(
-      {this.loading = false, this.user, this.userProfileImage});
+      {this.loading = false,
+      this.user,
+      this.userProfileImage,
+      final List<CommentModel> comments = const <CommentModel>[]})
+      : _comments = comments;
 
   @override
   @JsonKey()
@@ -149,10 +172,18 @@ class _$ProfileStateImpl implements _ProfileState {
   final UserModel? user;
   @override
   final File? userProfileImage;
+  final List<CommentModel> _comments;
+  @override
+  @JsonKey()
+  List<CommentModel> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_comments);
+  }
 
   @override
   String toString() {
-    return 'ProfileState(loading: $loading, user: $user, userProfileImage: $userProfileImage)';
+    return 'ProfileState(loading: $loading, user: $user, userProfileImage: $userProfileImage, comments: $comments)';
   }
 
   @override
@@ -163,11 +194,13 @@ class _$ProfileStateImpl implements _ProfileState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.userProfileImage, userProfileImage) ||
-                other.userProfileImage == userProfileImage));
+                other.userProfileImage == userProfileImage) &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, user, userProfileImage);
+  int get hashCode => Object.hash(runtimeType, loading, user, userProfileImage,
+      const DeepCollectionEquality().hash(_comments));
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -182,7 +215,8 @@ abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
       {final bool loading,
       final UserModel? user,
-      final File? userProfileImage}) = _$ProfileStateImpl;
+      final File? userProfileImage,
+      final List<CommentModel> comments}) = _$ProfileStateImpl;
 
   @override
   bool get loading;
@@ -190,6 +224,8 @@ abstract class _ProfileState implements ProfileState {
   UserModel? get user;
   @override
   File? get userProfileImage;
+  @override
+  List<CommentModel> get comments;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.

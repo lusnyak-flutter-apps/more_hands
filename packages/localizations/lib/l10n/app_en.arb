@@ -105,5 +105,7 @@
   "russian": "Русский",
   "linkType": "{type} link",
   "sendRequestToSeeContacts":"Send a request to see contacts",
-  "waitingForAResponse":"Waiting for a response"
-}
+  "waitingForAResponse":"Waiting for a response",
+  "ago": "ago",
+  "answer":"Ответить"
+ }

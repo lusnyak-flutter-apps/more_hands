@@ -2,12 +2,16 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
+import 'package:more_hands/domain/models/comment_model/comment_model.dart';
+import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
+import 'package:more_hands/presentation/pages/add_review/add_review_page.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
 import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart';
+import 'package:more_hands/presentation/widgets/comment_tile.dart';
 import 'package:more_hands/presentation/widgets/mh_language_list_view.dart';
 import 'package:more_hands/presentation/widgets/portfolio_view.dart';
 import 'package:more_hands/presentation/widgets/service_info_view.dart';
@@ -25,7 +29,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ProfileCubit>(
-      create: (BuildContext context) => getIt<ProfileCubit>()..loadProfile(),
+      create: (BuildContext context) => getIt<ProfileCubit>()
+        ..loadProfile()
+        ..getComments(),
       child: const _ProfileView(),
     );
   }
@@ -75,10 +81,12 @@ class _ProfileView extends StatelessWidget {
                     items: portfolio,
                     my: true,
                     onEditItem: (service) {
-                      context.router.push(ServiceDetailsRoute(
-                          serviceModel: service,
-                          serviceCategory: service.category!,
-                          mode: ServiceDetailsMode.edit)).then((flag) {
+                      context.router
+                          .push(ServiceDetailsRoute(
+                              serviceModel: service,
+                              serviceCategory: service.category!,
+                              mode: ServiceDetailsMode.edit))
+                          .then((flag) {
                         if (context.mounted && flag is bool && flag == true) {
                           context.read<ProfileCubit>().loadProfile();
                         }
@@ -94,10 +102,11 @@ class _ProfileView extends StatelessWidget {
                     onTapItem: (index) {
                       debugPrint("Portfolio item $index");
                       showServiceView(context,
-                          service: index.service,
-                          userId: state.user!.userInfo!.id);
+                          service: index.service, user: state.user!);
                     },
                   ),
+                  if (state.comments.isNotEmpty)
+                    buildCommentsList(context, state.comments),
                   const Divider().paddingSymmetric(vertical: 24.h),
                   Row(
                     children: [
@@ -128,6 +137,27 @@ class _ProfileView extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  Widget buildCommentsList(BuildContext context, List<CommentModel> comments) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          context.localized.reviewsCount(comments.length),
+          style: body24SemiBoldStyle,
+          textAlign: TextAlign.left,
+        ).paddingSymmetric(vertical: 8.h),
+        for (var comment in comments)
+          CommentTile(
+            comment: comment,
+            onReply: () {
+              onAnswerReview(context, comment);
+            },
+          ),
+      ],
     );
   }
 
@@ -323,21 +353,38 @@ class _ProfileView extends StatelessWidget {
   Future<void> showServiceView(
     BuildContext context, {
     required ServiceModel service,
-    required int userId,
+    required UserModel user,
   }) async {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
       child: ServiceInfoView(
         service: service,
-        userHasService: true,
+        user: user,
       ),
     ).then((onValue) {
-      if (onValue is bool) {
-        if (context.mounted) {
-          context.router
-              .push(SendRequestRoute(userId: userId, serviceModel: service));
+      if (onValue is String && onValue == removeService && context.mounted) {
+        if (service.serviceAdditionalInfo?.userServiceId != null) {
+          context
+              .read<ProfileCubit>()
+              .deleteUserService(service.serviceAdditionalInfo!.userServiceId);
         }
+      }
+    });
+  }
+
+  Future<void> onAnswerReview(
+      BuildContext context, CommentModel comment) async {
+    await showMHScrollModalBottomSheet(
+      context,
+      title: context.localized.reviewAnswer,
+      child: AddReviewPage(
+        replyToCommentId: comment.id,
+        requestId: comment.requestId,
+      ),
+    ).then((onValue) {
+      if (onValue is bool && onValue == true && context.mounted) {
+        context.read<ProfileCubit>().getComments();
       }
     });
   }

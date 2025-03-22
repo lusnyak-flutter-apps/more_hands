@@ -9,6 +9,8 @@ import 'package:more_hands/presentation/widgets/service_info_view.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
+import '../../../domain/models/last_req_info_model/last_req_info_model.dart';
+
 @RoutePage()
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -178,7 +180,7 @@ class _HomeView extends StatelessWidget {
                 showPortfolio: true,
                 onTapPortfolioItem: (s) {
                   showServiceView(context,
-                      service: s, userId: referral.userInfo!.id);
+                      service: s, user: referral);
                 },
                 onTap: () {
                   context.router.push(UserRoute(userId: referral.userInfo!.id));
@@ -187,7 +189,10 @@ class _HomeView extends StatelessWidget {
                   context.router
                       .push(SendRequestRoute(userId: referral.userInfo!.id));
                 },
-                onLeaveAReview: () {},
+                onLeaveAReview: () {
+                  context.router
+                      .push( AddReviewRoute(userRelatedLogin: referral.userInfo?.userLogin));
+                },
                 referral: referral,
               ).paddingSymmetric(vertical: 8.h);
             }),
@@ -200,20 +205,24 @@ class _HomeView extends StatelessWidget {
   Future<void> showServiceView(
     BuildContext context, {
     required ServiceModel service,
-    required int userId,
+    required UserModel user,
   }) async {
     await showMHScrollModalBottomSheet(
       context,
       title: service.serviceInfo?.servName ?? "",
       child: ServiceInfoView(
         service: service,
-        userHasService: false,
+        user: user,
       ),
     ).then((onValue) {
-      if (onValue is bool) {
-        if (context.mounted) {
+      if (onValue is String  && context.mounted) {
+        if (onValue == sendRequest && user.userInfo?.id != null) {
           context.router
-              .push(SendRequestRoute(userId: userId, serviceModel: service));
+              .push(SendRequestRoute(userId: user.userInfo!.id, serviceModel: service));
+        }
+        if (onValue == leaveAReview &&  user.userInfo?.userLogin != null) {
+          context.router
+              .push( AddReviewRoute(userRelatedLogin: user.userInfo?.userLogin));
         }
       }
     });

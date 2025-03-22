@@ -350,4 +350,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get waitingForAResponse => 'Ожидает ответа';
+
+  @override
+  String get ago => 'назад';
+
+  @override
+  String get answer => 'Ответить';
 }

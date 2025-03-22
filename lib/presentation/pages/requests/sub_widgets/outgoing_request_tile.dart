@@ -159,7 +159,10 @@ class OutgoingRequestTile extends StatelessWidget {
               8.h.heightBox,
               MHGradientButton(
                 title: context.localized.leaveAReview,
-                onPressed: () {},
+                onPressed: () {
+                  context.router
+                      .push( AddReviewRoute(requestId: requestModel.id));
+                },
                 // height: 32.h,
                 // verticalPadding: 0,
                 // horizontalPadding: 16.w,

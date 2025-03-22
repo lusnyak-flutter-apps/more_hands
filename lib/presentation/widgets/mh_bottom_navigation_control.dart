@@ -10,6 +10,7 @@ class MHBottomNavigationControl extends StatelessWidget {
     this.action,
     this.buttonIcon,
     this.actionLoading = false,
+    this.horizontalSpacing = 24.0,
   });
 
   final String buttonTitle;
@@ -17,6 +18,7 @@ class MHBottomNavigationControl extends StatelessWidget {
   final VoidCallback? maybePop;
   final VoidCallback? action;
   final bool actionLoading;
+  final double horizontalSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class MHBottomNavigationControl extends StatelessWidget {
                       foregroundColor: MHColors.whiteColor),
                 ).expanded(),
         ],
-      ).paddingSymmetric(horizontal: 24.w, vertical: 8.h),
+      ).paddingSymmetric(horizontal: horizontalSpacing.w, vertical: 8.h),
     );
   }
 }
