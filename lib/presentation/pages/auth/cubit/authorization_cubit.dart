@@ -38,10 +38,17 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
 
   Future<void> loginViaSocial(SocialAuthType authType) async {
     final credential = await getIt<SocialAuthManager>().signIn(authType);
-    if (credential != null) {
-      debugPrint(credential.toJson().toString());
-      emit(AuthorizationState.authorized(credential));
-      return;
+    if (credential?.idToken != null) {
+      await getIt<AuthRepository>().loginSocial(credential!.idToken!).then((value) {
+        if (value) {
+          emit(AuthorizationState.authorized(credential));
+        } else {
+          emit(const AuthorizationState.unauthorized());
+        }
+      });
+      // debugPrint(credential.toJson().toString());
+      // emit(AuthorizationState.authorized(credential));
+      // return;
     }
   }
 }

@@ -24,12 +24,14 @@ class _AuthorizationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final cubit = context.read<AuthorizationCubit>();
     return BlocConsumer<AuthorizationCubit, AuthorizationState>(
         listener: (context, state) {
       state.maybeWhen(
-        authorized: (credential) {},
+        authorized: (_) {
+          context.router.pushAndPopUntil(const BottomNavigationRoute(),
+              predicate: (route) => false);
+        },
         unauthorized: () {
           context.showSnackBar(message: 'Unauthorized');
         },

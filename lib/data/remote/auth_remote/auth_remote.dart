@@ -14,6 +14,9 @@ abstract class AuthRemoteApi {
   Future<LoginResponseModel?> login(
     @Query('username') String username,
     @Query('password') String password,
-
+  );
+  @GET(EndPoint.loginGoogle)
+  Future<LoginResponseModel?> loginGoogle(
+    @Query('idToken') String idToken
   );
 }
