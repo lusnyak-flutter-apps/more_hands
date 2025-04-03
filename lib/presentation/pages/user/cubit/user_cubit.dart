@@ -15,8 +15,8 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> loadUser(int userId) async {
     emit(state.copyWith(loading: true));
-    await getIt<UsersRepository>().getUserInfo(userId: userId).then((user){
-      if(user != null) {
+    await getIt<UsersRepository>().getUserInfo(userId: userId).then((user) {
+      if (user != null) {
         emit(state.copyWith(user: user, loading: false));
       } else {
         emit(state.copyWith(loading: false));
@@ -24,8 +24,10 @@ class UserCubit extends Cubit<UserState> {
     });
   }
 
-  Future<void> getComments() async {
-    await getIt<CommentsRepository>().getCommentsByUserId().then((value) {
+  Future<void> getComments(int userId) async {
+    await getIt<CommentsRepository>()
+        .getCommentsByRelatedUserId(userId: state.user?.userInfo?.id ?? userId)
+        .then((value) {
       emit(state.copyWith(comments: value));
     });
   }

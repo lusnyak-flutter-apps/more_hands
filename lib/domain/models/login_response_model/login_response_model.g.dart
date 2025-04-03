@@ -13,6 +13,7 @@ _$LoginResponseModelImpl _$$LoginResponseModelImplFromJson(
       expiration: (json['expiration'] as num).toInt(),
       refCode: json['ref_code'] as String,
       closestLoc: (json['closest_loc'] as num?)?.toInt(),
+      existingUser: json['existing_user'] as bool?,
     );
 
 Map<String, dynamic> _$$LoginResponseModelImplToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$LoginResponseModelImplToJson(
       'expiration': instance.expiration,
       'ref_code': instance.refCode,
       'closest_loc': instance.closestLoc,
+      'existing_user': instance.existingUser,
     };

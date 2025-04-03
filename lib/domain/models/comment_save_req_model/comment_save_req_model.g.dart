@@ -26,3 +26,20 @@ Map<String, dynamic> _$CommentSaveReqModelToJson(
       'replyToCommentId': instance.replyToCommentId,
       'requestId': instance.requestId,
     };
+
+CommentEditReqModel _$CommentEditReqModelFromJson(Map<String, dynamic> json) =>
+    CommentEditReqModel(
+      commentVisibility: json['commentVisibility'] as String? ?? "visible",
+      commentText: json['commentText'] as String?,
+      starsGiven: json['starsGiven'] as num?,
+      id: (json['id'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$CommentEditReqModelToJson(
+        CommentEditReqModel instance) =>
+    <String, dynamic>{
+      'commentVisibility': instance.commentVisibility,
+      'commentText': instance.commentText,
+      'starsGiven': instance.starsGiven,
+      'id': instance.id,
+    };

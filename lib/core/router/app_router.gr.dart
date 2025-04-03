@@ -17,6 +17,7 @@ class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
     int? replyToCommentId,
     int? requestId,
     String? userRelatedLogin,
+    LastCommentInfoModel? commentForEdit,
     List<PageRouteInfo>? children,
   }) : super(
           AddReviewRoute.name,
@@ -25,6 +26,7 @@ class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
             replyToCommentId: replyToCommentId,
             requestId: requestId,
             userRelatedLogin: userRelatedLogin,
+            commentForEdit: commentForEdit,
           ),
           initialChildren: children,
         );
@@ -41,6 +43,7 @@ class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
         replyToCommentId: args.replyToCommentId,
         requestId: args.requestId,
         userRelatedLogin: args.userRelatedLogin,
+        commentForEdit: args.commentForEdit,
       );
     },
   );
@@ -52,6 +55,7 @@ class AddReviewRouteArgs {
     this.replyToCommentId,
     this.requestId,
     this.userRelatedLogin,
+    this.commentForEdit,
   });
 
   final Key? key;
@@ -62,9 +66,11 @@ class AddReviewRouteArgs {
 
   final String? userRelatedLogin;
 
+  final LastCommentInfoModel? commentForEdit;
+
   @override
   String toString() {
-    return 'AddReviewRouteArgs{key: $key, replyToCommentId: $replyToCommentId, requestId: $requestId, userRelatedLogin: $userRelatedLogin}';
+    return 'AddReviewRouteArgs{key: $key, replyToCommentId: $replyToCommentId, requestId: $requestId, userRelatedLogin: $userRelatedLogin, commentForEdit: $commentForEdit}';
   }
 }
 
@@ -677,12 +683,14 @@ class UserRoute extends PageRouteInfo<UserRouteArgs> {
   UserRoute({
     Key? key,
     required int userId,
+    int? commentId,
     List<PageRouteInfo>? children,
   }) : super(
           UserRoute.name,
           args: UserRouteArgs(
             key: key,
             userId: userId,
+            commentId: commentId,
           ),
           initialChildren: children,
         );
@@ -696,6 +704,7 @@ class UserRoute extends PageRouteInfo<UserRouteArgs> {
       return UserPage(
         key: args.key,
         userId: args.userId,
+        commentId: args.commentId,
       );
     },
   );
@@ -705,14 +714,17 @@ class UserRouteArgs {
   const UserRouteArgs({
     this.key,
     required this.userId,
+    this.commentId,
   });
 
   final Key? key;
 
   final int userId;
 
+  final int? commentId;
+
   @override
   String toString() {
-    return 'UserRouteArgs{key: $key, userId: $userId}';
+    return 'UserRouteArgs{key: $key, userId: $userId, commentId: $commentId}';
   }
 }

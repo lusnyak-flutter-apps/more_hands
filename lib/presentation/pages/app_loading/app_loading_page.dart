@@ -12,9 +12,7 @@ class AppLoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     FCMService.instance.delegates(context);
     return BlocProvider<AppLoadingCubit>(
-      create: (BuildContext context) => getIt<AppLoadingCubit>()
-        ..loadAppData()
-        ,
+      create: (BuildContext context) => getIt<AppLoadingCubit>()..loadAppData(),
       child: const _AppLoadingView(),
     );
   }

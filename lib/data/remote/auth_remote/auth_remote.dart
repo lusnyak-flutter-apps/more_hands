@@ -15,8 +15,11 @@ abstract class AuthRemoteApi {
     @Query('username') String username,
     @Query('password') String password,
   );
+
+  @PUT(EndPoint.userDeleteSelf)
+  Future<void> deleteAccount();
+
   @GET(EndPoint.loginGoogle)
-  Future<LoginResponseModel?> loginGoogle(
-    @Query('idToken') String idToken
-  );
+  Future<LoginResponseModel?> loginGoogle(@Query('idToken') String idToken,
+      {@Query('refCode') String? refCode});
 }

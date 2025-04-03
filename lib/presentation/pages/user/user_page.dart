@@ -20,21 +20,26 @@ import 'package:uikit/uikit.dart';
 
 @RoutePage()
 class UserPage extends StatelessWidget {
-  const UserPage({super.key, required this.userId});
+  const UserPage({super.key, required this.userId, this.commentId});
 
   final int userId;
+  final int? commentId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCubit>(
-      create: (BuildContext context) => getIt<UserCubit>()..loadUser(userId)..getComments(),
-      child: const _UserView(),
+      create: (BuildContext context) => getIt<UserCubit>()
+        ..loadUser(userId)
+        ..getComments(userId),
+      child: _UserView(commentId),
     );
   }
 }
 
 class _UserView extends StatefulWidget {
-  const _UserView();
+  final int? commentId;
+
+  const _UserView(this.commentId);
 
   @override
   State<_UserView> createState() => _UserViewState();
@@ -264,17 +269,17 @@ class _UserViewState extends State<_UserView> {
       title: service.serviceInfo?.servName ?? "",
       child: ServiceInfoView(
         service: service,
-         user: user,
+        user: user,
       ),
     ).then((onValue) {
-      if (onValue is String  && context.mounted) {
+      if (onValue is String && context.mounted) {
         if (onValue == sendRequest && user.userInfo?.id != null) {
-          context.router
-              .push(SendRequestRoute(userId: user.userInfo!.id, serviceModel: service));
+          context.router.push(SendRequestRoute(
+              userId: user.userInfo!.id, serviceModel: service));
         }
-        if (onValue == leaveAReview &&  user.userInfo?.userLogin != null) {
+        if (onValue == leaveAReview && user.userInfo?.userLogin != null) {
           context.router
-              .push( AddReviewRoute(userRelatedLogin: user.userInfo?.userLogin));
+              .push(AddReviewRoute(userRelatedLogin: user.userInfo?.userLogin));
         }
       }
     });

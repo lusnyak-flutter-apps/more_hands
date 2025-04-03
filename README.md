@@ -4,6 +4,7 @@
 
 fvm flutter pub run build_runner build --delete-conflicting-outputs
 fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+fvm flutter pub get && fvm flutter packages pub run build_runner build --delete-conflicting-outputs
 
 ## MoreHands UIKit codes generates commands:
 cd packages/uikit && fvm flutter pub get && fvm flutter packages pub run build_runner build --delete-conflicting-outputs

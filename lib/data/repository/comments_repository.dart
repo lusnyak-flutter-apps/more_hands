@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/remote/review_remote/review_remote.dart';
 import 'package:more_hands/domain/models/comment_model/comment_model.dart';
@@ -10,6 +11,11 @@ class CommentsRepository {
   }) async =>
       await getIt<ReviewRemoteApi>().addUserComments(data: data);
 
+  Future<void> editUserComments({
+    required CommentEditReqModel data,
+  }) async =>
+      await getIt<ReviewRemoteApi>().editUserComments(data: data);
+
   Future<List<CommentModel>> getCommentsByUserId({
     int from = 0,
     int to = 10,
@@ -17,6 +23,18 @@ class CommentsRepository {
       await getIt<ReviewRemoteApi>()
           .getCommentsByUserId(from: from, to: to)
           .catchError((_) => <CommentModel>[]);
+
+  Future<List<CommentModel>> getCommentsByRelatedUserId({
+    int? userId,
+    int from = 0,
+    int to = 10,
+  }) async =>
+      await getIt<ReviewRemoteApi>()
+          .getCommentByRelatedUserId(from: from, to: to, userId: userId)
+          .catchError((e) {
+        debugPrint(e.toString());
+        return <CommentModel>[];
+      });
 
   Future<List<CommentModel>> getReplyCommentToCommentId({
     required int replyToCommentId,

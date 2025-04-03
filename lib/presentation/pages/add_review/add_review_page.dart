@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_hands/domain/models/last_comment_info/last_comment_info_model.dart';
 import 'package:more_hands/presentation/pages/add_review/cubit/add_review_cubit.dart';
 import 'package:more_hands/presentation/widgets/mh_bottom_navigation_control.dart';
 import 'package:more_hands/utils/extensions/context_extension.dart';
@@ -14,20 +15,24 @@ class AddReviewPage extends StatelessWidget {
     this.replyToCommentId,
     this.requestId,
     this.userRelatedLogin,
+    this.commentForEdit,
   });
 
   final int? replyToCommentId;
   final int? requestId;
   final String? userRelatedLogin;
+  final LastCommentInfoModel? commentForEdit;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AddReviewCubit>(
       create: (BuildContext context) => getIt<AddReviewCubit>()
         ..setupData(
-            replyToCommentId: replyToCommentId,
-            requestId: requestId,
-            userRelatedLogin: userRelatedLogin),
+          replyToCommentId: replyToCommentId,
+          requestId: requestId,
+          userRelatedLogin: userRelatedLogin,
+          commentForEdit: commentForEdit,
+        ),
       child: replyToCommentId != null
           ? const _AnswerReviewPage()
           : const _AddReviewPage(),
@@ -51,13 +56,19 @@ class _AddReviewPage extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
-            context.localized.leaveAReview,
+            state.commentForReview != null
+                ? context.localized.editReview
+                : context.localized.leaveAReview,
           ),
           centerTitle: false,
         ),
         bottomSheet: MHBottomNavigationControl(
-          buttonTitle: context.localized.leaveAReview,
-          action: cubit.onLeaveReview,
+          buttonTitle: state.commentForReview != null
+              ? context.localized.editReview
+              : context.localized.leaveAReview,
+          action: state.commentForReview != null
+              ? cubit.onEditReview
+              : cubit.onLeaveReview,
           actionLoading: state.loading,
         ).paddingOnly(bottom: 16.h),
         body: SafeArea(

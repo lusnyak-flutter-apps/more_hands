@@ -745,6 +745,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ответить'**
   String get answer;
+
+  /// No description provided for @viewReview.
+  ///
+  /// In ru, this message translates to:
+  /// **'Смотреть отзыв'**
+  String get viewReview;
 }
 
 class _AppLocalizationsDelegate

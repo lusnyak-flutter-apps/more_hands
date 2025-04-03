@@ -9,5 +9,6 @@ class AddReviewState with _$AddReviewState {
     int? replyToCommentId,
     int? requestId,
     String? userRelatedLogin,
+    LastCommentInfoModel? commentForReview,
   }) = _AddReviewState;
 }

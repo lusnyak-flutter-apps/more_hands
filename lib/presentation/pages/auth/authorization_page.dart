@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:more_hands/core/core.dart';
@@ -28,8 +30,9 @@ class _AuthorizationView extends StatelessWidget {
     return BlocConsumer<AuthorizationCubit, AuthorizationState>(
         listener: (context, state) {
       state.maybeWhen(
-        authorized: (_) {
-          context.router.pushAndPopUntil(const BottomNavigationRoute(),
+        authorized: (_) async {
+          context.router.pushAndPopUntil(
+              const BottomNavigationRoute(),
               predicate: (route) => false);
         },
         unauthorized: () {
@@ -71,26 +74,26 @@ class _AuthorizationView extends StatelessWidget {
                   title: context.localized.google,
                   icon: MoreHandsAssets.icons.google.svg(),
                 ),
-                8.h.heightBox,
-                MHOutlinedButton(
-                  onPressed: () {
-                    cubit.loginViaSocial(SocialAuthType.apple);
-                    // context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                    //     predicate: (route) => false);
-                  },
-                  title: context.localized.appleId,
-                  icon: MoreHandsAssets.icons.apple.svg(),
-                ),
-                8.h.heightBox,
-                MHOutlinedButton(
-                  onPressed: () {
-                    cubit.loginViaSocial(SocialAuthType.facebook);
-                    // context.router.pushAndPopUntil(const BottomNavigationRoute(),
-                    //     predicate: (route) => false);
-                  },
-                  title: context.localized.facebook,
-                  icon: MoreHandsAssets.icons.facebook.svg(),
-                ),
+                if (Platform.isIOS)
+                  MHOutlinedButton(
+                    onPressed: () {
+                      cubit.loginViaSocial(SocialAuthType.apple);
+                      // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                      //     predicate: (route) => false);
+                    },
+                    title: context.localized.appleId,
+                    icon: MoreHandsAssets.icons.apple.svg(),
+                  ).paddingOnly(top: 8.h),
+                // 8.h.heightBox,
+                // MHOutlinedButton(
+                //   onPressed: () {
+                //     cubit.loginViaSocial(SocialAuthType.facebook);
+                //     // context.router.pushAndPopUntil(const BottomNavigationRoute(),
+                //     //     predicate: (route) => false);
+                //   },
+                //   title: context.localized.facebook,
+                //   icon: MoreHandsAssets.icons.facebook.svg(),
+                // ),
                 24.h.heightBox,
                 if (credential != null)
                   MHOutlinedButton(
@@ -112,6 +115,7 @@ class _AuthorizationView extends StatelessWidget {
                   ),
                 24.h.heightBox,
                 MHTextField(
+                  controller: cubit.referralController,
                   hintText: context.localized.enterInvitation,
                 ),
               ],

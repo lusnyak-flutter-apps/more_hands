@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/data.dart';
 import 'package:more_hands/data/local/social_auth/social_auth_manager.dart';
@@ -12,7 +13,7 @@ part 'authorization_state.dart';
 @injectable
 class AuthorizationCubit extends Cubit<AuthorizationState> {
   AuthorizationCubit() : super(const AuthorizationState.initial());
-
+  TextEditingController referralController = TextEditingController();
   final List<UserCredentialModel> demoUsers = [
     const UserCredentialModel(
         username: 'd.s.koksharov', password: '123', name: "Dima"),
@@ -38,7 +39,9 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
   Future<void> loginViaSocial(SocialAuthType authType) async {
     final credential = await getIt<SocialAuthManager>().signIn(authType);
     if (credential?.idToken != null) {
-      await getIt<AuthRepository>().loginSocial(credential!.idToken!).then((value) {
+      await getIt<AuthRepository>()
+          .loginSocial(credential!.idToken!, referral: referralController.text)
+          .then((value) {
         if (value) {
           emit(AuthorizationState.authorized(credential));
         } else {

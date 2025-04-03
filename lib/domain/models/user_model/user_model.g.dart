@@ -19,6 +19,10 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : LastReqInfoModel.fromJson(
               json['lastReqInfo'] as Map<String, dynamic>),
+      lastCommentInfo: json['lastCommentInfo'] == null
+          ? null
+          : LastCommentInfoModel.fromJson(
+              json['lastCommentInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -26,4 +30,5 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'userInfo': instance.userInfo,
       'services': instance.services,
       'lastReqInfo': instance.lastReqInfo,
+      'lastCommentInfo': instance.lastCommentInfo,
     };

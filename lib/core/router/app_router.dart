@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:more_hands/domain/models/category_model/category_model.dart';
+import 'package:more_hands/domain/models/last_comment_info/last_comment_info_model.dart';
 import 'package:more_hands/domain/models/request_model/request_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';

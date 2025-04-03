@@ -65,9 +65,41 @@ class _AuthRemoteApi implements AuthRemoteApi {
   }
 
   @override
-  Future<LoginResponseModel?> loginGoogle(String idToken) async {
+  Future<void> deleteAccount() async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'idToken': idToken};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/user/deleteSelf',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<LoginResponseModel?> loginGoogle(
+    String idToken, {
+    String? refCode,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'idToken': idToken,
+      r'refCode': refCode,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<LoginResponseModel>(Options(

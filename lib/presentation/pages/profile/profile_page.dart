@@ -113,7 +113,8 @@ class _ProfileView extends StatelessWidget {
                       MHOutlinedButton(
                         title: context.localized.deleteProfile,
                         onPressed: () {
-                          showProfileDeleteSheet(context);
+                          showProfileDeleteSheet(context,
+                              date: state.user?.userInfo?.subscriptionEndDate);
                         },
                       ).expanded(),
                       8.w.widthBox,
@@ -126,7 +127,7 @@ class _ProfileView extends StatelessWidget {
                   ),
                   8.h.heightBox,
                   MHOutlinedButton(
-                    title: "Language",
+                    title: context.localized.changeLanguage,
                     onPressed: () async {
                       await showLanguages(context);
                     },
@@ -325,11 +326,15 @@ class _ProfileView extends StatelessWidget {
     );
   }
 
-  Future<void> showProfileDeleteSheet(BuildContext context) async {
+  Future<void> showProfileDeleteSheet(BuildContext context,
+      {DateTime? date}) async {
     await showMHModalBottomSheet(
       context,
       title: "${context.localized.deleteProfile}?",
-      child: const ProfileDeleteBottomView(),
+      child: ProfileDeleteBottomView(
+        subscribeUntil: date,
+        onDeleted: context.read<ProfileCubit>().deleteProfile,
+      ),
     );
   }
 
@@ -381,6 +386,7 @@ class _ProfileView extends StatelessWidget {
       child: AddReviewPage(
         replyToCommentId: comment.id,
         requestId: comment.requestId,
+        userRelatedLogin: comment.userData?.userLogin,
       ),
     ).then((onValue) {
       if (onValue is bool && onValue == true && context.mounted) {

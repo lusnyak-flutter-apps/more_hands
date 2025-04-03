@@ -22,9 +22,13 @@ class AuthRepository {
     });
   }
 
-  Future<bool> loginSocial(String socialToken, {  SocialAuthType type = SocialAuthType.google}) async {
-    final loginFuture =   getIt<AuthRemoteApi>().loginGoogle(socialToken);
-     return await loginFuture.then((value) async {
+  Future<bool> loginSocial(String socialToken,
+      {String? referral, SocialAuthType type = SocialAuthType.google}) async {
+    final refCode =
+        referral != null && referral.trim().isNotEmpty ? referral.trim() : null;
+    final loginFuture =
+        getIt<AuthRemoteApi>().loginGoogle(socialToken, refCode: refCode);
+    return await loginFuture.then((value) async {
       if (value != null) {
         await getIt<TokenStorage>().saveToken(value);
       }
@@ -38,7 +42,8 @@ class AuthRepository {
   Future<void> localLogout() async {
     await Future.wait([
       getIt<TokenStorage>().deleteToken(),
-    ]).whenComplete(() => appRouter.pushAndPopUntil(const TestAuthRoute(),
+    ]).whenComplete(() => appRouter.pushAndPopUntil(const AuthorizationRoute(),
         predicate: (route) => false));
   }
+
 }

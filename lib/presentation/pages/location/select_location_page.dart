@@ -56,6 +56,15 @@ class _SelectLocationView extends StatelessWidget {
             children: [
               MHSearchField(
                 hintText: context.localized.search,
+                controller: cubit.searchController,
+                onEditingComplete: () {
+                  cubit.onEditingComplete();
+                  FocusScope.of(context).unfocus();
+                },
+                onClear: () {
+                  cubit.onEditingComplete();
+                  FocusScope.of(context).unfocus();
+                },
               ),
               8.w.heightBox,
               Align(

@@ -23,6 +23,8 @@ mixin _$UserModel {
   UserInfoModel? get userInfo => throw _privateConstructorUsedError;
   List<ServiceModel> get services => throw _privateConstructorUsedError;
   LastReqInfoModel? get lastReqInfo => throw _privateConstructorUsedError;
+  LastCommentInfoModel? get lastCommentInfo =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +44,12 @@ abstract class $UserModelCopyWith<$Res> {
   $Res call(
       {UserInfoModel? userInfo,
       List<ServiceModel> services,
-      LastReqInfoModel? lastReqInfo});
+      LastReqInfoModel? lastReqInfo,
+      LastCommentInfoModel? lastCommentInfo});
 
   $UserInfoModelCopyWith<$Res>? get userInfo;
   $LastReqInfoModelCopyWith<$Res>? get lastReqInfo;
+  $LastCommentInfoModelCopyWith<$Res>? get lastCommentInfo;
 }
 
 /// @nodoc
@@ -66,6 +70,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? userInfo = freezed,
     Object? services = null,
     Object? lastReqInfo = freezed,
+    Object? lastCommentInfo = freezed,
   }) {
     return _then(_value.copyWith(
       userInfo: freezed == userInfo
@@ -80,6 +85,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.lastReqInfo
           : lastReqInfo // ignore: cast_nullable_to_non_nullable
               as LastReqInfoModel?,
+      lastCommentInfo: freezed == lastCommentInfo
+          ? _value.lastCommentInfo
+          : lastCommentInfo // ignore: cast_nullable_to_non_nullable
+              as LastCommentInfoModel?,
     ) as $Val);
   }
 
@@ -110,6 +119,21 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       return _then(_value.copyWith(lastReqInfo: value) as $Val);
     });
   }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LastCommentInfoModelCopyWith<$Res>? get lastCommentInfo {
+    if (_value.lastCommentInfo == null) {
+      return null;
+    }
+
+    return $LastCommentInfoModelCopyWith<$Res>(_value.lastCommentInfo!,
+        (value) {
+      return _then(_value.copyWith(lastCommentInfo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -123,12 +147,15 @@ abstract class _$$UserModelImplCopyWith<$Res>
   $Res call(
       {UserInfoModel? userInfo,
       List<ServiceModel> services,
-      LastReqInfoModel? lastReqInfo});
+      LastReqInfoModel? lastReqInfo,
+      LastCommentInfoModel? lastCommentInfo});
 
   @override
   $UserInfoModelCopyWith<$Res>? get userInfo;
   @override
   $LastReqInfoModelCopyWith<$Res>? get lastReqInfo;
+  @override
+  $LastCommentInfoModelCopyWith<$Res>? get lastCommentInfo;
 }
 
 /// @nodoc
@@ -147,6 +174,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? userInfo = freezed,
     Object? services = null,
     Object? lastReqInfo = freezed,
+    Object? lastCommentInfo = freezed,
   }) {
     return _then(_$UserModelImpl(
       userInfo: freezed == userInfo
@@ -161,6 +189,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.lastReqInfo
           : lastReqInfo // ignore: cast_nullable_to_non_nullable
               as LastReqInfoModel?,
+      lastCommentInfo: freezed == lastCommentInfo
+          ? _value.lastCommentInfo
+          : lastCommentInfo // ignore: cast_nullable_to_non_nullable
+              as LastCommentInfoModel?,
     ));
   }
 }
@@ -171,7 +203,8 @@ class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
       {this.userInfo,
       final List<ServiceModel> services = const <ServiceModel>[],
-      this.lastReqInfo})
+      this.lastReqInfo,
+      this.lastCommentInfo})
       : _services = services;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -190,10 +223,12 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   final LastReqInfoModel? lastReqInfo;
+  @override
+  final LastCommentInfoModel? lastCommentInfo;
 
   @override
   String toString() {
-    return 'UserModel(userInfo: $userInfo, services: $services, lastReqInfo: $lastReqInfo)';
+    return 'UserModel(userInfo: $userInfo, services: $services, lastReqInfo: $lastReqInfo, lastCommentInfo: $lastCommentInfo)';
   }
 
   @override
@@ -205,13 +240,19 @@ class _$UserModelImpl implements _UserModel {
                 other.userInfo == userInfo) &&
             const DeepCollectionEquality().equals(other._services, _services) &&
             (identical(other.lastReqInfo, lastReqInfo) ||
-                other.lastReqInfo == lastReqInfo));
+                other.lastReqInfo == lastReqInfo) &&
+            (identical(other.lastCommentInfo, lastCommentInfo) ||
+                other.lastCommentInfo == lastCommentInfo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userInfo,
-      const DeepCollectionEquality().hash(_services), lastReqInfo);
+  int get hashCode => Object.hash(
+      runtimeType,
+      userInfo,
+      const DeepCollectionEquality().hash(_services),
+      lastReqInfo,
+      lastCommentInfo);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -233,7 +274,8 @@ abstract class _UserModel implements UserModel {
   const factory _UserModel(
       {final UserInfoModel? userInfo,
       final List<ServiceModel> services,
-      final LastReqInfoModel? lastReqInfo}) = _$UserModelImpl;
+      final LastReqInfoModel? lastReqInfo,
+      final LastCommentInfoModel? lastCommentInfo}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -244,6 +286,8 @@ abstract class _UserModel implements UserModel {
   List<ServiceModel> get services;
   @override
   LastReqInfoModel? get lastReqInfo;
+  @override
+  LastCommentInfoModel? get lastCommentInfo;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

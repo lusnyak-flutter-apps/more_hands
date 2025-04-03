@@ -1,9 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:more_hands/utils/extensions/date_time_extension.dart';
 import 'package:more_hands/utils/utils.dart';
 import 'package:uikit/uikit.dart';
 
 class ProfileDeleteBottomView extends StatelessWidget {
-  const ProfileDeleteBottomView({super.key});
+  const ProfileDeleteBottomView({super.key, this.onDeleted, this.subscribeUntil});
+
+  final VoidCallback? onDeleted;
+  final DateTime? subscribeUntil;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,7 @@ class ProfileDeleteBottomView extends StatelessWidget {
                     style: body20MediumStyle,
                   ).paddingSymmetric(horizontal: 8.w),
                   MHGradientTag(
-                    title: "12.12.2024",
+                    title: subscribeUntil?.formatDate() ?? "",
                     icon: MoreHandsAssets.icons.hand.svg(
                       colorFilter: const ColorFilter.mode(
                           MHColors.blackBGColor, BlendMode.srcIn),
@@ -41,12 +46,15 @@ class ProfileDeleteBottomView extends StatelessWidget {
           24.h.heightBox,
           MHOutlinedButton(
             title: context.localized.deleteProfile,
-            onPressed: () {},
+            onPressed: () {
+              context.router.maybePop();
+              onDeleted?.call();
+            },
           ),
           16.h.heightBox,
           MHGradientButton(
             title: context.localized.cancel,
-            onPressed: () {},
+            onPressed: context.router.maybePop,
           )
         ],
       ),

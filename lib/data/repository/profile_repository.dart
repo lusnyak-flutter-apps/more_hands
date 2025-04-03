@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/data/local/preferences/preferences.dart';
 import 'package:more_hands/data/local/token_storage/token_storage.dart';
+import 'package:more_hands/data/remote/auth_remote/auth_remote.dart';
 import 'package:more_hands/data/remote/edit_profile_remote/edit_profile_remote.dart';
 import 'package:more_hands/data/remote/storage_remote/storage_remote.dart';
 import 'package:more_hands/data/remote/user_remote/user_remote.dart';
@@ -65,6 +66,13 @@ class ProfileRepository {
       getIt<TokenStorage>().deleteToken(),
     ]).whenComplete(() => appRouter.pushAndPopUntil(const TestAuthRoute(),
         predicate: (route) => false));
+  }
+
+
+  Future<void> deleteAccount() async {
+    await getIt<AuthRemoteApi>().deleteAccount().then((_) async {
+      await localLogout();
+    });
   }
 
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/local/token_storage/token_storage.dart';
 import 'package:more_hands/data/repository/requests_repository.dart';
 import 'package:more_hands/presentation/pages/bottom_navigation/sub_widgets/mh_bottom_naviagtion_item.dart';
 import 'package:more_hands/presentation/pages/bottom_navigation/sub_widgets/mh_bottom_navigation_bar.dart';
@@ -16,11 +17,29 @@ class BottomNavigationPage extends StatefulWidget {
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
   int unseenCount = 0;
+  bool openProfileInFirst = false;
 
   @override
   void initState() {
     super.initState();
+    checkUserFirstLogin();
     getUnseenCounts();
+  }
+
+
+  Future<void> checkUserFirstLogin() async {
+    await getIt<TokenStorage>().readToken().then((onValue) async {
+      final userExist = onValue?.existingUser ?? false;
+      if (mounted) {
+        setState(() {
+          openProfileInFirst = !userExist;
+        });
+      }
+      if (userExist == false) {
+        await getIt<TokenStorage>()
+            .saveToken(onValue!.copyWith(existingUser: true));
+      }
+    });
   }
 
   Future<void> getUnseenCounts() async {
@@ -40,6 +59,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     return AutoTabsRouter(
       lazyLoad: true,
       homeIndex: 0,
+      // widget.homeIndex,
       routes: const [
         HomeRoute(),
         RequestsTapRoute(),
@@ -51,6 +71,18 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       ),
       builder: (tabsContext, child) {
         final tabsRouter = AutoTabsRouter.of(tabsContext);
+        if (openProfileInFirst == true &&
+            tabsContext.mounted &&
+            context.mounted) {
+          Future.delayed(const Duration(milliseconds: 300), () {
+            if(mounted) {
+              setState(() {
+                openProfileInFirst = false;
+              });
+            }
+            tabsRouter.setActiveIndex(2);
+          });
+        }
         return Scaffold(
           body: Stack(
             alignment: Alignment.bottomCenter,

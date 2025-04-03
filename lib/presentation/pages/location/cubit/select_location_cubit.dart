@@ -12,17 +12,19 @@ part 'select_location_state.dart';
 @injectable
 class SelectLocationCubit extends Cubit<SelectLocationState> {
   SelectLocationCubit() : super(const SelectLocationState());
+  TextEditingController searchController = TextEditingController();
+
   Location location = Location();
 
-  Future<void> findClosestLocations(
-      {String name = "",
-      bool singleSelect = false,
-      int? initialSelected}) async {
+  Future<void> findClosestLocations({
+    bool singleSelect = false,
+    int? initialSelected,
+  }) async {
     if (state.loading) return;
     emit(state.copyWith(loading: true, singleSelect: singleSelect));
     try {
-      final locations =
-          await getIt<LocationRepository>().findClosestLocations(txt: name);
+      final locations = await getIt<LocationRepository>()
+          .findClosestLocations(txt: searchController.text);
       if (initialSelected != null) {
         final selected =
             locations.where((l) => l.id == initialSelected).firstOrNull;
@@ -58,18 +60,24 @@ class SelectLocationCubit extends Cubit<SelectLocationState> {
   Future<void> selectLocation(LocationModel value) async {
     if (state.loading) return;
 
-    var selected = [...state.selectedLocations];
-    var selectedIds = selected.map((e) => e.id).toList();
-
     if (state.singleSelect) {
-      selected = [value];
+      emit(state.copyWith(selectedLocations: [value]));
     } else {
+      var selected = [...state.selectedLocations];
+      var selectedIds = selected.map((e) => e.id).toList();
       if (selectedIds.contains(value.id)) {
         selected.removeWhere((e) => e.id == value.id);
       } else {
         selected.add(value);
       }
+      emit(state.copyWith(selectedLocations: selected));
     }
-    emit(state.copyWith(selectedLocations: selected));
+  }
+
+  Future<void> onEditingComplete() async {
+    await findClosestLocations(
+      singleSelect: state.singleSelect,
+      initialSelected: state.selectedLocations.firstOrNull?.id,
+    );
   }
 }

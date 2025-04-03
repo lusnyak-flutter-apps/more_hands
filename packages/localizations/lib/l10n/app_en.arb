@@ -107,5 +107,6 @@
   "sendRequestToSeeContacts":"Send a request to see contacts",
   "waitingForAResponse":"Waiting for a response",
   "ago": "ago",
-  "answer":"Ответить"
+  "answer":"Ответить",
+  "viewReview":"Смотреть отзыв"
  }

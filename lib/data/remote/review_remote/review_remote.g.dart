@@ -51,15 +51,45 @@ class _ReviewRemoteApi implements ReviewRemoteApi {
   }
 
   @override
+  Future<void> editUserComments({CommentEditReqModel? data}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(data?.toJson() ?? <String, dynamic>{});
+    final _options = _setStreamType<void>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/userComments',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
   Future<List<CommentModel>> getCommentsByUserId({
+    int? userId,
     int from = 0,
     int to = 10,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'userId': userId,
       r'from': from,
       r'to': to,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<CommentModel>>(Options(
@@ -70,6 +100,50 @@ class _ReviewRemoteApi implements ReviewRemoteApi {
         .compose(
           _dio.options,
           '/userComments/getByUserId',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<CommentModel> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) => CommentModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<List<CommentModel>> getCommentByRelatedUserId({
+    int? userId,
+    int from = 0,
+    int to = 10,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'userId': userId,
+      r'from': from,
+      r'to': to,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<CommentModel>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/userComments/getByRelatedUserId',
           queryParameters: queryParameters,
           data: _data,
         )

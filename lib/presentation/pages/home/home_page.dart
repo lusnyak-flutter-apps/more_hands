@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/domain/models/last_comment_info/last_comment_info_model.dart';
 import 'package:more_hands/domain/models/location_model/location_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -179,8 +180,7 @@ class _HomeView extends StatelessWidget {
               return ReferralItem(
                 showPortfolio: true,
                 onTapPortfolioItem: (s) {
-                  showServiceView(context,
-                      service: s, user: referral);
+                  showServiceView(context, service: s, user: referral);
                 },
                 onTap: () {
                   context.router.push(UserRoute(userId: referral.userInfo!.id));
@@ -189,9 +189,22 @@ class _HomeView extends StatelessWidget {
                   context.router
                       .push(SendRequestRoute(userId: referral.userInfo!.id));
                 },
-                onLeaveAReview: () {
-                  context.router
-                      .push( AddReviewRoute(userRelatedLogin: referral.userInfo?.userLogin));
+                onReviewAction: (type) {
+                  if (type == ReviewActionType.leave) {
+                    context.router.push(AddReviewRoute(
+                      userRelatedLogin: referral.userInfo?.userLogin,
+                    ));
+                  }
+                  if (type == ReviewActionType.edit) {
+                    context.router.push(AddReviewRoute(
+                        userRelatedLogin: referral.userInfo?.userLogin,
+                        commentForEdit: referral.lastCommentInfo));
+                  }
+                  if (type == ReviewActionType.view) {
+                    context.router.push(UserRoute(
+                        userId: referral.userInfo!.id,
+                        commentId: referral.lastCommentInfo?.scommentId));
+                  }
                 },
                 referral: referral,
               ).paddingSymmetric(vertical: 8.h);
@@ -215,14 +228,14 @@ class _HomeView extends StatelessWidget {
         user: user,
       ),
     ).then((onValue) {
-      if (onValue is String  && context.mounted) {
+      if (onValue is String && context.mounted) {
         if (onValue == sendRequest && user.userInfo?.id != null) {
-          context.router
-              .push(SendRequestRoute(userId: user.userInfo!.id, serviceModel: service));
+          context.router.push(SendRequestRoute(
+              userId: user.userInfo!.id, serviceModel: service));
         }
-        if (onValue == leaveAReview &&  user.userInfo?.userLogin != null) {
+        if (onValue == leaveAReview && user.userInfo?.userLogin != null) {
           context.router
-              .push( AddReviewRoute(userRelatedLogin: user.userInfo?.userLogin));
+              .push(AddReviewRoute(userRelatedLogin: user.userInfo?.userLogin));
         }
       }
     });

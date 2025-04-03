@@ -27,13 +27,18 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> getComments() async {
-    await getIt<CommentsRepository>().getCommentsByUserId().then((value) {
+    await getIt<CommentsRepository>().getCommentsByRelatedUserId().then((value) {
       emit(state.copyWith(comments: value));
     });
   }
 
   Future<void> logout() async {
     await getIt<ProfileRepository>().logout();
+  }
+
+
+  Future<void> deleteProfile() async {
+    await getIt<ProfileRepository>().deleteAccount();
   }
 
   Future<void> deleteUserService(int id) async {

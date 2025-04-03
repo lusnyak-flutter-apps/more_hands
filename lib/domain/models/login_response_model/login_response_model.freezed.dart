@@ -24,6 +24,7 @@ mixin _$LoginResponseModel {
   int get expiration => throw _privateConstructorUsedError;
   String get refCode => throw _privateConstructorUsedError;
   int? get closestLoc => throw _privateConstructorUsedError;
+  bool? get existingUser => throw _privateConstructorUsedError;
 
   /// Serializes this LoginResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,12 @@ abstract class $LoginResponseModelCopyWith<$Res> {
           LoginResponseModel value, $Res Function(LoginResponseModel) then) =
       _$LoginResponseModelCopyWithImpl<$Res, LoginResponseModel>;
   @useResult
-  $Res call({String token, int expiration, String refCode, int? closestLoc});
+  $Res call(
+      {String token,
+      int expiration,
+      String refCode,
+      int? closestLoc,
+      bool? existingUser});
 }
 
 /// @nodoc
@@ -63,6 +69,7 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
     Object? expiration = null,
     Object? refCode = null,
     Object? closestLoc = freezed,
+    Object? existingUser = freezed,
   }) {
     return _then(_value.copyWith(
       token: null == token
@@ -81,6 +88,10 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
           ? _value.closestLoc
           : closestLoc // ignore: cast_nullable_to_non_nullable
               as int?,
+      existingUser: freezed == existingUser
+          ? _value.existingUser
+          : existingUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -93,7 +104,12 @@ abstract class _$$LoginResponseModelImplCopyWith<$Res>
       __$$LoginResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, int expiration, String refCode, int? closestLoc});
+  $Res call(
+      {String token,
+      int expiration,
+      String refCode,
+      int? closestLoc,
+      bool? existingUser});
 }
 
 /// @nodoc
@@ -113,6 +129,7 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
     Object? expiration = null,
     Object? refCode = null,
     Object? closestLoc = freezed,
+    Object? existingUser = freezed,
   }) {
     return _then(_$LoginResponseModelImpl(
       token: null == token
@@ -131,6 +148,10 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
           ? _value.closestLoc
           : closestLoc // ignore: cast_nullable_to_non_nullable
               as int?,
+      existingUser: freezed == existingUser
+          ? _value.existingUser
+          : existingUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -143,7 +164,8 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
       {required this.token,
       required this.expiration,
       required this.refCode,
-      required this.closestLoc});
+      required this.closestLoc,
+      required this.existingUser});
 
   factory _$LoginResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginResponseModelImplFromJson(json);
@@ -156,10 +178,12 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   final String refCode;
   @override
   final int? closestLoc;
+  @override
+  final bool? existingUser;
 
   @override
   String toString() {
-    return 'LoginResponseModel(token: $token, expiration: $expiration, refCode: $refCode, closestLoc: $closestLoc)';
+    return 'LoginResponseModel(token: $token, expiration: $expiration, refCode: $refCode, closestLoc: $closestLoc, existingUser: $existingUser)';
   }
 
   @override
@@ -172,13 +196,15 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
                 other.expiration == expiration) &&
             (identical(other.refCode, refCode) || other.refCode == refCode) &&
             (identical(other.closestLoc, closestLoc) ||
-                other.closestLoc == closestLoc));
+                other.closestLoc == closestLoc) &&
+            (identical(other.existingUser, existingUser) ||
+                other.existingUser == existingUser));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, token, expiration, refCode, closestLoc);
+  int get hashCode => Object.hash(
+      runtimeType, token, expiration, refCode, closestLoc, existingUser);
 
   /// Create a copy of LoginResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -202,7 +228,8 @@ abstract class _LoginResponseModel implements LoginResponseModel {
       {required final String token,
       required final int expiration,
       required final String refCode,
-      required final int? closestLoc}) = _$LoginResponseModelImpl;
+      required final int? closestLoc,
+      required final bool? existingUser}) = _$LoginResponseModelImpl;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$LoginResponseModelImpl.fromJson;
@@ -215,6 +242,8 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   String get refCode;
   @override
   int? get closestLoc;
+  @override
+  bool? get existingUser;
 
   /// Create a copy of LoginResponseModel
   /// with the given fields replaced by the non-null parameter values.

@@ -17,6 +17,7 @@ abstract class EndPoint {
   static const String userProfileImage = "/user/profileImage";
   static const String userContacts = "/user/contacts";
   static const String userBio = "/user/bio";
+  static const String userDeleteSelf = "/user/deleteSelf";
 
   static const String storageDownload = "/storage/download";
 
@@ -46,4 +47,5 @@ abstract class EndPoint {
   static const String userComments = "/userComments";
   static const String getReplyCommentToCommentId = "/userComments/getByReplyToCommentId";
   static const String getCommentsByUserId = "/userComments/getByUserId";
+  static const String getCommentsByRelatedUserId = "/userComments/getByRelatedUserId";
  }

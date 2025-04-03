@@ -20,23 +20,17 @@ CommentModel _$CommentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentModel {
-  int get id => throw _privateConstructorUsedError;
-  int? get userId => throw _privateConstructorUsedError;
-  int? get userRelatedId => throw _privateConstructorUsedError;
-  int? get replyToCommentId => throw _privateConstructorUsedError;
-  int? get requestId => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "createDttm")
   DateTime? get createAt => throw _privateConstructorUsedError;
-  num get userRating => throw _privateConstructorUsedError;
-  num get userRelatedRating => throw _privateConstructorUsedError;
-  int get replyToCommentsCount => throw _privateConstructorUsedError;
-  String? get commentVisibility => throw _privateConstructorUsedError;
-  String? get userFirstName => throw _privateConstructorUsedError;
   String? get commentText => throw _privateConstructorUsedError;
-  String? get userLastName => throw _privateConstructorUsedError;
-  String? get userMiddleName => throw _privateConstructorUsedError;
-  String? get profileImageUrl => throw _privateConstructorUsedError;
-  bool get replyToCommentsLoaded => throw _privateConstructorUsedError;
+  CommentUserDataModel? get userData => throw _privateConstructorUsedError;
+  CommentUserDataModel? get relatedUserData =>
+      throw _privateConstructorUsedError;
+  String? get commentVisibility => throw _privateConstructorUsedError;
+  int? get requestId => throw _privateConstructorUsedError;
+  CommentModel? get relatedComment => throw _privateConstructorUsedError;
+  CommentRelationType get relationType => throw _privateConstructorUsedError;
 
   /// Serializes this CommentModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,22 +49,19 @@ abstract class $CommentModelCopyWith<$Res> {
       _$CommentModelCopyWithImpl<$Res, CommentModel>;
   @useResult
   $Res call(
-      {int id,
-      int? userId,
-      int? userRelatedId,
-      int? replyToCommentId,
-      int? requestId,
+      {int? id,
       @JsonKey(name: "createDttm") DateTime? createAt,
-      num userRating,
-      num userRelatedRating,
-      int replyToCommentsCount,
-      String? commentVisibility,
-      String? userFirstName,
       String? commentText,
-      String? userLastName,
-      String? userMiddleName,
-      String? profileImageUrl,
-      bool replyToCommentsLoaded});
+      CommentUserDataModel? userData,
+      CommentUserDataModel? relatedUserData,
+      String? commentVisibility,
+      int? requestId,
+      CommentModel? relatedComment,
+      CommentRelationType relationType});
+
+  $CommentUserDataModelCopyWith<$Res>? get userData;
+  $CommentUserDataModelCopyWith<$Res>? get relatedUserData;
+  $CommentModelCopyWith<$Res>? get relatedComment;
 }
 
 /// @nodoc
@@ -88,89 +79,97 @@ class _$CommentModelCopyWithImpl<$Res, $Val extends CommentModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = freezed,
-    Object? userRelatedId = freezed,
-    Object? replyToCommentId = freezed,
-    Object? requestId = freezed,
+    Object? id = freezed,
     Object? createAt = freezed,
-    Object? userRating = null,
-    Object? userRelatedRating = null,
-    Object? replyToCommentsCount = null,
-    Object? commentVisibility = freezed,
-    Object? userFirstName = freezed,
     Object? commentText = freezed,
-    Object? userLastName = freezed,
-    Object? userMiddleName = freezed,
-    Object? profileImageUrl = freezed,
-    Object? replyToCommentsLoaded = null,
+    Object? userData = freezed,
+    Object? relatedUserData = freezed,
+    Object? commentVisibility = freezed,
+    Object? requestId = freezed,
+    Object? relatedComment = freezed,
+    Object? relationType = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      userRelatedId: freezed == userRelatedId
-          ? _value.userRelatedId
-          : userRelatedId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      replyToCommentId: freezed == replyToCommentId
-          ? _value.replyToCommentId
-          : replyToCommentId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      requestId: freezed == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
               as int?,
       createAt: freezed == createAt
           ? _value.createAt
           : createAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      userRating: null == userRating
-          ? _value.userRating
-          : userRating // ignore: cast_nullable_to_non_nullable
-              as num,
-      userRelatedRating: null == userRelatedRating
-          ? _value.userRelatedRating
-          : userRelatedRating // ignore: cast_nullable_to_non_nullable
-              as num,
-      replyToCommentsCount: null == replyToCommentsCount
-          ? _value.replyToCommentsCount
-          : replyToCommentsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      commentVisibility: freezed == commentVisibility
-          ? _value.commentVisibility
-          : commentVisibility // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userFirstName: freezed == userFirstName
-          ? _value.userFirstName
-          : userFirstName // ignore: cast_nullable_to_non_nullable
-              as String?,
       commentText: freezed == commentText
           ? _value.commentText
           : commentText // ignore: cast_nullable_to_non_nullable
               as String?,
-      userLastName: freezed == userLastName
-          ? _value.userLastName
-          : userLastName // ignore: cast_nullable_to_non_nullable
+      userData: freezed == userData
+          ? _value.userData
+          : userData // ignore: cast_nullable_to_non_nullable
+              as CommentUserDataModel?,
+      relatedUserData: freezed == relatedUserData
+          ? _value.relatedUserData
+          : relatedUserData // ignore: cast_nullable_to_non_nullable
+              as CommentUserDataModel?,
+      commentVisibility: freezed == commentVisibility
+          ? _value.commentVisibility
+          : commentVisibility // ignore: cast_nullable_to_non_nullable
               as String?,
-      userMiddleName: freezed == userMiddleName
-          ? _value.userMiddleName
-          : userMiddleName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profileImageUrl: freezed == profileImageUrl
-          ? _value.profileImageUrl
-          : profileImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyToCommentsLoaded: null == replyToCommentsLoaded
-          ? _value.replyToCommentsLoaded
-          : replyToCommentsLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
+      requestId: freezed == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      relatedComment: freezed == relatedComment
+          ? _value.relatedComment
+          : relatedComment // ignore: cast_nullable_to_non_nullable
+              as CommentModel?,
+      relationType: null == relationType
+          ? _value.relationType
+          : relationType // ignore: cast_nullable_to_non_nullable
+              as CommentRelationType,
     ) as $Val);
+  }
+
+  /// Create a copy of CommentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CommentUserDataModelCopyWith<$Res>? get userData {
+    if (_value.userData == null) {
+      return null;
+    }
+
+    return $CommentUserDataModelCopyWith<$Res>(_value.userData!, (value) {
+      return _then(_value.copyWith(userData: value) as $Val);
+    });
+  }
+
+  /// Create a copy of CommentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CommentUserDataModelCopyWith<$Res>? get relatedUserData {
+    if (_value.relatedUserData == null) {
+      return null;
+    }
+
+    return $CommentUserDataModelCopyWith<$Res>(_value.relatedUserData!,
+        (value) {
+      return _then(_value.copyWith(relatedUserData: value) as $Val);
+    });
+  }
+
+  /// Create a copy of CommentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CommentModelCopyWith<$Res>? get relatedComment {
+    if (_value.relatedComment == null) {
+      return null;
+    }
+
+    return $CommentModelCopyWith<$Res>(_value.relatedComment!, (value) {
+      return _then(_value.copyWith(relatedComment: value) as $Val);
+    });
   }
 }
 
@@ -183,22 +182,22 @@ abstract class _$$CommentModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      int? userId,
-      int? userRelatedId,
-      int? replyToCommentId,
-      int? requestId,
+      {int? id,
       @JsonKey(name: "createDttm") DateTime? createAt,
-      num userRating,
-      num userRelatedRating,
-      int replyToCommentsCount,
-      String? commentVisibility,
-      String? userFirstName,
       String? commentText,
-      String? userLastName,
-      String? userMiddleName,
-      String? profileImageUrl,
-      bool replyToCommentsLoaded});
+      CommentUserDataModel? userData,
+      CommentUserDataModel? relatedUserData,
+      String? commentVisibility,
+      int? requestId,
+      CommentModel? relatedComment,
+      CommentRelationType relationType});
+
+  @override
+  $CommentUserDataModelCopyWith<$Res>? get userData;
+  @override
+  $CommentUserDataModelCopyWith<$Res>? get relatedUserData;
+  @override
+  $CommentModelCopyWith<$Res>? get relatedComment;
 }
 
 /// @nodoc
@@ -214,88 +213,53 @@ class __$$CommentModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = freezed,
-    Object? userRelatedId = freezed,
-    Object? replyToCommentId = freezed,
-    Object? requestId = freezed,
+    Object? id = freezed,
     Object? createAt = freezed,
-    Object? userRating = null,
-    Object? userRelatedRating = null,
-    Object? replyToCommentsCount = null,
-    Object? commentVisibility = freezed,
-    Object? userFirstName = freezed,
     Object? commentText = freezed,
-    Object? userLastName = freezed,
-    Object? userMiddleName = freezed,
-    Object? profileImageUrl = freezed,
-    Object? replyToCommentsLoaded = null,
+    Object? userData = freezed,
+    Object? relatedUserData = freezed,
+    Object? commentVisibility = freezed,
+    Object? requestId = freezed,
+    Object? relatedComment = freezed,
+    Object? relationType = null,
   }) {
     return _then(_$CommentModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      userRelatedId: freezed == userRelatedId
-          ? _value.userRelatedId
-          : userRelatedId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      replyToCommentId: freezed == replyToCommentId
-          ? _value.replyToCommentId
-          : replyToCommentId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      requestId: freezed == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
               as int?,
       createAt: freezed == createAt
           ? _value.createAt
           : createAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      userRating: null == userRating
-          ? _value.userRating
-          : userRating // ignore: cast_nullable_to_non_nullable
-              as num,
-      userRelatedRating: null == userRelatedRating
-          ? _value.userRelatedRating
-          : userRelatedRating // ignore: cast_nullable_to_non_nullable
-              as num,
-      replyToCommentsCount: null == replyToCommentsCount
-          ? _value.replyToCommentsCount
-          : replyToCommentsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      commentVisibility: freezed == commentVisibility
-          ? _value.commentVisibility
-          : commentVisibility // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userFirstName: freezed == userFirstName
-          ? _value.userFirstName
-          : userFirstName // ignore: cast_nullable_to_non_nullable
-              as String?,
       commentText: freezed == commentText
           ? _value.commentText
           : commentText // ignore: cast_nullable_to_non_nullable
               as String?,
-      userLastName: freezed == userLastName
-          ? _value.userLastName
-          : userLastName // ignore: cast_nullable_to_non_nullable
+      userData: freezed == userData
+          ? _value.userData
+          : userData // ignore: cast_nullable_to_non_nullable
+              as CommentUserDataModel?,
+      relatedUserData: freezed == relatedUserData
+          ? _value.relatedUserData
+          : relatedUserData // ignore: cast_nullable_to_non_nullable
+              as CommentUserDataModel?,
+      commentVisibility: freezed == commentVisibility
+          ? _value.commentVisibility
+          : commentVisibility // ignore: cast_nullable_to_non_nullable
               as String?,
-      userMiddleName: freezed == userMiddleName
-          ? _value.userMiddleName
-          : userMiddleName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profileImageUrl: freezed == profileImageUrl
-          ? _value.profileImageUrl
-          : profileImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyToCommentsLoaded: null == replyToCommentsLoaded
-          ? _value.replyToCommentsLoaded
-          : replyToCommentsLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
+      requestId: freezed == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      relatedComment: freezed == relatedComment
+          ? _value.relatedComment
+          : relatedComment // ignore: cast_nullable_to_non_nullable
+              as CommentModel?,
+      relationType: null == relationType
+          ? _value.relationType
+          : relationType // ignore: cast_nullable_to_non_nullable
+              as CommentRelationType,
     ));
   }
 }
@@ -304,67 +268,43 @@ class __$$CommentModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CommentModelImpl implements _CommentModel {
   const _$CommentModelImpl(
-      {required this.id,
-      this.userId,
-      this.userRelatedId,
-      this.replyToCommentId,
-      this.requestId,
+      {this.id,
       @JsonKey(name: "createDttm") this.createAt,
-      this.userRating = 0,
-      this.userRelatedRating = 0,
-      this.replyToCommentsCount = 0,
-      this.commentVisibility,
-      this.userFirstName,
       this.commentText,
-      this.userLastName,
-      this.userMiddleName,
-      this.profileImageUrl,
-      this.replyToCommentsLoaded = true});
+      this.userData,
+      this.relatedUserData,
+      this.commentVisibility,
+      this.requestId,
+      this.relatedComment,
+      this.relationType = CommentRelationType.empty});
 
   factory _$CommentModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CommentModelImplFromJson(json);
 
   @override
-  final int id;
-  @override
-  final int? userId;
-  @override
-  final int? userRelatedId;
-  @override
-  final int? replyToCommentId;
-  @override
-  final int? requestId;
+  final int? id;
   @override
   @JsonKey(name: "createDttm")
   final DateTime? createAt;
   @override
-  @JsonKey()
-  final num userRating;
+  final String? commentText;
   @override
-  @JsonKey()
-  final num userRelatedRating;
+  final CommentUserDataModel? userData;
   @override
-  @JsonKey()
-  final int replyToCommentsCount;
+  final CommentUserDataModel? relatedUserData;
   @override
   final String? commentVisibility;
   @override
-  final String? userFirstName;
+  final int? requestId;
   @override
-  final String? commentText;
-  @override
-  final String? userLastName;
-  @override
-  final String? userMiddleName;
-  @override
-  final String? profileImageUrl;
+  final CommentModel? relatedComment;
   @override
   @JsonKey()
-  final bool replyToCommentsLoaded;
+  final CommentRelationType relationType;
 
   @override
   String toString() {
-    return 'CommentModel(id: $id, userId: $userId, userRelatedId: $userRelatedId, replyToCommentId: $replyToCommentId, requestId: $requestId, createAt: $createAt, userRating: $userRating, userRelatedRating: $userRelatedRating, replyToCommentsCount: $replyToCommentsCount, commentVisibility: $commentVisibility, userFirstName: $userFirstName, commentText: $commentText, userLastName: $userLastName, userMiddleName: $userMiddleName, profileImageUrl: $profileImageUrl, replyToCommentsLoaded: $replyToCommentsLoaded)';
+    return 'CommentModel(id: $id, createAt: $createAt, commentText: $commentText, userData: $userData, relatedUserData: $relatedUserData, commentVisibility: $commentVisibility, requestId: $requestId, relatedComment: $relatedComment, relationType: $relationType)';
   }
 
   @override
@@ -373,35 +313,22 @@ class _$CommentModelImpl implements _CommentModel {
         (other.runtimeType == runtimeType &&
             other is _$CommentModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.userRelatedId, userRelatedId) ||
-                other.userRelatedId == userRelatedId) &&
-            (identical(other.replyToCommentId, replyToCommentId) ||
-                other.replyToCommentId == replyToCommentId) &&
-            (identical(other.requestId, requestId) ||
-                other.requestId == requestId) &&
             (identical(other.createAt, createAt) ||
                 other.createAt == createAt) &&
-            (identical(other.userRating, userRating) ||
-                other.userRating == userRating) &&
-            (identical(other.userRelatedRating, userRelatedRating) ||
-                other.userRelatedRating == userRelatedRating) &&
-            (identical(other.replyToCommentsCount, replyToCommentsCount) ||
-                other.replyToCommentsCount == replyToCommentsCount) &&
-            (identical(other.commentVisibility, commentVisibility) ||
-                other.commentVisibility == commentVisibility) &&
-            (identical(other.userFirstName, userFirstName) ||
-                other.userFirstName == userFirstName) &&
             (identical(other.commentText, commentText) ||
                 other.commentText == commentText) &&
-            (identical(other.userLastName, userLastName) ||
-                other.userLastName == userLastName) &&
-            (identical(other.userMiddleName, userMiddleName) ||
-                other.userMiddleName == userMiddleName) &&
-            (identical(other.profileImageUrl, profileImageUrl) ||
-                other.profileImageUrl == profileImageUrl) &&
-            (identical(other.replyToCommentsLoaded, replyToCommentsLoaded) ||
-                other.replyToCommentsLoaded == replyToCommentsLoaded));
+            (identical(other.userData, userData) ||
+                other.userData == userData) &&
+            (identical(other.relatedUserData, relatedUserData) ||
+                other.relatedUserData == relatedUserData) &&
+            (identical(other.commentVisibility, commentVisibility) ||
+                other.commentVisibility == commentVisibility) &&
+            (identical(other.requestId, requestId) ||
+                other.requestId == requestId) &&
+            (identical(other.relatedComment, relatedComment) ||
+                other.relatedComment == relatedComment) &&
+            (identical(other.relationType, relationType) ||
+                other.relationType == relationType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -409,21 +336,14 @@ class _$CommentModelImpl implements _CommentModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      userId,
-      userRelatedId,
-      replyToCommentId,
-      requestId,
       createAt,
-      userRating,
-      userRelatedRating,
-      replyToCommentsCount,
-      commentVisibility,
-      userFirstName,
       commentText,
-      userLastName,
-      userMiddleName,
-      profileImageUrl,
-      replyToCommentsLoaded);
+      userData,
+      relatedUserData,
+      commentVisibility,
+      requestId,
+      relatedComment,
+      relationType);
 
   /// Create a copy of CommentModel
   /// with the given fields replaced by the non-null parameter values.
@@ -443,59 +363,38 @@ class _$CommentModelImpl implements _CommentModel {
 
 abstract class _CommentModel implements CommentModel {
   const factory _CommentModel(
-      {required final int id,
-      final int? userId,
-      final int? userRelatedId,
-      final int? replyToCommentId,
-      final int? requestId,
+      {final int? id,
       @JsonKey(name: "createDttm") final DateTime? createAt,
-      final num userRating,
-      final num userRelatedRating,
-      final int replyToCommentsCount,
-      final String? commentVisibility,
-      final String? userFirstName,
       final String? commentText,
-      final String? userLastName,
-      final String? userMiddleName,
-      final String? profileImageUrl,
-      final bool replyToCommentsLoaded}) = _$CommentModelImpl;
+      final CommentUserDataModel? userData,
+      final CommentUserDataModel? relatedUserData,
+      final String? commentVisibility,
+      final int? requestId,
+      final CommentModel? relatedComment,
+      final CommentRelationType relationType}) = _$CommentModelImpl;
 
   factory _CommentModel.fromJson(Map<String, dynamic> json) =
       _$CommentModelImpl.fromJson;
 
   @override
-  int get id;
-  @override
-  int? get userId;
-  @override
-  int? get userRelatedId;
-  @override
-  int? get replyToCommentId;
-  @override
-  int? get requestId;
+  int? get id;
   @override
   @JsonKey(name: "createDttm")
   DateTime? get createAt;
   @override
-  num get userRating;
+  String? get commentText;
   @override
-  num get userRelatedRating;
+  CommentUserDataModel? get userData;
   @override
-  int get replyToCommentsCount;
+  CommentUserDataModel? get relatedUserData;
   @override
   String? get commentVisibility;
   @override
-  String? get userFirstName;
+  int? get requestId;
   @override
-  String? get commentText;
+  CommentModel? get relatedComment;
   @override
-  String? get userLastName;
-  @override
-  String? get userMiddleName;
-  @override
-  String? get profileImageUrl;
-  @override
-  bool get replyToCommentsLoaded;
+  CommentRelationType get relationType;
 
   /// Create a copy of CommentModel
   /// with the given fields replaced by the non-null parameter values.

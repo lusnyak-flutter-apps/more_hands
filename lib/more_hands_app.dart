@@ -110,7 +110,7 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
               theme: darkTheme,
               darkTheme: darkTheme,
               routerConfig: appRouter.config(),
-              locale:   Locale(localeCode),
+              locale: Locale(localeCode),
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
             );

@@ -22,6 +22,8 @@ mixin _$AddReviewState {
   int? get replyToCommentId => throw _privateConstructorUsedError;
   int? get requestId => throw _privateConstructorUsedError;
   String? get userRelatedLogin => throw _privateConstructorUsedError;
+  LastCommentInfoModel? get commentForReview =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of AddReviewState
   /// with the given fields replaced by the non-null parameter values.
@@ -42,7 +44,10 @@ abstract class $AddReviewStateCopyWith<$Res> {
       double rating,
       int? replyToCommentId,
       int? requestId,
-      String? userRelatedLogin});
+      String? userRelatedLogin,
+      LastCommentInfoModel? commentForReview});
+
+  $LastCommentInfoModelCopyWith<$Res>? get commentForReview;
 }
 
 /// @nodoc
@@ -66,6 +71,7 @@ class _$AddReviewStateCopyWithImpl<$Res, $Val extends AddReviewState>
     Object? replyToCommentId = freezed,
     Object? requestId = freezed,
     Object? userRelatedLogin = freezed,
+    Object? commentForReview = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -92,7 +98,26 @@ class _$AddReviewStateCopyWithImpl<$Res, $Val extends AddReviewState>
           ? _value.userRelatedLogin
           : userRelatedLogin // ignore: cast_nullable_to_non_nullable
               as String?,
+      commentForReview: freezed == commentForReview
+          ? _value.commentForReview
+          : commentForReview // ignore: cast_nullable_to_non_nullable
+              as LastCommentInfoModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of AddReviewState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LastCommentInfoModelCopyWith<$Res>? get commentForReview {
+    if (_value.commentForReview == null) {
+      return null;
+    }
+
+    return $LastCommentInfoModelCopyWith<$Res>(_value.commentForReview!,
+        (value) {
+      return _then(_value.copyWith(commentForReview: value) as $Val);
+    });
   }
 }
 
@@ -110,7 +135,11 @@ abstract class _$$AddReviewStateImplCopyWith<$Res>
       double rating,
       int? replyToCommentId,
       int? requestId,
-      String? userRelatedLogin});
+      String? userRelatedLogin,
+      LastCommentInfoModel? commentForReview});
+
+  @override
+  $LastCommentInfoModelCopyWith<$Res>? get commentForReview;
 }
 
 /// @nodoc
@@ -132,6 +161,7 @@ class __$$AddReviewStateImplCopyWithImpl<$Res>
     Object? replyToCommentId = freezed,
     Object? requestId = freezed,
     Object? userRelatedLogin = freezed,
+    Object? commentForReview = freezed,
   }) {
     return _then(_$AddReviewStateImpl(
       loading: null == loading
@@ -158,6 +188,10 @@ class __$$AddReviewStateImplCopyWithImpl<$Res>
           ? _value.userRelatedLogin
           : userRelatedLogin // ignore: cast_nullable_to_non_nullable
               as String?,
+      commentForReview: freezed == commentForReview
+          ? _value.commentForReview
+          : commentForReview // ignore: cast_nullable_to_non_nullable
+              as LastCommentInfoModel?,
     ));
   }
 }
@@ -171,7 +205,8 @@ class _$AddReviewStateImpl implements _AddReviewState {
       this.rating = 0.0,
       this.replyToCommentId,
       this.requestId,
-      this.userRelatedLogin});
+      this.userRelatedLogin,
+      this.commentForReview});
 
   @override
   @JsonKey()
@@ -188,10 +223,12 @@ class _$AddReviewStateImpl implements _AddReviewState {
   final int? requestId;
   @override
   final String? userRelatedLogin;
+  @override
+  final LastCommentInfoModel? commentForReview;
 
   @override
   String toString() {
-    return 'AddReviewState(loading: $loading, completed: $completed, rating: $rating, replyToCommentId: $replyToCommentId, requestId: $requestId, userRelatedLogin: $userRelatedLogin)';
+    return 'AddReviewState(loading: $loading, completed: $completed, rating: $rating, replyToCommentId: $replyToCommentId, requestId: $requestId, userRelatedLogin: $userRelatedLogin, commentForReview: $commentForReview)';
   }
 
   @override
@@ -208,12 +245,14 @@ class _$AddReviewStateImpl implements _AddReviewState {
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
             (identical(other.userRelatedLogin, userRelatedLogin) ||
-                other.userRelatedLogin == userRelatedLogin));
+                other.userRelatedLogin == userRelatedLogin) &&
+            (identical(other.commentForReview, commentForReview) ||
+                other.commentForReview == commentForReview));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, loading, completed, rating,
-      replyToCommentId, requestId, userRelatedLogin);
+      replyToCommentId, requestId, userRelatedLogin, commentForReview);
 
   /// Create a copy of AddReviewState
   /// with the given fields replaced by the non-null parameter values.
@@ -232,7 +271,8 @@ abstract class _AddReviewState implements AddReviewState {
       final double rating,
       final int? replyToCommentId,
       final int? requestId,
-      final String? userRelatedLogin}) = _$AddReviewStateImpl;
+      final String? userRelatedLogin,
+      final LastCommentInfoModel? commentForReview}) = _$AddReviewStateImpl;
 
   @override
   bool get loading;
@@ -246,6 +286,8 @@ abstract class _AddReviewState implements AddReviewState {
   int? get requestId;
   @override
   String? get userRelatedLogin;
+  @override
+  LastCommentInfoModel? get commentForReview;
 
   /// Create a copy of AddReviewState
   /// with the given fields replaced by the non-null parameter values.

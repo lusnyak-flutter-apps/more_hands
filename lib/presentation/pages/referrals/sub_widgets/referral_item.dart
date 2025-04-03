@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
+import 'package:more_hands/domain/models/last_comment_info/last_comment_info_model.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -15,13 +17,13 @@ class ReferralItem extends StatelessWidget {
     this.onSendRequest,
     required this.referral,
     this.onTapPortfolioItem,
-    this.onLeaveAReview,
+    this.onReviewAction,
   });
 
   final VoidCallback? onTap;
   final Function(ServiceModel)? onTapPortfolioItem;
   final VoidCallback? onSendRequest;
-  final VoidCallback? onLeaveAReview;
+  final Function(ReviewActionType)? onReviewAction;
   final bool showPortfolio;
   final UserModel referral;
 
@@ -45,6 +47,7 @@ class ReferralItem extends StatelessWidget {
 
     debugPrint(buttonTitle);
     debugPrint(actionKey);
+
     return InkWell(
       onTap: onTap,
       child: Column(
@@ -78,8 +81,9 @@ class ReferralItem extends StatelessWidget {
                     Row(
                       children: [
                         MHTag(
-                          title:
-                              referral.userInfo?.userRating.toStringAsFixed(1) ?? "0",
+                          title: referral.userInfo?.userRating
+                                  .toStringAsFixed(1) ??
+                              "0",
                           icon:
                               MoreHandsAssets.icons.starFill.svg(height: 12.r),
                         ),
@@ -147,10 +151,7 @@ class ReferralItem extends StatelessWidget {
               ],
             ),
           if (referral.userInfo?.shaken == true)
-            MHGradientButton(
-              title: context.localized.leaveAReview,
-              onPressed: onLeaveAReview,
-            ).paddingOnly(top: 16.h)
+            buildReviewButton(context)
           else if (actionKey == waitingForAResponse || actionKey == requestSent)
             MHOutlinedButton(
               title: buttonTitle ?? "",
@@ -158,11 +159,8 @@ class ReferralItem extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                   foregroundColor: MHColors.whiteColor),
             ).paddingOnly(top: 16.h)
-          else if (actionKey == leaveAReview && onLeaveAReview != null)
-            MHGradientButton(
-              title: context.localized.leaveAReview,
-              onPressed: onLeaveAReview,
-            ).paddingOnly(top: 16.h)
+          else if (actionKey == leaveAReview && onReviewAction != null)
+            buildReviewButton(context)
           else if (actionKey == sendRequest && onSendRequest != null)
             MHGradientButton(
               title: context.localized.sendRequest,
@@ -172,4 +170,12 @@ class ReferralItem extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildReviewButton(BuildContext context) => MHGradientButton(
+        title: actionByLastCommentInfo(referral.lastCommentInfo).title(context),
+        onPressed: () {
+          onReviewAction
+              ?.call(actionByLastCommentInfo(referral.lastCommentInfo));
+        },
+      ).paddingOnly(top: 16.h);
 }

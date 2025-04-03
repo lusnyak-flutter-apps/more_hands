@@ -356,4 +356,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get answer => 'Ответить';
+
+  @override
+  String get viewReview => 'Смотреть отзыв';
 }

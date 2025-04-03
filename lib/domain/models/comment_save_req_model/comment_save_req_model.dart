@@ -25,3 +25,23 @@ class CommentSaveReqModel {
 
   Map<String, dynamic> toJson() => _$CommentSaveReqModelToJson(this);
 }
+
+@JsonSerializable()
+class CommentEditReqModel {
+  String? commentVisibility;
+  String? commentText;
+  num? starsGiven;
+  int? id;
+
+  CommentEditReqModel({
+    this.commentVisibility = "visible",
+    this.commentText,
+    this.starsGiven,
+    this.id,
+  });
+
+  factory CommentEditReqModel.fromJson(Map<String, dynamic> json) =>
+      _$CommentEditReqModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentEditReqModelToJson(this);
+}

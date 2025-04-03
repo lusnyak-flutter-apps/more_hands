@@ -16,8 +16,21 @@ abstract class ReviewRemoteApi {
     @Body() CommentSaveReqModel? data,
   });
 
+  @PUT(EndPoint.userComments)
+  Future<void> editUserComments({
+    @Body() CommentEditReqModel? data,
+  });
+
   @GET(EndPoint.getCommentsByUserId)
   Future<List<CommentModel>> getCommentsByUserId({
+    @Query('userId') int? userId,
+    @Query('from') int from = 0,
+    @Query('to') int to = 10,
+  });
+
+  @GET(EndPoint.getCommentsByRelatedUserId)
+  Future<List<CommentModel>> getCommentByRelatedUserId({
+    @Query('userId') int? userId,
     @Query('from') int from = 0,
     @Query('to') int to = 10,
   });
