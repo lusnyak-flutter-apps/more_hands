@@ -187,18 +187,35 @@ class _HomeView extends StatelessWidget {
                 },
                 onSendRequest: () {
                   context.router
-                      .push(SendRequestRoute(userId: referral.userInfo!.id));
+                      .push(SendRequestRoute(userId: referral.userInfo!.id))
+                      .then((_) {
+                    if (context.mounted) {
+                      context.read<HomeCubit>().refresh();
+                    }
+                  });
                 },
                 onReviewAction: (type) {
                   if (type == ReviewActionType.leave) {
-                    context.router.push(AddReviewRoute(
+                    context.router
+                        .push(AddReviewRoute(
                       userRelatedLogin: referral.userInfo?.userLogin,
-                    ));
+                    ))
+                        .then((_) {
+                      if (context.mounted) {
+                        context.read<HomeCubit>().refresh();
+                      }
+                    });
                   }
                   if (type == ReviewActionType.edit) {
-                    context.router.push(AddReviewRoute(
-                        userRelatedLogin: referral.userInfo?.userLogin,
-                        commentForEdit: referral.lastCommentInfo));
+                    context.router
+                        .push(AddReviewRoute(
+                            userRelatedLogin: referral.userInfo?.userLogin,
+                            commentForEdit: referral.lastCommentInfo))
+                        .then((_) {
+                      if (context.mounted) {
+                        context.read<HomeCubit>().refresh();
+                      }
+                    });
                   }
                   if (type == ReviewActionType.view) {
                     context.router.push(UserRoute(
@@ -230,12 +247,23 @@ class _HomeView extends StatelessWidget {
     ).then((onValue) {
       if (onValue is String && context.mounted) {
         if (onValue == sendRequest && user.userInfo?.id != null) {
-          context.router.push(SendRequestRoute(
-              userId: user.userInfo!.id, serviceModel: service));
+          context.router
+              .push(SendRequestRoute(
+                  userId: user.userInfo!.id, serviceModel: service))
+              .then((_) {
+            if (context.mounted) {
+              context.read<HomeCubit>().refresh();
+            }
+          });
         }
         if (onValue == leaveAReview && user.userInfo?.userLogin != null) {
           context.router
-              .push(AddReviewRoute(userRelatedLogin: user.userInfo?.userLogin));
+              .push(AddReviewRoute(userRelatedLogin: user.userInfo?.userLogin))
+              .then((_) {
+            if (context.mounted) {
+              context.read<HomeCubit>().refresh();
+            }
+          });
         }
       }
     });

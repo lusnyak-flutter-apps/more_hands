@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
 import 'package:more_hands/domain/models/comment_model/comment_model.dart';
+import 'package:more_hands/domain/models/last_comment_info/last_comment_info_model.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_model/service_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
@@ -46,9 +47,29 @@ class _UserView extends StatefulWidget {
 }
 
 class _UserViewState extends State<_UserView> {
-  void onLeaveAReview(String? userLogin) {
-    if (userLogin != null) {
-      context.router.push(AddReviewRoute(userRelatedLogin: userLogin));
+  void onLeaveAReview(BuildContext context, UserModel? user, ReviewActionType type) {
+
+    if (type == ReviewActionType.leave) {
+      context.router
+          .push(AddReviewRoute(
+        userRelatedLogin: user?.userInfo?.userLogin,
+      ))
+          .then((_) {
+        if (context.mounted && user?.userInfo?.id != null) {
+          context.read<UserCubit>().getComments(user!.userInfo!.id);
+        }
+      });
+    }
+    if (type == ReviewActionType.edit) {
+      context.router
+          .push(AddReviewRoute(
+          userRelatedLogin: user?.userInfo?.userLogin,
+          commentForEdit: user?.lastCommentInfo))
+          .then((_) {
+        if (context.mounted && user?.userInfo?.id != null) {
+          context.read<UserCubit>().getComments(user!.userInfo!.id);
+        }
+      });
     }
   }
 
@@ -78,18 +99,20 @@ class _UserViewState extends State<_UserView> {
       String? buttonTitle =
           actionButtonTitleByLastRequests(context, user?.lastReqInfo);
       String? actionKey = actionByLastRequests(user?.lastReqInfo);
+
+      final type = actionByLastCommentInfo(user?.lastCommentInfo);
       return Scaffold(
         bottomSheet: buttonTitle != null
             ? MHBottomNavigationControl(
                 buttonTitle: user?.userInfo?.shaken == true
-                    ? context.localized.leaveAReview
+                    ? type.title(context)
                     : buttonTitle,
                 action: user?.userInfo?.shaken == true
-                    ? () => onLeaveAReview(user?.userInfo?.userLogin)
+                    ? () => onLeaveAReview(context, user, type)
                     : actionKey == sendRequest
                         ? () => onSendRequest(user?.userInfo?.id)
                         : actionKey == leaveAReview
-                            ? () => onLeaveAReview(user?.userInfo?.userLogin)
+                            ? () => onLeaveAReview(context, user, type)
                             : null,
               ).paddingOnly(bottom: 16.h)
             : null,
@@ -124,7 +147,6 @@ class _UserViewState extends State<_UserView> {
                         buildCommentsList(context, state.comments),
                     ],
                   ).paddingSymmetric(horizontal: 24.w),
-
                 ),
         ),
       );
@@ -148,7 +170,6 @@ class _UserViewState extends State<_UserView> {
       ],
     );
   }
-
 
   Widget userImagePart(BuildContext context, UserModel user) => MHImage(
       size: context.width,

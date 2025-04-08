@@ -99,10 +99,10 @@ class CommentTile extends StatelessWidget {
                             RatingBarIndicator(
                                 itemSize: 16.0,
                                 itemPadding: const EdgeInsets.only(right: 2.0),
-                                rating: comment.userData?.userRating?.toDouble() ?? 0,
+                                rating: comment.starsGiven?.toDouble() ?? 0,
                                 itemBuilder: (_, index) {
                                   final rate =
-                                      comment.userData?.userRating?.toInt() ?? 0;
+                                      comment.starsGiven?.toInt() ?? 0;
                                   if (index < rate) {
                                     return MoreHandsAssets.icons.starFill.svg(
                                         colorFilter: const ColorFilter.mode(

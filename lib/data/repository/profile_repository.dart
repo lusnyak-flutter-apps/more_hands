@@ -64,7 +64,7 @@ class ProfileRepository {
     await Future.wait([
       Preferences.instance.deleteAll(),
       getIt<TokenStorage>().deleteToken(),
-    ]).whenComplete(() => appRouter.pushAndPopUntil(const TestAuthRoute(),
+    ]).whenComplete(() => appRouter.pushAndPopUntil(const AuthorizationRoute(),
         predicate: (route) => false));
   }
 

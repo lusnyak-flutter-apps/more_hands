@@ -366,6 +366,7 @@ class _ProfileView extends StatelessWidget {
       child: ServiceInfoView(
         service: service,
         user: user,
+        userHasService: true,
       ),
     ).then((onValue) {
       if (onValue is String && onValue == removeService && context.mounted) {

@@ -29,6 +29,7 @@ mixin _$CommentModel {
       throw _privateConstructorUsedError;
   String? get commentVisibility => throw _privateConstructorUsedError;
   int? get requestId => throw _privateConstructorUsedError;
+  num? get starsGiven => throw _privateConstructorUsedError;
   CommentModel? get relatedComment => throw _privateConstructorUsedError;
   CommentRelationType get relationType => throw _privateConstructorUsedError;
 
@@ -56,6 +57,7 @@ abstract class $CommentModelCopyWith<$Res> {
       CommentUserDataModel? relatedUserData,
       String? commentVisibility,
       int? requestId,
+      num? starsGiven,
       CommentModel? relatedComment,
       CommentRelationType relationType});
 
@@ -86,6 +88,7 @@ class _$CommentModelCopyWithImpl<$Res, $Val extends CommentModel>
     Object? relatedUserData = freezed,
     Object? commentVisibility = freezed,
     Object? requestId = freezed,
+    Object? starsGiven = freezed,
     Object? relatedComment = freezed,
     Object? relationType = null,
   }) {
@@ -118,6 +121,10 @@ class _$CommentModelCopyWithImpl<$Res, $Val extends CommentModel>
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
               as int?,
+      starsGiven: freezed == starsGiven
+          ? _value.starsGiven
+          : starsGiven // ignore: cast_nullable_to_non_nullable
+              as num?,
       relatedComment: freezed == relatedComment
           ? _value.relatedComment
           : relatedComment // ignore: cast_nullable_to_non_nullable
@@ -189,6 +196,7 @@ abstract class _$$CommentModelImplCopyWith<$Res>
       CommentUserDataModel? relatedUserData,
       String? commentVisibility,
       int? requestId,
+      num? starsGiven,
       CommentModel? relatedComment,
       CommentRelationType relationType});
 
@@ -220,6 +228,7 @@ class __$$CommentModelImplCopyWithImpl<$Res>
     Object? relatedUserData = freezed,
     Object? commentVisibility = freezed,
     Object? requestId = freezed,
+    Object? starsGiven = freezed,
     Object? relatedComment = freezed,
     Object? relationType = null,
   }) {
@@ -252,6 +261,10 @@ class __$$CommentModelImplCopyWithImpl<$Res>
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
               as int?,
+      starsGiven: freezed == starsGiven
+          ? _value.starsGiven
+          : starsGiven // ignore: cast_nullable_to_non_nullable
+              as num?,
       relatedComment: freezed == relatedComment
           ? _value.relatedComment
           : relatedComment // ignore: cast_nullable_to_non_nullable
@@ -275,6 +288,7 @@ class _$CommentModelImpl implements _CommentModel {
       this.relatedUserData,
       this.commentVisibility,
       this.requestId,
+      this.starsGiven = 0.0,
       this.relatedComment,
       this.relationType = CommentRelationType.empty});
 
@@ -297,6 +311,9 @@ class _$CommentModelImpl implements _CommentModel {
   @override
   final int? requestId;
   @override
+  @JsonKey()
+  final num? starsGiven;
+  @override
   final CommentModel? relatedComment;
   @override
   @JsonKey()
@@ -304,7 +321,7 @@ class _$CommentModelImpl implements _CommentModel {
 
   @override
   String toString() {
-    return 'CommentModel(id: $id, createAt: $createAt, commentText: $commentText, userData: $userData, relatedUserData: $relatedUserData, commentVisibility: $commentVisibility, requestId: $requestId, relatedComment: $relatedComment, relationType: $relationType)';
+    return 'CommentModel(id: $id, createAt: $createAt, commentText: $commentText, userData: $userData, relatedUserData: $relatedUserData, commentVisibility: $commentVisibility, requestId: $requestId, starsGiven: $starsGiven, relatedComment: $relatedComment, relationType: $relationType)';
   }
 
   @override
@@ -325,6 +342,8 @@ class _$CommentModelImpl implements _CommentModel {
                 other.commentVisibility == commentVisibility) &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
+            (identical(other.starsGiven, starsGiven) ||
+                other.starsGiven == starsGiven) &&
             (identical(other.relatedComment, relatedComment) ||
                 other.relatedComment == relatedComment) &&
             (identical(other.relationType, relationType) ||
@@ -342,6 +361,7 @@ class _$CommentModelImpl implements _CommentModel {
       relatedUserData,
       commentVisibility,
       requestId,
+      starsGiven,
       relatedComment,
       relationType);
 
@@ -370,6 +390,7 @@ abstract class _CommentModel implements CommentModel {
       final CommentUserDataModel? relatedUserData,
       final String? commentVisibility,
       final int? requestId,
+      final num? starsGiven,
       final CommentModel? relatedComment,
       final CommentRelationType relationType}) = _$CommentModelImpl;
 
@@ -391,6 +412,8 @@ abstract class _CommentModel implements CommentModel {
   String? get commentVisibility;
   @override
   int? get requestId;
+  @override
+  num? get starsGiven;
   @override
   CommentModel? get relatedComment;
   @override

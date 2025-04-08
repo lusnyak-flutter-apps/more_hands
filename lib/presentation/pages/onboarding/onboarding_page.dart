@@ -68,7 +68,7 @@ class _OnboardingView extends StatelessWidget {
             state.maybeWhen(
               orElse: () {},
               complete: () {
-                context.router.pushAndPopUntil(const TestAuthRoute(),
+                context.router.pushAndPopUntil(const AuthorizationRoute(),
                     predicate: (route) => false);
               },
             );

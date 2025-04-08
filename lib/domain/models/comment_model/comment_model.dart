@@ -16,6 +16,7 @@ class CommentModel with _$CommentModel {
     CommentUserDataModel? relatedUserData,
     String? commentVisibility,
     int? requestId,
+    @Default(0.0) num? starsGiven,
     CommentModel? relatedComment,
     @Default(CommentRelationType.empty) CommentRelationType relationType,
    }) = _CommentModel;

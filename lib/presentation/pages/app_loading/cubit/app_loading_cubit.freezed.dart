@@ -130,12 +130,13 @@ class __$$AppLoadingStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AppLoadingStateImpl implements _AppLoadingState {
+class _$AppLoadingStateImpl extends _AppLoadingState {
   const _$AppLoadingStateImpl(
       {this.loading = false,
       this.loaded = false,
       this.logged = false,
-      this.onboardingLaunched = false});
+      this.onboardingLaunched = false})
+      : super._();
 
   @override
   @JsonKey()
@@ -181,12 +182,13 @@ class _$AppLoadingStateImpl implements _AppLoadingState {
           this, _$identity);
 }
 
-abstract class _AppLoadingState implements AppLoadingState {
+abstract class _AppLoadingState extends AppLoadingState {
   const factory _AppLoadingState(
       {final bool loading,
       final bool loaded,
       final bool logged,
       final bool onboardingLaunched}) = _$AppLoadingStateImpl;
+  const _AppLoadingState._() : super._();
 
   @override
   bool get loading;

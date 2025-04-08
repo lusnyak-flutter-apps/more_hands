@@ -23,6 +23,7 @@ _$CommentModelImpl _$$CommentModelImplFromJson(Map<String, dynamic> json) =>
               json['relatedUserData'] as Map<String, dynamic>),
       commentVisibility: json['commentVisibility'] as String?,
       requestId: (json['requestId'] as num?)?.toInt(),
+      starsGiven: json['starsGiven'] as num? ?? 0.0,
       relatedComment: json['relatedComment'] == null
           ? null
           : CommentModel.fromJson(
@@ -41,6 +42,7 @@ Map<String, dynamic> _$$CommentModelImplToJson(_$CommentModelImpl instance) =>
       'relatedUserData': instance.relatedUserData,
       'commentVisibility': instance.commentVisibility,
       'requestId': instance.requestId,
+      'starsGiven': instance.starsGiven,
       'relatedComment': instance.relatedComment,
       'relationType': _$CommentRelationTypeEnumMap[instance.relationType]!,
     };

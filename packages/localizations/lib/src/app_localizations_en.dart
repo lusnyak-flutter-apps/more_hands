@@ -355,8 +355,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ago => 'ago';
 
   @override
-  String get answer => 'Ответить';
+  String get answer => 'Answer';
 
   @override
-  String get viewReview => 'Смотреть отзыв';
+  String get viewReview => 'See a replay on the review';
 }
