@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:more_hands/core/core.dart';
+import 'package:more_hands/data/local/preferences/preferences.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
 import 'package:more_hands/domain/models/comment_model/comment_model.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
@@ -132,6 +136,19 @@ class _ProfileView extends StatelessWidget {
                       await showLanguages(context);
                     },
                   ).paddingSymmetric(horizontal: context.width / 4),
+                  if (Platform.isAndroid)
+                    MHOutlinedButton(
+                        title: "Copy FCM Token to Clipboard",
+                        onPressed: () async {
+                          await Clipboard.setData(ClipboardData(
+                                  text: Preferences.instance.pushToken))
+                              .then((_) {
+                            if (context.mounted) {
+                              context.showSnackBar(
+                                  message: 'Copied to clipboard successfully');
+                            }
+                          });
+                        }).paddingSymmetric(vertical: 16.h),
                 ],
               ).paddingSymmetric(horizontal: 24.w),
             );

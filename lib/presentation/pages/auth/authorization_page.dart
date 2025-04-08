@@ -95,9 +95,10 @@ class _AuthorizationView extends StatelessWidget {
                 //   icon: MoreHandsAssets.icons.facebook.svg(),
                 // ),
                 24.h.heightBox,
-                if (credential != null)
+                if (credential != null && Platform.isAndroid)
                   MHOutlinedButton(
                     onPressed: () async {
+
                       await Clipboard.setData(ClipboardData(
                               text: credential.toJson().toString()))
                           .then((_) {
