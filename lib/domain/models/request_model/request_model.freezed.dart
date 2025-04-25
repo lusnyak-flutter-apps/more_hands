@@ -41,6 +41,8 @@ mixin _$RequestModel {
   DateTime? get modifyDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'rqStatus')
   RequestStatus get status => throw _privateConstructorUsedError;
+  LastCommentInfoModel? get lastCommentInfo =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this RequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -76,7 +78,10 @@ abstract class $RequestModelCopyWith<$Res> {
       String? rqText,
       @JsonKey(name: 'createDttm') DateTime? createDate,
       @JsonKey(name: 'modifyDttm') DateTime? modifyDate,
-      @JsonKey(name: 'rqStatus') RequestStatus status});
+      @JsonKey(name: 'rqStatus') RequestStatus status,
+      LastCommentInfoModel? lastCommentInfo});
+
+  $LastCommentInfoModelCopyWith<$Res>? get lastCommentInfo;
 }
 
 /// @nodoc
@@ -112,6 +117,7 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
     Object? createDate = freezed,
     Object? modifyDate = freezed,
     Object? status = null,
+    Object? lastCommentInfo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -186,7 +192,26 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
+      lastCommentInfo: freezed == lastCommentInfo
+          ? _value.lastCommentInfo
+          : lastCommentInfo // ignore: cast_nullable_to_non_nullable
+              as LastCommentInfoModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of RequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LastCommentInfoModelCopyWith<$Res>? get lastCommentInfo {
+    if (_value.lastCommentInfo == null) {
+      return null;
+    }
+
+    return $LastCommentInfoModelCopyWith<$Res>(_value.lastCommentInfo!,
+        (value) {
+      return _then(_value.copyWith(lastCommentInfo: value) as $Val);
+    });
   }
 }
 
@@ -216,7 +241,11 @@ abstract class _$$RequestModelImplCopyWith<$Res>
       String? rqText,
       @JsonKey(name: 'createDttm') DateTime? createDate,
       @JsonKey(name: 'modifyDttm') DateTime? modifyDate,
-      @JsonKey(name: 'rqStatus') RequestStatus status});
+      @JsonKey(name: 'rqStatus') RequestStatus status,
+      LastCommentInfoModel? lastCommentInfo});
+
+  @override
+  $LastCommentInfoModelCopyWith<$Res>? get lastCommentInfo;
 }
 
 /// @nodoc
@@ -250,6 +279,7 @@ class __$$RequestModelImplCopyWithImpl<$Res>
     Object? createDate = freezed,
     Object? modifyDate = freezed,
     Object? status = null,
+    Object? lastCommentInfo = freezed,
   }) {
     return _then(_$RequestModelImpl(
       id: null == id
@@ -324,6 +354,10 @@ class __$$RequestModelImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
+      lastCommentInfo: freezed == lastCommentInfo
+          ? _value.lastCommentInfo
+          : lastCommentInfo // ignore: cast_nullable_to_non_nullable
+              as LastCommentInfoModel?,
     ));
   }
 }
@@ -349,7 +383,8 @@ class _$RequestModelImpl implements _RequestModel {
       this.rqText,
       @JsonKey(name: 'createDttm') this.createDate,
       @JsonKey(name: 'modifyDttm') this.modifyDate,
-      @JsonKey(name: 'rqStatus') this.status = RequestStatus.new_});
+      @JsonKey(name: 'rqStatus') this.status = RequestStatus.new_,
+      this.lastCommentInfo});
 
   factory _$RequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RequestModelImplFromJson(json);
@@ -402,10 +437,12 @@ class _$RequestModelImpl implements _RequestModel {
   @override
   @JsonKey(name: 'rqStatus')
   final RequestStatus status;
+  @override
+  final LastCommentInfoModel? lastCommentInfo;
 
   @override
   String toString() {
-    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, senderRating: $senderRating, receiverRating: $receiverRating, seenBySender: $seenBySender, seenByReceiver: $seenByReceiver, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, userLogin: $userLogin, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status)';
+    return 'RequestModel(id: $id, senderId: $senderId, receiverId: $receiverId, userServiceId: $userServiceId, serviceId: $serviceId, senderRating: $senderRating, receiverRating: $receiverRating, seenBySender: $seenBySender, seenByReceiver: $seenByReceiver, profileImageUrl: $profileImageUrl, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, userLogin: $userLogin, rqText: $rqText, createDate: $createDate, modifyDate: $modifyDate, status: $status, lastCommentInfo: $lastCommentInfo)';
   }
 
   @override
@@ -445,31 +482,35 @@ class _$RequestModelImpl implements _RequestModel {
                 other.createDate == createDate) &&
             (identical(other.modifyDate, modifyDate) ||
                 other.modifyDate == modifyDate) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.lastCommentInfo, lastCommentInfo) ||
+                other.lastCommentInfo == lastCommentInfo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      senderId,
-      receiverId,
-      userServiceId,
-      serviceId,
-      senderRating,
-      receiverRating,
-      seenBySender,
-      seenByReceiver,
-      profileImageUrl,
-      userFirstName,
-      userLastName,
-      userMiddleName,
-      userLogin,
-      rqText,
-      createDate,
-      modifyDate,
-      status);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        senderId,
+        receiverId,
+        userServiceId,
+        serviceId,
+        senderRating,
+        receiverRating,
+        seenBySender,
+        seenByReceiver,
+        profileImageUrl,
+        userFirstName,
+        userLastName,
+        userMiddleName,
+        userLogin,
+        rqText,
+        createDate,
+        modifyDate,
+        status,
+        lastCommentInfo
+      ]);
 
   /// Create a copy of RequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -489,25 +530,25 @@ class _$RequestModelImpl implements _RequestModel {
 
 abstract class _RequestModel implements RequestModel {
   const factory _RequestModel(
-          {final int id,
-          final int senderId,
-          final int receiverId,
-          final int userServiceId,
-          final int serviceId,
-          final num senderRating,
-          final num receiverRating,
-          final bool seenBySender,
-          final bool seenByReceiver,
-          final String? profileImageUrl,
-          final String? userFirstName,
-          final String? userLastName,
-          final String? userMiddleName,
-          final String? userLogin,
-          final String? rqText,
-          @JsonKey(name: 'createDttm') final DateTime? createDate,
-          @JsonKey(name: 'modifyDttm') final DateTime? modifyDate,
-          @JsonKey(name: 'rqStatus') final RequestStatus status}) =
-      _$RequestModelImpl;
+      {final int id,
+      final int senderId,
+      final int receiverId,
+      final int userServiceId,
+      final int serviceId,
+      final num senderRating,
+      final num receiverRating,
+      final bool seenBySender,
+      final bool seenByReceiver,
+      final String? profileImageUrl,
+      final String? userFirstName,
+      final String? userLastName,
+      final String? userMiddleName,
+      final String? userLogin,
+      final String? rqText,
+      @JsonKey(name: 'createDttm') final DateTime? createDate,
+      @JsonKey(name: 'modifyDttm') final DateTime? modifyDate,
+      @JsonKey(name: 'rqStatus') final RequestStatus status,
+      final LastCommentInfoModel? lastCommentInfo}) = _$RequestModelImpl;
 
   factory _RequestModel.fromJson(Map<String, dynamic> json) =
       _$RequestModelImpl.fromJson;
@@ -551,6 +592,8 @@ abstract class _RequestModel implements RequestModel {
   @override
   @JsonKey(name: 'rqStatus')
   RequestStatus get status;
+  @override
+  LastCommentInfoModel? get lastCommentInfo;
 
   /// Create a copy of RequestModel
   /// with the given fields replaced by the non-null parameter values.

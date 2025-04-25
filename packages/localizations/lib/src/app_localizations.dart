@@ -751,6 +751,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Смотреть отзыв'**
   String get viewReview;
+
+  /// No description provided for @edit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Редактировать'**
+  String get edit;
+
+  /// No description provided for @successfullyCopied.
+  ///
+  /// In ru, this message translates to:
+  /// **'Успешно скопировано в буфер обмена'**
+  String get successfullyCopied;
 }
 
 class _AppLocalizationsDelegate

@@ -174,6 +174,9 @@ class _ProfileView extends StatelessWidget {
             onReply: () {
               onAnswerReview(context, comment);
             },
+            onTapUser: (userId) {
+              context.router.push(UserRoute(userId: userId));
+            },
           ),
       ],
     );
@@ -322,11 +325,24 @@ class _ProfileView extends StatelessWidget {
               ],
             ),
             if (bio.isNotEmpty)
-              Text(
-                bio,
-                style: body16Style,
-                textAlign: TextAlign.left,
-              ).paddingOnly(bottom: 8.h)
+              InkWell(
+                radius: 8.r,
+                onLongPress: () async {
+                  await Clipboard.setData(ClipboardData(
+                      text: bio))
+                      .then((_) {
+                    if (context.mounted) {
+                      context.showSnackBar(
+                          message: context.localized.successfullyCopied);
+                    }
+                  });
+                },
+                child: Text(
+                  bio,
+                  style: body16Style,
+                  textAlign: TextAlign.left,
+                ).paddingOnly(bottom: 8.h),
+              )
             else
               Text(
                 context.localized.notFilled,
@@ -386,6 +402,19 @@ class _ProfileView extends StatelessWidget {
         userHasService: true,
       ),
     ).then((onValue) {
+      if (onValue is String && onValue == editService && context.mounted) {
+        context.router
+            .push(ServiceDetailsRoute(
+            serviceModel: service,
+            serviceCategory: service.category!,
+            mode: ServiceDetailsMode.edit))
+            .then((flag) {
+          if (context.mounted && flag is bool && flag == true) {
+            context.read<ProfileCubit>().loadProfile();
+          }
+        });
+      }
+
       if (onValue is String && onValue == removeService && context.mounted) {
         if (service.serviceAdditionalInfo?.userServiceId != null) {
           context

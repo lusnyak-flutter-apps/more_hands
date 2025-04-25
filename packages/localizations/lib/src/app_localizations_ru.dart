@@ -359,4 +359,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get viewReview => 'Смотреть отзыв';
+
+  @override
+  String get edit => 'Редактировать';
+
+  @override
+  String get successfullyCopied => 'Успешно скопировано в буфер обмена';
 }

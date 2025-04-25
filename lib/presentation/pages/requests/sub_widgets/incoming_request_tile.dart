@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/core/router/app_router.dart';
 import 'package:more_hands/domain/enums/request_status.dart';
+import 'package:more_hands/domain/models/last_comment_info/last_comment_info_model.dart';
 import 'package:more_hands/domain/models/request_model/request_model.dart';
 import 'package:more_hands/presentation/pages/requests/cubit/requests_cubit.dart';
 import 'package:more_hands/utils/extensions/date_time_extension.dart';
@@ -18,7 +19,7 @@ class IncomingRequestTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isAccepted = requestModel.status == RequestStatus.accepted;
-    final imageUrl =  requestModel.profileImageUrl != null
+    final imageUrl = requestModel.profileImageUrl != null
         ? "${APIBase.url}${requestModel.profileImageUrl!}"
         : null;
 
@@ -29,9 +30,10 @@ class IncomingRequestTile extends StatelessWidget {
     if (lName.isNotEmpty) {
       formattedName += " ${lName.substring(0, 1)}.";
     }
-    String dateFormat = requestModel.createDate?.formatDate(format: "dd.MM") ?? "";
+    String dateFormat =
+        requestModel.createDate?.formatDate(format: "dd.MM") ?? "";
 
-     return Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,10 +42,11 @@ class IncomingRequestTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-              overlayColor: WidgetStatePropertyAll(MHColors.whiteColor.withValues(alpha: 0.01)),
-              borderRadius: const  BorderRadius.all(Radius.circular(16.0)),
-              onTap: (){
-                context.router.push( UserRoute(userId: requestModel.senderId));
+              overlayColor: WidgetStatePropertyAll(
+                  MHColors.whiteColor.withValues(alpha: 0.01)),
+              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+              onTap: () {
+                context.router.push(UserRoute(userId: requestModel.senderId));
               },
               child: MHImage(
                   imageUrl: imageUrl,
@@ -63,33 +66,33 @@ class IncomingRequestTile extends StatelessWidget {
                       colorFilter: const ColorFilter.mode(
                           MHColors.yellowColor, BlendMode.srcIn)),
                   2.w.widthBox,
-                  MHGradientText(text: dateFormat,
-                      style: body12MediumStyle),
+                  MHGradientText(text: dateFormat, style: body12MediumStyle),
                 ],
               )
             else
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                MoreHandsAssets.icons.clock.svg(
-                    height: 14.r,
-                    colorFilter: const ColorFilter.mode(
-                        MHColors.grayColor98, BlendMode.srcIn)),
-                2.w.widthBox,
-                Text(dateFormat,
-                    style: body12MediumStyle.copyWith(
-                        color: MHColors.grayColor98)),
-              ],
-            ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  MoreHandsAssets.icons.clock.svg(
+                      height: 14.r,
+                      colorFilter: const ColorFilter.mode(
+                          MHColors.grayColor98, BlendMode.srcIn)),
+                  2.w.widthBox,
+                  Text(dateFormat,
+                      style: body12MediumStyle.copyWith(
+                          color: MHColors.grayColor98)),
+                ],
+              ),
             if (isAccepted)
-              MHGradientText(text: context.localized.accepted,
-                  style: body12MediumStyle)
+              MHGradientText(
+                      text: context.localized.accepted,
+                      style: body12MediumStyle)
                   .paddingSymmetric(vertical: 4.h)
             else
-            Text(context.localized.pending,
-                    style:
-                        body12MediumStyle.copyWith(color: MHColors.grayColor98))
-                .paddingSymmetric(vertical: 4.h),
+              Text(context.localized.pending,
+                      style: body12MediumStyle.copyWith(
+                          color: MHColors.grayColor98))
+                  .paddingSymmetric(vertical: 4.h),
           ],
         ),
         8.w.widthBox,
@@ -97,9 +100,10 @@ class IncomingRequestTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             InkWell(
-               overlayColor: WidgetStatePropertyAll(MHColors.whiteColor.withValues(alpha: 0.01)),
-              onTap: (){
-                context.router.push( UserRoute(userId: requestModel.senderId));
+              overlayColor: WidgetStatePropertyAll(
+                  MHColors.whiteColor.withValues(alpha: 0.01)),
+              onTap: () {
+                context.router.push(UserRoute(userId: requestModel.senderId));
               },
               child: Text(
                 formattedName,
@@ -111,51 +115,100 @@ class IncomingRequestTile extends StatelessWidget {
               style: body16Style,
             ).paddingSymmetric(vertical: 8.h),
             if (isAccepted)
-              MHGradientButton(title: context.localized.leaveAReview,
-                  onPressed: () {
-                    context.router
-                        .push( AddReviewRoute(requestId: requestModel.id,  userRelatedLogin: requestModel.userLogin));
-                  },
-                  height: 32.h,
-                  verticalPadding: 0,
-                  horizontalPadding: 16.w)
-              else
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                MHOutlinedButton(
-                  title: context.localized.reject,
-                  onPressed: () {
-                    context.read<RequestsCubit>().rejectRequest(requestModel.id).catchError((e) {
-                      if(context.mounted) {
-                        context.showSnackBar(message: e.toString());
-                      }
-                    });
-                  },
-                  style: OutlinedButton.styleFrom(
-                      fixedSize: Size.fromHeight(32.h),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 16.w)),
-                ),
-                8.w.widthBox,
-                MHGradientButton(
-                  title: context.localized.accept,
-                  onPressed: () {
-                    context.read<RequestsCubit>().approveRequest(requestModel.id).catchError((e) {
-                      if(context.mounted) {
-                        context.showSnackBar(message: e.toString());
-                      }
-                    });
-                  },
-                  height: 32.h,
-                  verticalPadding: 0,
-                  horizontalPadding: 16.w,
-                ),
-              ],
-            )
+              buildReviewButton(context, (type) {
+                if (type == ReviewActionType.leave) {
+                  context.router
+                      .push(AddReviewRoute(
+                          requestId: requestModel.id,
+                          userRelatedLogin: requestModel.userLogin))
+                      .then((_) {
+                    if (context.mounted) {
+                      context.read<RequestsCubit>().getRequests();
+                    }
+                  });
+                }
+                if (type == ReviewActionType.edit) {
+                  context.router
+                      .push(AddReviewRoute(
+                          userRelatedLogin: requestModel.userLogin,
+                          commentForEdit: requestModel.lastCommentInfo))
+                      .then((_) {
+                    if (context.mounted) {
+                      context.read<RequestsCubit>().getRequests();
+                    }
+                  });
+                }
+                if (type == ReviewActionType.view) {
+                  context.router.push(UserRoute(
+                      userId: requestModel.senderId,
+                      commentId: requestModel.lastCommentInfo?.scommentId));
+                }
+              })
+            else
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  MHOutlinedButton(
+                    title: context.localized.reject,
+                    onPressed: () {
+                      context
+                          .read<RequestsCubit>()
+                          .rejectRequest(requestModel.id)
+                          .catchError((e) {
+                        if (context.mounted) {
+                          context.showSnackBar(message: e.toString());
+                        }
+                      });
+                    },
+                    style: OutlinedButton.styleFrom(
+                        fixedSize: Size.fromHeight(32.h),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 16.w)),
+                  ),
+                  8.w.widthBox,
+                  MHGradientButton(
+                    title: context.localized.accept,
+                    onPressed: () {
+                      context
+                          .read<RequestsCubit>()
+                          .approveRequest(requestModel.id)
+                          .catchError((e) {
+                        if (context.mounted) {
+                          context.showSnackBar(message: e.toString());
+                        }
+                      });
+                    },
+                    height: 32.h,
+                    verticalPadding: 0,
+                    horizontalPadding: 16.w,
+                  ),
+                ],
+              )
           ],
         ).expanded()
       ],
     ).paddingSymmetric(vertical: 16.h);
   }
+
+  Widget buildReviewButton(
+          BuildContext context, Function(ReviewActionType) onPressed) =>
+      MHGradientButton(
+        height: 32.h,
+        verticalPadding: 0,
+        horizontalPadding: 16.w,
+        title: actionByLastCommentInfo(requestModel.lastCommentInfo)
+            .title(context),
+        onPressed: () {
+          onPressed.call(actionByLastCommentInfo(requestModel.lastCommentInfo));
+        },
+      );
 }
+
+// MHGradientButton(title: context.localized.leaveAReview,
+// onPressed: () {
+// context.router
+//     .push( AddReviewRoute(requestId: requestModel.id,  userRelatedLogin: requestModel.userLogin));
+// },
+// height: 32.h,
+// verticalPadding: 0,
+// horizontalPadding: 16.w)

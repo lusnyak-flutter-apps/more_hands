@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:more_hands/core/network/constants/api_constants.dart';
 import 'package:more_hands/domain/models/last_req_info_model/last_req_info_model.dart';
 import 'package:more_hands/domain/models/service_additional_info_model/service_additional_info_model.dart';
@@ -107,22 +108,47 @@ class _ServiceInfoViewState extends State<ServiceInfoView> {
                         // imageUrl: "https://picsum.photos/200/300?random=1",
                       ),
                 16.h.heightBox,
-                Text(
-                  widget.service.serviceAdditionalInfo?.addInfo ?? "",
-                  style: body16Style,
-                  textAlign: TextAlign.left,
+                InkWell(
+                  onLongPress: () async {
+                    await Clipboard.setData(ClipboardData(
+                        text: widget.service.serviceAdditionalInfo?.addInfo ?? ""))
+                        .then((_) {
+                      if (context.mounted) {
+                        context.showSnackBar(
+                            message: context.localized.successfullyCopied);
+                      }
+                    });
+                  },
+                  child: Text(
+                    widget.service.serviceAdditionalInfo?.addInfo ?? "",
+                    style: body16Style,
+                    textAlign: TextAlign.left,
+                  ),
                 ),
               ],
             ),
           ).expanded(),
           if (widget.userHasService)
-            MHOutlinedButton(
-              title: context.localized.deleteService,
-              onPressed: () {
-                Navigator.of(context).maybePop(removeService);
-              },
-              style: OutlinedButton.styleFrom(
-                  foregroundColor: MHColors.whiteColor),
+            Row(
+              children: [
+                MHOutlinedButton(
+                  title: context.localized.deleteService,
+                  onPressed: () {
+                    Navigator.of(context).maybePop(removeService);
+                  },
+                  style: OutlinedButton.styleFrom(
+                      foregroundColor: MHColors.whiteColor),
+                ).expanded(),
+                16.w.widthBox,
+                MHOutlinedButton(
+                  title: context.localized.edit,
+                  onPressed: () {
+                    Navigator.of(context).maybePop(editService);
+                  },
+                  style: OutlinedButton.styleFrom(
+                      foregroundColor: MHColors.whiteColor),
+                ).expanded(),
+              ],
             ).paddingOnly(top: 16.h)
           else if (widget.user?.userInfo?.shaken == true)
             MHGradientButton(

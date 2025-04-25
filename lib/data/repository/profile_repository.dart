@@ -12,6 +12,7 @@ import 'package:more_hands/data/remote/user_remote/user_remote.dart';
 import 'package:more_hands/domain/models/edit_bio_request_model/edit_bio_request_model.dart';
 import 'package:more_hands/domain/models/edit_contacts_request_model/edit_contacts_request_model.dart';
 import 'package:more_hands/domain/models/edit_name_request_model/edit_name_request_model.dart';
+import 'package:more_hands/domain/models/firebase_token/firebase_token_request_model.dart';
 import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/more_hands_app.dart';
 
@@ -75,4 +76,10 @@ class ProfileRepository {
     });
   }
 
+  Future<void> setFirebaseToken({
+    required String token,
+  }) async =>
+      await getIt<EditProfileRemoteApi>().setFirebaseToken(
+        data: FirebaseTokenRequestModel(firebaseToken: token),
+      );
 }

@@ -37,7 +37,7 @@ class _ProfileContactsView extends StatelessWidget {
       }
     }, builder: (blocConsumerBuilder, state) {
       return Scaffold(
-        bottomSheet: MHBottomNavigationControl(
+        bottomNavigationBar: MHBottomNavigationControl(
           buttonTitle: context.localized.next,
           actionLoading: state.loading,
           action: cubit.saveContactsChanges,
@@ -53,6 +53,7 @@ class _ProfileContactsView extends StatelessWidget {
         ),
         body: SafeArea(
             child: SingleChildScrollView(
+              padding: EdgeInsets.only(bottom: kToolbarHeight.h),
           child: Column(
             children: [
               Text(
@@ -61,20 +62,20 @@ class _ProfileContactsView extends StatelessWidget {
               ),
               contactItem(
                 context,
-                hintText: context.localized.linkType("Instagram"),
+                hintText: "Instagram", // context.localized.linkType("Instagram"),
                 value: ContactType.instagram,
                 controller: cubit.instagramController,
                 icon: MoreHandsAssets.icons.instagram.svg(),
                 state: state,
-              ).paddingOnly(top: 16.h),
+              ).paddingOnly(top: 20.h),
               contactItem(
                 context,
-                hintText: context.localized.linkType("Facebook"),
+                hintText: "Facebook" , //context.localized.linkType("Facebook"),
                 value: ContactType.facebook,
                 icon: MoreHandsAssets.icons.facebook.svg(),
                 controller: cubit.fbController,
                 state: state,
-              ).paddingOnly(top: 16.h),
+              ).paddingOnly(top: 20.h),
               contactItem(
                 context,
                 hintText: context.localized.telegram,
@@ -82,15 +83,15 @@ class _ProfileContactsView extends StatelessWidget {
                 icon: MoreHandsAssets.icons.telegram.svg(),
                 controller: cubit.telegramController,
                 state: state,
-              ).paddingOnly(top: 16.h),
+              ).paddingOnly(top: 20.h),
               contactItem(
                 context,
-                hintText: context.localized.whatsAppLink,
+                hintText: "WhatsApp", // context.localized.whatsAppLink,
                 value: ContactType.whatsApp,
                 icon: MoreHandsAssets.icons.whatsapp.svg(),
                 controller: cubit.whatsAppController,
                 state: state,
-              ).paddingOnly(top: 16.h),
+              ).paddingOnly(top: 20.h),
             ],
           ).paddingSymmetric(horizontal: 24.w, vertical: 16.h),
         )),
@@ -115,13 +116,14 @@ class _ProfileContactsView extends StatelessWidget {
             controller: controller,
             hintText: hintText,
             prefixIcon: icon,
+
           ),
-          MHRadioListTile<ContactType>(
-            value: value,
-            groupValue: state.primaryContact,
-            onChanged: context.read<ProfileEditCubit>().changePrimaryContact,
-            label: context.localized.primaryContact,
-          )
+          // MHRadioListTile<ContactType>(
+          //   value: value,
+          //   groupValue: state.primaryContact,
+          //   onChanged: context.read<ProfileEditCubit>().changePrimaryContact,
+          //   label: context.localized.primaryContact,
+          // )
         ],
       );
 }

@@ -31,6 +31,10 @@ _$RequestModelImpl _$$RequestModelImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['modifyDttm'] as String),
       status: $enumDecodeNullable(_$RequestStatusEnumMap, json['rqStatus']) ??
           RequestStatus.new_,
+      lastCommentInfo: json['lastCommentInfo'] == null
+          ? null
+          : LastCommentInfoModel.fromJson(
+              json['lastCommentInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$RequestModelImplToJson(_$RequestModelImpl instance) =>
@@ -53,6 +57,7 @@ Map<String, dynamic> _$$RequestModelImplToJson(_$RequestModelImpl instance) =>
       'createDttm': instance.createDate?.toIso8601String(),
       'modifyDttm': instance.modifyDate?.toIso8601String(),
       'rqStatus': _$RequestStatusEnumMap[instance.status]!,
+      'lastCommentInfo': instance.lastCommentInfo,
     };
 
 const _$RequestStatusEnumMap = {

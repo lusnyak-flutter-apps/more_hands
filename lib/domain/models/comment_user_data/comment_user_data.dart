@@ -7,7 +7,7 @@ part 'comment_user_data.g.dart';
 @freezed
 class CommentUserDataModel with _$CommentUserDataModel {
   const factory CommentUserDataModel({
-    int? id,
+    int? userId,
     String? userLogin,
     String? userFirstName,
     String? userLastName,

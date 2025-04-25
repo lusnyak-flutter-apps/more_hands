@@ -8,10 +8,16 @@ import 'package:uikit/uikit.dart';
 import '../../core/network/constants/api_constants.dart';
 
 class CommentTile extends StatelessWidget {
-  const CommentTile({super.key, required this.comment, this.onReply});
+  const CommentTile({
+    super.key,
+    required this.comment,
+    this.onReply,
+    this.onTapUser,
+  });
 
   final CommentModel comment;
   final VoidCallback? onReply;
+  final Function(int id)? onTapUser;
 
   Widget buildReplyComment(CommentModel comment) {
     String formattedName =
@@ -27,23 +33,36 @@ class CommentTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              MHImage(
-                size: 40.r,
-                imageUrl: comment.userData?.profileImageUrl != null
-                    ? "${APIBase.url}${comment.userData!.profileImageUrl!}"
-                    : null,
-                emptyWidget:
-                MoreHandsAssets.icons.userYellow.svg(height: 36.r),
-                availableForegroundDecoration: false,
+              InkWell(
+                radius: 20.r,
+                onTap: () {
+                  if (onTapUser != null) {
+                    onTapUser!(comment.userData?.userId ?? 0);
+                  }
+                },
+                child: MHImage(
+                  size: 40.r,
+                  imageUrl: comment.userData?.profileImageUrl != null
+                      ? "${APIBase.url}${comment.userData!.profileImageUrl!}"
+                      : null,
+                  emptyWidget:
+                      MoreHandsAssets.icons.userYellow.svg(height: 36.r),
+                  availableForegroundDecoration: false,
+                ),
               ),
               8.w.widthBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(formattedName, style: body22SemiBoldStyle),
-                  Text(comment.createAt?.timeAgoRu() ?? "",
-                      style: body14Style),
+                  GestureDetector(
+                      onTap: () {
+                        if (onTapUser != null) {
+                          onTapUser!(comment.userData?.userId ?? 0);
+                        }
+                      },
+                      child: Text(formattedName, style: body22SemiBoldStyle)),
+                  Text(comment.createAt?.timeAgoRu() ?? "", style: body14Style),
                 ],
               ).paddingSymmetric(vertical: 2.0).expanded()
             ],
@@ -77,14 +96,22 @@ class CommentTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MHImage(
-                    size: 52.r,
-                    imageUrl: comment.userData?.profileImageUrl != null
-                        ? "${APIBase.url}${comment.userData!.profileImageUrl!}"
-                        : null,
-                    emptyWidget:
-                        MoreHandsAssets.icons.userYellow.svg(height: 36.r),
-                    availableForegroundDecoration: false,
+                  InkWell(
+                    radius: 20.r,
+                    onTap: () {
+                      if (onTapUser != null) {
+                        onTapUser!(comment.userData?.userId ?? 0);
+                      }
+                    },
+                    child: MHImage(
+                      size: 52.r,
+                      imageUrl: comment.userData?.profileImageUrl != null
+                          ? "${APIBase.url}${comment.userData!.profileImageUrl!}"
+                          : null,
+                      emptyWidget:
+                          MoreHandsAssets.icons.userYellow.svg(height: 36.r),
+                      availableForegroundDecoration: false,
+                    ),
                   ),
                   8.w.widthBox,
                   Column(
@@ -92,7 +119,14 @@ class CommentTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(formattedName, style: body22SemiBoldStyle),
+                        GestureDetector(
+                            onTap: () {
+                              if (onTapUser != null) {
+                                onTapUser!(comment.userData?.userId ?? 0);
+                              }
+                            },
+                            child: Text(formattedName,
+                                style: body22SemiBoldStyle)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -101,8 +135,7 @@ class CommentTile extends StatelessWidget {
                                 itemPadding: const EdgeInsets.only(right: 2.0),
                                 rating: comment.starsGiven?.toDouble() ?? 0,
                                 itemBuilder: (_, index) {
-                                  final rate =
-                                      comment.starsGiven?.toInt() ?? 0;
+                                  final rate = comment.starsGiven?.toInt() ?? 0;
                                   if (index < rate) {
                                     return MoreHandsAssets.icons.starFill.svg(
                                         colorFilter: const ColorFilter.mode(
@@ -126,9 +159,9 @@ class CommentTile extends StatelessWidget {
               ).paddingOnly(top: 8.h),
           ],
         ),
-        if(comment.relatedComment != null)
+        if (comment.relatedComment != null)
           buildReplyComment(comment.relatedComment!),
-         if (comment.relatedComment == null && onReply != null)
+        if (comment.relatedComment == null && onReply != null)
           MHGradientButton(title: context.localized.answer, onPressed: onReply)
               .paddingSymmetric(vertical: 16.h)
         else

@@ -18,6 +18,7 @@ abstract class EndPoint {
   static const String userContacts = "/user/contacts";
   static const String userBio = "/user/bio";
   static const String userDeleteSelf = "/user/deleteSelf";
+  static const String userFirebaseToken = "/user/firebaseToken";
 
   static const String storageDownload = "/storage/download";
 

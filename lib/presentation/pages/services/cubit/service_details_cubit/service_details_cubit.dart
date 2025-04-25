@@ -209,4 +209,25 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
       ));
     }
   }
+
+  void onDeleteServiceImage(int fileId) async {
+    try {
+      await getIt<ServiceRepository>()
+          .deleteServiceImage(state.service?.serviceAdditionalInfo?.userServiceId ?? 0,  fileId);
+      final service = state.service?.copyWith(
+        files: state.service!.files
+            .where((file) => file.usfFileId != fileId)
+            .toList(),
+      );
+      state.service?.files.removeWhere((file) => file.usfFileId == fileId);
+      emit(state.copyWith(
+        service: service,
+      ));
+    } catch (e) {
+      debugPrint(e.toString());
+      emit(state.copyWith(
+        loading: false,
+      ));
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/contact_type.dart';
 import 'package:more_hands/domain/models/comment_model/comment_model.dart';
@@ -166,6 +167,9 @@ class _UserViewState extends State<_UserView> {
         for (var comment in comments)
           CommentTile(
             comment: comment,
+            onTapUser: (userId) {
+              context.router.push(UserRoute(userId: userId));
+            },
           ),
       ],
     );
@@ -235,11 +239,23 @@ class _UserViewState extends State<_UserView> {
             contacts: contacts,
           ).paddingOnly(bottom: 8.h),
         if (bio.isNotEmpty)
-          Text(
-            bio,
-            style: body16Style,
-            textAlign: TextAlign.left,
-          ).paddingOnly(bottom: 2.h)
+          InkWell(
+            onLongPress: () async {
+              await Clipboard.setData(ClipboardData(
+                  text: bio))
+                  .then((_) {
+                if (context.mounted) {
+                  context.showSnackBar(
+                      message: context.localized.successfullyCopied);
+                }
+              });
+            },
+            child: Text(
+              bio,
+              style: body16Style,
+              textAlign: TextAlign.left,
+            ).paddingOnly(bottom: 2.h),
+          )
       ],
     );
   }

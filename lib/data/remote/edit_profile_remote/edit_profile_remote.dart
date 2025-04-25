@@ -5,6 +5,7 @@ import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/models/edit_bio_request_model/edit_bio_request_model.dart';
 import 'package:more_hands/domain/models/edit_contacts_request_model/edit_contacts_request_model.dart';
 import 'package:more_hands/domain/models/edit_name_request_model/edit_name_request_model.dart';
+import 'package:more_hands/domain/models/firebase_token/firebase_token_request_model.dart';
 
 part 'edit_profile_remote.g.dart';
 
@@ -37,5 +38,10 @@ abstract class EditProfileRemoteApi {
     @Query("attachType") String? attachType,
     @Query("attachName") String? attachName,
      @Part(name: "file") required File file,
+  });
+
+  @POST(EndPoint.userFirebaseToken)
+  Future<void> setFirebaseToken({
+    @Body() FirebaseTokenRequestModel? data,
   });
 }

@@ -250,6 +250,7 @@ class _ServiceDetailsView extends StatelessWidget {
                               left: 8.0,
                               child: IconButton(
                                 onPressed: () {
+                                  cubit.onDeleteServiceImage(file.usfFileId ?? 0);
                                 },
                                 style: IconButton.styleFrom(
                                     padding: EdgeInsets.zero,

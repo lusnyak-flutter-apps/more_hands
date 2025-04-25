@@ -359,4 +359,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get viewReview => 'See a replay on the review';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get successfullyCopied => 'Copied to clipboard successfully';
 }

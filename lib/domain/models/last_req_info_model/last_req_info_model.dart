@@ -107,3 +107,4 @@ const leaveAReview = "leaveAReview";
 const requestSent = "requestSent";
 const sendRequest = "sendRequest";
 const removeService = "removeService";
+const editService = "editService";

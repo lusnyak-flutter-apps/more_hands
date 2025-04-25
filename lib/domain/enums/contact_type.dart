@@ -5,12 +5,12 @@ enum ContactType {
   whatsApp,
   none;
 
-  String? link(String txt) {
+  String? link(String username) {
     return switch (this) {
-      instagram => "instagram://$txt",
-      facebook => "fb://$txt",
-      telegram => "https://t.me/$txt", // "telegram://$txt",
-      whatsApp => "whatsapp://send?phone=$txt",
+      instagram => "instagram://user?username=$username",
+      facebook => "fb://$username",
+      telegram => "https://t.me/$username", // "telegram://$txt",
+      whatsApp => "whatsapp://send?phone=$username",
       _ => null,
     };
   }

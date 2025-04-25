@@ -9,7 +9,7 @@ part of 'comment_user_data.dart';
 _$CommentUserDataModelImpl _$$CommentUserDataModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CommentUserDataModelImpl(
-      id: (json['id'] as num?)?.toInt(),
+      userId: (json['userId'] as num?)?.toInt(),
       userLogin: json['userLogin'] as String?,
       userFirstName: json['userFirstName'] as String?,
       userLastName: json['userLastName'] as String?,
@@ -21,7 +21,7 @@ _$CommentUserDataModelImpl _$$CommentUserDataModelImplFromJson(
 Map<String, dynamic> _$$CommentUserDataModelImplToJson(
         _$CommentUserDataModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'userId': instance.userId,
       'userLogin': instance.userLogin,
       'userFirstName': instance.userFirstName,
       'userLastName': instance.userLastName,

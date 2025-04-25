@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:more_hands/core/di/injection.dart';
 import 'package:more_hands/data/data.dart';
 import 'package:more_hands/data/firebase/firebase_options.dart';
 
@@ -47,9 +48,12 @@ class FCMService {
   }
 
   delegates(BuildContext context) async {
-    FirebaseMessaging.instance.onTokenRefresh.listen((event) {
+    FirebaseMessaging.instance.onTokenRefresh.listen((event) async {
       if (event.isNotEmpty && event != Preferences.instance.pushToken) {
         Preferences.instance.pushToken = event;
+        debugPrint("Push token: $event");
+        debugPrint("Push token: ${Preferences.instance.pushToken}");
+        await getIt<ProfileRepository>().setFirebaseToken(token: event);
       }
     });
 
@@ -73,10 +77,11 @@ class FCMService {
       debugPrint(message.toMap().toString());
     });
 
-    FirebaseMessaging.instance.getToken().then((value) {
+    FirebaseMessaging.instance.getToken().then((value) async {
       debugPrint('FCM Token: $value');
       if (value != null) {
         Preferences.instance.pushToken = value;
+        await getIt<ProfileRepository>().setFirebaseToken(token: value);
       }
     });
   }

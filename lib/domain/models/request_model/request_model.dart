@@ -1,5 +1,6 @@
 import 'package:more_hands/core/core.dart';
 import 'package:more_hands/domain/enums/request_status.dart';
+import 'package:more_hands/domain/models/last_comment_info/last_comment_info_model.dart';
 
 part 'request_model.freezed.dart';
 
@@ -28,6 +29,7 @@ class RequestModel with _$RequestModel{
     @JsonKey(name: 'rqStatus')
     @Default(RequestStatus.new_)
     RequestStatus status,
+    LastCommentInfoModel? lastCommentInfo,
   }) = _RequestModel;
 
   factory RequestModel.fromJson(Map<String, dynamic> json) =>

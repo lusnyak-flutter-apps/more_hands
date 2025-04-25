@@ -108,5 +108,7 @@
   "waitingForAResponse":"Ожидает ответа",
   "ago": "назад",
   "answer":"Ответить",
-  "viewReview":"Смотреть отзыв"
+  "viewReview":"Смотреть отзыв",
+  "edit":"Редактировать",
+  "successfullyCopied":"Успешно скопировано в буфер обмена"
  }

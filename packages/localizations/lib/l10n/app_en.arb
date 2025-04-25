@@ -108,5 +108,7 @@
   "waitingForAResponse":"Waiting for a response",
   "ago": "ago",
   "answer":"Answer",
-  "viewReview":"See a replay on the review"
+  "viewReview":"See a replay on the review",
+    "edit":"Edit",
+  "successfullyCopied":"Copied to clipboard successfully"
  }

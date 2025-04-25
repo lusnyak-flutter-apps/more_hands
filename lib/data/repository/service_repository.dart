@@ -48,7 +48,6 @@ class ServiceRepository {
         return null;
       });
 
-
   Future<List<CurrencyModel>> getCurrencies() async =>
       await getIt<CurrencyRemoteApi>()
           .findByCode()
@@ -65,7 +64,8 @@ class ServiceRepository {
       await getIt<UserServicesRemoteApi>().updateUserService(data: param);
 
   Future<void> deleteUserService(int userServiceId) async =>
-      await getIt<UserServicesRemoteApi>().deleteUserService(userServiceId: userServiceId);
+      await getIt<UserServicesRemoteApi>()
+          .deleteUserService(userServiceId: userServiceId);
 
   Future<bool> attachServiceFiles(List<File> files, int userServiceId) async {
     if (files.isNotEmpty) {
@@ -77,10 +77,17 @@ class ServiceRepository {
               file: file,
               isMain: index == 0,
               attachName: file.path.split("/").last),
-      ]).then((onValue){
+      ]).then((onValue) {
         return true;
-      }).catchError((_){return false;});
+      }).catchError((_) {
+        return false;
+      });
     }
     return false;
   }
+
+  Future<void> deleteServiceImage(
+          int userServiceId, int userServiceFileId) async =>
+      await getIt<UserServicesRemoteApi>().deleteServiceImage(
+          userServiceId: userServiceId, userServiceFileId: userServiceFileId);
 }

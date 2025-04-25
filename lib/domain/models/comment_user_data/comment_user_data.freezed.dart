@@ -20,7 +20,7 @@ CommentUserDataModel _$CommentUserDataModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentUserDataModel {
-  int? get id => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
   String? get userLogin => throw _privateConstructorUsedError;
   String? get userFirstName => throw _privateConstructorUsedError;
   String? get userLastName => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $CommentUserDataModelCopyWith<$Res> {
       _$CommentUserDataModelCopyWithImpl<$Res, CommentUserDataModel>;
   @useResult
   $Res call(
-      {int? id,
+      {int? userId,
       String? userLogin,
       String? userFirstName,
       String? userLastName,
@@ -70,7 +70,7 @@ class _$CommentUserDataModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? userId = freezed,
     Object? userLogin = freezed,
     Object? userFirstName = freezed,
     Object? userLastName = freezed,
@@ -79,9 +79,9 @@ class _$CommentUserDataModelCopyWithImpl<$Res,
     Object? userRating = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
       userLogin: freezed == userLogin
           ? _value.userLogin
@@ -120,7 +120,7 @@ abstract class _$$CommentUserDataModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {int? userId,
       String? userLogin,
       String? userFirstName,
       String? userLastName,
@@ -142,7 +142,7 @@ class __$$CommentUserDataModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? userId = freezed,
     Object? userLogin = freezed,
     Object? userFirstName = freezed,
     Object? userLastName = freezed,
@@ -151,9 +151,9 @@ class __$$CommentUserDataModelImplCopyWithImpl<$Res>
     Object? userRating = freezed,
   }) {
     return _then(_$CommentUserDataModelImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
       userLogin: freezed == userLogin
           ? _value.userLogin
@@ -187,7 +187,7 @@ class __$$CommentUserDataModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CommentUserDataModelImpl implements _CommentUserDataModel {
   const _$CommentUserDataModelImpl(
-      {this.id,
+      {this.userId,
       this.userLogin,
       this.userFirstName,
       this.userLastName,
@@ -199,7 +199,7 @@ class _$CommentUserDataModelImpl implements _CommentUserDataModel {
       _$$CommentUserDataModelImplFromJson(json);
 
   @override
-  final int? id;
+  final int? userId;
   @override
   final String? userLogin;
   @override
@@ -215,7 +215,7 @@ class _$CommentUserDataModelImpl implements _CommentUserDataModel {
 
   @override
   String toString() {
-    return 'CommentUserDataModel(id: $id, userLogin: $userLogin, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, profileImageUrl: $profileImageUrl, userRating: $userRating)';
+    return 'CommentUserDataModel(userId: $userId, userLogin: $userLogin, userFirstName: $userFirstName, userLastName: $userLastName, userMiddleName: $userMiddleName, profileImageUrl: $profileImageUrl, userRating: $userRating)';
   }
 
   @override
@@ -223,7 +223,7 @@ class _$CommentUserDataModelImpl implements _CommentUserDataModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CommentUserDataModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userLogin, userLogin) ||
                 other.userLogin == userLogin) &&
             (identical(other.userFirstName, userFirstName) ||
@@ -240,7 +240,7 @@ class _$CommentUserDataModelImpl implements _CommentUserDataModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userLogin, userFirstName,
+  int get hashCode => Object.hash(runtimeType, userId, userLogin, userFirstName,
       userLastName, userMiddleName, profileImageUrl, userRating);
 
   /// Create a copy of CommentUserDataModel
@@ -263,7 +263,7 @@ class _$CommentUserDataModelImpl implements _CommentUserDataModel {
 
 abstract class _CommentUserDataModel implements CommentUserDataModel {
   const factory _CommentUserDataModel(
-      {final int? id,
+      {final int? userId,
       final String? userLogin,
       final String? userFirstName,
       final String? userLastName,
@@ -275,7 +275,7 @@ abstract class _CommentUserDataModel implements CommentUserDataModel {
       _$CommentUserDataModelImpl.fromJson;
 
   @override
-  int? get id;
+  int? get userId;
   @override
   String? get userLogin;
   @override
