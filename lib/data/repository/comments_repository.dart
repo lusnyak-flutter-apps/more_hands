@@ -30,7 +30,7 @@ class CommentsRepository {
     int to = 10,
   }) async =>
       await getIt<ReviewRemoteApi>()
-          .getCommentByRelatedUserId(from: from, to: to, userId: userId)
+          .getCommentByRelatedUserId(from: from, to: to, userId: userId, commentType: "comment")
           .catchError((e) {
         debugPrint(e.toString());
         return <CommentModel>[];

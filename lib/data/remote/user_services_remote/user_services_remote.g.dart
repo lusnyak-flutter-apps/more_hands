@@ -261,7 +261,6 @@ class _UserServicesRemoteApi implements UserServicesRemoteApi {
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
-      contentType: 'multipart/form-data',
     )
         .compose(
           _dio.options,

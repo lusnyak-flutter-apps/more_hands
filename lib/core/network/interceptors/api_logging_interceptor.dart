@@ -18,6 +18,11 @@ class ApiLoggingInterceptor extends Interceptor {
       options.headers['Authorization'] = tokenMdl.token;
     }
 
+    final token = Preferences.instance.pushToken;
+    if(token.isNotEmpty) {
+      options.headers['X-FirebaseToken'] = token;
+    }
+
     final lat = Preferences.instance.latitude;
     final long = Preferences.instance.longitude;
     options.headers['X-Lat'] = lat;

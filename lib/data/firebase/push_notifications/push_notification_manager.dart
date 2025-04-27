@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:more_hands/core/di/injection.dart';
 import 'package:more_hands/data/data.dart';
 import 'package:more_hands/data/firebase/firebase_options.dart';
+import 'package:uikit/uikit.dart';
 
 import 'local_notification_manager.dart';
 
@@ -49,10 +51,15 @@ class FCMService {
 
   delegates(BuildContext context) async {
     FirebaseMessaging.instance.onTokenRefresh.listen((event) async {
-      if (event.isNotEmpty && event != Preferences.instance.pushToken) {
+      if (event.isNotEmpty && event != Preferences.instance.pushToken ) {
         Preferences.instance.pushToken = event;
         debugPrint("Push token: $event");
         debugPrint("Push token: ${Preferences.instance.pushToken}");
+        if (context.mounted) {
+          context.showSnackBar(
+              message: "Push token: $event",
+              duration: const Duration(seconds: 5));
+        }
         await getIt<ProfileRepository>().setFirebaseToken(token: event);
       }
     });
@@ -81,7 +88,12 @@ class FCMService {
       debugPrint('FCM Token: $value');
       if (value != null) {
         Preferences.instance.pushToken = value;
-        await getIt<ProfileRepository>().setFirebaseToken(token: value);
+        // if (context.mounted) {
+        //   context.showSnackBar(
+        //       message: "Push token: $value",
+        //       duration: const Duration(seconds: 5));
+        // }
+        // await getIt<ProfileRepository>().setFirebaseToken(token: value);
       }
     });
   }

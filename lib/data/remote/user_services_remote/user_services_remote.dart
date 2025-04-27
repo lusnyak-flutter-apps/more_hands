@@ -53,7 +53,6 @@ abstract class UserServicesRemoteApi {
   });
 
   @DELETE(EndPoint.userServiceImage)
-  @MultiPart()
   Future<void> deleteServiceImage({
     @Query("userServiceId") required int userServiceId,
     @Query("userServiceFileId") required int userServiceFileId,

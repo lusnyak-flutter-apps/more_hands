@@ -31,6 +31,7 @@ abstract class ReviewRemoteApi {
   @GET(EndPoint.getCommentsByRelatedUserId)
   Future<List<CommentModel>> getCommentByRelatedUserId({
     @Query('userId') int? userId,
+    @Query('commentType') String? commentType,
     @Query('from') int from = 0,
     @Query('to') int to = 10,
   });

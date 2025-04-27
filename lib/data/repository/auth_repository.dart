@@ -45,5 +45,4 @@ class AuthRepository {
     ]).whenComplete(() => appRouter.pushAndPopUntil(const AuthorizationRoute(),
         predicate: (route) => false));
   }
-
 }

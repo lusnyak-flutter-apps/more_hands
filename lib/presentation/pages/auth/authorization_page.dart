@@ -67,7 +67,7 @@ class _AuthorizationView extends StatelessWidget {
                 24.h.heightBox,
                 MHOutlinedButton(
                   onPressed: () {
-                    cubit.loginViaSocial(SocialAuthType.google);
+                    cubit.loginViaSocial(context, SocialAuthType.google);
                     // context.router.pushAndPopUntil(const BottomNavigationRoute(),
                     //     predicate: (route) => false);
                   },
@@ -77,7 +77,7 @@ class _AuthorizationView extends StatelessWidget {
                 if (Platform.isIOS)
                   MHOutlinedButton(
                     onPressed: () {
-                      cubit.loginViaSocial(SocialAuthType.apple);
+                      cubit.loginViaSocial(context, SocialAuthType.apple);
                       // context.router.pushAndPopUntil(const BottomNavigationRoute(),
                       //     predicate: (route) => false);
                     },

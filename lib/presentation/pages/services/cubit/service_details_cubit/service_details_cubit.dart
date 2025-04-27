@@ -219,9 +219,11 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsState> {
             .where((file) => file.usfFileId != fileId)
             .toList(),
       );
-      state.service?.files.removeWhere((file) => file.usfFileId == fileId);
+      // service?.files.removeWhere((file) => file.usfFileId == fileId);
       emit(state.copyWith(
         service: service,
+        loading: false,
+        mode: ServiceDetailsMode.edit
       ));
     } catch (e) {
       debugPrint(e.toString());

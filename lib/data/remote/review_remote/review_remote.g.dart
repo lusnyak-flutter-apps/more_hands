@@ -124,12 +124,14 @@ class _ReviewRemoteApi implements ReviewRemoteApi {
   @override
   Future<List<CommentModel>> getCommentByRelatedUserId({
     int? userId,
+    String? commentType,
     int from = 0,
     int to = 10,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'userId': userId,
+      r'commentType': commentType,
       r'from': from,
       r'to': to,
     };
