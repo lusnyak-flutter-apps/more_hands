@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'storage_remote.dart';
+part of 'subscription_remote.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'storage_remote.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _StorageRemoteApi implements StorageRemoteApi {
-  _StorageRemoteApi(this._dio, {this.baseUrl, this.errorLogger}) {
+class _SubscriptionRemoteApi implements SubscriptionRemoteApi {
+  _SubscriptionRemoteApi(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'http://814407a9fc09.sn.mynetname.net:9680';
   }
 
@@ -20,40 +20,16 @@ class _StorageRemoteApi implements StorageRemoteApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<dynamic> downloadFileByPath(String path) async {
+  Future<dynamic> purchaseSubscription(String subscriptionId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'tt': subscriptionId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<dynamic>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '${path}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch(_options);
-    final _value = _result.data;
-    return _value;
-  }
-
-  @override
-  Future<dynamic> downloadFile(String category, String fileId) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'category': category,
-      r'fileId': fileId,
-    };
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<dynamic>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            '/storage/download',
+            '/action/buyHandshakes',
             queryParameters: queryParameters,
             data: _data,
           )

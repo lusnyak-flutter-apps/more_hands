@@ -9,11 +9,7 @@ part of 'location_remote.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _LocationRemoteApi implements LocationRemoteApi {
-  _LocationRemoteApi(
-    this._dio, {
-    this.baseUrl,
-    this.errorLogger,
-  }) {
+  _LocationRemoteApi(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'http://814407a9fc09.sn.mynetname.net:9680';
   }
 
@@ -24,34 +20,30 @@ class _LocationRemoteApi implements LocationRemoteApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<LocationModel>?> findClosestLocations(
-      {String locName = ""}) async {
+  Future<List<LocationModel>?> findClosestLocations({
+    String locName = "",
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'city': locName};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<LocationModel>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/location/findClosest',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<List<LocationModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/location/findClosest',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<LocationModel>? _value;
     try {
       _value = _result.data
           ?.map(
-              (dynamic i) => LocationModel.fromJson(i as Map<String, dynamic>))
+            (dynamic i) => LocationModel.fromJson(i as Map<String, dynamic>),
+          )
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -66,22 +58,16 @@ class _LocationRemoteApi implements LocationRemoteApi {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<LocationModel>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/location/whereami',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<LocationModel>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/location/whereami',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
     late LocationModel? _value;
     try {
@@ -107,10 +93,7 @@ class _LocationRemoteApi implements LocationRemoteApi {
     return requestOptions;
   }
 
-  String _combineBaseUrls(
-    String dioBaseUrl,
-    String? baseUrl,
-  ) {
+  String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
     if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }

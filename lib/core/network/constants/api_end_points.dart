@@ -9,7 +9,7 @@ abstract class EndPoint {
   static const String findUsersByLocAndText = "/user/findByLocAndText";
   static const String findUsersByLocAndServices = "/user/findByLocAndServices";
 
-  static const String findServices   = "/service/find";
+  static const String findServices = "/service/find";
   static const String findServicesByCat = "/service/findByCat";
   static const String getServMeas = "/service/getServMeas";
 
@@ -25,7 +25,7 @@ abstract class EndPoint {
   static const String getCurrencyByCode = "/currency/getByCode";
   static const String findCurrencyByCode = "/currency/findByCode";
 
-  static const String userServicesList= "/userServices/listByCat";
+  static const String userServicesList = "/userServices/listByCat";
   static const String addUserService = "/userServices/add";
   static const String updateUserService = "/userServices/update";
   static const String deleteUserService = "/userServices/delete";
@@ -41,12 +41,15 @@ abstract class EndPoint {
   static const String cancelRequest = "/action/reqCancel";
   static const String approveRequest = "/action/reqApprove";
   static const String createAndSendRequest = "/action/reqCreateAndSend";
+  static const String buyHandshakes = "/action/buyHandshakes";
 
   static const String whereAmI = "/location/whereami";
   static const String findClosestLocations = "/location/findClosest";
   static const String getUserInfo = "/user/getUserInfo";
   static const String userComments = "/userComments";
-  static const String getReplyCommentToCommentId = "/userComments/getByReplyToCommentId";
+  static const String getReplyCommentToCommentId =
+      "/userComments/getByReplyToCommentId";
   static const String getCommentsByUserId = "/userComments/getByUserId";
-  static const String getCommentsByRelatedUserId = "/userComments/getByRelatedUserId";
- }
+  static const String getCommentsByRelatedUserId =
+      "/userComments/getByRelatedUserId";
+}

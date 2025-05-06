@@ -9,11 +9,7 @@ part of 'service_remote.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _ServiceRemoteApi implements ServiceRemoteApi {
-  _ServiceRemoteApi(
-    this._dio, {
-    this.baseUrl,
-    this.errorLogger,
-  }) {
+  _ServiceRemoteApi(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'http://814407a9fc09.sn.mynetname.net:9680';
   }
 
@@ -37,27 +33,23 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceModel>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/service/find',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<List<ServiceModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/service/find',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<ServiceModel>? _value;
     try {
       _value = _result.data
-          ?.map((dynamic i) => ServiceModel.fromJson(i as Map<String, dynamic>))
+          ?.map(
+            (dynamic i) => ServiceModel.fromJson(i as Map<String, dynamic>),
+          )
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -78,28 +70,24 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceByCategoryModel>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/service/findByCat',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<List<ServiceByCategoryModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/service/findByCat',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<ServiceByCategoryModel>? _value;
     try {
       _value = _result.data
-          ?.map((dynamic i) =>
-              ServiceByCategoryModel.fromJson(i as Map<String, dynamic>))
+          ?.map(
+            (dynamic i) =>
+                ServiceByCategoryModel.fromJson(i as Map<String, dynamic>),
+          )
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -114,28 +102,24 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<ServiceMeasureModel>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/service/getServMeas',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<List<ServiceMeasureModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/service/getServMeas',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<ServiceMeasureModel>? _value;
     try {
       _value = _result.data
-          ?.map((dynamic i) =>
-              ServiceMeasureModel.fromJson(i as Map<String, dynamic>))
+          ?.map(
+            (dynamic i) =>
+                ServiceMeasureModel.fromJson(i as Map<String, dynamic>),
+          )
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -157,10 +141,7 @@ class _ServiceRemoteApi implements ServiceRemoteApi {
     return requestOptions;
   }
 
-  String _combineBaseUrls(
-    String dioBaseUrl,
-    String? baseUrl,
-  ) {
+  String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
     if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }

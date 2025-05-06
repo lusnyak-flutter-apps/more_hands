@@ -9,11 +9,7 @@ part of 'edit_profile_remote.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _EditProfileRemoteApi implements EditProfileRemoteApi {
-  _EditProfileRemoteApi(
-    this._dio, {
-    this.baseUrl,
-    this.errorLogger,
-  }) {
+  _EditProfileRemoteApi(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'http://814407a9fc09.sn.mynetname.net:9680';
   }
 
@@ -31,22 +27,16 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data?.toJson() ?? <String, dynamic>{});
-    final _options = _setStreamType<void>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/user/name',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<void>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/name',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     await _dio.fetch<void>(_options);
   }
 
@@ -58,22 +48,16 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data?.toJson() ?? <String, dynamic>{});
-    final _options = _setStreamType<void>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/user/contacts',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<void>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/contacts',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     await _dio.fetch<void>(_options);
   }
 
@@ -85,22 +69,16 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data?.toJson() ?? <String, dynamic>{});
-    final _options = _setStreamType<void>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/user/bio',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<void>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/bio',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     await _dio.fetch<void>(_options);
   }
 
@@ -118,30 +96,30 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
-    _data.files.add(MapEntry(
-      'file',
-      MultipartFile.fromFileSync(
-        file.path,
-        filename: file.path.split(Platform.pathSeparator).last,
+    _data.files.add(
+      MapEntry(
+        'file',
+        MultipartFile.fromFileSync(
+          file.path,
+          filename: file.path.split(Platform.pathSeparator).last,
+        ),
       ),
-    ));
-    final _options = _setStreamType<void>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-      contentType: 'multipart/form-data',
-    )
-        .compose(
-          _dio.options,
-          '/user/profileImage',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    );
+    final _options = _setStreamType<void>(
+      Options(
+        method: 'POST',
+        headers: _headers,
+        extra: _extra,
+        contentType: 'multipart/form-data',
+      )
+          .compose(
+            _dio.options,
+            '/user/profileImage',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     await _dio.fetch<void>(_options);
   }
 
@@ -153,22 +131,16 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data?.toJson() ?? <String, dynamic>{});
-    final _options = _setStreamType<void>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/user/firebaseToken',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<void>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/firebaseToken',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     await _dio.fetch<void>(_options);
   }
 
@@ -185,10 +157,7 @@ class _EditProfileRemoteApi implements EditProfileRemoteApi {
     return requestOptions;
   }
 
-  String _combineBaseUrls(
-    String dioBaseUrl,
-    String? baseUrl,
-  ) {
+  String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
     if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }
