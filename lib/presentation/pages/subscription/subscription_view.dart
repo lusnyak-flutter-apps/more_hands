@@ -16,7 +16,9 @@ class _SubscriptionViewState extends State<SubscriptionView> {
   @override
   void initState() {
     super.initState();
-    context.read<SubscriptionCubit>().checkSubscriptionStatus();
+    context.read<SubscriptionCubit>()
+      ..checkSubscriptionStatus()
+      ..loadAvailableSubscriptions();
   }
 
   @override
@@ -48,51 +50,42 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                         style: body20MediumStyle,
                       ).paddingSymmetric(horizontal: 8.w),
                       MHGradientTag(
-                        title: "12.12.2024",
+                        title: "12.12.2025",
                         icon: MoreHandsAssets.icons.hand.svg(
                           colorFilter: const ColorFilter.mode(
-                              MHColors.blackBGColor, BlendMode.srcIn),
+                            MHColors.blackBGColor,
+                            BlendMode.srcIn,
+                          ),
                         ),
                         iconAlignment: IconAlignment.start,
                       ),
                     ],
                   ).paddingAll(6.r)),
               24.h.heightBox,
-              MHOutlinedButton(
-                title: "30 дней за 10 \$",
-                onPressed: isActive || loading
-                    ? null
-                    : () => context
-                        .read<SubscriptionCubit>()
-                        .purchaseSubscription("subscription_1_month"),
-              ),
-              8.h.heightBox,
-              MHOutlinedButton(
-                title: "60 дней за 15 \$",
-                onPressed: isActive || loading
-                    ? null
-                    : () => context
-                        .read<SubscriptionCubit>()
-                        .purchaseSubscription("subscription_3_months"),
-              ),
-              8.h.heightBox,
-              MHOutlinedButton(
-                title: "120 дней за 20 \$",
-                onPressed: isActive || loading
-                    ? null
-                    : () => context
-                        .read<SubscriptionCubit>()
-                        .purchaseSubscription("subscription_3_months"),
-              ),
-              8.h.heightBox,
-              MHGradientButton(
-                title: "1 год за 5 \$ месяц",
-                onPressed: isActive || loading
-                    ? null
-                    : () => context
-                        .read<SubscriptionCubit>()
-                        .purchaseSubscription("subscription_1_year"),
-              ),
+              if (state.availableSubscriptions.isEmpty)
+                Center(
+                  child: Text(
+                    'Нет доступных подписок',
+                    //context.localized.noSubscriptionsAvailable,
+                    style: body16Style,
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              else
+                ...state.availableSubscriptions.map(
+                  (subscription) => Padding(
+                    padding: EdgeInsets.only(bottom: 8.h),
+                    child: MHOutlinedButton(
+                      title:
+                          "${subscription.title} за ${subscription.price}${subscription.currencySymbol}",
+                      onPressed: isActive || loading
+                          ? null
+                          : () => context
+                              .read<SubscriptionCubit>()
+                              .purchaseSubscription(subscription.id),
+                    ),
+                  ),
+                ),
               24.h.heightBox,
               Text(
                 context.localized.inviteFriendsGet1Month,

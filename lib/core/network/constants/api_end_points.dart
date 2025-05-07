@@ -42,6 +42,7 @@ abstract class EndPoint {
   static const String approveRequest = "/action/reqApprove";
   static const String createAndSendRequest = "/action/reqCreateAndSend";
   static const String buyHandshakes = "/action/buyHandshakes";
+  static const String transactionTypeCanBuy = "/transactionTypeRef/canBuy";
 
   static const String whereAmI = "/location/whereami";
   static const String findClosestLocations = "/location/findClosest";

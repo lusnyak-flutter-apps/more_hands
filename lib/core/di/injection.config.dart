@@ -119,8 +119,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i262.ServiceDetailsCubit>(() => _i262.ServiceDetailsCubit());
     gh.factory<_i701.OnboardingCubit>(() => _i701.OnboardingCubit());
     gh.factory<_i455.SubscriptionService>(() => _i455.SubscriptionService());
-    gh.lazySingleton<_i255.SubscriptionRepository>(
-        () => _i255.SubscriptionRepository());
     gh.lazySingleton<_i576.CommentsRepository>(
         () => _i576.CommentsRepository());
     gh.lazySingleton<_i593.ServiceRepository>(() => _i593.ServiceRepository());
@@ -144,10 +142,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(
         () => dioClient.dio(gh<String>(instanceName: 'baseUrl')));
     gh.factory<_i491.SocialAuthManager>(() => _i601.SocialAuthManagerImpl());
-    gh.factory<_i488.SubscriptionCubit>(() => _i488.SubscriptionCubit(
-          gh<_i255.SubscriptionRepository>(),
-          gh<_i455.SubscriptionService>(),
-        ));
     gh.lazySingleton<_i372.RequestRemoteApi>(
         () => _i372.RequestRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i288.EditProfileRemoteApi>(
@@ -170,6 +164,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i168.StorageRemoteApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i934.AuthRemoteApi>(
         () => _i934.AuthRemoteApi(gh<_i361.Dio>()));
+    gh.lazySingleton<_i255.SubscriptionRepository>(
+        () => _i255.SubscriptionRepository(
+              gh<_i36.SubscriptionRemoteApi>(),
+              gh<_i455.SubscriptionService>(),
+            ));
+    gh.factory<_i488.SubscriptionCubit>(
+        () => _i488.SubscriptionCubit(gh<_i255.SubscriptionRepository>()));
     return this;
   }
 }

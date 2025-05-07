@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:more_hands/core/core.dart';
 
+import '../../../domain/models/subscription/server_subscription_dto.dart';
+
 part 'subscription_remote.g.dart';
 
 @lazySingleton
@@ -13,4 +15,7 @@ abstract class SubscriptionRemoteApi {
   Future<dynamic> purchaseSubscription(
     @Query('tt') String subscriptionId,
   );
+
+  @GET(EndPoint.transactionTypeCanBuy)
+  Future<List<ServerSubscriptionDTO>> getAvailableSubscriptions();
 }

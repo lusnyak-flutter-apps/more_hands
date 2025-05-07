@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SubscriptionState {
   bool get loading => throw _privateConstructorUsedError;
+  List<SubscriptionModel> get availableSubscriptions =>
+      throw _privateConstructorUsedError;
   SubscriptionStatusModel? get subscriptionStatus =>
       throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
@@ -36,6 +38,7 @@ abstract class $SubscriptionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool loading,
+      List<SubscriptionModel> availableSubscriptions,
       SubscriptionStatusModel? subscriptionStatus,
       String? error});
 
@@ -58,6 +61,7 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
   @override
   $Res call({
     Object? loading = null,
+    Object? availableSubscriptions = null,
     Object? subscriptionStatus = freezed,
     Object? error = freezed,
   }) {
@@ -66,6 +70,10 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      availableSubscriptions: null == availableSubscriptions
+          ? _value.availableSubscriptions
+          : availableSubscriptions // ignore: cast_nullable_to_non_nullable
+              as List<SubscriptionModel>,
       subscriptionStatus: freezed == subscriptionStatus
           ? _value.subscriptionStatus
           : subscriptionStatus // ignore: cast_nullable_to_non_nullable
@@ -103,6 +111,7 @@ abstract class _$$SubscriptionStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool loading,
+      List<SubscriptionModel> availableSubscriptions,
       SubscriptionStatusModel? subscriptionStatus,
       String? error});
 
@@ -124,6 +133,7 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? availableSubscriptions = null,
     Object? subscriptionStatus = freezed,
     Object? error = freezed,
   }) {
@@ -132,6 +142,10 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      availableSubscriptions: null == availableSubscriptions
+          ? _value._availableSubscriptions
+          : availableSubscriptions // ignore: cast_nullable_to_non_nullable
+              as List<SubscriptionModel>,
       subscriptionStatus: freezed == subscriptionStatus
           ? _value.subscriptionStatus
           : subscriptionStatus // ignore: cast_nullable_to_non_nullable
@@ -148,11 +162,25 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
 
 class _$SubscriptionStateImpl implements _SubscriptionState {
   const _$SubscriptionStateImpl(
-      {this.loading = false, this.subscriptionStatus, this.error});
+      {this.loading = false,
+      final List<SubscriptionModel> availableSubscriptions = const [],
+      this.subscriptionStatus,
+      this.error})
+      : _availableSubscriptions = availableSubscriptions;
 
   @override
   @JsonKey()
   final bool loading;
+  final List<SubscriptionModel> _availableSubscriptions;
+  @override
+  @JsonKey()
+  List<SubscriptionModel> get availableSubscriptions {
+    if (_availableSubscriptions is EqualUnmodifiableListView)
+      return _availableSubscriptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availableSubscriptions);
+  }
+
   @override
   final SubscriptionStatusModel? subscriptionStatus;
   @override
@@ -160,7 +188,7 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
 
   @override
   String toString() {
-    return 'SubscriptionState(loading: $loading, subscriptionStatus: $subscriptionStatus, error: $error)';
+    return 'SubscriptionState(loading: $loading, availableSubscriptions: $availableSubscriptions, subscriptionStatus: $subscriptionStatus, error: $error)';
   }
 
   @override
@@ -169,14 +197,20 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
         (other.runtimeType == runtimeType &&
             other is _$SubscriptionStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            const DeepCollectionEquality().equals(
+                other._availableSubscriptions, _availableSubscriptions) &&
             (identical(other.subscriptionStatus, subscriptionStatus) ||
                 other.subscriptionStatus == subscriptionStatus) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, loading, subscriptionStatus, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      const DeepCollectionEquality().hash(_availableSubscriptions),
+      subscriptionStatus,
+      error);
 
   /// Create a copy of SubscriptionState
   /// with the given fields replaced by the non-null parameter values.
@@ -191,11 +225,14 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
 abstract class _SubscriptionState implements SubscriptionState {
   const factory _SubscriptionState(
       {final bool loading,
+      final List<SubscriptionModel> availableSubscriptions,
       final SubscriptionStatusModel? subscriptionStatus,
       final String? error}) = _$SubscriptionStateImpl;
 
   @override
   bool get loading;
+  @override
+  List<SubscriptionModel> get availableSubscriptions;
   @override
   SubscriptionStatusModel? get subscriptionStatus;
   @override

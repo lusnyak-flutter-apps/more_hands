@@ -8,7 +8,7 @@ class SubscriptionStatusModel with _$SubscriptionStatusModel {
   const factory SubscriptionStatusModel({
     required bool isActive,
     DateTime? expiryDate,
-    String? currentPlan,
+    String? currentPlan, // TODO: подумать, может заменить на SubscriptionModel
   }) = _SubscriptionStatusModel;
 
   factory SubscriptionStatusModel.fromJson(Map<String, dynamic> json) =>
