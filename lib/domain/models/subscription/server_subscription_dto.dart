@@ -13,7 +13,7 @@ class ServerSubscriptionDTO with _$ServerSubscriptionDTO {
     required String operationType,
     required String valueMod,
     required bool canBuy,
-    required int orderNum,
+    required int? orderNum,
     required double koef,
   }) = _ServerSubscriptionDTO;
 

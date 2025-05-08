@@ -58,7 +58,7 @@ class SubscriptionRepository {
           canBuy: serverSub.canBuy,
         );
       }).toList()
-        ..sort((a, b) => a.orderNum.compareTo(b.orderNum));
+        ..sort((a, b) => a.durationInDays.compareTo(b.durationInDays));
     } catch (e) {
       debugPrint('Error getting subscriptions: $e');
       return [];

@@ -16,7 +16,7 @@ _$SubscriptionModelImpl _$$SubscriptionModelImplFromJson(
       durationInDays: (json['durationInDays'] as num).toInt(),
       currencySymbol: json['currencySymbol'] as String?,
       koef: (json['koef'] as num?)?.toDouble() ?? 1.0,
-      orderNum: (json['orderNum'] as num?)?.toInt() ?? 0,
+      orderNum: (json['orderNum'] as num?)?.toInt(),
       canBuy: json['canBuy'] as bool? ?? true,
     );
 

@@ -27,7 +27,7 @@ mixin _$SubscriptionModel {
   int get durationInDays => throw _privateConstructorUsedError;
   String? get currencySymbol => throw _privateConstructorUsedError;
   double get koef => throw _privateConstructorUsedError;
-  int get orderNum => throw _privateConstructorUsedError;
+  int? get orderNum => throw _privateConstructorUsedError;
   bool get canBuy => throw _privateConstructorUsedError;
 
   /// Serializes this SubscriptionModel to a JSON map.
@@ -54,7 +54,7 @@ abstract class $SubscriptionModelCopyWith<$Res> {
       int durationInDays,
       String? currencySymbol,
       double koef,
-      int orderNum,
+      int? orderNum,
       bool canBuy});
 }
 
@@ -80,7 +80,7 @@ class _$SubscriptionModelCopyWithImpl<$Res, $Val extends SubscriptionModel>
     Object? durationInDays = null,
     Object? currencySymbol = freezed,
     Object? koef = null,
-    Object? orderNum = null,
+    Object? orderNum = freezed,
     Object? canBuy = null,
   }) {
     return _then(_value.copyWith(
@@ -112,10 +112,10 @@ class _$SubscriptionModelCopyWithImpl<$Res, $Val extends SubscriptionModel>
           ? _value.koef
           : koef // ignore: cast_nullable_to_non_nullable
               as double,
-      orderNum: null == orderNum
+      orderNum: freezed == orderNum
           ? _value.orderNum
           : orderNum // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       canBuy: null == canBuy
           ? _value.canBuy
           : canBuy // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ abstract class _$$SubscriptionModelImplCopyWith<$Res>
       int durationInDays,
       String? currencySymbol,
       double koef,
-      int orderNum,
+      int? orderNum,
       bool canBuy});
 }
 
@@ -164,7 +164,7 @@ class __$$SubscriptionModelImplCopyWithImpl<$Res>
     Object? durationInDays = null,
     Object? currencySymbol = freezed,
     Object? koef = null,
-    Object? orderNum = null,
+    Object? orderNum = freezed,
     Object? canBuy = null,
   }) {
     return _then(_$SubscriptionModelImpl(
@@ -196,10 +196,10 @@ class __$$SubscriptionModelImplCopyWithImpl<$Res>
           ? _value.koef
           : koef // ignore: cast_nullable_to_non_nullable
               as double,
-      orderNum: null == orderNum
+      orderNum: freezed == orderNum
           ? _value.orderNum
           : orderNum // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       canBuy: null == canBuy
           ? _value.canBuy
           : canBuy // ignore: cast_nullable_to_non_nullable
@@ -219,7 +219,7 @@ class _$SubscriptionModelImpl implements _SubscriptionModel {
       required this.durationInDays,
       this.currencySymbol,
       this.koef = 1.0,
-      this.orderNum = 0,
+      this.orderNum,
       this.canBuy = true});
 
   factory _$SubscriptionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -241,8 +241,7 @@ class _$SubscriptionModelImpl implements _SubscriptionModel {
   @JsonKey()
   final double koef;
   @override
-  @JsonKey()
-  final int orderNum;
+  final int? orderNum;
   @override
   @JsonKey()
   final bool canBuy;
@@ -303,7 +302,7 @@ abstract class _SubscriptionModel implements SubscriptionModel {
       required final int durationInDays,
       final String? currencySymbol,
       final double koef,
-      final int orderNum,
+      final int? orderNum,
       final bool canBuy}) = _$SubscriptionModelImpl;
 
   factory _SubscriptionModel.fromJson(Map<String, dynamic> json) =
@@ -324,7 +323,7 @@ abstract class _SubscriptionModel implements SubscriptionModel {
   @override
   double get koef;
   @override
-  int get orderNum;
+  int? get orderNum;
   @override
   bool get canBuy;
 

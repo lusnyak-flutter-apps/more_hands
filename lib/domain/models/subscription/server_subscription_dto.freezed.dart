@@ -28,7 +28,7 @@ mixin _$ServerSubscriptionDTO {
   String get operationType => throw _privateConstructorUsedError;
   String get valueMod => throw _privateConstructorUsedError;
   bool get canBuy => throw _privateConstructorUsedError;
-  int get orderNum => throw _privateConstructorUsedError;
+  int? get orderNum => throw _privateConstructorUsedError;
   double get koef => throw _privateConstructorUsedError;
 
   /// Serializes this ServerSubscriptionDTO to a JSON map.
@@ -55,7 +55,7 @@ abstract class $ServerSubscriptionDTOCopyWith<$Res> {
       String operationType,
       String valueMod,
       bool canBuy,
-      int orderNum,
+      int? orderNum,
       double koef});
 }
 
@@ -82,7 +82,7 @@ class _$ServerSubscriptionDTOCopyWithImpl<$Res,
     Object? operationType = null,
     Object? valueMod = null,
     Object? canBuy = null,
-    Object? orderNum = null,
+    Object? orderNum = freezed,
     Object? koef = null,
   }) {
     return _then(_value.copyWith(
@@ -114,10 +114,10 @@ class _$ServerSubscriptionDTOCopyWithImpl<$Res,
           ? _value.canBuy
           : canBuy // ignore: cast_nullable_to_non_nullable
               as bool,
-      orderNum: null == orderNum
+      orderNum: freezed == orderNum
           ? _value.orderNum
           : orderNum // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       koef: null == koef
           ? _value.koef
           : koef // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ abstract class _$$ServerSubscriptionDTOImplCopyWith<$Res>
       String operationType,
       String valueMod,
       bool canBuy,
-      int orderNum,
+      int? orderNum,
       double koef});
 }
 
@@ -168,7 +168,7 @@ class __$$ServerSubscriptionDTOImplCopyWithImpl<$Res>
     Object? operationType = null,
     Object? valueMod = null,
     Object? canBuy = null,
-    Object? orderNum = null,
+    Object? orderNum = freezed,
     Object? koef = null,
   }) {
     return _then(_$ServerSubscriptionDTOImpl(
@@ -200,10 +200,10 @@ class __$$ServerSubscriptionDTOImplCopyWithImpl<$Res>
           ? _value.canBuy
           : canBuy // ignore: cast_nullable_to_non_nullable
               as bool,
-      orderNum: null == orderNum
+      orderNum: freezed == orderNum
           ? _value.orderNum
           : orderNum // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       koef: null == koef
           ? _value.koef
           : koef // ignore: cast_nullable_to_non_nullable
@@ -244,7 +244,7 @@ class _$ServerSubscriptionDTOImpl implements _ServerSubscriptionDTO {
   @override
   final bool canBuy;
   @override
-  final int orderNum;
+  final int? orderNum;
   @override
   final double koef;
 
@@ -305,7 +305,7 @@ abstract class _ServerSubscriptionDTO implements ServerSubscriptionDTO {
       required final String operationType,
       required final String valueMod,
       required final bool canBuy,
-      required final int orderNum,
+      required final int? orderNum,
       required final double koef}) = _$ServerSubscriptionDTOImpl;
 
   factory _ServerSubscriptionDTO.fromJson(Map<String, dynamic> json) =
@@ -326,7 +326,7 @@ abstract class _ServerSubscriptionDTO implements ServerSubscriptionDTO {
   @override
   bool get canBuy;
   @override
-  int get orderNum;
+  int? get orderNum;
   @override
   double get koef;
 

@@ -16,7 +16,7 @@ _$ServerSubscriptionDTOImpl _$$ServerSubscriptionDTOImplFromJson(
       operationType: json['operationType'] as String,
       valueMod: json['valueMod'] as String,
       canBuy: json['canBuy'] as bool,
-      orderNum: (json['orderNum'] as num).toInt(),
+      orderNum: (json['orderNum'] as num?)?.toInt(),
       koef: (json['koef'] as num).toDouble(),
     );
 

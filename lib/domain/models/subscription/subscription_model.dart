@@ -13,7 +13,7 @@ class SubscriptionModel with _$SubscriptionModel {
     required int durationInDays,
     String? currencySymbol,
     @Default(1.0) double koef,
-    @Default(0) int orderNum,
+    int? orderNum,
     @Default(true) bool canBuy,
   }) = _SubscriptionModel;
 
