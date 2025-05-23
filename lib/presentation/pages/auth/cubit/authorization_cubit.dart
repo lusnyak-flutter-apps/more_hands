@@ -44,6 +44,7 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
           .loginSocial(credential!.idToken!, referral: referralController.text)
           .then((value) async {
         if (value) {
+          emit(AuthorizationState.authorized(credential));
           final token = await FCMService.instance.firebaseToken;
           if(token != null) {
             await getIt<ProfileRepository>().setFirebaseToken(token: token);
@@ -53,7 +54,6 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
                   duration: const Duration(seconds: 5));
             }
           }
-          emit(AuthorizationState.authorized(credential));
         } else {
           emit(const AuthorizationState.unauthorized());
         }
