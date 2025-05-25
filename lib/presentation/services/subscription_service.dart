@@ -4,6 +4,7 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:developer' as developer;
 import 'package:more_hands/domain/models/subscription/subscription_model.dart';
+import 'package:flutter/services.dart';
 
 @injectable
 class SubscriptionService {
@@ -45,6 +46,19 @@ class SubscriptionService {
 
     sub = _iap.purchaseStream.listen((purchases) async {
       for (final purchase in purchases) {
+        final details = '''
+        purchaseID: ${purchase.purchaseID}
+        productID: ${purchase.productID}
+        localVerificationData: ${purchase.verificationData.localVerificationData}
+        serverVerificationData: ${purchase.verificationData.serverVerificationData}
+        source: ${purchase.verificationData.source}
+        transactionDate: ${purchase.transactionDate}
+        status: ${purchase.status}
+        error: ${purchase.error?.message}
+        pendingCompletePurchase: ${purchase.pendingCompletePurchase}
+        ''';
+        await Clipboard.setData(ClipboardData(text: details));
+
         if (purchase.productID == productId &&
             purchase.status == PurchaseStatus.purchased) {
           completer.complete(true);

@@ -4,7 +4,6 @@ import 'package:more_hands/data/data.dart';
 import 'package:more_hands/data/local/social_auth/social_auth_manager.dart';
 import 'package:more_hands/data/local/social_auth/social_auth_model.dart';
 import 'package:more_hands/domain/enums/social_auth_type.dart';
-import 'package:more_hands/domain/models/login_response_model/login_response_model.dart';
 import 'package:more_hands/domain/models/user_credential_model/user_credential_model.dart';
 import 'package:uikit/uikit.dart';
 
@@ -29,36 +28,13 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
   ];
 
   Future<void> login(UserCredentialModel user) async {
-    await getIt<TokenStorage>().saveToken(
-      const LoginResponseModel(
-          token:
-              'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb29nbGVfMTE1NjIzMzA1MzczNzAzNTc3MDAxIiwiZXhwIjoxNzQ3MTExODc0fQ.PdiRuD4ZbWQn4Bkbl0TYkU6Tb-gHOKMHKjkiym6lQ1-zwAOjrrjW8-SlCp2c3trI-EIxHoSFP0NrrFsv49RX6g, X-FirebaseToken: dCijeXlmQCuu7Q4bTWoWZR:APA91bGjOSJwNYdjQ5UfJ3DnCZPiQvoIQBvPkzeIi9idAm6VDxqzgGNXDbi7Z8REmKSxcCJmOfcGPxPdnj2yuHGRW2TvSQgbNONTaluvjBzp_Ms3Qj-nFNo',
-          expiration: 1746251473,
-          closestLoc: 100,
-          existingUser: true,
-          refCode: 'E9RU7HNALQ1B'),
-    );
-
-    final model = SocialAuthModel(
-      id: '1000',
-      accessToken:
-          'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb29nbGVfMTE1NjIzMzA1MzczNzAzNTc3MDAxIiwiZXhwIjoxNzQ3MTExODc0fQ.PdiRuD4ZbWQn4Bkbl0TYkU6Tb-gHOKMHKjkiym6lQ1-zwAOjrrjW8-SlCp2c3trI-EIxHoSFP0NrrFsv49RX6g, X-FirebaseToken: dCijeXlmQCuu7Q4bTWoWZR:APA91bGjOSJwNYdjQ5UfJ3DnCZPiQvoIQBvPkzeIi9idAm6VDxqzgGNXDbi7Z8REmKSxcCJmOfcGPxPdnj2yuHGRW2TvSQgbNONTaluvjBzp_Ms3Qj-nFNo',
-    );
-    emit(AuthorizationState.authorized(model));
-
-    // await getIt<AuthRepository>().login(user).then((value) {
-    //   if (value) {
-    //     final model = SocialAuthModel(
-    //       id: '1000',
-    //       accessToken:
-    //           'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb29nbGVfMTE1NjIzMzA1MzczNzAzNTc3MDAxIiwiZXhwIjoxNzQ3MTExODc0fQ.PdiRuD4ZbWQn4Bkbl0TYkU6Tb-gHOKMHKjkiym6lQ1-zwAOjrrjW8-SlCp2c3trI-EIxHoSFP0NrrFsv49RX6g, X-FirebaseToken: dCijeXlmQCuu7Q4bTWoWZR:APA91bGjOSJwNYdjQ5UfJ3DnCZPiQvoIQBvPkzeIi9idAm6VDxqzgGNXDbi7Z8REmKSxcCJmOfcGPxPdnj2yuHGRW2TvSQgbNONTaluvjBzp_Ms3Qj-nFNo',
-    //     );
-    //     emit(AuthorizationState.authorized(model));
-    //   } else {
-    //     emit(const AuthorizationState.unauthorized());
-    //   }
-    // }
-    // );
+    await getIt<AuthRepository>().login(user).then((value) {
+      if (value) {
+        emit(const AuthorizationState.authorized(null));
+      } else {
+        emit(const AuthorizationState.unauthorized());
+      }
+    });
   }
 
   Future<void> loginViaSocial(

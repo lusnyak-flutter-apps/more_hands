@@ -77,7 +77,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                     padding: EdgeInsets.only(bottom: 8.h),
                     child: MHOutlinedButton(
                       title:
-                          "${subscription.title} за ${subscription.price}${subscription.currencySymbol}",
+                          "${subscription.title} за ${subscription.price} ${subscription.currencySymbol}",
                       onPressed: isActive || loading
                           ? null
                           : () => context

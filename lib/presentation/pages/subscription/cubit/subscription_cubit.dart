@@ -29,15 +29,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
 
     final purchaseResult = await _repository.buySubscription(productId);
     if (purchaseResult) {
-      // final backendResult = await _repository.purchaseSubscription(productId);
-      // if (backendResult) {
       await checkSubscriptionStatus();
-      // } else {
-      //   emit(state.copyWith(
-      //     loading: false,
-      //     error: 'Failed to verify purchase',
-      //   ));
-      // }
     } else {
       emit(state.copyWith(
         loading: false,
