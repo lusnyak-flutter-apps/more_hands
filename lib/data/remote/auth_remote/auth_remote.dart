@@ -16,7 +16,7 @@ abstract class AuthRemoteApi {
     @Query('password') String password,
   );
 
-  @PUT(EndPoint.userDeleteSelf)
+  @DELETE(EndPoint.userDeleteSelf)
   Future<void> deleteAccount();
 
   @GET(EndPoint.loginGoogle)
