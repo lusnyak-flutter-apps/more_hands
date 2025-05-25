@@ -13,7 +13,7 @@ import 'package:more_hands/domain/models/user_model/user_model.dart';
 import 'package:more_hands/presentation/pages/add_review/add_review_page.dart';
 import 'package:more_hands/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:more_hands/presentation/pages/profile/sub_widgets/profile_delete_bottom_view.dart';
-import 'package:more_hands/presentation/pages/profile/sub_widgets/subscription_view.dart';
+import 'package:more_hands/presentation/pages/subscription/subscription_view.dart';
 import 'package:more_hands/presentation/pages/services/cubit/service_details_cubit/service_details_cubit.dart';
 import 'package:more_hands/presentation/widgets/comment_tile.dart';
 import 'package:more_hands/presentation/widgets/mh_language_list_view.dart';
@@ -215,18 +215,19 @@ class _ProfileView extends StatelessWidget {
               children: [
                 MHGradientTag(
                   title: context.localized.passKYC,
-                  onPressed: () {
-                    showSubscriptionSheet(context);
-                  },
+                  onPressed: () {},
                   icon: MoreHandsAssets.icons.hand.svg(
                       height: 16.r,
                       colorFilter: const ColorFilter.mode(
                           MHColors.blackBGColor, BlendMode.srcIn)),
                 ),
                 8.w.widthBox,
-                MHGradientText(
-                  text: context.localized.subscription,
-                  style: body16MediumStyle,
+                GestureDetector(
+                  onTap: () => showSubscriptionSheet(context),
+                  child: MHGradientText(
+                    text: context.localized.subscription,
+                    style: body16MediumStyle,
+                  ),
                 )
               ],
             ),
@@ -328,9 +329,7 @@ class _ProfileView extends StatelessWidget {
               InkWell(
                 radius: 8.r,
                 onLongPress: () async {
-                  await Clipboard.setData(ClipboardData(
-                      text: bio))
-                      .then((_) {
+                  await Clipboard.setData(ClipboardData(text: bio)).then((_) {
                     if (context.mounted) {
                       context.showSnackBar(
                           message: context.localized.successfullyCopied);
@@ -405,9 +404,9 @@ class _ProfileView extends StatelessWidget {
       if (onValue is String && onValue == editService && context.mounted) {
         context.router
             .push(ServiceDetailsRoute(
-            serviceModel: service,
-            serviceCategory: service.category!,
-            mode: ServiceDetailsMode.edit))
+                serviceModel: service,
+                serviceCategory: service.category!,
+                mode: ServiceDetailsMode.edit))
             .then((flag) {
           if (context.mounted && flag is bool && flag == true) {
             context.read<ProfileCubit>().loadProfile();

@@ -8,6 +8,8 @@ import 'package:more_hands/language/language_cubit.dart';
 // import 'package:more_hands/data/local/token_storage/token_stotage_impl.dart';
 import 'package:uikit/uikit.dart';
 
+import 'presentation/pages/subscription/cubit/subscription_cubit.dart';
+
 final appRouter = AppRouter();
 
 class MoreHandsApp extends StatefulWidget {
@@ -95,8 +97,16 @@ class _MoreHandsAppState extends State<MoreHandsApp> {
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       builder: (context, _) {
-        return BlocProvider(
-          create: (context) => LanguageCubit()..onLoadSelectedLanguage(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<LanguageCubit>(
+              create: (context) => LanguageCubit()..onLoadSelectedLanguage(),
+            ),
+            BlocProvider<SubscriptionCubit>(
+              create: (context) =>
+                  getIt<SubscriptionCubit>()..checkSubscriptionStatus(),
+            ),
+          ],
           child: BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
             String localeCode = locale.languageCode;
             return MaterialApp.router(

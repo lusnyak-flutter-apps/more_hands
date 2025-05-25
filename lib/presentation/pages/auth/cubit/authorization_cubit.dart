@@ -37,7 +37,8 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
     });
   }
 
-  Future<void> loginViaSocial(BuildContext context, SocialAuthType authType) async {
+  Future<void> loginViaSocial(
+      BuildContext context, SocialAuthType authType) async {
     final credential = await getIt<SocialAuthManager>().signIn(authType);
     if (credential?.idToken != null) {
       await getIt<AuthRepository>()
@@ -46,7 +47,7 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
         if (value) {
           emit(AuthorizationState.authorized(credential));
           final token = await FCMService.instance.firebaseToken;
-          if(token != null) {
+          if (token != null) {
             await getIt<ProfileRepository>().setFirebaseToken(token: token);
             if (context.mounted) {
               context.showSnackBar(

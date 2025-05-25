@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -20,16 +21,16 @@ class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
     LastCommentInfoModel? commentForEdit,
     List<PageRouteInfo>? children,
   }) : super(
-          AddReviewRoute.name,
-          args: AddReviewRouteArgs(
-            key: key,
-            replyToCommentId: replyToCommentId,
-            requestId: requestId,
-            userRelatedLogin: userRelatedLogin,
-            commentForEdit: commentForEdit,
-          ),
-          initialChildren: children,
-        );
+         AddReviewRoute.name,
+         args: AddReviewRouteArgs(
+           key: key,
+           replyToCommentId: replyToCommentId,
+           requestId: requestId,
+           userRelatedLogin: userRelatedLogin,
+           commentForEdit: commentForEdit,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'AddReviewRoute';
 
@@ -37,7 +38,8 @@ class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<AddReviewRouteArgs>(
-          orElse: () => const AddReviewRouteArgs());
+        orElse: () => const AddReviewRouteArgs(),
+      );
       return AddReviewPage(
         key: args.key,
         replyToCommentId: args.replyToCommentId,
@@ -78,10 +80,7 @@ class AddReviewRouteArgs {
 /// [AppLoadingPage]
 class AppLoadingRoute extends PageRouteInfo<void> {
   const AppLoadingRoute({List<PageRouteInfo>? children})
-      : super(
-          AppLoadingRoute.name,
-          initialChildren: children,
-        );
+    : super(AppLoadingRoute.name, initialChildren: children);
 
   static const String name = 'AppLoadingRoute';
 
@@ -97,10 +96,7 @@ class AppLoadingRoute extends PageRouteInfo<void> {
 /// [AuthorizationPage]
 class AuthorizationRoute extends PageRouteInfo<void> {
   const AuthorizationRoute({List<PageRouteInfo>? children})
-      : super(
-          AuthorizationRoute.name,
-          initialChildren: children,
-        );
+    : super(AuthorizationRoute.name, initialChildren: children);
 
   static const String name = 'AuthorizationRoute';
 
@@ -116,10 +112,7 @@ class AuthorizationRoute extends PageRouteInfo<void> {
 /// [BottomNavigationPage]
 class BottomNavigationRoute extends PageRouteInfo<void> {
   const BottomNavigationRoute({List<PageRouteInfo>? children})
-      : super(
-          BottomNavigationRoute.name,
-          initialChildren: children,
-        );
+    : super(BottomNavigationRoute.name, initialChildren: children);
 
   static const String name = 'BottomNavigationRoute';
 
@@ -135,10 +128,7 @@ class BottomNavigationRoute extends PageRouteInfo<void> {
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
+    : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -158,13 +148,10 @@ class IncomingRequestsRoute extends PageRouteInfo<IncomingRequestsRouteArgs> {
     required List<RequestModel> requests,
     List<PageRouteInfo>? children,
   }) : super(
-          IncomingRequestsRoute.name,
-          args: IncomingRequestsRouteArgs(
-            key: key,
-            requests: requests,
-          ),
-          initialChildren: children,
-        );
+         IncomingRequestsRoute.name,
+         args: IncomingRequestsRouteArgs(key: key, requests: requests),
+         initialChildren: children,
+       );
 
   static const String name = 'IncomingRequestsRoute';
 
@@ -172,19 +159,13 @@ class IncomingRequestsRoute extends PageRouteInfo<IncomingRequestsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<IncomingRequestsRouteArgs>();
-      return IncomingRequestsPage(
-        key: args.key,
-        requests: args.requests,
-      );
+      return IncomingRequestsPage(key: args.key, requests: args.requests);
     },
   );
 }
 
 class IncomingRequestsRouteArgs {
-  const IncomingRequestsRouteArgs({
-    this.key,
-    required this.requests,
-  });
+  const IncomingRequestsRouteArgs({this.key, required this.requests});
 
   final Key? key;
 
@@ -200,10 +181,7 @@ class IncomingRequestsRouteArgs {
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
-      : super(
-          OnboardingRoute.name,
-          initialChildren: children,
-        );
+    : super(OnboardingRoute.name, initialChildren: children);
 
   static const String name = 'OnboardingRoute';
 
@@ -223,13 +201,10 @@ class OutgoingRequestsRoute extends PageRouteInfo<OutgoingRequestsRouteArgs> {
     required List<RequestModel> requests,
     List<PageRouteInfo>? children,
   }) : super(
-          OutgoingRequestsRoute.name,
-          args: OutgoingRequestsRouteArgs(
-            key: key,
-            requests: requests,
-          ),
-          initialChildren: children,
-        );
+         OutgoingRequestsRoute.name,
+         args: OutgoingRequestsRouteArgs(key: key, requests: requests),
+         initialChildren: children,
+       );
 
   static const String name = 'OutgoingRequestsRoute';
 
@@ -237,19 +212,13 @@ class OutgoingRequestsRoute extends PageRouteInfo<OutgoingRequestsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<OutgoingRequestsRouteArgs>();
-      return OutgoingRequestsPage(
-        key: args.key,
-        requests: args.requests,
-      );
+      return OutgoingRequestsPage(key: args.key, requests: args.requests);
     },
   );
 }
 
 class OutgoingRequestsRouteArgs {
-  const OutgoingRequestsRouteArgs({
-    this.key,
-    required this.requests,
-  });
+  const OutgoingRequestsRouteArgs({this.key, required this.requests});
 
   final Key? key;
 
@@ -269,13 +238,10 @@ class ProfileAboutRoute extends PageRouteInfo<ProfileAboutRouteArgs> {
     required UserModel user,
     List<PageRouteInfo>? children,
   }) : super(
-          ProfileAboutRoute.name,
-          args: ProfileAboutRouteArgs(
-            key: key,
-            user: user,
-          ),
-          initialChildren: children,
-        );
+         ProfileAboutRoute.name,
+         args: ProfileAboutRouteArgs(key: key, user: user),
+         initialChildren: children,
+       );
 
   static const String name = 'ProfileAboutRoute';
 
@@ -283,19 +249,13 @@ class ProfileAboutRoute extends PageRouteInfo<ProfileAboutRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ProfileAboutRouteArgs>();
-      return ProfileAboutPage(
-        key: args.key,
-        user: args.user,
-      );
+      return ProfileAboutPage(key: args.key, user: args.user);
     },
   );
 }
 
 class ProfileAboutRouteArgs {
-  const ProfileAboutRouteArgs({
-    this.key,
-    required this.user,
-  });
+  const ProfileAboutRouteArgs({this.key, required this.user});
 
   final Key? key;
 
@@ -315,13 +275,10 @@ class ProfileContactsRoute extends PageRouteInfo<ProfileContactsRouteArgs> {
     required UserModel user,
     List<PageRouteInfo>? children,
   }) : super(
-          ProfileContactsRoute.name,
-          args: ProfileContactsRouteArgs(
-            key: key,
-            user: user,
-          ),
-          initialChildren: children,
-        );
+         ProfileContactsRoute.name,
+         args: ProfileContactsRouteArgs(key: key, user: user),
+         initialChildren: children,
+       );
 
   static const String name = 'ProfileContactsRoute';
 
@@ -329,19 +286,13 @@ class ProfileContactsRoute extends PageRouteInfo<ProfileContactsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ProfileContactsRouteArgs>();
-      return ProfileContactsPage(
-        key: args.key,
-        user: args.user,
-      );
+      return ProfileContactsPage(key: args.key, user: args.user);
     },
   );
 }
 
 class ProfileContactsRouteArgs {
-  const ProfileContactsRouteArgs({
-    this.key,
-    required this.user,
-  });
+  const ProfileContactsRouteArgs({this.key, required this.user});
 
   final Key? key;
 
@@ -362,13 +313,10 @@ class ProfileNameAndImageRoute
     required UserModel user,
     List<PageRouteInfo>? children,
   }) : super(
-          ProfileNameAndImageRoute.name,
-          args: ProfileNameAndImageRouteArgs(
-            key: key,
-            user: user,
-          ),
-          initialChildren: children,
-        );
+         ProfileNameAndImageRoute.name,
+         args: ProfileNameAndImageRouteArgs(key: key, user: user),
+         initialChildren: children,
+       );
 
   static const String name = 'ProfileNameAndImageRoute';
 
@@ -376,19 +324,13 @@ class ProfileNameAndImageRoute
     name,
     builder: (data) {
       final args = data.argsAs<ProfileNameAndImageRouteArgs>();
-      return ProfileNameAndImagePage(
-        key: args.key,
-        user: args.user,
-      );
+      return ProfileNameAndImagePage(key: args.key, user: args.user);
     },
   );
 }
 
 class ProfileNameAndImageRouteArgs {
-  const ProfileNameAndImageRouteArgs({
-    this.key,
-    required this.user,
-  });
+  const ProfileNameAndImageRouteArgs({this.key, required this.user});
 
   final Key? key;
 
@@ -404,10 +346,7 @@ class ProfileNameAndImageRouteArgs {
 /// [ProfilePage]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})
-      : super(
-          ProfileRoute.name,
-          initialChildren: children,
-        );
+    : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
@@ -423,10 +362,7 @@ class ProfileRoute extends PageRouteInfo<void> {
 /// [ReferralsPage]
 class ReferralsRoute extends PageRouteInfo<void> {
   const ReferralsRoute({List<PageRouteInfo>? children})
-      : super(
-          ReferralsRoute.name,
-          initialChildren: children,
-        );
+    : super(ReferralsRoute.name, initialChildren: children);
 
   static const String name = 'ReferralsRoute';
 
@@ -442,10 +378,7 @@ class ReferralsRoute extends PageRouteInfo<void> {
 /// [RequestsPage]
 class RequestsRoute extends PageRouteInfo<void> {
   const RequestsRoute({List<PageRouteInfo>? children})
-      : super(
-          RequestsRoute.name,
-          initialChildren: children,
-        );
+    : super(RequestsRoute.name, initialChildren: children);
 
   static const String name = 'RequestsRoute';
 
@@ -461,10 +394,7 @@ class RequestsRoute extends PageRouteInfo<void> {
 /// [RequestsTapPage]
 class RequestsTapRoute extends PageRouteInfo<void> {
   const RequestsTapRoute({List<PageRouteInfo>? children})
-      : super(
-          RequestsTapRoute.name,
-          initialChildren: children,
-        );
+    : super(RequestsTapRoute.name, initialChildren: children);
 
   static const String name = 'RequestsTapRoute';
 
@@ -485,14 +415,14 @@ class SelectLocationRoute extends PageRouteInfo<SelectLocationRouteArgs> {
     int? selectedLocationId,
     List<PageRouteInfo>? children,
   }) : super(
-          SelectLocationRoute.name,
-          args: SelectLocationRouteArgs(
-            key: key,
-            singleSelect: singleSelect,
-            selectedLocationId: selectedLocationId,
-          ),
-          initialChildren: children,
-        );
+         SelectLocationRoute.name,
+         args: SelectLocationRouteArgs(
+           key: key,
+           singleSelect: singleSelect,
+           selectedLocationId: selectedLocationId,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SelectLocationRoute';
 
@@ -500,7 +430,8 @@ class SelectLocationRoute extends PageRouteInfo<SelectLocationRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<SelectLocationRouteArgs>(
-          orElse: () => const SelectLocationRouteArgs());
+        orElse: () => const SelectLocationRouteArgs(),
+      );
       return SelectLocationPage(
         key: args.key,
         singleSelect: args.singleSelect,
@@ -538,14 +469,14 @@ class SendRequestRoute extends PageRouteInfo<SendRequestRouteArgs> {
     ServiceModel? serviceModel,
     List<PageRouteInfo>? children,
   }) : super(
-          SendRequestRoute.name,
-          args: SendRequestRouteArgs(
-            key: key,
-            userId: userId,
-            serviceModel: serviceModel,
-          ),
-          initialChildren: children,
-        );
+         SendRequestRoute.name,
+         args: SendRequestRouteArgs(
+           key: key,
+           userId: userId,
+           serviceModel: serviceModel,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SendRequestRoute';
 
@@ -591,15 +522,15 @@ class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
     ServiceDetailsMode mode = ServiceDetailsMode.add,
     List<PageRouteInfo>? children,
   }) : super(
-          ServiceDetailsRoute.name,
-          args: ServiceDetailsRouteArgs(
-            key: key,
-            serviceModel: serviceModel,
-            serviceCategory: serviceCategory,
-            mode: mode,
-          ),
-          initialChildren: children,
-        );
+         ServiceDetailsRoute.name,
+         args: ServiceDetailsRouteArgs(
+           key: key,
+           serviceModel: serviceModel,
+           serviceCategory: serviceCategory,
+           mode: mode,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ServiceDetailsRoute';
 
@@ -643,10 +574,7 @@ class ServiceDetailsRouteArgs {
 /// [ServicesListPage]
 class ServicesListRoute extends PageRouteInfo<void> {
   const ServicesListRoute({List<PageRouteInfo>? children})
-      : super(
-          ServicesListRoute.name,
-          initialChildren: children,
-        );
+    : super(ServicesListRoute.name, initialChildren: children);
 
   static const String name = 'ServicesListRoute';
 
@@ -662,10 +590,7 @@ class ServicesListRoute extends PageRouteInfo<void> {
 /// [TestAuthPage]
 class TestAuthRoute extends PageRouteInfo<void> {
   const TestAuthRoute({List<PageRouteInfo>? children})
-      : super(
-          TestAuthRoute.name,
-          initialChildren: children,
-        );
+    : super(TestAuthRoute.name, initialChildren: children);
 
   static const String name = 'TestAuthRoute';
 
@@ -686,14 +611,10 @@ class UserRoute extends PageRouteInfo<UserRouteArgs> {
     int? commentId,
     List<PageRouteInfo>? children,
   }) : super(
-          UserRoute.name,
-          args: UserRouteArgs(
-            key: key,
-            userId: userId,
-            commentId: commentId,
-          ),
-          initialChildren: children,
-        );
+         UserRoute.name,
+         args: UserRouteArgs(key: key, userId: userId, commentId: commentId),
+         initialChildren: children,
+       );
 
   static const String name = 'UserRoute';
 
@@ -711,11 +632,7 @@ class UserRoute extends PageRouteInfo<UserRouteArgs> {
 }
 
 class UserRouteArgs {
-  const UserRouteArgs({
-    this.key,
-    required this.userId,
-    this.commentId,
-  });
+  const UserRouteArgs({this.key, required this.userId, this.commentId});
 
   final Key? key;
 
