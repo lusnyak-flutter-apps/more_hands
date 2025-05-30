@@ -41,10 +41,17 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
     BuildContext context,
     SocialAuthType authType,
   ) async {
+    debugPrint("AuthorizationCubit.loginViaSocial: started");
     final credential = await getIt<SocialAuthManager>().signIn(authType);
     if (credential?.idToken != null) {
       await getIt<AuthRepository>()
-          .loginSocial(credential!.idToken!, referral: referralController.text)
+          .loginSocial(
+        credential!.idToken!,
+        referral: referralController.text,
+        type: authType,
+        familyName: credential.familyName,
+        givenName: credential.name,
+      )
           .then((value) async {
         if (value) {
           emit(AuthorizationState.authorized(credential));

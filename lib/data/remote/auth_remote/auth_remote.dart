@@ -25,6 +25,14 @@ abstract class AuthRemoteApi {
     @Query('refCode') String? refCode,
   });
 
+  @GET(EndPoint.loginApple)
+  Future<LoginResponseModel?> loginApple(
+    @Query('idToken') String idToken, {
+    @Query('refCode') String? refCode,
+    @Query('familyName') String? familyName,
+    @Query('givenName') String? givenName,
+  });
+
   @GET(EndPoint.refreshToken)
   Future<LoginResponseModel?> refreshToken();
 }

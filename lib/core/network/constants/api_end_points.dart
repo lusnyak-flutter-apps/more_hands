@@ -2,6 +2,7 @@ abstract class EndPoint {
   //Authorization
   static const String login = "/login";
   static const String loginGoogle = "/loginGoogle";
+  static const String loginApple = "/loginApple";
   static const String getCurrentUserInfo = "/user/getCurrentUserInfo";
   static const String getCurrentUserReferralsInfo =
       "/user/getCurrentUserReferralsInfo";

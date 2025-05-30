@@ -6,6 +6,8 @@ import 'package:more_hands/domain/enums/social_auth_type.dart';
 import 'package:more_hands/domain/models/user_credential_model/user_credential_model.dart';
 import 'package:more_hands/more_hands_app.dart';
 
+import '../../domain/models/login_response_model/login_response_model.dart';
+
 @lazySingleton
 class AuthRepository {
   Future<bool> login(UserCredentialModel userCredential) async {
@@ -26,11 +28,25 @@ class AuthRepository {
     String socialToken, {
     String? referral,
     SocialAuthType type = SocialAuthType.google,
+    String? familyName,
+    String? givenName,
   }) async {
     final refCode =
         referral != null && referral.trim().isNotEmpty ? referral.trim() : null;
-    final loginFuture =
-        getIt<AuthRemoteApi>().loginGoogle(socialToken, refCode: refCode);
+
+    late Future<LoginResponseModel?> loginFuture;
+    if (type == SocialAuthType.apple) {
+      loginFuture = getIt<AuthRemoteApi>().loginApple(
+        socialToken,
+        refCode: refCode,
+        familyName: familyName,
+        givenName: givenName,
+      );
+    } else if (type == SocialAuthType.google) {
+      loginFuture =
+          getIt<AuthRemoteApi>().loginGoogle(socialToken, refCode: refCode);
+    }
+
     return await loginFuture.then((value) async {
       if (value != null) {
         await getIt<TokenStorage>().saveToken(value);

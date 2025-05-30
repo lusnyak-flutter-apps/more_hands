@@ -54,6 +54,7 @@ class SocialAuthModel {
   factory SocialAuthModel.fromApple(AuthorizationCredentialAppleID credential) {
     return SocialAuthModel(
       id: credential.userIdentifier,
+      idToken: credential.identityToken,
       accessToken: credential.identityToken,
       oauthProvider: "apple",
       email: credential.email ?? "",
@@ -71,6 +72,7 @@ class SocialAuthModel {
         "displayName": displayName,
         "serverAuthCode": serverAuthCode,
         "email": email,
-        "photoUrl": photoUrl
+        "name": name,
+        "familyName": familyName,
       };
 }
