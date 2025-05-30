@@ -22,7 +22,15 @@ LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) {
 mixin _$LoginResponseModel {
   String get token => throw _privateConstructorUsedError;
   int get expiration => throw _privateConstructorUsedError;
-  String get refCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'expirationDate')
+  String get expirationDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'refreshToken')
+  String get refreshToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'refreshExpiration')
+  int get refreshExpiration => throw _privateConstructorUsedError;
+  @JsonKey(name: 'refreshExpirationDate')
+  String get refreshExpirationDate => throw _privateConstructorUsedError;
+  String? get refCode => throw _privateConstructorUsedError;
   int? get closestLoc => throw _privateConstructorUsedError;
   bool? get existingUser => throw _privateConstructorUsedError;
 
@@ -45,7 +53,11 @@ abstract class $LoginResponseModelCopyWith<$Res> {
   $Res call(
       {String token,
       int expiration,
-      String refCode,
+      @JsonKey(name: 'expirationDate') String expirationDate,
+      @JsonKey(name: 'refreshToken') String refreshToken,
+      @JsonKey(name: 'refreshExpiration') int refreshExpiration,
+      @JsonKey(name: 'refreshExpirationDate') String refreshExpirationDate,
+      String? refCode,
       int? closestLoc,
       bool? existingUser});
 }
@@ -67,7 +79,11 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
   $Res call({
     Object? token = null,
     Object? expiration = null,
-    Object? refCode = null,
+    Object? expirationDate = null,
+    Object? refreshToken = null,
+    Object? refreshExpiration = null,
+    Object? refreshExpirationDate = null,
+    Object? refCode = freezed,
     Object? closestLoc = freezed,
     Object? existingUser = freezed,
   }) {
@@ -80,10 +96,26 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
           ? _value.expiration
           : expiration // ignore: cast_nullable_to_non_nullable
               as int,
-      refCode: null == refCode
+      expirationDate: null == expirationDate
+          ? _value.expirationDate
+          : expirationDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshExpiration: null == refreshExpiration
+          ? _value.refreshExpiration
+          : refreshExpiration // ignore: cast_nullable_to_non_nullable
+              as int,
+      refreshExpirationDate: null == refreshExpirationDate
+          ? _value.refreshExpirationDate
+          : refreshExpirationDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      refCode: freezed == refCode
           ? _value.refCode
           : refCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       closestLoc: freezed == closestLoc
           ? _value.closestLoc
           : closestLoc // ignore: cast_nullable_to_non_nullable
@@ -107,7 +139,11 @@ abstract class _$$LoginResponseModelImplCopyWith<$Res>
   $Res call(
       {String token,
       int expiration,
-      String refCode,
+      @JsonKey(name: 'expirationDate') String expirationDate,
+      @JsonKey(name: 'refreshToken') String refreshToken,
+      @JsonKey(name: 'refreshExpiration') int refreshExpiration,
+      @JsonKey(name: 'refreshExpirationDate') String refreshExpirationDate,
+      String? refCode,
       int? closestLoc,
       bool? existingUser});
 }
@@ -127,7 +163,11 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
   $Res call({
     Object? token = null,
     Object? expiration = null,
-    Object? refCode = null,
+    Object? expirationDate = null,
+    Object? refreshToken = null,
+    Object? refreshExpiration = null,
+    Object? refreshExpirationDate = null,
+    Object? refCode = freezed,
     Object? closestLoc = freezed,
     Object? existingUser = freezed,
   }) {
@@ -140,10 +180,26 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
           ? _value.expiration
           : expiration // ignore: cast_nullable_to_non_nullable
               as int,
-      refCode: null == refCode
+      expirationDate: null == expirationDate
+          ? _value.expirationDate
+          : expirationDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshExpiration: null == refreshExpiration
+          ? _value.refreshExpiration
+          : refreshExpiration // ignore: cast_nullable_to_non_nullable
+              as int,
+      refreshExpirationDate: null == refreshExpirationDate
+          ? _value.refreshExpirationDate
+          : refreshExpirationDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      refCode: freezed == refCode
           ? _value.refCode
           : refCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       closestLoc: freezed == closestLoc
           ? _value.closestLoc
           : closestLoc // ignore: cast_nullable_to_non_nullable
@@ -163,6 +219,11 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   const _$LoginResponseModelImpl(
       {required this.token,
       required this.expiration,
+      @JsonKey(name: 'expirationDate') required this.expirationDate,
+      @JsonKey(name: 'refreshToken') required this.refreshToken,
+      @JsonKey(name: 'refreshExpiration') required this.refreshExpiration,
+      @JsonKey(name: 'refreshExpirationDate')
+      required this.refreshExpirationDate,
       required this.refCode,
       required this.closestLoc,
       required this.existingUser});
@@ -175,7 +236,19 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   @override
   final int expiration;
   @override
-  final String refCode;
+  @JsonKey(name: 'expirationDate')
+  final String expirationDate;
+  @override
+  @JsonKey(name: 'refreshToken')
+  final String refreshToken;
+  @override
+  @JsonKey(name: 'refreshExpiration')
+  final int refreshExpiration;
+  @override
+  @JsonKey(name: 'refreshExpirationDate')
+  final String refreshExpirationDate;
+  @override
+  final String? refCode;
   @override
   final int? closestLoc;
   @override
@@ -183,7 +256,7 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
 
   @override
   String toString() {
-    return 'LoginResponseModel(token: $token, expiration: $expiration, refCode: $refCode, closestLoc: $closestLoc, existingUser: $existingUser)';
+    return 'LoginResponseModel(token: $token, expiration: $expiration, expirationDate: $expirationDate, refreshToken: $refreshToken, refreshExpiration: $refreshExpiration, refreshExpirationDate: $refreshExpirationDate, refCode: $refCode, closestLoc: $closestLoc, existingUser: $existingUser)';
   }
 
   @override
@@ -194,6 +267,14 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.expiration, expiration) ||
                 other.expiration == expiration) &&
+            (identical(other.expirationDate, expirationDate) ||
+                other.expirationDate == expirationDate) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken) &&
+            (identical(other.refreshExpiration, refreshExpiration) ||
+                other.refreshExpiration == refreshExpiration) &&
+            (identical(other.refreshExpirationDate, refreshExpirationDate) ||
+                other.refreshExpirationDate == refreshExpirationDate) &&
             (identical(other.refCode, refCode) || other.refCode == refCode) &&
             (identical(other.closestLoc, closestLoc) ||
                 other.closestLoc == closestLoc) &&
@@ -204,7 +285,16 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, token, expiration, refCode, closestLoc, existingUser);
+      runtimeType,
+      token,
+      expiration,
+      expirationDate,
+      refreshToken,
+      refreshExpiration,
+      refreshExpirationDate,
+      refCode,
+      closestLoc,
+      existingUser);
 
   /// Create a copy of LoginResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -227,7 +317,12 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   const factory _LoginResponseModel(
       {required final String token,
       required final int expiration,
-      required final String refCode,
+      @JsonKey(name: 'expirationDate') required final String expirationDate,
+      @JsonKey(name: 'refreshToken') required final String refreshToken,
+      @JsonKey(name: 'refreshExpiration') required final int refreshExpiration,
+      @JsonKey(name: 'refreshExpirationDate')
+      required final String refreshExpirationDate,
+      required final String? refCode,
       required final int? closestLoc,
       required final bool? existingUser}) = _$LoginResponseModelImpl;
 
@@ -239,7 +334,19 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   @override
   int get expiration;
   @override
-  String get refCode;
+  @JsonKey(name: 'expirationDate')
+  String get expirationDate;
+  @override
+  @JsonKey(name: 'refreshToken')
+  String get refreshToken;
+  @override
+  @JsonKey(name: 'refreshExpiration')
+  int get refreshExpiration;
+  @override
+  @JsonKey(name: 'refreshExpirationDate')
+  String get refreshExpirationDate;
+  @override
+  String? get refCode;
   @override
   int? get closestLoc;
   @override

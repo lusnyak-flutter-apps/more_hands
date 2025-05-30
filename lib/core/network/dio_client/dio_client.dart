@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../../../data/data.dart';
 import '../../core.dart';
+import '../interceptors/refresh_token_interceptor.dart';
 
 @module
 abstract class DioClient {
@@ -27,37 +27,9 @@ abstract class DioClient {
         // },
         responseType: ResponseType.json))
       ..interceptors.addAll([
+        RefreshTokenInterceptor(),
         ApiLoggingInterceptor(),
       ]);
-
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (
-          RequestOptions options,
-          RequestInterceptorHandler handler,
-        ) async {
-          // TODO: сделать рефреш токена
-
-          String extractJwtToken(String tokenString) {
-            // JWT-токен заканчивается перед запятой
-            final parts = tokenString.split(',');
-            if (parts.isNotEmpty) {
-              return parts[0].trim();
-            }
-            throw const FormatException('Invalid token format');
-          }
-
-          final tokenMdl = await getIt<TokenStorage>().readToken();
-          if (tokenMdl != null && tokenMdl.token.isNotEmpty) {
-            final jwtToken = extractJwtToken(tokenMdl.token);
-            options.headers['Authorization'] = 'Bearer $jwtToken';
-          }
-
-          print('>>> Authorization: ${options.headers['Authorization']}');
-          return handler.next(options);
-        },
-      ),
-    );
 
     return dio;
   }

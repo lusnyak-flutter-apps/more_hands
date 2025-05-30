@@ -15,11 +15,21 @@ class TokenStorageImpl implements TokenStorage {
     String tokenJsonString = jsonEncode(tokenJson);
 
     await _storage.write(key: TokenStorage.key, value: tokenJsonString);
+    await _storage.write(
+        key: TokenStorage.expiration, value: token.expiration.toString());
+    await _storage.write(
+        key: TokenStorage.refreshToken, value: token.refreshToken);
+    await _storage.write(
+        key: TokenStorage.refreshExpiration,
+        value: token.refreshExpiration.toString());
   }
 
   @override
   Future<void> deleteToken() async {
     await _storage.delete(key: TokenStorage.key);
+    await _storage.delete(key: TokenStorage.expiration);
+    await _storage.delete(key: TokenStorage.refreshToken);
+    await _storage.delete(key: TokenStorage.refreshExpiration);
   }
 
   @override
@@ -27,8 +37,26 @@ class TokenStorageImpl implements TokenStorage {
     final tokenString = await _storage.read(key: TokenStorage.key);
     if (tokenString != null && tokenString.isNotEmpty) {
       Map<String, dynamic> tokenJson = jsonDecode(tokenString);
+
+      final expiration = await _storage.read(key: TokenStorage.expiration);
+      tokenJson[TokenStorage.expiration] = int.parse(expiration ?? '0');
+      final refreshToken = await _storage.read(key: TokenStorage.refreshToken);
+      if (refreshToken != null) {
+        tokenJson[TokenStorage.refreshToken] = refreshToken;
+      }
+      final refreshExpiration =
+          await _storage.read(key: TokenStorage.refreshExpiration);
+      if (refreshExpiration != null) {
+        tokenJson[TokenStorage.refreshExpiration] =
+            int.parse(refreshExpiration);
+      }
       return LoginResponseModel.fromJson(tokenJson);
     }
     return null;
+  }
+
+  @override
+  Future<void> updateToken(String token) {
+    return _storage.write(key: TokenStorage.key, value: token);
   }
 }

@@ -22,8 +22,11 @@ class AuthRepository {
     });
   }
 
-  Future<bool> loginSocial(String socialToken,
-      {String? referral, SocialAuthType type = SocialAuthType.google}) async {
+  Future<bool> loginSocial(
+    String socialToken, {
+    String? referral,
+    SocialAuthType type = SocialAuthType.google,
+  }) async {
     final refCode =
         referral != null && referral.trim().isNotEmpty ? referral.trim() : null;
     final loginFuture =
@@ -44,5 +47,17 @@ class AuthRepository {
       getIt<TokenStorage>().deleteToken(),
     ]).whenComplete(() => appRouter.pushAndPopUntil(const AuthorizationRoute(),
         predicate: (route) => false));
+  }
+
+  Future<bool> refreshToken(String refreshToken) async {
+    return await getIt<AuthRemoteApi>().refreshToken().then((value) async {
+      if (value != null) {
+        await getIt<TokenStorage>().saveToken(value);
+      }
+      return value != null;
+    }).catchError((error) {
+      debugPrint('Error: $error');
+      return false;
+    });
   }
 }

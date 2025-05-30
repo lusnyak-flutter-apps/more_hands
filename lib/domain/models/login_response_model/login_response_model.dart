@@ -10,7 +10,12 @@ class LoginResponseModel with _$LoginResponseModel {
   const factory LoginResponseModel({
     required String token,
     required int expiration,
-    required String refCode,
+    @JsonKey(name: 'expirationDate') required String expirationDate,
+    @JsonKey(name: 'refreshToken') required String refreshToken,
+    @JsonKey(name: 'refreshExpiration') required int refreshExpiration,
+    @JsonKey(name: 'refreshExpirationDate')
+    required String refreshExpirationDate,
+    required String? refCode,
     required int? closestLoc,
     required bool? existingUser,
   }) = _LoginResponseModel;

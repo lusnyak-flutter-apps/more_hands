@@ -38,7 +38,9 @@ class AuthorizationCubit extends Cubit<AuthorizationState> {
   }
 
   Future<void> loginViaSocial(
-      BuildContext context, SocialAuthType authType) async {
+    BuildContext context,
+    SocialAuthType authType,
+  ) async {
     final credential = await getIt<SocialAuthManager>().signIn(authType);
     if (credential?.idToken != null) {
       await getIt<AuthRepository>()

@@ -11,6 +11,8 @@ class SocialAuthModel {
   String? email;
   String? displayName;
   String? photoUrl;
+  String? name;
+  String? familyName;
 
   SocialAuthModel({
     required this.id,
@@ -21,6 +23,8 @@ class SocialAuthModel {
     this.serverAuthCode,
     this.oauthProvider = "oauth-provider",
     this.email,
+    this.name,
+    this.familyName,
   });
 
   factory SocialAuthModel.fromFacebook(ClassicToken? account, String? fbEmail) {
@@ -32,7 +36,9 @@ class SocialAuthModel {
   }
 
   factory SocialAuthModel.fromGoogle(
-      GoogleSignInAccount? credential, GoogleSignInAuthentication? auth) {
+    GoogleSignInAccount? credential,
+    GoogleSignInAuthentication? auth,
+  ) {
     return SocialAuthModel(
       id: credential?.id,
       accessToken: auth?.accessToken,
@@ -47,10 +53,13 @@ class SocialAuthModel {
 
   factory SocialAuthModel.fromApple(AuthorizationCredentialAppleID credential) {
     return SocialAuthModel(
-        id: credential.userIdentifier,
-        accessToken: credential.identityToken,
-        oauthProvider: "apple",
-        email: credential.email ?? "");
+      id: credential.userIdentifier,
+      accessToken: credential.identityToken,
+      oauthProvider: "apple",
+      email: credential.email ?? "",
+      name: credential.givenName,
+      familyName: credential.familyName,
+    );
   }
 
   /// convert this instance to one Map

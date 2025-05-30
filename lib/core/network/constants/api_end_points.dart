@@ -5,6 +5,7 @@ abstract class EndPoint {
   static const String getCurrentUserInfo = "/user/getCurrentUserInfo";
   static const String getCurrentUserReferralsInfo =
       "/user/getCurrentUserReferralsInfo";
+  static const String refreshToken = "/refreshToken";
 
   static const String findUsersByLocAndText = "/user/findByLocAndText";
   static const String findUsersByLocAndServices = "/user/findByLocAndServices";
